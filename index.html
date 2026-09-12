@@ -9,11 +9,11 @@
 <body>
     <main class="container">
         <div class="card">
-            <!-- Górny pasek z datą oraz dynamicznym wskaźnikiem zapisanych utworów -->
+            <!-- Górny pasek z datą oraz dynamicznym wskaźnikiem zapisanych utworów i ustawieniami -->
             <div class="top-nav" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                 <div class="date-header" style="margin-bottom: 0;">Born today</div>
                 <div class="settings-area">
-                    <span id="saved-counter" style="font-size: 13px; margin-right: 12px; opacity: 0.8;">Saved: 0</span>
+                    <span id="saved-counter" style="font-size: 13px; margin-right: 12px; opacity: 0.8;">Later: 0</span>
                     <span id="settings-btn" style="cursor: pointer; font-size: 16px;" title="Settings">⚙️</span>
                 </div>
             </div>
@@ -34,7 +34,7 @@
             <div class="actions">
                 <a href="#" id="spotify-link" class="btn spotify" target="_blank">Spotify</a>
                 <a href="#" id="youtube-link" class="btn youtube" target="_blank">YouTube</a>
-                <button class="btn save-btn" title="Save for later" onclick="saveForLater()">Save</button>
+                <button class="btn save-btn" title="Save for later" onclick="saveForLater()">Later</button>
             </div>
 
             <div class="fact-card">
@@ -148,10 +148,9 @@
 
         let lastVotedTrackId = null;
 
-        // Aktualizacja licznika zapisu przy starcie
         function updateSavedCounter() {
             const savedTracks = JSON.parse(localStorage.getItem('savedTracks')) || [];
-            document.getElementById('saved-counter').textContent = `Saved: ${savedTracks.length}`;
+            document.getElementById('saved-counter').textContent = `Later: ${savedTracks.length}`;
         }
 
         function toggleDiscover() {
