@@ -9,33 +9,27 @@
 <body>
     <main class="container">
         <div class="card">
-            <!-- Data / Nagłówek dnia -->
             <div class="date-header">Born today</div>
             
-            <!-- Tytuł utworu -->
             <h1 id="track-title">Clair de Lune</h1>
             
-            <!-- Kompozytor i tekstowy znacznik kraju -->
             <div class="composer-wrapper">
                 <span id="track-composer">Claude Debussy</span>
                 <span class="country-tag">[FR]</span>
                 <span id="track-duration" class="duration-tag">(4:30)</span>
             </div>
 
-            <!-- Tagi nastroju -->
             <div class="tags-container">
-                <span class="mood-tag">#Melancholic</span>
-                <span class="mood-tag">#Relaxing</span>
+                <span class="mood-tag" id="track-mood1">#Melancholic</span>
+                <span class="mood-tag" id="track-mood2">#Relaxing</span>
             </div>
 
-            <!-- Przyciski akcji (Spotify / YouTube / Ulubione) -->
             <div class="actions">
-                <a href="#" class="btn spotify">Spotify</a>
-                <a href="#" class="btn youtube">YouTube</a>
+                <a href="#" id="spotify-link" class="btn spotify" target="_blank">Spotify</a>
+                <a href="#" id="youtube-link" class="btn youtube" target="_blank">YouTube</a>
                 <button class="btn fav-btn" title="Add to favorites">♥</button>
             </div>
 
-            <!-- Karta inteligentnego faktu -->
             <div class="fact-card">
                 <div class="fact-title">Did you know?</div>
                 <p id="fact-text">Debussy wrote this piece during a period of intense financial struggle, yet it remains his most peaceful work.</p>
@@ -46,29 +40,28 @@
                 </div>
             </div>
 
-            <!-- Blok Discover More -->
             <div class="discover-card" id="discoverCard">
                 <div class="discover-header" onclick="toggleDiscover()">
                     <span id="discover-arrow">▶</span> DISCOVER MORE
                 </div>
                 <div class="top5-list" id="top5List">
-                    <div class="top5-item">
+                    <div class="top5-item" onclick="selectTrack(0)">
                         <span class="top5-title">1. Rêverie</span>
                         <span class="top5-meta">(4:10) <span class="mood-tag">#Dreamy</span></span>
                     </div>
-                    <div class="top5-item">
+                    <div class="top5-item" onclick="selectTrack(1)">
                         <span class="top5-title">2. Arabesque No. 1</span>
                         <span class="top5-meta">(5:00) <span class="mood-tag">#Lively</span></span>
                     </div>
-                    <div class="top5-item">
+                    <div class="top5-item" onclick="selectTrack(2)">
                         <span class="top5-title">3. La Fille aux Cheveux de Lin</span>
                         <span class="top5-meta">(2:30) <span class="mood-tag">#Soft</span></span>
                     </div>
-                    <div class="top5-item">
+                    <div class="top5-item" onclick="selectTrack(3)">
                         <span class="top5-title">4. Golliwogg's Cakewalk</span>
                         <span class="top5-meta">(3:00) <span class="mood-tag">#Playful</span></span>
                     </div>
-                    <div class="top5-item">
+                    <div class="top5-item" onclick="selectTrack(4)">
                         <span class="top5-title">5. Danse sacrée et profane</span>
                         <span class="top5-meta">(4:45) <span class="mood-tag">#Deep</span></span>
                     </div>
@@ -78,6 +71,63 @@
     </main>
 
     <script>
+        const tracksData = [
+            {
+                title: "Clair de Lune",
+                composer: "Claude Debussy",
+                country: "[FR]",
+                duration: "(4:30)",
+                moods: ["#Melancholic", "#Relaxing"],
+                spotify: "https://open.spotify.com/",
+                youtube: "https://youtube.com/"
+            },
+            {
+                title: "Rêverie",
+                composer: "Claude Debussy",
+                country: "[FR]",
+                duration: "(4:10)",
+                moods: ["#Dreamy", "#Calm"],
+                spotify: "https://open.spotify.com/",
+                youtube: "https://youtube.com/"
+            },
+            {
+                title: "Arabesque No. 1",
+                composer: "Claude Debussy",
+                country: "[FR]",
+                duration: "(5:00)",
+                moods: ["#Lively", "#Flowing"],
+                spotify: "https://open.spotify.com/",
+                youtube: "https://youtube.com/"
+            },
+            {
+                title: "La Fille aux Cheveux de Lin",
+                composer: "Claude Debussy",
+                country: "[FR]",
+                duration: "(2:30)",
+                moods: ["#Soft", "#Gentle"],
+                spotify: "https://open.spotify.com/",
+                youtube: "https://youtube.com/"
+            },
+            {
+                title: "Golliwogg's Cakewalk",
+                composer: "Claude Debussy",
+                country: "[FR]",
+                duration: "(3:00)",
+                moods: ["#Playful", "#Upbeat"],
+                spotify: "https://open.spotify.com/",
+                youtube: "https://youtube.com/"
+            },
+            {
+                title: "Danse sacrée et profane",
+                composer: "Claude Debussy",
+                country: "[FR]",
+                duration: "(4:45)",
+                moods: ["#Deep", "#Ethereal"],
+                spotify: "https://open.spotify.com/",
+                youtube: "https://youtube.com/"
+            }
+        ];
+
         function toggleDiscover() {
             const list = document.getElementById('top5List');
             const arrow = document.getElementById('discover-arrow');
@@ -88,6 +138,25 @@
                 list.style.display = 'flex';
                 arrow.textContent = '▼';
             }
+        }
+
+        function selectTrack(index) {
+            const track = tracksData[index + 1];
+            if (!track) return;
+
+            document.getElementById('track-title').textContent = track.title;
+            document.getElementById('track-composer').textContent = track.composer;
+            document.querySelector('.country-tag').textContent = track.country;
+            document.getElementById('track-duration').textContent = track.duration;
+            
+            document.getElementById('track-mood1').textContent = track.moods[0];
+            document.getElementById('track-mood2').textContent = track.moods[1];
+
+            document.getElementById('spotify-link').href = track.spotify;
+            document.getElementById('youtube-link').href = track.youtube;
+
+            document.getElementById('top5List').style.display = 'none';
+            document.getElementById('discover-arrow').textContent = '▶';
         }
     </script>
 </body>
