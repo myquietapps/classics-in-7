@@ -35,8 +35,8 @@
                 <p id="fact-text">Loading fact...</p>
                 <div class="fact-voting">
                     <span>Was this interesting?</span>
-                    <button class="vote-btn" onclick="vote(true)">👍 <span id="thumbs-up-count">12</span></button>
-                    <button class="vote-btn" onclick="vote(false)">👎 <span id="thumbs-down-count">2</span></button>
+                    <button class="vote-btn" onclick="vote(true)">👍</button>
+                    <button class="vote-btn" onclick="vote(false)">👎</button>
                 </div>
             </div>
 
@@ -138,11 +138,7 @@
             "#Flowing": 1
         };
 
-        let votes = {
-            up: 12,
-            down: 2,
-            userVoted: null
-        };
+        let lastVotedTrackId = null;
 
         function toggleDiscover() {
             const list = document.getElementById('top5List');
@@ -181,20 +177,14 @@
         }
 
         function vote(isUp) {
-            if (votes.userVoted === isUp) return;
-
-            if (votes.userVoted === true) {
-                votes.up--;
-            } else if (votes.userVoted === false) {
-                votes.down--;
-            }
+            // Prevent duplicate voting for the same track fact in a row
+            if (lastVotedTrackId === currentTrackId) return;
 
             const currentTrack = tracksData.find(t => t.id === currentTrackId);
+            if (!currentTrack) return;
 
             if (isUp) {
-                votes.up++;
-                votes.userVoted = true;
-                // Boosting mood preferences based on positive feedback
+                // Boost mood preferences on positive feedback
                 currentTrack.moods.forEach(mood => {
                     if (userMoodPreferences[mood] !== undefined) {
                         userMoodPreferences[mood] += 2;
@@ -203,9 +193,7 @@
                     }
                 });
             } else {
-                votes.down++;
-                votes.userVoted = false;
-                // Reducing mood preferences based on negative feedback
+                // Slightly reduce mood preferences on negative feedback
                 currentTrack.moods.forEach(mood => {
                     if (userMoodPreferences[mood] !== undefined) {
                         userMoodPreferences[mood] = Math.max(0, userMoodPreferences[mood] - 1);
@@ -213,8 +201,7 @@
                 });
             }
 
-            document.getElementById('thumbs-up-count').textContent = votes.up;
-            document.getElementById('thumbs-down-count').textContent = votes.down;
+            lastVotedTrackId = currentTrackId;
         }
 
         function updateDiscoverList() {
