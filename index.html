@@ -35,13 +35,24 @@
                 <button class="btn fav-btn" title="Add to favorites">♥</button>
             </div>
 
-            <!-- Stylowana sekcja Discover More (spójna z kartą faktu) -->
+            <!-- Karta inteligentnego faktu -->
+            <div class="fact-card">
+                <div class="fact-title">Did you know?</div>
+                <p id="fact-text">Debussy wrote this piece during a period of intense financial struggle, yet it remains his most peaceful work.</p>
+                <div class="fact-voting">
+                    <span>Was this interesting?</span>
+                    <button class="vote-btn" onclick="vote(true)">👍</button>
+                    <button class="vote-btn" onclick="vote(false)">👎</button>
+                </div>
+            </div>
+
+            <!-- Blok Discover More w pełni po angielsku -->
             <div class="discover-card">
                 <details>
-                    <summary class="discover-title">Discover more from Claude Debussy (Top 5)</summary>
+                    <summary class="discover-title">Discover more from this artist:</summary>
                     <div class="top5-list">
                         <div class="top5-item">
-                            <span class="top5-title">1. Réverie</span>
+                            <span class="top5-title">1. Rêverie</span>
                             <span class="top5-meta">(4:10) <span class="mood-tag">#Dreamy</span></span>
                         </div>
                         <div class="top5-item">
@@ -62,17 +73,6 @@
                         </div>
                     </div>
                 </details>
-            </div>
-
-            <!-- Karta inteligentnego faktu -->
-            <div class="fact-card">
-                <div class="fact-title">Did you know?</div>
-                <p id="fact-text">Debussy wrote this piece during a period of intense financial struggle, yet it remains his most peaceful work.</p>
-                <div class="fact-voting">
-                    <span>Was this interesting?</span>
-                    <button class="vote-btn" onclick="vote(true)">👍</button>
-                    <button class="vote-btn" onclick="vote(false)">👎</button>
-                </div>
             </div>
         </div>
     </main>
