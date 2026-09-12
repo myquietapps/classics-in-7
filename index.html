@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,12 +9,42 @@
 <body>
     <main class="container">
         <div class="card">
-            <h1>Clair de Lune</h1>
+            <!-- Data / Nagłówek dnia -->
+            <div class="date-header">Born on this day</div>
+            
+            <!-- Tytuł utworu -->
+            <h1 id="track-title">Clair de Lune</h1>
+            
+            <!-- Kompozytor i tekstowy znacznik kraju -->
             <div class="composer-wrapper">
-                <span class="composer-name">Claude Debussy</span>
+                <span id="track-composer">Claude Debussy</span>
                 <span class="country-tag">[FR]</span>
+                <span id="track-duration" class="duration-tag">(4:30)</span>
             </div>
-            <p>Debussy wrote this piece during a period of intense financial struggle, yet it remains his most peaceful work.</p>
+
+            <!-- Tagi nastroju -->
+            <div class="tags-container">
+                <span class="mood-tag">#Melancholic</span>
+                <span class="mood-tag">#Relaxing</span>
+            </div>
+
+            <!-- Karta inteligentnego faktu -->
+            <div class="fact-card">
+                <div class="fact-title">Did you know?</div>
+                <p id="fact-text">Debussy wrote this piece during a period of intense financial struggle, yet it remains his most peaceful work.</p>
+                <div class="fact-voting">
+                    <span>Was this interesting?</span>
+                    <button class="vote-btn" onclick="vote(true)">👍</button>
+                    <button class="vote-btn" onclick="vote(false)">👎</button>
+                </div>
+            </div>
+
+            <!-- Przyciski akcji (Spotify / YouTube / Ulubione) -->
+            <div class="actions">
+                <a href="#" class="btn spotify">Spotify</a>
+                <a href="#" class="btn youtube">YouTube</a>
+                <button class="btn fav-btn">♥</button>
+            </div>
         </div>
     </main>
 </body>
