@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classics in 7</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-nocturne">
+
+    <main>
+        <div class="card">
+            <h1 id="track-title">Clair de Lune</h1>
+            <p id="track-composer">Claude Debussy</p>
+            <div id="fun-fact" style="margin-top: 1.5rem; font-size: 0.95rem; opacity: 0.9;">
+                Ładowanie rytuału...
+            </div>
+        </div>
+    </main>
+
+    <!-- Główny skrypt inicjalizujący aplikację -->
+    <script type="module">
+        import { Storage } from './storage.js';
+
+        // Ustawienie motywu z LocalStorage
+        const currentTheme = Storage.getTheme();
+        document.body.className = `theme-${currentTheme}`;
+
+        // Pobranie dzisiejszego utworu z tracks.json
+        fetch('tracks.json')
+            .then(response => response.json())
+            .then(data => {
+                // Pobieramy wpis dla 09-12 (lub używamy pierwszego dostępnego)
+                const todayTrack = data["09-12"];
+                if (todayTrack) {
+                    document.getElementById('track-title').innerText = todayTrack.title;
+                    document.getElementById('track-composer').innerText = todayTrack.composer;
+                    
+                    const lang = Storage.getLang(); // 'en' lub 'pl'
+                    document.getElementById('fun-fact').innerText = todayTrack.funFacts.life[lang];
+                }
+            })
+            .catch(err => console.error('Błąd ładowania bazy utworów:', err));
+    </script>
+</body>
+</html>
