@@ -181,6 +181,7 @@
 
             document.getElementById('fact-text').textContent = track.fact;
 
+            // Poprawiony link do wyszukiwania w Spotify
             document.getElementById('spotify-link').href = `https://open.spotify.com/search/${encodeURIComponent(track.spotifyQuery)}`;
             document.getElementById('youtube-link').href = `https://www.youtube.com/results?search_query=${encodeURIComponent(track.youtubeQuery)}`;
 
