@@ -31,7 +31,7 @@
             </div>
 
             <div class="actions">
-                <a href="#" id="spotify-link" class="btn spotify" target="_blank">Spotify</a>
+                <a href="#" id="spotify-link" class="btn spotify" onclick="openSpotify(event)">Spotify</a>
                 <a href="#" id="youtube-link" class="btn youtube" target="_blank">YouTube</a>
                 <button class="btn save-btn" title="Save for later" onclick="saveForLater()">Later</button>
             </div>
@@ -181,12 +181,34 @@
 
             document.getElementById('fact-text').textContent = track.fact;
 
-            // Poprawiony link do wyszukiwania w Spotify
-            document.getElementById('spotify-link').href = `https://open.spotify.com/search/${encodeURIComponent(track.spotifyQuery)}`;
             document.getElementById('youtube-link').href = `https://www.youtube.com/results?search_query=${encodeURIComponent(track.youtubeQuery)}`;
 
             document.getElementById('top5List').style.display = 'none';
             document.getElementById('discover-arrow').textContent = '▶';
+        }
+
+        function openSpotify(event) {
+            event.preventDefault();
+            const track = tracksData.find(t => t.id === currentTrackId);
+            if (!track) return;
+
+            const appUrl = `spotify:search:${encodeURIComponent(track.spotifyQuery)}`;
+            const webUrl = `https://open.spotify.com/search/${encodeURIComponent(track.spotifyQuery)}`;
+
+            window.location.href = appUrl;
+
+            let triggered = false;
+            const blurListener = () => { triggered = true; };
+            window.addEventListener('blur', blurListener, { once: true });
+
+            setTimeout(() => {
+                window.removeEventListener('blur', blurListener);
+                if (!triggered) {
+                    if (confirm("This works better with Spotify app installed. Open web player instead?")) {
+                        window.open(webUrl, '_blank');
+                    }
+                }
+            }, 1500);
         }
 
         function vote(isUp) {
