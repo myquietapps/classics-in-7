@@ -11,8 +11,7 @@
         <div class="card">
             <div class="date-header">Born today</div>
             
-            <!-- Główny tytuł utworu z ikonką nutki -->
-            <h1 id="track-title">♪ Clair de Lune</h1>
+            <h1 id="track-title">♪ Loading...</h1>
             
             <div class="composer-wrapper">
                 <span id="track-composer">Claude Debussy</span>
@@ -33,11 +32,11 @@
 
             <div class="fact-card">
                 <div class="fact-title">Did you know?</div>
-                <p id="fact-text">Debussy wrote this piece during a period of intense financial struggle, yet it remains his most peaceful work.</p>
+                <p id="fact-text">Loading fact...</p>
                 <div class="fact-voting">
                     <span>Was this interesting?</span>
-                    <button class="vote-btn" onclick="vote(true)">👍</button>
-                    <button class="vote-btn" onclick="vote(false)">👎</button>
+                    <button class="vote-btn" onclick="vote(true)">👍 <span id="thumbs-up-count">12</span></button>
+                    <button class="vote-btn" onclick="vote(false)">👎 <span id="thumbs-down-count">2</span></button>
                 </div>
             </div>
 
@@ -46,26 +45,6 @@
                     <span id="discover-arrow">▶</span> DISCOVER MORE
                 </div>
                 <div class="top5-list" id="top5List">
-                    <div class="top5-item" onclick="selectTrack(0)">
-                        <span class="top5-title">1. ♪ Rêverie</span>
-                        <span class="top5-meta">(4:10) <span class="mood-tag">#Dreamy</span></span>
-                    </div>
-                    <div class="top5-item" onclick="selectTrack(1)">
-                        <span class="top5-title">2. ♪ Arabesque No. 1</span>
-                        <span class="top5-meta">(5:00) <span class="mood-tag">#Lively</span></span>
-                    </div>
-                    <div class="top5-item" onclick="selectTrack(2)">
-                        <span class="top5-title">3. ♪ La Fille aux Cheveux de Lin</span>
-                        <span class="top5-meta">(2:30) <span class="mood-tag">#Soft</span></span>
-                    </div>
-                    <div class="top5-item" onclick="selectTrack(3)">
-                        <span class="top5-title">4. ♪ Golliwogg's Cakewalk</span>
-                        <span class="top5-meta">(3:00) <span class="mood-tag">#Playful</span></span>
-                    </div>
-                    <div class="top5-item" onclick="selectTrack(4)">
-                        <span class="top5-title">5. ♪ Danse sacrée et profane</span>
-                        <span class="top5-meta">(4:45) <span class="mood-tag">#Deep</span></span>
-                    </div>
                 </div>
             </div>
         </div>
@@ -74,60 +53,96 @@
     <script>
         const tracksData = [
             {
+                id: 0,
                 title: "Clair de Lune",
                 composer: "Claude Debussy",
                 country: "[FR]",
                 duration: "(4:30)",
                 moods: ["#Melancholic", "#Relaxing"],
+                fact: "Debussy wrote this piece during a period of intense financial struggle, yet it remains his most peaceful work.",
                 spotify: "https://open.spotify.com/",
-                youtube: "https://youtube.com/"
+                youtube: "https://youtube.com/",
+                youtubeViews: 85000000
             },
             {
+                id: 1,
                 title: "Rêverie",
                 composer: "Claude Debussy",
                 country: "[FR]",
                 duration: "(4:10)",
-                moods: ["#Dreamy", "#Calm"],
+                moods: ["#Dreamy", "#Relaxing"],
+                fact: "Rêverie was initially disliked by its publisher, prompting Debussy to call it a poor composition.",
                 spotify: "https://open.spotify.com/",
-                youtube: "https://youtube.com/"
+                youtube: "https://youtube.com/",
+                youtubeViews: 15000000
             },
             {
+                id: 2,
                 title: "Arabesque No. 1",
                 composer: "Claude Debussy",
                 country: "[FR]",
                 duration: "(5:00)",
                 moods: ["#Lively", "#Flowing"],
+                fact: "This piece reflects flowing natural lines inspired by Art Nouveau patterns.",
                 spotify: "https://open.spotify.com/",
-                youtube: "https://youtube.com/"
+                youtube: "https://youtube.com/",
+                youtubeViews: 42000000
             },
             {
+                id: 3,
                 title: "La Fille aux Cheveux de Lin",
                 composer: "Claude Debussy",
                 country: "[FR]",
                 duration: "(2:30)",
-                moods: ["#Soft", "#Gentle"],
+                moods: ["#Soft", "#Melancholic"],
+                fact: "The title translates to 'The Girl with the Flaxen Hair' and was inspired by a poem.",
                 spotify: "https://open.spotify.com/",
-                youtube: "https://youtube.com/"
+                youtube: "https://youtube.com/",
+                youtubeViews: 12000000
             },
             {
+                id: 4,
                 title: "Golliwogg's Cakewalk",
                 composer: "Claude Debussy",
                 country: "[FR]",
                 duration: "(3:00)",
-                moods: ["#Playful", "#Upbeat"],
+                moods: ["#Playful", "#Lively"],
+                fact: "Debussy playfully parodied Wagner's famous Tristan chord right in the middle of this piece.",
                 spotify: "https://open.spotify.com/",
-                youtube: "https://youtube.com/"
+                youtube: "https://youtube.com/",
+                youtubeViews: 8000000
             },
             {
+                id: 5,
                 title: "Danse sacrée et profane",
                 composer: "Claude Debussy",
                 country: "[FR]",
                 duration: "(4:45)",
-                moods: ["#Deep", "#Ethereal"],
+                moods: ["#Deep", "#Dreamy"],
+                fact: "Commissioned to showcase a newly invented chromatic harp.",
                 spotify: "https://open.spotify.com/",
-                youtube: "https://youtube.com/"
+                youtube: "https://youtube.com/",
+                youtubeViews: 5000000
             }
         ];
+
+        let currentTrackId = null;
+        let userMoodPreferences = {
+            "#Melancholic": 2,
+            "#Relaxing": 2,
+            "#Dreamy": 1,
+            "#Lively": 1,
+            "#Soft": 1,
+            "#Playful": 1,
+            "#Deep": 1,
+            "#Flowing": 1
+        };
+
+        let votes = {
+            up: 12,
+            down: 2,
+            userVoted: null
+        };
 
         function toggleDiscover() {
             const list = document.getElementById('top5List');
@@ -136,23 +151,27 @@
                 list.style.display = 'none';
                 arrow.textContent = '▶';
             } else {
+                updateDiscoverList();
                 list.style.display = 'flex';
                 arrow.textContent = '▼';
             }
         }
 
-        function selectTrack(index) {
-            const track = tracksData[index + 1];
+        function selectTrack(id) {
+            const track = tracksData.find(t => t.id === id);
             if (!track) return;
 
-            // Dodajemy ikonkę nutki przed dynamicznym tytułem
+            currentTrackId = track.id;
+
             document.getElementById('track-title').textContent = "♪ " + track.title;
             document.getElementById('track-composer').textContent = track.composer;
             document.getElementById('track-country').textContent = track.country;
             document.getElementById('track-duration').textContent = track.duration;
             
             document.getElementById('track-mood1').textContent = track.moods[0];
-            document.getElementById('track-mood2').textContent = track.moods[1];
+            document.getElementById('track-mood2').textContent = track.moods[1] || "";
+
+            document.getElementById('fact-text').textContent = track.fact;
 
             document.getElementById('spotify-link').href = track.spotify;
             document.getElementById('youtube-link').href = track.youtube;
@@ -160,6 +179,81 @@
             document.getElementById('top5List').style.display = 'none';
             document.getElementById('discover-arrow').textContent = '▶';
         }
+
+        function vote(isUp) {
+            if (votes.userVoted === isUp) return;
+
+            if (votes.userVoted === true) {
+                votes.up--;
+            } else if (votes.userVoted === false) {
+                votes.down--;
+            }
+
+            const currentTrack = tracksData.find(t => t.id === currentTrackId);
+
+            if (isUp) {
+                votes.up++;
+                votes.userVoted = true;
+                currentTrack.moods.forEach(mood => {
+                    if (userMoodPreferences[mood] !== undefined) {
+                        userMoodPreferences[mood] += 2;
+                    } else {
+                        userMoodPreferences[mood] = 2;
+                    }
+                });
+            } else {
+                votes.down++;
+                votes.userVoted = false;
+                currentTrack.moods.forEach(mood => {
+                    if (userMoodPreferences[mood] !== undefined) {
+                        userMoodPreferences[mood] = Math.max(0, userMoodPreferences[mood] - 1);
+                    }
+                });
+            }
+
+            document.getElementById('thumbs-up-count').textContent = votes.up;
+            document.getElementById('thumbs-down-count').textContent = votes.down;
+        }
+
+        function updateDiscoverList() {
+            const listContainer = document.getElementById('top5List');
+            listContainer.innerHTML = '';
+
+            let availableTracks = tracksData.filter(t => t.id !== currentTrackId);
+
+            availableTracks.forEach(track => {
+                let score = 0;
+                track.moods.forEach(mood => {
+                    score += (userMoodPreferences[mood] || 0);
+                });
+                track.matchScore = score;
+            });
+
+            availableTracks.sort((a, b) => b.matchScore - a.matchScore);
+            const topTracks = availableTracks.slice(0, 5);
+
+            topTracks.forEach((track, index) => {
+                const item = document.createElement('div');
+                item.className = 'top5-item';
+                item.onclick = () => selectTrack(track.id);
+
+                // Usunięto znak nutki z elementów listy
+                item.innerHTML = `
+                    <span class="top5-title">${index + 1}. ${track.title}</span>
+                    <span class="top5-meta">${track.duration} <span class="mood-tag">${track.moods[0]}</span></span>
+                `;
+                listContainer.appendChild(item);
+            });
+        }
+
+        function initApp() {
+            const mostPopularTrack = tracksData.reduce((prev, current) => 
+                (prev.youtubeViews > current.youtubeViews) ? prev : current
+            );
+            selectTrack(mostPopularTrack.id);
+        }
+
+        initApp();
     </script>
 </body>
 </html>
