@@ -1,0 +1,77 @@
+/* Zmienne CSS dla 5 motywów */
+:root {
+  --bg-color: #0f172a;
+  --text-color: #f8fafc;
+  --accent-color: #d4af37;
+  --card-bg: #1e293b;
+}
+
+body.theme-sonata {
+  --bg-color: #fdfbf7;
+  --text-color: #1e1e24;
+  --accent-color: #3b4252;
+  --card-bg: #f4efe6;
+}
+
+body.theme-cello {
+  --bg-color: #2c1810;
+  --text-color: #f4ebd0;
+  --accent-color: #d2a679;
+  --card-bg: #3d2317;
+}
+
+body.theme-eink {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --accent-color: #333333;
+  --card-bg: #f1f1f1;
+}
+
+body.theme-primavera {
+  --bg-color: #faf0ef;
+  --text-color: #2d1515;
+  --accent-color: #c86d51;
+  --card-bg: #f2dede;
+}
+
+/* Podstawowy styl minimalistyczny */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+}
+
+.card {
+  background-color: var(--card-bg);
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+h1 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  color: var(--accent-color);
+  font-size: 1.1rem;
+}
