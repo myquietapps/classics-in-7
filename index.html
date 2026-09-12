@@ -194,6 +194,7 @@
             if (isUp) {
                 votes.up++;
                 votes.userVoted = true;
+                // Boosting mood preferences based on positive feedback
                 currentTrack.moods.forEach(mood => {
                     if (userMoodPreferences[mood] !== undefined) {
                         userMoodPreferences[mood] += 2;
@@ -204,6 +205,7 @@
             } else {
                 votes.down++;
                 votes.userVoted = false;
+                // Reducing mood preferences based on negative feedback
                 currentTrack.moods.forEach(mood => {
                     if (userMoodPreferences[mood] !== undefined) {
                         userMoodPreferences[mood] = Math.max(0, userMoodPreferences[mood] - 1);
@@ -237,7 +239,6 @@
                 item.className = 'top5-item';
                 item.onclick = () => selectTrack(track.id);
 
-                // Usunięto znak nutki z elementów listy
                 item.innerHTML = `
                     <span class="top5-title">${index + 1}. ${track.title}</span>
                     <span class="top5-meta">${track.duration} <span class="mood-tag">${track.moods[0]}</span></span>
