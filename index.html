@@ -127,7 +127,9 @@
         ];
 
         let currentTrackId = null;
-        let userMoodPreferences = {
+        
+        // Ładowanie zapisanych preferencji nastrojów z localStorage (lub domyślne)
+        let userMoodPreferences = JSON.parse(localStorage.getItem('userMoodPreferences')) || {
             "#Melancholic": 2,
             "#Relaxing": 2,
             "#Dreamy": 1,
@@ -177,14 +179,12 @@
         }
 
         function vote(isUp) {
-            // Prevent duplicate voting for the same track fact in a row
             if (lastVotedTrackId === currentTrackId) return;
 
             const currentTrack = tracksData.find(t => t.id === currentTrackId);
             if (!currentTrack) return;
 
             if (isUp) {
-                // Boost mood preferences on positive feedback
                 currentTrack.moods.forEach(mood => {
                     if (userMoodPreferences[mood] !== undefined) {
                         userMoodPreferences[mood] += 2;
@@ -193,7 +193,6 @@
                     }
                 });
             } else {
-                // Slightly reduce mood preferences on negative feedback
                 currentTrack.moods.forEach(mood => {
                     if (userMoodPreferences[mood] !== undefined) {
                         userMoodPreferences[mood] = Math.max(0, userMoodPreferences[mood] - 1);
@@ -201,6 +200,8 @@
                 });
             }
 
+            // Zapisz zaktualizowane preferencje w localStorage
+            localStorage.setItem('userMoodPreferences', JSON.stringify(userMoodPreferences));
             lastVotedTrackId = currentTrackId;
         }
 
