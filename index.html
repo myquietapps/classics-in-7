@@ -9,11 +9,11 @@
 <body>
     <main class="container">
         <div class="card">
-            <!-- Górny pasek z datą oraz dynamicznym wskaźnikiem zapisanych utworów i ustawieniami -->
+            <!-- Górny pasek z datą oraz licznikiem Saved i ustawieniami -->
             <div class="top-nav" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                 <div class="date-header" style="margin-bottom: 0;">Born today</div>
                 <div class="settings-area">
-                    <span id="saved-counter" style="font-size: 13px; margin-right: 12px; opacity: 0.8;">Later: 0</span>
+                    <span id="saved-counter" style="font-size: 13px; margin-right: 12px; opacity: 0.8;">Saved: 0</span>
                     <span id="settings-btn" style="cursor: pointer; font-size: 16px;" title="Settings">⚙️</span>
                 </div>
             </div>
@@ -150,7 +150,7 @@
 
         function updateSavedCounter() {
             const savedTracks = JSON.parse(localStorage.getItem('savedTracks')) || [];
-            document.getElementById('saved-counter').textContent = `Later: ${savedTracks.length}`;
+            document.getElementById('saved-counter').textContent = `Saved: ${savedTracks.length}`;
         }
 
         function toggleDiscover() {
