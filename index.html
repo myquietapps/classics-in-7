@@ -9,7 +9,7 @@
 <body>
     <main class="container">
         <div class="card">
-            <!-- Górny pasek z datą oraz licznikiem Saved i ustawieniami -->
+            <!-- Górny pasek z datą, licznikiem Saved i ustawieniami -->
             <div class="top-nav" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                 <div class="date-header" style="margin-bottom: 0;">Born today</div>
                 <div class="settings-area">
@@ -31,6 +31,7 @@
                 <span class="mood-tag" id="track-mood2">#Relaxing</span>
             </div>
 
+            <!-- Przyciski akcji: Spotify, YouTube oraz Later -->
             <div class="actions">
                 <a href="#" id="spotify-link" class="btn spotify" target="_blank">Spotify</a>
                 <a href="#" id="youtube-link" class="btn youtube" target="_blank">YouTube</a>
@@ -58,6 +59,7 @@
     </main>
 
     <script>
+        // Baza danych oparta o bezpieczne zapytania wyszukiwania (odporne na wygasanie linków)
         const tracksData = [
             {
                 id: 0,
@@ -67,8 +69,8 @@
                 duration: "(4:30)",
                 moods: ["#Melancholic", "#Relaxing"],
                 fact: "Debussy wrote this piece during a period of intense financial struggle, yet it remains his most peaceful work.",
-                spotify: "https://open.spotify.com/",
-                youtube: "https://youtube.com/",
+                youtubeQuery: "Claude Debussy Clair de Lune official audio",
+                spotifyQuery: "Claude Debussy Clair de Lune",
                 youtubeViews: 85000000
             },
             {
@@ -79,8 +81,8 @@
                 duration: "(4:10)",
                 moods: ["#Dreamy", "#Relaxing"],
                 fact: "Rêverie was initially disliked by its publisher, prompting Debussy to call it a poor composition.",
-                spotify: "https://open.spotify.com/",
-                youtube: "https://youtube.com/",
+                youtubeQuery: "Claude Debussy Reverie piano master",
+                spotifyQuery: "Claude Debussy Reverie",
                 youtubeViews: 15000000
             },
             {
@@ -91,8 +93,8 @@
                 duration: "(5:00)",
                 moods: ["#Lively", "#Flowing"],
                 fact: "This piece reflects flowing natural lines inspired by Art Nouveau patterns.",
-                spotify: "https://open.spotify.com/",
-                youtube: "https://youtube.com/",
+                youtubeQuery: "Debussy Arabesque No 1 piano",
+                spotifyQuery: "Claude Debussy Arabesque No 1",
                 youtubeViews: 42000000
             },
             {
@@ -103,8 +105,8 @@
                 duration: "(2:30)",
                 moods: ["#Soft", "#Melancholic"],
                 fact: "The title translates to 'The Girl with the Flaxen Hair' and was inspired by a poem.",
-                spotify: "https://open.spotify.com/",
-                youtube: "https://youtube.com/",
+                youtubeQuery: "Debussy The Girl with the Flaxen Hair",
+                spotifyQuery: "Claude Debussy La Fille aux Cheveux de Lin",
                 youtubeViews: 12000000
             },
             {
@@ -115,8 +117,8 @@
                 duration: "(3:00)",
                 moods: ["#Playful", "#Lively"],
                 fact: "Debussy playfully parodied Wagner's famous Tristan chord right in the middle of this piece.",
-                spotify: "https://open.spotify.com/",
-                youtube: "https://youtube.com/",
+                youtubeQuery: "Debussy Golliwoggs Cakewalk",
+                spotifyQuery: "Claude Debussy Golliwoggs Cakewalk",
                 youtubeViews: 8000000
             },
             {
@@ -127,14 +129,15 @@
                 duration: "(4:45)",
                 moods: ["#Deep", "#Dreamy"],
                 fact: "Commissioned to showcase a newly invented chromatic harp.",
-                spotify: "https://open.spotify.com/",
-                youtube: "https://youtube.com/",
+                youtubeQuery: "Debussy Danse sacree et profane",
+                spotifyQuery: "Claude Debussy Danse sacree et profane",
                 youtubeViews: 5000000
             }
         ];
 
         let currentTrackId = null;
         
+        // Pobieranie zapisanych preferencji nastrojów z localStorage
         let userMoodPreferences = JSON.parse(localStorage.getItem('userMoodPreferences')) || {
             "#Melancholic": 2,
             "#Relaxing": 2,
@@ -182,8 +185,9 @@
 
             document.getElementById('fact-text').textContent = track.fact;
 
-            document.getElementById('spotify-link').href = track.spotify;
-            document.getElementById('youtube-link').href = track.youtube;
+            // Generowanie inteligentnych linków wyszukiwania w locie
+            document.getElementById('spotify-link').href = `https://open.spotify.com/search/${encodeURIComponent(track.spotifyQuery)}`;
+            document.getElementById('youtube-link').href = `https://www.youtube.com/results?search_query=${encodeURIComponent(track.youtubeQuery)}`;
 
             document.getElementById('top5List').style.display = 'none';
             document.getElementById('discover-arrow').textContent = '▶';
