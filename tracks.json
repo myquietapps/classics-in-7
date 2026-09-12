@@ -1,0 +1,19 @@
+{
+  "09-12": {
+    "id": "trk_0912",
+    "composer": "Claude Debussy",
+    "title": "Clair de Lune",
+    "audioUrl": "https://cdn.yourdomain.com/audio/debussy_clair.mp3",
+    "moods": ["calm", "focus"],
+    "funFacts": {
+      "life": {
+        "en": "Debussy wrote this piece during a period of intense financial struggle, yet it remains his most peaceful work.",
+        "pl": "Debussy napisał ten utwór w okresie sporych problemów finansowych, a mimo to jest to jego najbardziej spokojne dzieło."
+      },
+      "social": {
+        "en": "At the time of its publication, Paris was experiencing a profound artistic shift towards Impressionism.",
+        "pl": "W czasie jego publikacji, Paryż przeżywał głęboką artystyczną transformację w kierunku impresjonizmu."
+      }
+    }
+  }
+}
