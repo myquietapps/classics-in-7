@@ -11,11 +11,13 @@
         <div class="card">
             <div class="date-header">Born today</div>
             
+            <!-- Główny tytuł utworu -->
             <h1 id="track-title">Clair de Lune</h1>
             
+            <!-- Informacje o kompozytorze pod tytułem -->
             <div class="composer-wrapper">
                 <span id="track-composer">Claude Debussy</span>
-                <span class="country-tag">[FR]</span>
+                <span class="country-tag" id="track-country">[FR]</span>
                 <span id="track-duration" class="duration-tag">(4:30)</span>
             </div>
 
@@ -146,7 +148,7 @@
 
             document.getElementById('track-title').textContent = track.title;
             document.getElementById('track-composer').textContent = track.composer;
-            document.querySelector('.country-tag').textContent = track.country;
+            document.getElementById('track-country').textContent = track.country;
             document.getElementById('track-duration').textContent = track.duration;
             
             document.getElementById('track-mood1').textContent = track.moods[0];
