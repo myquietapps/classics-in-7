@@ -28,6 +28,7 @@
                 <a href="#" id="spotify-link" class="btn spotify" target="_blank">Spotify</a>
                 <a href="#" id="youtube-link" class="btn youtube" target="_blank">YouTube</a>
                 <button class="btn fav-btn" title="Add to favorites">♥</button>
+                <button class="btn save-btn" title="Save for later" onclick="saveForLater()">Save</button>
             </div>
 
             <div class="fact-card">
@@ -128,7 +129,6 @@
 
         let currentTrackId = null;
         
-        // Ładowanie zapisanych preferencji nastrojów z localStorage (lub domyślne)
         let userMoodPreferences = JSON.parse(localStorage.getItem('userMoodPreferences')) || {
             "#Melancholic": 2,
             "#Relaxing": 2,
@@ -200,9 +200,19 @@
                 });
             }
 
-            // Zapisz zaktualizowane preferencje w localStorage
             localStorage.setItem('userMoodPreferences', JSON.stringify(userMoodPreferences));
             lastVotedTrackId = currentTrackId;
+        }
+
+        function saveForLater() {
+            let savedTracks = JSON.parse(localStorage.getItem('savedTracks')) || [];
+            if (!savedTracks.includes(currentTrackId)) {
+                savedTracks.push(currentTrackId);
+                localStorage.setItem('savedTracks', JSON.stringify(savedTracks));
+                alert('Track saved for later!');
+            } else {
+                alert('Track is already saved!');
+            }
         }
 
         function updateDiscoverList() {
