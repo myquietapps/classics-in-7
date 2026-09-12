@@ -67,6 +67,36 @@ h1 {
   margin-right: 0.4rem;
 }
 
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.btn {
+  flex: 1;
+  text-align: center;
+  padding: 0.7rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: 1px solid #30363d;
+  color: #e1e1e6;
+  background: #21262d;
+  transition: background 0.2s;
+}
+
+.btn:hover {
+  background: #30363d;
+}
+
+.fav-btn {
+  flex: 0 0 44px;
+  color: #f85149;
+  font-size: 1.1rem;
+}
+
 .fact-card {
   background: rgba(255, 255, 255, 0.02);
   border-left: 3px solid #58a6ff;
@@ -108,31 +138,71 @@ h1 {
   background: rgba(255, 255, 255, 0.1);
 }
 
-.actions {
+.discover-card {
+  background: rgba(255, 255, 255, 0.02);
+  border-left: 3px solid #58a6ff;
+  padding: 1rem;
+  border-radius: 0 8px 8px 0;
+  margin-bottom: 0;
+  font-size: 0.95rem;
+}
+
+.discover-card details {
+  width: 100%;
+}
+
+.discover-card summary {
+  font-size: 0.8rem;
+  font-weight: bold;
+  opacity: 0.8;
+  text-transform: uppercase;
+  cursor: pointer;
+  list-style: none;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.discover-card summary::-webkit-details-marker {
+  display: none;
+}
+
+.discover-card summary::before {
+  content: "▶ ";
+  font-size: 0.7rem;
+  margin-right: 0.3rem;
+  transition: transform 0.2s;
+}
+
+.discover-card details[open] summary::before {
+  content: "▼ ";
+}
+
+.discover-card .top5-list {
+  display: none;
+  margin-top: 0.8rem;
+  flex-direction: column;
+  gap: 0.6rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 0.8rem;
+}
+
+.discover-card details[open] .top5-list {
   display: flex;
-  gap: 0.5rem;
 }
 
-.btn {
-  flex: 1;
-  text-align: center;
-  padding: 0.7rem;
-  border-radius: 6px;
-  text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 500;
-  border: 1px solid #30363d;
-  color: #e1e1e6;
-  background: #21262d;
-  transition: background 0.2s;
+.top5-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.88rem;
+  opacity: 0.9;
 }
 
-.btn:hover {
-  background: #30363d;
-}
-
-.fav-btn {
-  flex: 0 0 44px;
-  color: #f85149;
-  font-size: 1.1rem;
+.top5-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  opacity: 0.7;
+  font-size: 0.82rem;
 }
