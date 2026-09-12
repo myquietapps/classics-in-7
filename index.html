@@ -9,7 +9,6 @@
 <body>
     <main class="container">
         <div class="card">
-            <!-- Górny pasek z datą, licznikiem Saved i ustawieniami -->
             <div class="top-nav" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                 <div class="date-header" style="margin-bottom: 0;">Born today</div>
                 <div class="settings-area">
@@ -31,7 +30,6 @@
                 <span class="mood-tag" id="track-mood2">#Relaxing</span>
             </div>
 
-            <!-- Przyciski akcji: Spotify, YouTube oraz Later -->
             <div class="actions">
                 <a href="#" id="spotify-link" class="btn spotify" target="_blank">Spotify</a>
                 <a href="#" id="youtube-link" class="btn youtube" target="_blank">YouTube</a>
@@ -59,7 +57,6 @@
     </main>
 
     <script>
-        // Baza danych oparta o bezpieczne zapytania wyszukiwania (odporne na wygasanie linków)
         const tracksData = [
             {
                 id: 0,
@@ -137,7 +134,6 @@
 
         let currentTrackId = null;
         
-        // Pobieranie zapisanych preferencji nastrojów z localStorage
         let userMoodPreferences = JSON.parse(localStorage.getItem('userMoodPreferences')) || {
             "#Melancholic": 2,
             "#Relaxing": 2,
@@ -185,7 +181,6 @@
 
             document.getElementById('fact-text').textContent = track.fact;
 
-            // Generowanie inteligentnych linków wyszukiwania w locie
             document.getElementById('spotify-link').href = `https://open.spotify.com/search/${encodeURIComponent(track.spotifyQuery)}`;
             document.getElementById('youtube-link').href = `https://www.youtube.com/results?search_query=${encodeURIComponent(track.youtubeQuery)}`;
 
