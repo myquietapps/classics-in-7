@@ -9,7 +9,14 @@
 <body>
     <main class="container">
         <div class="card">
-            <div class="date-header">Born today</div>
+            <!-- Górny pasek z datą oraz dynamicznym wskaźnikiem zapisanych utworów -->
+            <div class="top-nav" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                <div class="date-header" style="margin-bottom: 0;">Born today</div>
+                <div class="settings-area">
+                    <span id="saved-counter" style="font-size: 13px; margin-right: 12px; opacity: 0.8;">Saved: 0</span>
+                    <span id="settings-btn" style="cursor: pointer; font-size: 16px;" title="Settings">⚙️</span>
+                </div>
+            </div>
             
             <h1 id="track-title">♪ Loading...</h1>
             
@@ -27,7 +34,6 @@
             <div class="actions">
                 <a href="#" id="spotify-link" class="btn spotify" target="_blank">Spotify</a>
                 <a href="#" id="youtube-link" class="btn youtube" target="_blank">YouTube</a>
-                <button class="btn fav-btn" title="Add to favorites">♥</button>
                 <button class="btn save-btn" title="Save for later" onclick="saveForLater()">Save</button>
             </div>
 
@@ -142,6 +148,12 @@
 
         let lastVotedTrackId = null;
 
+        // Aktualizacja licznika zapisu przy starcie
+        function updateSavedCounter() {
+            const savedTracks = JSON.parse(localStorage.getItem('savedTracks')) || [];
+            document.getElementById('saved-counter').textContent = `Saved: ${savedTracks.length}`;
+        }
+
         function toggleDiscover() {
             const list = document.getElementById('top5List');
             const arrow = document.getElementById('discover-arrow');
@@ -209,6 +221,7 @@
             if (!savedTracks.includes(currentTrackId)) {
                 savedTracks.push(currentTrackId);
                 localStorage.setItem('savedTracks', JSON.stringify(savedTracks));
+                updateSavedCounter();
                 alert('Track saved for later!');
             } else {
                 alert('Track is already saved!');
@@ -250,6 +263,7 @@
                 (prev.youtubeViews > current.youtubeViews) ? prev : current
             );
             selectTrack(mostPopularTrack.id);
+            updateSavedCounter();
         }
 
         initApp();
