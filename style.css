@@ -1,34 +1,193 @@
-:root, [data-theme="system"] { --bg-color: #FAFAFA; --text-color: #1A1A1A; --accent-color: #2B4C7E; --card-bg: #FFFFFF; }
-[data-theme="nocturne"] { --bg-color: #121214; --text-color: #E1E1E6; --accent-color: #8A4FFF; --card-bg: #1A1A1E; }
-[data-theme="sonata"] { --bg-color: #FAFAFA; --text-color: #1A1A1A; --accent-color: #2B4C7E; --card-bg: #FFFFFF; }
-[data-theme="cello"] { --bg-color: #2C221E; --text-color: #F4EBE1; --accent-color: #D4A373; --card-bg: #3A2E2A; }
-[data-theme="e-ink"] { --bg-color: #F4F1EA; --text-color: #111111; --accent-color: #333333; --card-bg: #FFFFFF; }
-[data-theme="primavera"] { --bg-color: #F8F6F0; --text-color: #2F3E46; --accent-color: #52796F; --card-bg: #FFFFFF; }
+/* Styl ogólny aplikacji uzyskany ze strony */
+body {
+    background-color: #121214;
+    color: #e1e1e6;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
 
-body { background-color: var(--bg-color); color: var(--text-color); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; margin: 0; padding: 0; transition: background 0.3s, color 0.3s; }
-.app-header { display: flex; justify-content: space-between; align-items: center; padding: 1rem; border-bottom: 1px solid rgba(128,128,128,0.2); }
-.icon-btn { background: none; border: none; font-size: 1.4rem; color: var(--text-color); cursor: pointer; }
-.app-title { font-size: 1.1rem; font-weight: 600; margin: 0; }
+.container {
+    width: 100%;
+    max-width: 480px;
+    padding: 20px;
+    box-sizing: border-box;
+}
 
-.drawer { position: fixed; top: 0; left: 0; width: 280px; height: 100%; background: var(--card-bg); border-right: 1px solid rgba(128,128,128,0.2); transform: translateX(0); transition: transform 0.3s ease; z-index: 1000; display: flex; flex-direction: column; }
-/* Kluczowa zmiana: klasa hidden chowa menu poza ekran */
-.drawer.hidden { transform: translateX(-100%); }
+.card {
+    background: #1a1a1e;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
 
-.drawer-header { display: flex; justify-content: space-between; align-items: center; padding: 1rem; border-bottom: 1px solid rgba(128,128,128,0.2); }
-.menu-list { list-style: none; padding: 0; margin: 0; overflow-y: auto; flex-grow: 1; }
-.menu-list li a { display: flex; justify-content: space-between; padding: 1rem 1.2rem; color: var(--text-color); text-decoration: none; border-bottom: 1px solid rgba(128,128,128,0.1); }
-.menu-list li a:hover, .menu-list li a.active { background-color: var(--accent-color); color: #FFF; }
-.drawer-footer { padding: 1rem; text-align: center; opacity: 0.6; }
+.tags-container {
+    margin: 15px 0;
+}
 
-.backdrop { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 999; }
-.backdrop.hidden { display: none; }
+.mood-tag, .country-tag, .duration-tag {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    margin-right: 6px;
+}
 
-#app-content { padding: 1.5rem; max-width: 600px; margin: 0 auto; }
-.view-section { display: none; }
-.view-section.active { display: block; }
-.card { background: var(--card-bg); padding: 1.2rem; border-radius: 8px; border: 1px solid rgba(128,128,128,0.2); margin-top: 1rem; }
+.actions {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+}
 
-.themes-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 1rem; }
-.theme-card { padding: 1rem; text-align: center; border: 2px solid rgba(128,128,128,0.3); border-radius: 6px; cursor: pointer; }
-.theme-card.active-theme { border-color: var(--accent-color); font-weight: bold; }
-.hidden { display: none !important; }
+.btn {
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn.spotify { background: #1db954; color: #fff; }
+.btn.youtube { background: #ff0000; color: #fff; }
+.btn.save-btn { background: rgba(255, 255, 255, 0.15); color: #fff; }
+
+.fact-card, .discover-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 15px;
+}
+
+.fact-voting {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.vote-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Style dynamiczne przeniesione z index.html */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+.modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 320px;
+    text-align: left;
+    font-family: inherit;
+    color: #333;
+}
+.modal-header {
+    font-weight: bold;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.close-modal { cursor: pointer; font-size: 18px; }
+
+#no-composer-view {
+    padding: 10px 0;
+}
+.nc-nav-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.nc-info-card {
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.nc-info-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+.nc-date {
+    font-size: 11px;
+    opacity: 0.6;
+    margin-bottom: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.nc-composer-name {
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 1.2;
+}
+.unified-header-title {
+    font-size: 15px;
+    font-weight: 600;
+    opacity: 0.9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.vote-btn.active {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: scale(1.05);
+}
+#top5List {
+    display: none;
+    flex-direction: column;
+    margin-top: 10px;
+}
+#toast-notification {
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-20px);
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    z-index: 1100;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+#toast-notification.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
