@@ -1,4 +1,4 @@
-// app.js - Classics in 7
+// app.js - Główna logika aplikacji
 
 let savedTracks = JSON.parse(localStorage.getItem('savedTracks')) || [];
 
@@ -26,37 +26,28 @@ function toggleMenu() {
 
 function navigateToMainView() { toggleMenu(); loadDailyContent(); }
 function openSavedTracks() { toggleMenu(); alert('Saved Tracks under construction'); }
-function openMoodStats() { toggleMenu(); alert('Mood Stats under construction'); }
-function openJumpToDate() { toggleMenu(); alert('Jump to Date under construction'); }
-function openAppearance() { toggleMenu(); alert('Appearance under construction'); }
-function resetDailyView() { toggleMenu(); loadDailyContent(); }
 function clearAppData() { if(confirm('Clear all data?')) { localStorage.clear(); location.reload(); } toggleMenu(); }
-function openAbout() { toggleMenu(); alert('Classics in 7 - PWA for daily classical music discovery.'); }
 
-// --- Ładowanie zawartości dla dzisiejszego dnia ---
+// --- Sprawdzanie dzisiejszej daty (Case 1) ---
 function loadDailyContent() {
     const today = new Date();
     const day = today.getDate();
     const month = today.toLocaleString('en', { month: 'short' }); // np. "Sep"
     const dateKey = `${day}-${month}`; // np. "13-Sep"
 
-    loadCardByDate(dateKey, true);
+    // Sprawdzamy, czy w bazie jest karta dla dzisiejszej daty
+    if (typeof database !== 'undefined' && database[dateKey] && database[dateKey].type === "composer") {
+        renderComposerView(database[dateKey], dateKey);
+    } else {
+        // CASE 1: Brak karty dla dzisiejszego dnia – ładujemy widok alternatywny
+        renderCase1View();
+    }
 }
 
-// --- Główna funkcja ładująca kartę po dacie (lub uruchamiająca Case 1) ---
-function loadCardByDate(dateKey, isTodayCheck = false) {
-    if (typeof database === 'undefined') {
-        console.error("Database is not loaded!");
-        return;
-    }
-
-    const cardData = database[dateKey];
-
-    if (cardData && cardData.type === "composer") {
-        renderComposerView(cardData, dateKey);
-    } else {
-        // CASE 1: Brak karty dla tej daty
-        renderCase1View(dateKey);
+// --- Ładowanie konkretnej karty po kliknięciu (np. Debussy lub Chopin) ---
+function loadCardByDate(dateKey) {
+    if (typeof database !== 'undefined' && database[dateKey]) {
+        renderComposerView(database[dateKey], dateKey);
     }
 }
 
@@ -87,7 +78,7 @@ function renderComposerView(data, dateKey) {
     }
 }
 
-function renderCase1View(dateKey) {
+function renderCase1View() {
     const mainView = document.getElementById('track-main-view');
     const noComposerView = document.getElementById('no-composer-view');
     
@@ -99,17 +90,11 @@ function renderCase1View(dateKey) {
     if (factText) factText.textContent = "Listening to classical piano music activates both hemispheres of the brain, significantly reducing stress.";
     if (tag) tag.textContent = "Science";
 
-    // Przypisanie stałych kart nawigacyjnych
-    const prevDateEl = document.getElementById('nc-prev-date');
-    const prevNameEl = document.getElementById('nc-prev-name');
-    const nextDateEl = document.getElementById('nc-next-date');
-    const nextNameEl = document.getElementById('nc-next-name');
-
-    if (prevDateEl) prevDateEl.textContent = "22-AUG";
-    if (prevNameEl) prevNameEl.textContent = "Claude Debussy";
-
-    if (nextDateEl) nextDateEl.textContent = "1-MAR";
-    if (nextNameEl) nextNameEl.textContent = "Frédéric Chopin";
+    // Ustawienie etykiet kart
+    document.getElementById('nc-prev-date').textContent = "22-AUG";
+    document.getElementById('nc-prev-name').textContent = "Claude Debussy";
+    document.getElementById('nc-next-date').textContent = "1-MAR";
+    document.getElementById('nc-next-name').textContent = "Frédéric Chopin";
 }
 
 // --- Integracja Spotify z modalem ---
@@ -148,26 +133,7 @@ function showSpotifyPrompt(fallbackUrl) {
     }
 }
 
-// --- Funkcje pomocnicze ---
 function updateSavedCount() {
     const countSpan = document.getElementById('menu-saved-count');
     if(countSpan) countSpan.textContent = '(' + savedTracks.length + ')';
 }
-
-function toggleDiscover() {
-    const list = document.getElementById('top5List');
-    const arrow = document.getElementById('discover-arrow');
-    if (list) {
-        if (list.style.display === 'none' || list.style.display === '') {
-            list.style.display = 'flex';
-            if (arrow) arrow.textContent = '▼';
-        } else {
-            list.style.display = 'none';
-            if (arrow) arrow.textContent = '▶';
-        }
-    }
-}
-
-function saveForLater() { alert('Track saved!'); }
-function voteTrack(isUp) { alert('Thank you for voting!'); }
-function voteInsight(isUp) { alert('Thank you for your feedback!'); }
