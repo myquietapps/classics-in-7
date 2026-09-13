@@ -4,86 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Classics in 7</title>
-    <!-- Ważne: Łączymy styl.css -->
-    <link rel="stylesheet" href="style.css">
-    <!-- Łączymy FontAwesome dla ikon menu -->
+    <link rel="stylesheet" href="style.css?v=3">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-
-    <!-- Główny kontener aplikacji -->
     <main class="container">
-
-        <!-- Przycisk otwierający menu (☰) -->
         <button class="menu-open-btn" onclick="toggleMenu()" aria-label="Open Menu">
             <i class="fas fa-bars"></i>
         </button>
-
-        <!-- Powiadomienie "Saved!" -->
         <div id="toast-notification">Saved!</div>
-
         <div class="card">
-            <!-- Tu będzie ładowana zawartość przez app.js -->
-            <div id="app-content">Loading...</div>
+            <!-- TU JEST ZMIANA - dodany kontener na ładowanie treści -->
+            <div id="app-content" style="color: white;">Loading...</div>
         </div>
     </main>
 
-    <!-- SZKIELET MENU HAMBURGER (Wklejamy go do body) -->
     <div id="menu-overlay" class="menu-overlay">
         <div class="menu-content">
-            
             <div class="menu-header">
                 <span class="menu-title">Menu</span>
                 <button class="menu-close-btn" onclick="toggleMenu()" aria-label="Close Menu">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
-
             <nav class="menu-body">
-                <a href="#" class="menu-item" onclick="navigateToMainView()">
-                    <i class="fas fa-headphones"></i>
-                    <span>Now Playing</span>
-                </a>
-                <a href="#" class="menu-item" onclick="openSavedTracks()">
-                    <i class="fas fa-save"></i>
-                    <span>Saved Tracks <span id="menu-saved-count">(0)</span></span>
-                </a>
-                <a href="#" class="menu-item" onclick="openMoodStats()">
-                    <i class="fas fa-chart-pie"></i>
-                    <span>My Mood Stats</span>
-                </a>
-                <a href="#" class="menu-item" onclick="openJumpToDate()">
-                    <i class="fas fa-calendar-alt"></i>
-                    <span>Jump to Date</span>
-                </a>
-                <a href="#" class="menu-item" onclick="openAppearance()">
-                    <i class="fas fa-palette"></i>
-                    <span>Appearance</span>
-                </a>
-
+                <a href="#" class="menu-item" onclick="navigateToMainView()"><i class="fas fa-headphones"></i><span>Now Playing</span></a>
+                <a href="#" class="menu-item" onclick="openSavedTracks()"><i class="fas fa-save"></i><span>Saved Tracks <span id="menu-saved-count">(0)</span></span></a>
+                <a href="#" class="menu-item" onclick="openMoodStats()"><i class="fas fa-chart-pie"></i><span>My Mood Stats</span></a>
+                <a href="#" class="menu-item" onclick="openJumpToDate()"><i class="fas fa-calendar-alt"></i><span>Jump to Date</span></a>
+                <a href="#" class="menu-item" onclick="openAppearance()"><i class="fas fa-palette"></i><span>Appearance</span></a>
                 <hr class="menu-divider">
-
-                <a href="#" class="menu-item" onclick="resetDailyView()">
-                    <i class="fas fa-sync-alt"></i>
-                    <span>Reset Today's View</span>
-                </a>
-                <a href="#" class="menu-item" onclick="clearAppData()">
-                    <i class="fas fa-trash-alt"></i>
-                    <span>Clear All Data</span>
-                </a>
-                <a href="#" class="menu-item" onclick="openAbout()">
-                    <i class="fas fa-info-circle"></i>
-                    <span>About</span>
-                </a>
+                <a href="#" class="menu-item" onclick="resetDailyView()"><i class="fas fa-sync-alt"></i><span>Reset Today's View</span></a>
+                <a href="#" class="menu-item" onclick="clearAppData()"><i class="fas fa-trash-alt"></i><span>Clear All Data</span></a>
+                <a href="#" class="menu-item" onclick="openAbout()"><i class="fas fa-info-circle"></i><span>About</span></a>
             </nav>
         </div>
     </div>
-    <!-- KONIEC MENU -->
 
-    <!-- Ładowanie baz danych oraz logiki -->
     <script src="database_1.js"></script>
     <script src="database_2.js"></script>
     <script src="database_3.js"></script>
-    <script src="app.js"></script>
+    <script src="app.js?v=3"></script>
 </body>
 </html>
