@@ -1,166 +1,97 @@
-/* --- Reset i Zmienne --- */
-:root {
-    --bg-color: #121212;
-    --card-bg: #1e1e1e;
-    --text-color: #e0e0e0;
-    --accent-color: #bb86fc;
-    --text-muted: #a0a0a0;
-    --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-}
+/* --- Wymuszone ukrycie menu (wersja ostateczna) --- */
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
+/* Podstawowe stylowanie body, żeby było ciemno */
 body {
-    font-family: var(--font-family);
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    overflow-x: hidden;
-    width: 100vw;
+    background-color: #121212 !important;
+    color: white !important;
+    font-family: sans-serif !important;
+    margin: 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    min-height: 100vh !important;
 }
 
-/* --- Główny Kontener --- */
+/* Główny kontener */
 .container {
-    width: 100%;
-    max-width: 400px;
-    padding: 20px;
-    position: relative;
-    display: flex;
-    justify-content: center;
+    width: 100% !important;
+    max-width: 400px !important;
+    position: relative !important;
 }
 
+/* Karta (główny panel) */
 .card {
-    background-color: var(--card-bg);
-    border-radius: 16px;
-    padding: 25px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    width: 100%;
-    position: relative;
+    background-color: #1e1e1e !important;
+    border-radius: 16px !important;
+    padding: 20px !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5) !important;
+    min-height: 200px !important;
 }
 
-/* --- Przycisk Hamburger (☰) --- */
+/* Przycisk Hamburger (☰) - Wymuszamy ikonę i pozycję */
 .menu-open-btn {
-    position: absolute;
-    top: 25px;
-    left: 25px;
-    z-index: 10;
-    background: none;
-    border: none;
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 24px;
-    cursor: pointer;
-    padding: 5px;
-    transition: all 0.3s ease;
+    position: absolute !important;
+    top: 20px !important;
+    left: 20px !important;
+    z-index: 100 !important;
+    background: transparent !important;
+    border: none !important;
+    color: rgba(255,255,255,0.8) !important;
+    font-size: 24px !important;
+    cursor: pointer !important;
+    padding: 5px !important;
 }
 
-.menu-open-btn:hover { color: white; transform: scale(1.1); }
-.menu-open-btn.hidden { opacity: 0; visibility: hidden; }
-
-/* --- Menu Overlay (Tło) --- */
+/* UKRYTE MENU - To jest kluczowe */
 .menu-overlay {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.85);
-    z-index: 100; /* Bardzo wysoka wartość, nad wszystkim */
-    display: flex; /* Zmienione z none na flex, sterujemy visibility */
-    justify-content: flex-start;
-    visibility: hidden;
-    opacity: 0;
-    transition: visibility 0.4s, opacity 0.4s;
-    backdrop-filter: blur(5px);
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: rgba(0,0,0,0.85) !important;
+    z-index: 1000 !important; /* Najwyższa warstwa */
+    display: flex !important; /* Używamy flex, żeby wysuwać panel */
+    justify-content: flex-start !important;
+    visibility: hidden !important; /* Domyślnie niewidoczne */
+    opacity: 0 !important;
+    transition: visibility 0.4s, opacity 0.4s !important;
+    backdrop-filter: blur(5px) !important;
 }
 
-.menu-overlay.show { visibility: visible; opacity: 1; }
+/* Klasa, która pokazuje menu (dodawana przez JS) */
+.menu-overlay.show {
+    visibility: visible !important;
+    opacity: 1 !important;
+}
 
-/* --- Panel Menu (Wysuwany) --- */
+/* Panel menu (to co się wysuwa) */
 .menu-content {
-    width: 280px;
-    height: 100%;
-    background: #1e1e1e;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.5);
-    transform: translateX(-100%);
-    transition: transform 0.4s ease-out;
+    width: 280px !important;
+    height: 100% !important;
+    background: #1e1e1e !important;
+    display: flex !important;
+    flex-direction: column !important;
+    box-shadow: 2px 0 15px rgba(0,0,0,0.5) !important;
+    transform: translateX(-100%) !important; /* Domyślnie schowane w lewo */
+    transition: transform 0.4s ease-out !important;
 }
 
-.menu-overlay.show .menu-content { transform: translateX(0); }
-
-/* Header Menu */
-.menu-header {
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+/* Animacja wysuwania (gdy overlay ma klasę 'show') */
+.menu-overlay.show .menu-content {
+    transform: translateX(0) !important;
 }
 
-.menu-title {
-    font-size: 20px; font-weight: bold;
-    text-transform: uppercase; letter-spacing: 1px; color: #f0f0f0;
-}
+/* Reszta elementów menu (proste stylowanie, żeby nie było brzydkie) */
+.menu-header { padding: 20px !important; display: flex !important; justify-content: space-between !important; align-items: center !important; border-bottom: 1px solid rgba(255,255,255,0.1) !important; }
+.menu-title { font-size: 20px !important; font-weight: bold !important; text-transform: uppercase !important; color: #f0f0f0 !important; }
+.menu-close-btn { background: none !important; border: none !important; color: rgba(255,255,255,0.6) !important; font-size: 24px !important; cursor: pointer !important; }
+.menu-body { padding: 20px 0 !important; overflow-y: auto !important; }
+.menu-item { display: flex !important; align-items: center !important; padding: 16px 20px !important; color: #cccccc !important; text-decoration: none !important; font-size: 16px !important; transition: background 0.2s !important; }
+.menu-item:hover { background: rgba(255,255,255,0.05) !important; color: white !important; }
+.menu-item i { width: 25px !important; margin-right: 15px !important; font-size: 18px !important; color: rgba(255,255,255,0.5) !important; }
+#menu-saved-count { margin-left: auto !important; font-size: 12px !important; background: rgba(255,255,255,0.1) !important; padding: 3px 8px !important; border-radius: 10px !important; }
+.menu-divider { margin: 10px 20px !important; border: 0 !important; border-top: 1px solid rgba(255,255,255,0.1) !important; }
 
-.menu-close-btn {
-    background: none; border: none;
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 24px; cursor: pointer;
-}
-
-.menu-close-btn:hover { color: white; }
-
-/* Body Menu (Lista) */
-.menu-body { padding: 20px 0; overflow-y: auto; }
-
-.menu-item {
-    display: flex; align-items: center;
-    padding: 16px 20px;
-    color: #cccccc;
-    text-decoration: none;
-    transition: all 0.2s ease;
-    font-size: 16px;
-    border-left: 4px solid transparent;
-}
-
-.menu-item:hover {
-    background: rgba(255, 255, 255, 0.05);
-    color: white;
-    border-left-color: var(--accent-color);
-}
-
-.menu-item i {
-    width: 24px; margin-right: 15px;
-    font-size: 18px; color: rgba(255, 255, 255, 0.5);
-    transition: color 0.2s;
-}
-
-.menu-item:hover i { color: var(--accent-color); }
-
-#menu-saved-count {
-    margin-left: auto;
-    font-size: 12px;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 3px 8px;
-    border-radius: 12px;
-}
-
-.menu-divider {
-    margin: 10px 0;
-    border: 0; border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* --- Inne elementy (Toast) --- */
-#toast-notification {
-    position: fixed; top: 20px; right: 20px;
-    background-color: var(--accent-color); color: black;
-    padding: 10px 20px; border-radius: 8px; font-weight: bold;
-    z-index: 1000; opacity: 0; transform: translateY(-20px);
-    transition: opacity 0.3s, transform 0.3s;
-}
-#toast-notification.show { opacity: 1; transform: translateY(0); }
-
-/* --- Reszta stylów karty (zostawiamy puste, bo app.js je wypełni) --- */
-#app-content { color: var(--text-color); line-height: 1.6; }
+/* Klasa dla JS, żeby ukryć przycisk hamburgera, gdy menu jest otwarte */
+.menu-open-btn.hidden { opacity: 0 !important; visibility: hidden !important; }
