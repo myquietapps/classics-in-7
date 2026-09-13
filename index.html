@@ -11,7 +11,7 @@
         <div id="toast-notification">Saved!</div>
 
         <div class="card">
-            <!-- Widok standardowy -->
+            <!-- Widok standardowy (Case 2: Urodziny kompozytora) -->
             <div id="track-main-view" style="display: none;">
                 <div class="date-header" id="date-header" style="margin-bottom: 10px; font-size: 14px; opacity: 0.7;">Born today</div>
                 <h1 id="track-title" style="font-size: 24px;">♪ Loading...</h1>
@@ -51,7 +51,7 @@
                 </div>
             </div>
 
-            <!-- Widok alternatywny (Brak urodzin dzisiaj) -->
+            <!-- Widok alternatywny (Case 1: Brak urodzin dzisiaj) -->
             <div id="no-composer-view" style="display: block;">
                 <div class="unified-header-title">
                     <span>No composer was born today</span>
@@ -94,8 +94,9 @@
         </div>
     </main>
 
-    <!-- Ładowanie bazy danych i logiki -->
-    <script src="database.js"></script>
+    <!-- Ładowanie rozdzielonych baz danych oraz logiki -->
+    <script src="database_1.js"></script>
+    <script src="database_2.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
