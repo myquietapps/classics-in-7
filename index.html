@@ -46,7 +46,7 @@
         .nc-btn {
             flex: 1;
             padding: 14px 10px;
-            font-size: 14px;
+            font-size: 13px;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 8px;
@@ -58,7 +58,9 @@
             line-height: 1.4;
         }
         .nc-btn strong {
-            font-size: 16px;
+            font-size: 15px;
+            display: inline-block;
+            margin-top: 2px;
         }
         .nc-btn:hover {
             background: rgba(255, 255, 255, 0.1);
@@ -76,7 +78,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* Subtelne podświetlenie aktywnego głosu */
         .vote-btn.active {
             background: rgba(255, 255, 255, 0.25);
             border-color: rgba(255, 255, 255, 0.5);
@@ -116,7 +117,7 @@
                     <button class="btn save-btn" title="Save for later" onclick="saveForLater()">Later</button>
                 </div>
 
-                <!-- Micro-learning 1 (przy utworze) -->
+                <!-- Micro-learning 1 -->
                 <div class="fact-card">
                     <div class="fact-title" style="font-size: 15px;">Did you know? (Micro-learning 1)</div>
                     <p id="fact-text" style="font-size: 15px; line-height: 1.5;">Loading fact...</p>
@@ -135,18 +136,18 @@
                 </div>
             </div>
 
-            <!-- CASE 1: Widok alternatywny (gdy brak urodzin dzisiaj + Classical Insight) -->
+            <!-- CASE 1: Widok alternatywny -->
             <div id="no-composer-view" style="display: none;">
                 <div class="unified-header-title">
                     <span>No composer born today</span>
                 </div>
                 
                 <div class="nc-nav-container">
-                    <a href="#" id="nc-prev-btn" class="nc-btn">← Prev<br><strong id="nc-prev-name">Artist</strong></a>
-                    <a href="#" id="nc-next-btn" class="nc-btn">Next →<br><strong id="nc-next-name">Artist</strong></a>
+                    <a href="#" id="nc-prev-btn" class="nc-btn">♪ ←<br><strong>Artist</strong></a>
+                    <a href="#" id="nc-next-btn" class="nc-btn">→ ♪<br><strong>Artist</strong></a>
                 </div>
 
-                <!-- Micro-learning 2: Classical Insight -->
+                <!-- Micro-learning 2 -->
                 <div class="fact-card" style="margin-top: 15px;">
                     <div class="unified-header-title" style="margin-bottom: 10px;">
                         <span>Classical Insight</span>
@@ -290,9 +291,6 @@
 
             resetVoteUI('track-vote-up');
             resetVoteUI('track-vote-down');
-            if (lastVotedTrackId === currentTrackId) {
-                // jeśli wcześniej głosowano w tej sesji, można ewentualnie odtworzyć stan
-            }
 
             document.getElementById('top5List').style.display = 'none';
             document.getElementById('discover-arrow').textContent = '▶';
@@ -326,6 +324,9 @@
             const currentTrack = tracksData.find(t => t.id === currentTrackId);
             if (!currentTrack) return;
 
+            resetVoteUI('track-vote-up');
+            resetVoteUI('track-vote-down');
+
             if (isUp) {
                 currentTrack.moods.forEach(mood => {
                     userMoodPreferences[mood] = (userMoodPreferences[mood] || 0) + 2;
@@ -345,6 +346,9 @@
             if (lastVotedInsightId === currentInsightId) return;
             const insight = classicalInsights.find(i => i.id === currentInsightId);
             if (!insight) return;
+
+            resetVoteUI('insight-vote-up');
+            resetVoteUI('insight-vote-down');
 
             if (isUp) {
                 userInsightPreferences[insight.category] = (userInsightPreferences[insight.category] || 0) + 2;
@@ -432,7 +436,7 @@
                 const prevBtn = document.getElementById('nc-prev-btn');
                 const nextBtn = document.getElementById('nc-next-btn');
 
-                prevBtn.innerHTML = `← Prev (${prevDate})<br><strong>${prevTrack.composer}</strong>`;
+                prevBtn.innerHTML = `♪ ← (${prevDate})<br><strong>${prevTrack.composer}</strong>`;
                 prevBtn.onclick = (e) => {
                     e.preventDefault();
                     mainView.style.display = 'block';
@@ -440,7 +444,7 @@
                     selectTrack(prevTrack.id);
                 };
 
-                nextBtn.innerHTML = `Next (${nextDate}) →<br><strong>${nextTrack.composer}</strong>`;
+                nextBtn.innerHTML = `(${nextDate}) → ♪<br><strong>${nextTrack.composer}</strong>`;
                 nextBtn.onclick = (e) => {
                     e.preventDefault();
                     mainView.style.display = 'block';
