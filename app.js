@@ -29,11 +29,6 @@ function formatDateDDMMM(dateStr) {
     return `${parseInt(day, 10)}-${monthName}`;
 }
 
-function updateSavedCounter() {
-    const savedTracks = JSON.parse(localStorage.getItem('savedTracks')) || [];
-    document.getElementById('saved-counter').textContent = `Saved: ${savedTracks.length}`;
-}
-
 function toggleDiscover() {
     const list = document.getElementById('top5List');
     const arrow = document.getElementById('discover-arrow');
@@ -161,7 +156,6 @@ function saveForLater() {
     if (!savedTracks.includes(saveKey)) {
         savedTracks.push(saveKey);
         localStorage.setItem('savedTracks', JSON.stringify(savedTracks));
-        updateSavedCounter();
         showToast('Saved for later');
     } else {
         showToast('Already saved');
@@ -267,18 +261,8 @@ window.addEventListener('popstate', (event) => {
     }
 });
 
-function openSettings() { document.getElementById('settings-modal').style.display = 'flex'; }
-function closeSettings() { document.getElementById('settings-modal').style.display = 'none'; }
-
-function changeSimulatedDate(dateString) {
-    if (!dateString) return;
-    loadForDate(new Date(dateString), true);
-    closeSettings();
-}
-
 function initApp() {
     loadForDate(new Date(), true);
-    updateSavedCounter();
 }
 
 initApp();
