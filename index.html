@@ -67,7 +67,7 @@
             letter-spacing: 0.5px;
         }
         .nc-composer-name {
-            font-size: 17px; /* Zwiększona czcionka artysty */
+            font-size: 17px;
             font-weight: bold;
             line-height: 1.2;
         }
@@ -89,10 +89,35 @@
             border-color: rgba(255, 255, 255, 0.5);
             transform: scale(1.05);
         }
+
+        /* Dyskretne powiadomienie toast */
+        #toast-notification {
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%) translateY(-20px);
+            background: rgba(0, 0, 0, 0.85);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            opacity: 0;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            z-index: 1100;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        #toast-notification.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
     </style>
 </head>
 <body>
-    <main class="container">
+    <main class="container" style="position: relative;">
+        <!-- Dyskretny toast informacyjny -->
+        <div id="toast-notification">Saved!</div>
+
         <div class="card">
             <div class="top-nav" style="display: flex; justify-content: flex-end; align-items: center; margin-bottom: 10px;">
                 <div class="settings-area">
@@ -123,9 +148,9 @@
                     <button class="btn save-btn" title="Save for later" onclick="saveForLater()">Later</button>
                 </div>
 
-                <!-- Micro-learning 1 -->
+                <!-- Micro-learning 1 (Usunięto etykietę mikro-learningu) -->
                 <div class="fact-card">
-                    <div class="fact-title" style="font-size: 15px;">Did you know? (Micro-learning 1)</div>
+                    <div class="fact-title" style="font-size: 15px;">Did you know?</div>
                     <p id="fact-text" style="font-size: 15px; line-height: 1.5;">Loading fact...</p>
                     <div class="fact-voting">
                         <span style="font-size: 14px;">Was this interesting?</span>
@@ -136,7 +161,7 @@
 
                 <div class="discover-card" id="discoverCard">
                     <div class="discover-header" onclick="toggleDiscover()" style="font-size: 15px;">
-                        <span id="discover-arrow">▶</span> DISCOVER MORE (TOP 5)
+                        <span id="discover-arrow">▶</span> DISCOVER MORE
                     </div>
                     <div class="top5-list" id="top5List"></div>
                 </div>
@@ -150,7 +175,6 @@
                 
                 <!-- Horyzontalny stos nawigacyjny -->
                 <div class="nc-nav-stack">
-                    <!-- Poprzedni (Przeszłość) -->
                     <div class="nc-info-card" id="nc-prev-card">
                         <span style="font-size: 18px; font-weight: bold; opacity: 0.7; margin-right: 12px;">←</span>
                         <div style="flex-grow: 1; text-align: left;">
@@ -160,7 +184,6 @@
                         <span style="font-size: 12px; opacity: 0.5; text-transform: uppercase; letter-spacing: 0.5px;">Previous</span>
                     </div>
                     
-                    <!-- Następny (Przyszłość) -->
                     <div class="nc-info-card" id="nc-next-card">
                         <span style="font-size: 12px; opacity: 0.5; text-transform: uppercase; letter-spacing: 0.5px;">Next</span>
                         <div style="flex-grow: 1; text-align: right;">
@@ -171,7 +194,7 @@
                     </div>
                 </div>
 
-                <!-- Micro-learning 2 (Ogólne ciekawostki) -->
+                <!-- Micro-learning 2 -->
                 <div class="fact-card" style="margin-top: 15px;">
                     <div class="unified-header-title" style="margin-bottom: 10px;">
                         <span>Classical Insight</span>
@@ -224,6 +247,15 @@
 
         let lastVotedTrackId = null;
         let lastVotedInsightId = null;
+
+        function showToast(message) {
+            const toast = document.getElementById('toast-notification');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 1800);
+        }
 
         function formatDateDDMMM(dateStr) {
             const [month, day] = dateStr.split('-');
@@ -371,9 +403,9 @@
                 savedTracks.push(saveKey);
                 localStorage.setItem('savedTracks', JSON.stringify(savedTracks));
                 updateSavedCounter();
-                alert('Track saved for later!');
+                showToast('Saved for later');
             } else {
-                alert('Track is already saved!');
+                showToast('Already saved');
             }
         }
 
