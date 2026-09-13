@@ -38,7 +38,6 @@
             padding: 10px 0;
         }
 
-        /* Układ nawigacji 4-kafelkowy (2x2) dla Case 1 */
         .nc-nav-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -69,7 +68,7 @@
             background: rgba(255, 255, 255, 0.1);
         }
         .nc-info-card {
-            padding: 10px 8px;
+            padding: 12px 10px;
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 8px;
@@ -77,6 +76,12 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .nc-info-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.3);
         }
         .nc-date {
             font-size: 12px;
@@ -140,7 +145,7 @@
                     <button class="btn save-btn" title="Save for later" onclick="saveForLater()">Later</button>
                 </div>
 
-                <!-- Micro-learning 1 (Zależny od wariantu nastroju utworu) -->
+                <!-- Micro-learning 1 -->
                 <div class="fact-card">
                     <div class="fact-title" style="font-size: 15px;">Did you know? (Micro-learning 1)</div>
                     <p id="fact-text" style="font-size: 15px; line-height: 1.5;">Loading fact...</p>
@@ -170,18 +175,18 @@
                     <a href="#" id="nc-prev-action" class="nc-action-btn">← Prev</a>
                     <a href="#" id="nc-next-action" class="nc-action-btn">Next →</a>
                     
-                    <div class="nc-info-card">
+                    <div class="nc-info-card" id="nc-prev-card">
                         <span id="nc-prev-date" class="nc-date">--</span>
                         <div class="nc-composer-name" id="nc-prev-name">Composer</div>
                     </div>
                     
-                    <div class="nc-info-card">
+                    <div class="nc-info-card" id="nc-next-card">
                         <span id="nc-next-date" class="nc-date">--</span>
                         <div class="nc-composer-name" id="nc-next-name">Composer</div>
                     </div>
                 </div>
 
-                <!-- Micro-learning 2 (Ogólne ciekawostki muzyczne) -->
+                <!-- Micro-learning 2 (Ogólne ciekawostki) -->
                 <div class="fact-card" style="margin-top: 15px;">
                     <div class="unified-header-title" style="margin-bottom: 10px;">
                         <span>Classical Insight</span>
@@ -216,7 +221,7 @@
         </div>
     </div>
 
-    <!-- Załadowanie zewnętrznej bazy danych -->
+    <!-- Załadowanie bazy danych -->
     <script src="database.js"></script>
 
     <script>
@@ -265,7 +270,7 @@
             btns.forEach(b => b.classList.remove('active'));
         }
 
-        function selectTrack(composerId, trackId) {
+        function selectTrack(composerId, trackId, pushHistory = true) {
             const composer = composersDatabase.find(c => c.id === composerId);
             if (!composer) return;
             const track = composer.tracks.find(t => t.id === trackId);
@@ -273,6 +278,13 @@
 
             currentComposerId = composer.id;
             currentTrackId = track.id;
+
+            document.getElementById('track-main-view').style.display = 'block';
+            document.getElementById('no-composer-view').style.display = 'none';
+
+            if (pushHistory) {
+                history.pushState({ view: 'composer', composerId: composerId, trackId: trackId }, "", `#composer-${composerId}`);
+            }
 
             document.getElementById('track-title').textContent = "♪ " + track.title;
             document.getElementById('track-composer').textContent = composer.composer;
@@ -282,7 +294,6 @@
             document.getElementById('track-mood2').textContent = track.moods[1] || "";
             document.getElementById('youtube-link').href = `https://www.youtube.com/results?search_query=${encodeURIComponent(track.youtubeQuery)}`;
 
-            // Dobór ciekawostki (Micro-learning 1) na podstawie pierwszego nastroju utworu
             let selectedFact = "Great classical masterpiece.";
             for (let mood of track.moods) {
                 if (composer.facts[mood]) {
@@ -415,7 +426,7 @@
             });
         }
 
-        function loadForDate(dateObj) {
+        function loadForDate(dateObj, pushHistory = true) {
             const month = String(dateObj.getMonth() + 1).padStart(2, '0');
             const day = String(dateObj.getDate()).padStart(2, '0');
             const targetStr = `${month}-${day}`;
@@ -425,12 +436,14 @@
             const noComposerView = document.getElementById('no-composer-view');
 
             if (todaysComposer) {
-                mainView.style.display = 'block';
-                noComposerView.style.display = 'none';
-                selectTrack(todaysComposer.id, todaysComposer.tracks[0].id);
+                selectTrack(todaysComposer.id, todaysComposer.tracks[0].id, pushHistory);
             } else {
                 mainView.style.display = 'none';
                 noComposerView.style.display = 'block';
+
+                if (pushHistory) {
+                    history.pushState({ view: 'nocomposer', date: targetStr }, "", `#date-${targetStr}`);
+                }
 
                 const insightIndex = (dateObj.getDate() + dateObj.getMonth()) % classicalInsights.length;
                 const activeInsight = classicalInsights[insightIndex];
@@ -449,42 +462,53 @@
                 const prevComposer = composersDatabase.find(c => c.birthDate === prevDate);
                 const nextComposer = composersDatabase.find(c => c.birthDate === nextDate);
 
-                const prevActionBtn = document.getElementById('nc-prev-action');
-                const nextActionBtn = document.getElementById('nc-next-action');
-
                 document.getElementById('nc-prev-date').textContent = formatDateDDMMM(prevDate);
                 document.getElementById('nc-prev-name').textContent = prevComposer.composer;
 
-                prevActionBtn.onclick = (e) => {
+                const goToPrev = (e) => {
                     e.preventDefault();
-                    mainView.style.display = 'block';
-                    noComposerView.style.display = 'none';
-                    selectTrack(prevComposer.id, prevComposer.tracks[0].id);
+                    selectTrack(prevComposer.id, prevComposer.tracks[0].id, true);
                 };
+
+                document.getElementById('nc-prev-action').onclick = goToPrev;
+                document.getElementById('nc-prev-card').onclick = goToPrev;
 
                 document.getElementById('nc-next-date').textContent = formatDateDDMMM(nextDate);
                 document.getElementById('nc-next-name').textContent = nextComposer.composer;
 
-                nextActionBtn.onclick = (e) => {
+                const goToNext = (e) => {
                     e.preventDefault();
-                    mainView.style.display = 'block';
-                    noComposerView.style.display = 'none';
-                    selectTrack(nextComposer.id, nextComposer.tracks[0].id);
+                    selectTrack(nextComposer.id, nextComposer.tracks[0].id, true);
                 };
+
+                document.getElementById('nc-next-action').onclick = goToNext;
+                document.getElementById('nc-next-card').onclick = goToNext;
             }
         }
+
+        window.addEventListener('popstate', (event) => {
+            if (event.state) {
+                if (event.state.view === 'composer') {
+                    selectTrack(event.state.composerId, event.state.trackId, false);
+                } else if (event.state.view === 'nocomposer') {
+                    loadForDate(new Date(), false);
+                }
+            } else {
+                loadForDate(new Date(), false);
+            }
+        });
 
         function openSettings() { document.getElementById('settings-modal').style.display = 'flex'; }
         function closeSettings() { document.getElementById('settings-modal').style.display = 'none'; }
 
         function changeSimulatedDate(dateString) {
             if (!dateString) return;
-            loadForDate(new Date(dateString));
+            loadForDate(new Date(dateString), true);
             closeSettings();
         }
 
         function initApp() {
-            loadForDate(new Date());
+            loadForDate(new Date(), true);
             updateSavedCounter();
         }
 
