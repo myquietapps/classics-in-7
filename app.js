@@ -1,77 +1,165 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // --- Inicjalizacja UI ---
     const menuToggle = document.getElementById('menu-toggle');
     const menuClose = document.getElementById('menu-close');
     const menu = document.getElementById('hamburger-menu');
     const backdrop = document.getElementById('drawer-backdrop');
-    const gearToggle = document.getElementById('gear-toggle');
     const menuLinks = document.querySelectorAll('.menu-list a');
     const views = document.querySelectorAll('.view-section');
 
+    // Obsługa menu
     function toggleMenu() {
         menu.classList.toggle('hidden');
         backdrop.classList.toggle('hidden');
     }
-
     if (menuToggle) menuToggle.addEventListener('click', toggleMenu);
     if (menuClose) menuClose.addEventListener('click', toggleMenu);
     if (backdrop) backdrop.addEventListener('click', toggleMenu);
-    if (gearToggle) gearToggle.addEventListener('click', () => switchView('jump'));
 
+    // Przełączanie widoków
     function switchView(targetViewId) {
         views.forEach(v => v.classList.remove('active'));
-        const target = document.getElementById(`view-${targetViewId}`);
-        if (target) target.classList.add('active');
-        menuLinks.forEach(l => {
-            if (l.getAttribute('data-view') === targetViewId) l.classList.add('active');
-            else l.classList.remove('active');
-        });
+        document.getElementById(`view-${targetViewId}`).classList.add('active');
+        menuLinks.forEach(l => l.classList.toggle('active', l.getAttribute('data-view') === targetViewId));
         window.scrollTo(0, 0);
     }
+    menuLinks.forEach(link => link.addEventListener('click', (e) => {
+        e.preventDefault();
+        switchView(link.getAttribute('data-view'));
+        if (window.innerWidth <= 768) toggleMenu();
+    }));
 
-    menuLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            switchView(link.getAttribute('data-view'));
-            if (window.innerWidth <= 768) toggleMenu();
-        });
+    // --- 📅 Nawigacja Datą (Logika) 📅 ---
+    const navPrev = document.getElementById('nav-prev');
+    const navNext = document.getElementById('nav-next');
+    const dateDisplay = document.getElementById('current-date-display');
+    
+    // Zmienna stanu dla "przeglądanej" daty. Zaczynamy od dzisiaj.
+    let currentDate = new Date();
+
+    function updateMainViewForDate(dateObj) {
+        // 1. Aktualizuj wyświetlaną datę (np. "September 13, 2026")
+        dateDisplay.textContent = dateObj.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+
+        // 2. Sprawdź dostępność danych dla tej daty w BAZIE 2 (Kompozytorzy)
+        const targetMMDD = String(dateObj.getMonth() + 1).padStart(2, '0') + '-' + String(dateObj.getDate()).padStart(2, '0');
+        const composerFound = composersDatabase.find(c => c.birthDate === targetMMDD);
+
+        // 3. Renderuj odpowiedni scenariusz
+        renderScenario(composerFound);
+
+        // 4. Renderuj codzienną ciekawostkę (BASE 1 - wspólne dla obu scenariuszy)
+        renderDailyInsight(dateObj);
+    }
+
+    // --- 🎬 Silnik renderowania scenariuszy 🎬 ---
+
+    function renderScenario(composer) {
+        const contentArea = document.getElementById('dynamic-content-area');
+        
+        if (composer) {
+            // 🌟 CASE 2: Mamy urodziny! 🌟
+            const mainTrack = composer.tracks[0]; // Sugerowany główny utwór
+
+            // Budujemy HTML dla "Born Today"
+            contentArea.innerHTML = `
+                <div class="card born-today-card">
+                    <div class="section-label">Born Today</div>
+                    <h2>${composer.composer}</h2>
+                    <p class="composer-nationality">${composer.country}</p>
+                    
+                    <hr class="subtle-divider">
+                    
+                    <div class="suggested-track">
+                        <h3>${mainTrack.title} <span class="track-duration">${mainTrack.duration}</span></h3>
+                        <div class="case-details">
+                            <p class="fact-text"><em>"${composer.facts[mainTrack.mood]}"</em></p>
+                            <span class="mood-tag">${mainTrack.mood.replace('#', '')}</span>
+                        </div>
+                        <div class="external-links">
+                            <a href="https://www.youtube.com/results?search_query=${encodeURIComponent(mainTrack.youtubeQuery)}" target="_blank" class="action-btn yt-link">▶ Listen on YouTube</a>
+                            <a href="https://open.spotify.com/search/${encodeURIComponent(mainTrack.spotifyQuery)}" target="_blank" class="action-btn sp-link">🔊 Listen on Spotify</a>
+                        </div>
+                         <button class="action-btn save-btn" id="save-track-btn" data-track-id="${mainTrack.id}">⭐ Save for later</button>
+                    </div>
+
+                    <div class="discover-section">
+                        <h3>Discover more by ${composer.composer}</h3>
+                        <div class="track-list">
+                            ${composer.tracks.slice(1).map(track => `
+                                <div class="track-item">
+                                    <div class="track-meta">
+                                        <span>${track.title}</span>
+                                        <span class="track-duration">${track.duration}</span>
+                                    </div>
+                                    <div class="track-links external-links">
+                                         <a href="https://www.youtube.com/results?search_query=${encodeURIComponent(track.youtubeQuery)}" target="_blank" class="icon-btn yt-link" title="YouTube">▶</a>
+                                         <a href="https://open.spotify.com/search/${encodeURIComponent(track.spotifyQuery)}" target="_blank" class="icon-btn sp-link" title="Spotify">🔊</a>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+            `;
+             // Obsługa przycisku save
+            document.getElementById('save-track-btn').addEventListener('click', () => console.log('Saved:', mainTrack.id));
+
+        } else {
+            // 🌑 CASE 1: Nie ma kompozytora 🌑
+            contentArea.innerHTML = `
+                <div class="card no-composer-card">
+                     <div class="section-label">Today's Meditation</div>
+                    <h3>A quiet moment awaits...</h3>
+                    <p>No specific composer recorded premiere for this day in our database.</p>
+                    <p>Use the navigation above to explore other days.</p>
+                    
+                    <!-- Ilustracja opcjonalnie -->
+                    <div class="placeholder-visual">🪕</div>
+                </div>
+            `;
+        }
+    }
+
+    // --- 💡 Silnik renderowania ciekawostek (BASE 1) 💡 ---
+    function renderDailyInsight(dateObj) {
+        const insightContainer = document.getElementById('daily-insight-container');
+        
+        // Obliczamy "indeks" ciekawostki na dany dzień. 
+        // Prosty sposób: numer dnia roku modulo długość bazy ciekawostek.
+        const start = new Date(dateObj.getFullYear(), 0, 0);
+        const diff = dateObj - start;
+        const oneDay = 1000 * 60 * 60 * 24;
+        const dayOfYear = Math.floor(diff / oneDay);
+        
+        const insightIndex = dayOfYear % classicalInsights.length;
+        const todayInsight = classicalInsights[insightIndex];
+
+        insightContainer.innerHTML = `
+            <div class="section-label">Did You Know? (${todayInsight.category})</div>
+            <p>"${todayInsight.text}"</p>
+        `;
+    }
+
+
+    // --- ⚙️ Obsługa przycisków nawigacyjnych ⚙️ ---
+
+    navPrev.addEventListener('click', () => {
+        currentDate.setDate(currentDate.getDate() - 1);
+        updateMainViewForDate(currentDate);
     });
 
-    // 10 Powiadomień (EN)
-    const prompts = [
-        "Your daily classical ritual is waiting for you.", "Pause for a moment—discover today's masterpiece.",
-        "Time for a short break with music that has stood the test of time.", "One track, a new story. Check out what we have prepared for today.",
-        "Starting the day with class? Your classical piece for today is ready.", "A moment to breathe: today's music and a fascinating fact are waiting.",
-        "Treat yourself to a few minutes of beauty in your busy day.", "Your musical compass points to today's classic. Discover it!",
-        "Music has the power to shift your mood. See what's playing today.", "Open the app and tune into today's track of the day."
-    ];
-    const preview = document.getElementById('reminders-list-preview');
-    if (preview) preview.innerHTML = prompts.map(p => `<li>${p}</li>`).join('');
-
-    // Motywy
-    const themeCards = document.querySelectorAll('.theme-card');
-    function setTheme(name) {
-        document.documentElement.setAttribute('data-theme', name);
-        localStorage.setItem('classics_theme', name);
-        themeCards.forEach(c => {
-            if (c.getAttribute('data-theme-val') === name) c.classList.add('active-theme');
-            else c.classList.remove('active-theme');
-        });
-    }
-    setTheme(localStorage.getItem('classics_theme') || 'system');
-    themeCards.forEach(c => c.addEventListener('click', () => setTheme(c.getAttribute('data-theme-val'))));
-
-    // Jump to date tabs
-    document.querySelectorAll('.jump-tabs .tab-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.jump-tabs .tab-btn').forEach(b => b.classList.toggle('active', b === btn));
-            const isRoll = btn.getAttribute('data-tab') === 'roll';
-            document.getElementById('tab-content-roll').classList.toggle('hidden', !isRoll);
-            document.getElementById('tab-content-calendar').classList.toggle('hidden', isRoll);
-        });
+    navNext.addEventListener('click', () => {
+        // Opcjonalnie: blokada wybiegania w przyszłość, jeśli aplikacja ma być "codzienna"
+        // if (currentDate >= new Date()) return; 
+        currentDate.setDate(currentDate.getDate() + 1);
+        updateMainViewForDate(currentDate);
     });
 
-    const archive = document.getElementById('archive-scroll-list');
-    if (archive) {
-        archive.innerHTML = ['2026-09-13', '2026-09-12', '2026-09-11'].map(d => `<a href="#" class="archive-item"><strong>${d}</strong> — Masterpiece</a>`).join('');
-    }
+    // --- 🎉 Start aplikacji 🎉 ---
+    // Załaduj widok dla dzisiejszego dnia na starcie
+    updateMainViewForDate(currentDate);
+
+    // Pozostałe moduły (Stats, Jump, Reminder, Appearance) nie wymagają zmian,
+    // ponieważ ich logika jest zamknięta w blokach if(element)
 });
