@@ -34,7 +34,6 @@
         }
         .close-modal { cursor: pointer; font-size: 18px; }
 
-        /* Styl dla Case 1 zoptymalizowany pod dużą, czytelną czcionkę */
         #no-composer-view {
             padding: 10px 0;
         }
@@ -47,7 +46,7 @@
         .nc-btn {
             flex: 1;
             padding: 14px 10px;
-            font-size: 14px; /* Większa, czytelniejsza czcionka */
+            font-size: 14px;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 8px;
@@ -59,13 +58,13 @@
             line-height: 1.4;
         }
         .nc-btn strong {
-            font-size: 16px; /* Wyraźnie większe nazwisko artysty */
+            font-size: 16px;
         }
         .nc-btn:hover {
             background: rgba(255, 255, 255, 0.1);
         }
         
-        /* Zunifikowany styl nagłówków typu Insight */
+        /* Zunifikowany styl nagłówków z wielkimi literami (uppercase) */
         .unified-header-title {
             font-size: 15px;
             font-weight: 600;
@@ -74,6 +73,8 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
     </style>
 </head>
@@ -130,10 +131,9 @@
 
             <!-- CASE 1: Widok alternatywny (gdy brak urodzin dzisiaj + Classical Insight) -->
             <div id="no-composer-view" style="display: none;">
-                <!-- Zunifikowany nagłówek z kategorią (styl tożsamy z Classical Insight) -->
                 <div class="unified-header-title">
                     <span>No composer born today</span>
-                    <span style="font-size: 12px; opacity: 0.7; font-weight: normal;">[Calendar]</span>
+                    <span style="font-size: 12px; opacity: 0.7; font-weight: normal; text-transform: none;">[Calendar]</span>
                 </div>
                 
                 <div class="nc-nav-container">
@@ -141,11 +141,11 @@
                     <a href="#" id="nc-next-btn" class="nc-btn">Next →<br><strong id="nc-next-name">Artist</strong></a>
                 </div>
 
-                <!-- Micro-learning 2: Classical Insight z powiększoną, czytelną czcionką -->
+                <!-- Micro-learning 2: Classical Insight (wielkie litery) -->
                 <div class="fact-card" style="margin-top: 15px;">
                     <div class="unified-header-title" style="margin-bottom: 10px;">
                         <span>Classical Insight</span>
-                        <span id="insight-category-tag" style="font-size: 12px; opacity: 0.8; font-weight: normal; background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px;">Science</span>
+                        <span id="insight-category-tag" style="font-size: 12px; opacity: 0.8; font-weight: normal; background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px; text-transform: none;">Science</span>
                     </div>
                     <p id="nc-fact-text" style="font-size: 15px; line-height: 1.5;">Loading daily insight...</p>
                     <div class="fact-voting" style="margin-top: 12px;">
@@ -387,12 +387,10 @@
             const noComposerView = document.getElementById('no-composer-view');
 
             if (todaysTracks.length > 0) {
-                // CASE 2: Urodziny dzisiaj
                 mainView.style.display = 'block';
                 noComposerView.style.display = 'none';
                 selectTrack(todaysTracks[0].id);
             } else {
-                // CASE 1: Brak urodzin dzisiaj (np. dziś 13 września) -> Uruchamiamy Case 1
                 mainView.style.display = 'none';
                 noComposerView.style.display = 'block';
 
