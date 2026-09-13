@@ -6,7 +6,6 @@
     <title>Classics in 7</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Proste style dla modalu ustawień, żeby ładnie wyglądał w wersji minimalistycznej */
         .modal {
             display: none;
             position: fixed;
@@ -88,19 +87,15 @@
         </div>
     </main>
 
-    <!-- Modal Ustawień / Wyboru Daty -->
+    <!-- Modal Ustawień -->
     <div id="settings-modal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <span>Settings & Date Picker</span>
+                <span>Settings</span>
                 <span class="close-modal" onclick="closeSettings()">&times;</span>
             </div>
-            <div style="margin-bottom: 15px;">
-                <label for="simulate-date" style="font-size: 13px; display: block; margin-bottom: 5px;">Select date to explore:</label>
-                <input type="date" id="simulate-date" style="width: 100%; padding: 6px; box-sizing: border-box;" onchange="changeSimulatedDate(this.value)">
-            </div>
-            <div style="font-size: 12px; opacity: 0.7;">
-                Choose any day of the year to load composers born on that day or find the closest available ones.
+            <div style="font-size: 13px; opacity: 0.8;">
+                Classics in 7 — minimalist daily classical music discovery.
             </div>
         </div>
     </div>
@@ -291,37 +286,6 @@
             });
         }
 
-        function loadForDate(dateObj) {
-            const month = String(dateObj.getMonth() + 1).padStart(2, '0');
-            const day = String(dateObj.getDate()).padStart(2, '0');
-            const targetStr = `${month}-${day}`;
-
-            let todaysTracks = tracksData.filter(t => t.birthDate === targetStr);
-            const headerEl = document.getElementById('date-header');
-
-            if (todaysTracks.length > 0) {
-                headerEl.textContent = "Born today";
-                selectTrack(todaysTracks[0].id);
-            } else {
-                const uniqueDates = [...new Set(tracksData.map(t => t.birthDate))].sort();
-                
-                if (uniqueDates.length > 0) {
-                    let prevDate = uniqueDates.slice().reverse().find(d => d < targetStr) || uniqueDates[uniqueDates.length - 1];
-                    let nextDate = uniqueDates.find(d => d > targetStr) || uniqueDates[0];
-
-                    const prevTrack = tracksData.find(t => t.birthDate === prevDate);
-                    const nextTrack = tracksData.find(t => t.birthDate === nextDate);
-
-                    headerEl.innerHTML = `No composer today. Nearest: <a href="#" onclick="selectTrack(${prevTrack.id}); return false;" style="color: inherit; text-decoration: underline;">${prevDate} (${prevTrack.composer})</a> | <a href="#" onclick="selectTrack(${nextTrack.id}); return false;" style="color: inherit; text-decoration: underline;">${nextDate} (${nextTrack.composer})</a>`;
-                    
-                    selectTrack(prevTrack.id);
-                } else {
-                    headerEl.textContent = "Born today";
-                    selectTrack(tracksData[0].id);
-                }
-            }
-        }
-
         function openSettings() {
             document.getElementById('settings-modal').style.display = 'flex';
         }
@@ -330,16 +294,24 @@
             document.getElementById('settings-modal').style.display = 'none';
         }
 
-        function changeSimulatedDate(dateString) {
-            if (!dateString) return;
-            const selectedDate = new Date(dateString);
-            loadForDate(selectedDate);
-            closeSettings();
-        }
-
         function initApp() {
-            // Domyślnie ładujemy dzisiejszą datę
-            loadForDate(new Date());
+            // Case 2: Szukamy kompozytora pasującego do dzisiejszej daty (MM-DD)
+            const now = new Date();
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const todayStr = `${month}-${day}`;
+
+            document.getElementById('date-header').textContent = "Born today";
+
+            let todaysTrack = tracksData.find(t => t.birthDate === todayStr);
+            
+            if (todaysTrack) {
+                selectTrack(todaysTrack.id);
+            } else {
+                // Jeśli dzisiaj nikt z bazy nie ma urodzin, domyślnie ładujemy pierwszy utwór z bazy
+                selectTrack(tracksData[0].id);
+            }
+
             updateSavedCounter();
         }
 
