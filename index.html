@@ -5,24 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Classics in 7</title>
     <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome dla ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <main class="container" style="position: relative;">
+
+    <!-- Główny kontener aplikacji -->
+    <main class="container">
+
+        <!-- Przycisk otwierający menu (Hamburger) - Lewy górny róg -->
+        <button class="menu-open-btn" onclick="toggleMenu()" aria-label="Open Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Powiadomienie "Saved!" -->
         <div id="toast-notification">Saved!</div>
 
         <div class="card">
             <!-- Widok standardowy (Case 2: Urodziny kompozytora) -->
             <div id="track-main-view" style="display: none;">
-                <div class="date-header" id="date-header" style="margin-bottom: 10px; font-size: 14px; opacity: 0.7; text-transform: uppercase; letter-spacing: 0.5px;">Born today</div>
-                <h1 id="track-title" style="font-size: 24px;">♪ Loading...</h1>
+                <div class="date-header" id="date-header">BORN TODAY</div>
+                <h1 id="track-title">♪ Loading...</h1>
                 
-                <div class="composer-wrapper" style="font-size: 16px;">
+                <div class="composer-wrapper">
                     <span id="track-composer">Claude Debussy</span>
                     <span class="country-tag" id="track-country">[FR]</span>
                     <span id="track-duration" class="duration-tag">(4:30)</span>
                 </div>
 
-                <!-- Pojedynczy tag nastroju -->
                 <div class="tags-container">
                     <span class="mood-tag" id="track-mood">#Relaxing</span>
                 </div>
@@ -34,17 +44,17 @@
                 </div>
 
                 <div class="fact-card">
-                    <div class="fact-title" style="font-size: 15px;">Did you know?</div>
-                    <p id="fact-text" style="font-size: 15px; line-height: 1.5;">Loading fact...</p>
+                    <div class="fact-title">Did you know?</div>
+                    <p id="fact-text">Loading fact...</p>
                     <div class="fact-voting">
-                        <span style="font-size: 14px;">Was this interesting?</span>
+                        <span>Was this interesting?</span>
                         <button class="vote-btn track-vote-up" onclick="voteTrack(true)">👍</button>
                         <button class="vote-btn track-vote-down" onclick="voteTrack(false)">👎</button>
                     </div>
                 </div>
 
                 <div class="discover-card" id="discoverCard">
-                    <div class="discover-header" onclick="toggleDiscover()" style="font-size: 15px; cursor: pointer;">
+                    <div class="discover-header" onclick="toggleDiscover()">
                         <span id="discover-arrow">▶</span> DISCOVER MORE
                     </div>
                     <div class="top5-list" id="top5List"></div>
@@ -52,39 +62,39 @@
             </div>
 
             <!-- Widok alternatywny (Case 1: Brak urodzin dzisiaj) -->
-            <div id="no-composer-view" style="display: block;">
+            <div id="no-composer-view" style="display: none;">
                 <div class="unified-header-title">
                     <span>No composer was born today</span>
                 </div>
                 
                 <div class="nc-nav-stack">
                     <div class="nc-info-card" id="nc-prev-card">
-                        <span style="font-size: 18px; font-weight: bold; opacity: 0.7; margin-right: 12px;">←</span>
-                        <div style="flex-grow: 1; text-align: left;">
+                        <span class="nc-arrow">←</span>
+                        <div class="nc-text-wrap">
                             <div id="nc-prev-date" class="nc-date">22-Aug</div>
                             <div class="nc-composer-name" id="nc-prev-name">Claude Debussy</div>
                         </div>
-                        <span style="font-size: 12px; opacity: 0.5; text-transform: uppercase; letter-spacing: 0.5px;">Previous</span>
+                        <span class="nc-label">Previous</span>
                     </div>
                     
                     <div class="nc-info-card" id="nc-next-card">
-                        <span style="font-size: 12px; opacity: 0.5; text-transform: uppercase; letter-spacing: 0.5px;">Next</span>
-                        <div style="flex-grow: 1; text-align: right;">
+                        <span class="nc-label">Next</span>
+                        <div class="nc-text-wrap">
                             <div id="nc-next-date" class="nc-date">1-Mar</div>
                             <div class="nc-composer-name" id="nc-next-name">Frédéric Chopin</div>
                         </div>
-                        <span style="font-size: 18px; font-weight: bold; opacity: 0.7; margin-left: 12px;">→</span>
+                        <span class="nc-arrow">→</span>
                     </div>
                 </div>
 
                 <div class="fact-card" style="margin-top: 15px;">
                     <div class="unified-header-title" style="margin-bottom: 10px;">
                         <span>Classical Insight</span>
-                        <span id="insight-category-tag" style="font-size: 12px; opacity: 0.8; font-weight: normal; background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px; text-transform: none;">History</span>
+                        <span id="insight-category-tag" class="insight-tag">History</span>
                     </div>
-                    <p id="nc-fact-text" style="font-size: 15px; line-height: 1.5;">The modern piano was invented around 1700 by Bartolomeo Cristofori in Florence, solving the volume limitations of the harpsichord.</p>
+                    <p id="nc-fact-text">Loading insight...</p>
                     <div class="fact-voting" style="margin-top: 12px;">
-                        <span style="font-size: 14px;">Was this insight useful?</span>
+                        <span>Was this insight useful?</span>
                         <button class="vote-btn insight-vote-up" onclick="voteInsight(true)">👍</button>
                         <button class="vote-btn insight-vote-down" onclick="voteInsight(false)">👎</button>
                     </div>
@@ -94,9 +104,70 @@
         </div>
     </main>
 
-    <!-- Ładowanie rozdzielonych baz danych oraz logiki -->
+    <!-- MENU HAMBURGER OVERLAY -->
+    <div id="menu-overlay" class="menu-overlay">
+        <div class="menu-content">
+            
+            <div class="menu-header">
+                <span class="menu-title">Menu</span>
+                <button class="menu-close-btn" onclick="toggleMenu()" aria-label="Close Menu">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <nav class="menu-body">
+                <!-- 1 -->
+                <a href="#" class="menu-item" onclick="navigateToMainView()">
+                    <i class="fas fa-headphones"></i>
+                    <span>Now Playing</span>
+                </a>
+                <!-- 2 -->
+                <a href="#" class="menu-item" onclick="openSavedTracks()">
+                    <i class="fas fa-save"></i>
+                    <span>Saved Tracks <span id="menu-saved-count">(0)</span></span>
+                </a>
+                <!-- 3 -->
+                <a href="#" class="menu-item" onclick="openMoodStats()">
+                    <i class="fas fa-chart-pie"></i>
+                    <span>My Mood Stats</span>
+                </a>
+                <!-- 4 -->
+                <a href="#" class="menu-item" onclick="openJumpToDate()">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Jump to Date</span>
+                </a>
+                <!-- 5 (NOWE) -->
+                <a href="#" class="menu-item" onclick="openAppearance()">
+                    <i class="fas fa-palette"></i>
+                    <span>Appearance</span>
+                </a>
+
+                <hr class="menu-divider">
+
+                <!-- 6 (było 5) -->
+                <a href="#" class="menu-item" onclick="resetDailyView()">
+                    <i class="fas fa-sync-alt"></i>
+                    <span>Reset Today's View</span>
+                </a>
+                <!-- 7 (było 6) -->
+                <a href="#" class="menu-item" onclick="clearAppData()">
+                    <i class="fas fa-trash-alt"></i>
+                    <span>Clear All Data</span>
+                </a>
+                <!-- 8 (było 7) -->
+                <a href="#" class="menu-item" onclick="openAbout()">
+                    <i class="fas fa-info-circle"></i>
+                    <span>About</span>
+                </a>
+            </nav>
+        </div>
+    </div>
+    <!-- KONIEC MENU -->
+
+    <!-- Ładowanie baz danych oraz logiki -->
     <script src="database_1.js"></script>
     <script src="database_2.js"></script>
+    <script src="database_3.js"></script> <!-- Nowy plik z nastrojami -->
     <script src="app.js"></script>
 </body>
 </html>
