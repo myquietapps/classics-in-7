@@ -135,9 +135,9 @@
                     <span id="track-duration" class="duration-tag">(4:30)</span>
                 </div>
 
+                <!-- Pojedynczy, czytelny tag nastroju -->
                 <div class="tags-container">
-                    <span class="mood-tag" id="track-mood1">#Melancholic</span>
-                    <span class="mood-tag" id="track-mood2">#Relaxing</span>
+                    <span class="mood-tag" id="track-mood">#Relaxing</span>
                 </div>
 
                 <div class="actions">
@@ -146,7 +146,6 @@
                     <button class="btn save-btn" title="Save for later" onclick="saveForLater()">Later</button>
                 </div>
 
-                <!-- Ciekawostka bez zbędnych etykiet -->
                 <div class="fact-card">
                     <div class="fact-title" style="font-size: 15px;">Did you know?</div>
                     <p id="fact-text" style="font-size: 15px; line-height: 1.5;">Loading fact...</p>
@@ -157,7 +156,6 @@
                     </div>
                 </div>
 
-                <!-- Odkrywanie bez dopisek o TOP 5 -->
                 <div class="discover-card" id="discoverCard">
                     <div class="discover-header" onclick="toggleDiscover()" style="font-size: 15px;">
                         <span id="discover-arrow">▶</span> DISCOVER MORE
@@ -234,7 +232,7 @@
         let currentInsightId = null;
 
         let userMoodPreferences = JSON.parse(localStorage.getItem('userMoodPreferences')) || {
-            "#Melancholic": 2, "#Relaxing": 2, "#Dreamy": 1, "#Romantic": 2, "#Passionate": 1, "#Dynamic": 1
+            "#Melancholic": 2, "#Relaxing": 2, "#Dreamy": 1, "#Romantic": 2, "#Passionate": 1, "#Dynamic": 1, "#Graceful": 1, "#Grand": 1
         };
 
         let userInsightPreferences = JSON.parse(localStorage.getItem('userInsightPreferences')) || {
@@ -303,17 +301,14 @@
             document.getElementById('track-composer').textContent = composer.composer;
             document.getElementById('track-country').textContent = composer.country;
             document.getElementById('track-duration').textContent = track.duration;
-            document.getElementById('track-mood1').textContent = track.moods[0];
-            document.getElementById('track-mood2').textContent = track.moods[1] || "";
+            
+            // Obsługa pojedynczego tagu
+            document.getElementById('track-mood').textContent = track.mood;
+
             document.getElementById('youtube-link').href = `https://www.youtube.com/results?search_query=${encodeURIComponent(track.youtubeQuery)}`;
 
-            let selectedFact = "Great classical masterpiece.";
-            for (let mood of track.moods) {
-                if (composer.facts[mood]) {
-                    selectedFact = composer.facts[mood];
-                    break;
-                }
-            }
+            // Pobranie ciekawostki dopasowanej do pojedynczego nastroju utworu
+            let selectedFact = composer.facts[track.mood] || "Great classical masterpiece.";
             document.getElementById('fact-text').textContent = selectedFact;
 
             resetVoteUI('track-vote-up');
@@ -359,14 +354,10 @@
             resetVoteUI('track-vote-down');
 
             if (isUp) {
-                track.moods.forEach(mood => {
-                    userMoodPreferences[mood] = (userMoodPreferences[mood] || 0) + 2;
-                });
+                userMoodPreferences[track.mood] = (userMoodPreferences[track.mood] || 0) + 2;
                 document.querySelector('.track-vote-up').classList.add('active');
             } else {
-                track.moods.forEach(mood => {
-                    userMoodPreferences[mood] = Math.max(0, (userMoodPreferences[mood] || 0) - 1);
-                });
+                userMoodPreferences[track.mood] = Math.max(0, (userMoodPreferences[track.mood] || 0) - 1);
                 document.querySelector('.track-vote-down').classList.add('active');
             }
             localStorage.setItem('userMoodPreferences', JSON.stringify(userMoodPreferences));
@@ -414,8 +405,7 @@
 
             let availableTracks = composer.tracks.filter(t => t.id !== currentTrackId);
             availableTracks.forEach(track => {
-                let score = 0;
-                track.moods.forEach(mood => { score += (userMoodPreferences[mood] || 0); });
+                let score = userMoodPreferences[track.mood] || 0;
                 track.matchScore = score;
             });
 
@@ -432,7 +422,7 @@
                     <div style="font-weight: 600; font-size: 14px;">${index + 1}. ${track.title}</div>
                     <div style="font-size: 12px; opacity: 0.7; display: flex; justify-content: space-between; margin-top: 2px;">
                         <span>${track.duration}</span>
-                        <span>${track.moods.join(' ')}</span>
+                        <span>${track.mood}</span>
                     </div>
                 `;
                 listContainer.appendChild(item);
