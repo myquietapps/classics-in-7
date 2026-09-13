@@ -1,4 +1,4 @@
-// app.js - Classics in 7 (Poprawione bezpieczne mapowanie kart)
+// app.js - Classics in 7 (Kompletny i poprawiony plik)
 
 let savedTracks = JSON.parse(localStorage.getItem('savedTracks')) || [];
 
@@ -85,29 +85,23 @@ function renderNoComposerView(insight, dateKey) {
     if (mainView) mainView.style.display = 'none';
     if (noComposerView) noComposerView.style.display = 'block';
 
+    // Uzupełnienie insightu
     const factText = document.getElementById('nc-fact-text');
     const tag = document.getElementById('insight-category-tag');
     if (factText) factText.textContent = insight.fact || '';
     if (tag) tag.textContent = insight.category || 'Science';
 
-    // Bezpieczne pobieranie danych dla kart Prev / Next z database_1
-    if (typeof database_1 !== 'undefined') {
-        const keys = Object.keys(database_1);
-        if (keys.length > 0) {
-            const prevKey = keys[0];
-            const nextKey = keys.length > 1 ? keys[1] : keys[0];
+    // Przywrócenie stałych, widocznych kart Prev / Next (Debussy i Chopin)
+    const prevDateEl = document.getElementById('nc-prev-date');
+    const prevNameEl = document.getElementById('nc-prev-name');
+    const nextDateEl = document.getElementById('nc-next-date');
+    const nextNameEl = document.getElementById('nc-next-name');
 
-            const prevData = database_1[prevKey];
-            const nextData = database_1[nextKey];
+    if (prevDateEl) prevDateEl.textContent = "22-AUG";
+    if (prevNameEl) prevNameEl.textContent = "Claude Debussy";
 
-            // Ustawienie dat i nazw z uwzględnieniem różnych wariantów pól w bazie (composer lub title)
-            document.getElementById('nc-prev-date').textContent = prevKey;
-            document.getElementById('nc-prev-name').textContent = prevData?.composer || prevData?.title || 'Claude Debussy';
-
-            document.getElementById('nc-next-date').textContent = nextKey;
-            document.getElementById('nc-next-name').textContent = nextData?.composer || nextData?.title || 'Frédéric Chopin';
-        }
-    }
+    if (nextDateEl) nextDateEl.textContent = "1-MAR";
+    if (nextNameEl) nextNameEl.textContent = "Frédéric Chopin";
 }
 
 // --- Integracja Spotify z modalem ---
