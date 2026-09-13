@@ -135,7 +135,7 @@
                     <span id="track-duration" class="duration-tag">(4:30)</span>
                 </div>
 
-                <!-- Pojedynczy, czytelny tag nastroju -->
+                <!-- Dokładnie jeden, pojedynczy tag nastroju -->
                 <div class="tags-container">
                     <span class="mood-tag" id="track-mood">#Relaxing</span>
                 </div>
@@ -302,12 +302,11 @@
             document.getElementById('track-country').textContent = composer.country;
             document.getElementById('track-duration').textContent = track.duration;
             
-            // Obsługa pojedynczego tagu
+            // Pojedynczy tag
             document.getElementById('track-mood').textContent = track.mood;
 
             document.getElementById('youtube-link').href = `https://www.youtube.com/results?search_query=${encodeURIComponent(track.youtubeQuery)}`;
 
-            // Pobranie ciekawostki dopasowanej do pojedynczego nastroju utworu
             let selectedFact = composer.facts[track.mood] || "Great classical masterpiece.";
             document.getElementById('fact-text').textContent = selectedFact;
 
