@@ -38,7 +38,7 @@
             padding: 10px 0;
         }
 
-        /* Układ nawigacji 4-kafelkowy (2x2) z przyciskami w stylu nagłówków */
+        /* Układ nawigacji 4-kafelkowy (2x2) */
         .nc-nav-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -49,7 +49,7 @@
             padding: 12px 8px;
             font-size: 13px;
             font-weight: 600;
-            opacity: 0.6; /* Bledszy odcień szarości */
+            opacity: 0.6;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 8px;
@@ -83,16 +83,11 @@
             opacity: 0.7;
             margin-bottom: 4px;
         }
-        .nc-name-first {
-            font-size: 13px;
-            font-weight: normal;
-            opacity: 0.9;
-            line-height: 1.2;
-        }
-        .nc-name-last {
+        /* Ujednolicona, wyrazista czcionka dla imienia i nazwiska w stylu głównego widoku */
+        .nc-composer-name {
             font-size: 15px;
             font-weight: bold;
-            line-height: 1.2;
+            line-height: 1.3;
         }
         
         .unified-header-title {
@@ -178,18 +173,12 @@
                     
                     <div class="nc-info-card">
                         <span id="nc-prev-date" class="nc-date">--</span>
-                        <div id="nc-prev-name-container">
-                            <div class="nc-name-first" id="nc-prev-first">First</div>
-                            <div class="nc-name-last" id="nc-prev-last">Last</div>
-                        </div>
+                        <div class="nc-composer-name" id="nc-prev-name">Composer</div>
                     </div>
                     
                     <div class="nc-info-card">
                         <span id="nc-next-date" class="nc-date">--</span>
-                        <div id="nc-next-name-container">
-                            <div class="nc-name-first" id="nc-next-first">First</div>
-                            <div class="nc-name-last" id="nc-next-last">Last</div>
-                        </div>
+                        <div class="nc-composer-name" id="nc-next-name">Composer</div>
                     </div>
                 </div>
 
@@ -303,14 +292,6 @@
             const monthsNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
             const monthName = monthsNames[parseInt(month, 10) - 1];
             return `${parseInt(day, 10)}-${monthName}`;
-        }
-
-        function splitComposerName(fullName) {
-            const parts = fullName.trim().split(' ');
-            if (parts.length <= 1) return { first: "", last: fullName };
-            const last = parts.pop();
-            const first = parts.join(' ');
-            return { first: first, last: last };
         }
 
         function updateSavedCounter() {
@@ -498,9 +479,7 @@
                 const nextActionBtn = document.getElementById('nc-next-action');
 
                 document.getElementById('nc-prev-date').textContent = formatDateDDMMM(prevDate);
-                const prevParsed = splitComposerName(prevTrack.composer);
-                document.getElementById('nc-prev-first').textContent = prevParsed.first;
-                document.getElementById('nc-prev-last').textContent = prevParsed.last;
+                document.getElementById('nc-prev-name').textContent = prevTrack.composer;
 
                 prevActionBtn.onclick = (e) => {
                     e.preventDefault();
@@ -510,9 +489,7 @@
                 };
 
                 document.getElementById('nc-next-date').textContent = formatDateDDMMM(nextDate);
-                const nextParsed = splitComposerName(nextTrack.composer);
-                document.getElementById('nc-next-first').textContent = nextParsed.first;
-                document.getElementById('nc-next-last').textContent = nextParsed.last;
+                document.getElementById('nc-next-name').textContent = nextTrack.composer;
 
                 nextActionBtn.onclick = (e) => {
                     e.preventDefault();
