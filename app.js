@@ -1,15 +1,29 @@
-// app.js - Classics in 7 (Wersja z wbudowaną bazą danych)
+// app.js - Classics in 7 (Struktura oparta na kartach dat)
 
-const database_1 = {
-    "1-MAR": { composer: "Frédéric Chopin", title: "Nocturne in E-flat major, Op. 9, No. 2", country: "Poland", duration: "4:30", mood: "Romantic / Dreamy", fact: "Chopin requested that Mozart's Requiem be performed at his funeral.", spotifyUrl: "https://open.spotify.com", youtubeQuery: "Chopin Nocturne Op 9 No 2" },
-    "22-AUG": { composer: "Claude Debussy", title: "Clair de Lune", country: "France", duration: "5:00", mood: "Impressionistic / Calm", fact: "Debussy's middle name was Achille.", spotifyUrl: "https://open.spotify.com", youtubeQuery: "Debussy Clair de Lune" }
-};
-
-const database_2 = {
-    "13-Sep": {
-        fact: "Listening to classical piano music activates both hemispheres of the brain, significantly reducing stress.",
-        category: "Science"
+const database = {
+    "1-MAR": {
+        type: "composer",
+        composer: "Frédéric Chopin",
+        title: "Nocturne in E-flat major, Op. 9, No. 2",
+        country: "Poland",
+        duration: "4:30",
+        mood: "Romantic / Dreamy",
+        fact: "Chopin requested that Mozart's Requiem be performed at his funeral.",
+        spotifyUrl: "https://open.spotify.com",
+        youtubeQuery: "Chopin Nocturne Op 9 No 2"
+    },
+    "22-AUG": {
+        type: "composer",
+        composer: "Claude Debussy",
+        title: "Clair de Lune",
+        country: "France",
+        duration: "5:00",
+        mood: "Impressionistic / Calm",
+        fact: "Debussy's middle name was Achille.",
+        spotifyUrl: "https://open.spotify.com",
+        youtubeQuery: "Debussy Clair de Lune"
     }
+    // Jeśli jakiejś daty (np. dzisiejszej) nie ma w bazie, skrypt automatycznie przełącza się na Case 1
 };
 
 let savedTracks = JSON.parse(localStorage.getItem('savedTracks')) || [];
@@ -45,21 +59,21 @@ function resetDailyView() { toggleMenu(); loadDailyContent(); }
 function clearAppData() { if(confirm('Clear all data?')) { localStorage.clear(); location.reload(); } toggleMenu(); }
 function openAbout() { toggleMenu(); alert('Classics in 7 - PWA for daily classical music discovery.'); }
 
-// --- Ładowanie zawartości ---
+// --- Główna logika sprawdzania daty i kart ---
 function loadDailyContent() {
     const today = new Date();
     const day = today.getDate();
     const month = today.toLocaleString('en', { month: 'short' }); // np. "Sep"
     const dateKey = `${day}-${month}`; // np. "13-Sep"
 
-    if (database_1[dateKey]) {
-        renderComposerView(database_1[dateKey], dateKey);
+    const cardData = database[dateKey];
+
+    // Sprawdzenie czy karta z utworem/kompozytorem istnieje dla tej daty
+    if (cardData && cardData.type === "composer") {
+        renderComposerView(cardData, dateKey);
     } else {
-        const insight = database_2[dateKey] || {
-            fact: "Listening to classical piano music activates both hemispheres of the brain, significantly reducing stress.",
-            category: "Science"
-        };
-        renderNoComposerView(insight, dateKey);
+        // CASE 1: Brak karty dla tej daty – uruchamiamy widok alternatywny
+        renderCase1View(dateKey);
     }
 }
 
@@ -90,20 +104,20 @@ function renderComposerView(data, dateKey) {
     }
 }
 
-function renderNoComposerView(insight, dateKey) {
+function renderCase1View(dateKey) {
     const mainView = document.getElementById('track-main-view');
     const noComposerView = document.getElementById('no-composer-view');
     
     if (mainView) mainView.style.display = 'none';
     if (noComposerView) noComposerView.style.display = 'block';
 
-    // Uzupełnienie insightu
+    // Statyczny lub losowy insight dla Case 1
     const factText = document.getElementById('nc-fact-text');
     const tag = document.getElementById('insight-category-tag');
-    if (factText) factText.textContent = insight.fact || '';
-    if (tag) tag.textContent = insight.category || 'Science';
+    if (factText) factText.textContent = "Listening to classical piano music activates both hemispheres of the brain, significantly reducing stress.";
+    if (tag) tag.textContent = "Science";
 
-    // Wymuszenie wyświetlenia kart Prev / Next dla Debussy'ego i Chopina
+    // Karty powiązane (Poprzedni / Następny kompozytor z bazy)
     const prevDateEl = document.getElementById('nc-prev-date');
     const prevNameEl = document.getElementById('nc-prev-name');
     const nextDateEl = document.getElementById('nc-next-date');
