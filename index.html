@@ -90,7 +90,6 @@
             transform: scale(1.05);
         }
 
-        /* Dyskretne powiadomienie toast */
         #toast-notification {
             position: absolute;
             top: 15px;
@@ -115,7 +114,6 @@
 </head>
 <body>
     <main class="container" style="position: relative;">
-        <!-- Dyskretny toast informacyjny -->
         <div id="toast-notification">Saved!</div>
 
         <div class="card">
@@ -126,7 +124,7 @@
                 </div>
             </div>
             
-            <!-- CASE 2: Standardowy widok (Kompozytor urodzony dzisiaj) -->
+            <!-- Widok standardowy -->
             <div id="track-main-view" style="display: none;">
                 <div class="date-header" id="date-header" style="margin-bottom: 10px; font-size: 14px; opacity: 0.7;">Born today</div>
                 <h1 id="track-title" style="font-size: 24px;">♪ Loading...</h1>
@@ -148,7 +146,7 @@
                     <button class="btn save-btn" title="Save for later" onclick="saveForLater()">Later</button>
                 </div>
 
-                <!-- Micro-learning 1 (Usunięto etykietę mikro-learningu) -->
+                <!-- Ciekawostka bez zbędnych etykiet -->
                 <div class="fact-card">
                     <div class="fact-title" style="font-size: 15px;">Did you know?</div>
                     <p id="fact-text" style="font-size: 15px; line-height: 1.5;">Loading fact...</p>
@@ -159,6 +157,7 @@
                     </div>
                 </div>
 
+                <!-- Odkrywanie bez dopisek o TOP 5 -->
                 <div class="discover-card" id="discoverCard">
                     <div class="discover-header" onclick="toggleDiscover()" style="font-size: 15px;">
                         <span id="discover-arrow">▶</span> DISCOVER MORE
@@ -167,13 +166,12 @@
                 </div>
             </div>
 
-            <!-- CASE 1: Widok alternatywny (Brak urodzin dzisiaj) -->
+            <!-- Widok alternatywny (Brak urodzin dzisiaj) -->
             <div id="no-composer-view" style="display: none;">
                 <div class="unified-header-title">
                     <span>No composer born today</span>
                 </div>
                 
-                <!-- Horyzontalny stos nawigacyjny -->
                 <div class="nc-nav-stack">
                     <div class="nc-info-card" id="nc-prev-card">
                         <span style="font-size: 18px; font-weight: bold; opacity: 0.7; margin-right: 12px;">←</span>
@@ -194,7 +192,6 @@
                     </div>
                 </div>
 
-                <!-- Micro-learning 2 -->
                 <div class="fact-card" style="margin-top: 15px;">
                     <div class="unified-header-title" style="margin-bottom: 10px;">
                         <span>Classical Insight</span>
@@ -229,7 +226,6 @@
         </div>
     </div>
 
-    <!-- Załadowanie bazy danych -->
     <script src="database.js"></script>
 
     <script>
@@ -482,22 +478,18 @@
                 document.getElementById('nc-prev-date').textContent = formatDateDDMMM(prevDate);
                 document.getElementById('nc-prev-name').textContent = prevComposer.composer;
 
-                const goToPrev = (e) => {
+                document.getElementById('nc-prev-card').onclick = (e) => {
                     e.preventDefault();
                     selectTrack(prevComposer.id, prevComposer.tracks[0].id, true);
                 };
 
-                document.getElementById('nc-prev-card').onclick = goToPrev;
-
                 document.getElementById('nc-next-date').textContent = formatDateDDMMM(nextDate);
                 document.getElementById('nc-next-name').textContent = nextComposer.composer;
 
-                const goToNext = (e) => {
+                document.getElementById('nc-next-card').onclick = (e) => {
                     e.preventDefault();
                     selectTrack(nextComposer.id, nextComposer.tracks[0].id, true);
                 };
-
-                document.getElementById('nc-next-card').onclick = goToNext;
             }
         }
 
