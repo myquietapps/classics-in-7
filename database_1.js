@@ -51,6 +51,14 @@ const composersDatabase = [
                 mood: "#Melancholic",
                 youtubeQuery: "Claude Debussy The Girl with the Flaxen Hair",
                 spotifyQuery: "Claude Debussy The Girl with the Flaxen Hair"
+            },
+            {
+                id: "debussy-6",
+                title: "Syrinx",
+                duration: "(3:10)",
+                mood: "#Dreamy",
+                youtubeQuery: "Claude Debussy Syrinx",
+                spotifyQuery: "Claude Debussy Syrinx"
             }
         ]
     },
@@ -106,6 +114,14 @@ const composersDatabase = [
                 mood: "#Grand",
                 youtubeQuery: "Chopin Polonaise in A flat major Op 53 Heroic",
                 spotifyQuery: "Frédéric Chopin Polonaise in A-Flat Major Op. 53"
+            },
+            {
+                id: "chopin-6",
+                title: "Ballade No. 1 in G Minor",
+                duration: "(9:20)",
+                mood: "#Passionate",
+                youtubeQuery: "Chopin Ballade No 1 in G minor",
+                spotifyQuery: "Frédéric Chopin Ballade No. 1 in G Minor"
             }
         ]
     }
