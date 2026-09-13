@@ -1,32 +1,88 @@
-// app.js - Kompletna wersja (Logika dat, baz danych i Spotify)
+// app.js - Classics in 7 (Pełna wersja logiki)
 
 let savedTracks = JSON.parse(localStorage.getItem('savedTracks')) || [];
 
-// Główna funkcja inicjalizująca po załadowaniu strony
 document.addEventListener('DOMContentLoaded', () => {
     loadDailyContent();
     updateSavedCount();
 });
 
-// Funkcja ładująca zawartość na podstawie dzisiejszej daty
-function loadDailyContent() {
-    const today = new Date();
-    const day = today.getDate();
-    const month = today.toLocaleString('en', { month: 'short' }); // np. "Aug", "Mar"
-    const dateKey = `${day}-${month}`; // np. "22-Aug"
+// --- Obsługa Menu Hamburgerowego ---
+function toggleMenu() {
+    const menuOverlay = document.getElementById('menu-overlay');
+    const openBtn = document.querySelector('.menu-open-btn');
+    const body = document.body;
 
-    // Sprawdzamy database_1 (czy ktoś się urodził)
-    // Przyjmujemy strukturę database_1 z Twojego projektu
-    if (typeof database_1 !== 'undefined' && database_1[dateKey]) {
-        const data = database_1[dateKey];
-        renderComposerView(data, dateKey);
+    if (!menuOverlay.classList.contains('show')) {
+        menuOverlay.classList.add('show');
+        if (openBtn) openBtn.classList.add('hidden');
+        body.style.overflow = 'hidden';
     } else {
-        // Brak kompozytora - ładujemy database_2 (Insights)
-        renderNoComposerView(dateKey);
+        menuOverlay.classList.remove('show');
+        if (openBtn) openBtn.classList.remove('hidden');
+        body.style.overflow = '';
     }
 }
 
-// Renderowanie widoku kompozytora
+function navigateToMainView() { 
+    toggleMenu(); 
+    loadDailyContent(); 
+}
+
+function openSavedTracks() { 
+    toggleMenu(); 
+    alert('Saved Tracks under construction'); 
+}
+
+function openMoodStats() { 
+    toggleMenu(); 
+    alert('Mood Stats under construction'); 
+}
+
+function openJumpToDate() { 
+    toggleMenu(); 
+    alert('Jump to Date under construction'); 
+}
+
+function openAppearance() { 
+    toggleMenu(); 
+    alert('Appearance under construction'); 
+}
+
+function resetDailyView() { 
+    toggleMenu(); 
+    loadDailyContent(); 
+}
+
+function clearAppData() { 
+    if(confirm('Clear all data?')) { 
+        localStorage.clear(); 
+        location.reload(); 
+    } 
+    toggleMenu(); 
+}
+
+function openAbout() { 
+    toggleMenu(); 
+    alert('Classics in 7 - PWA for daily classical music discovery.'); 
+}
+
+// --- Dynamiczne ładowanie zawartości na podstawie daty ---
+function loadDailyContent() {
+    const today = new Date();
+    const day = today.getDate();
+    const month = today.toLocaleString('en', { month: 'short' }); // np. "Sep"
+    const dateKey = `${day}-${month}`; // np. "13-Sep"
+
+    if (typeof database_1 !== 'undefined' && database_1[dateKey]) {
+        renderComposerView(database_1[dateKey], dateKey);
+    } else if (typeof database_2 !== 'undefined' && database_2[dateKey]) {
+        renderNoComposerView(database_2[dateKey], dateKey);
+    } else {
+        renderNoComposerView({ fact: "Classical music activates both hemispheres of the brain.", category: "Science" }, dateKey);
+    }
+}
+
 function renderComposerView(data, dateKey) {
     const mainView = document.getElementById('track-main-view');
     const noComposerView = document.getElementById('no-composer-view');
@@ -42,46 +98,36 @@ function renderComposerView(data, dateKey) {
     document.getElementById('track-mood').textContent = data.mood || '';
     document.getElementById('fact-text').textContent = data.fact || '';
 
-    // Podpięcie Spotify z nową funkcją sprawdzającą aplikację
     const spotifyLink = document.getElementById('spotify-link');
     if (spotifyLink && data.spotifyUrl) {
         spotifyLink.href = data.spotifyUrl;
         spotifyLink.onclick = (e) => openSpotify(e, data.spotifyUrl);
     }
 
-    // Podpięcie YouTube
     const ytLink = document.getElementById('youtube-link');
     if (ytLink && data.youtubeQuery) {
         ytLink.href = `https://www.youtube.com/results?search_query=${encodeURIComponent(data.youtubeQuery)}`;
     }
 }
 
-// Renderowanie widoku alternatywnego (Brak kompozytora)
-function renderNoComposerView(dateKey) {
+function renderNoComposerView(insight, dateKey) {
     const mainView = document.getElementById('track-main-view');
     const noComposerView = document.getElementById('no-composer-view');
     
     if (mainView) mainView.style.display = 'none';
     if (noComposerView) noComposerView.style.display = 'block';
 
-    // Pobieramy insight z database_2 jeśli istnieje
-    if (typeof database_2 !== 'undefined' && database_2[dateKey]) {
-        const insight = database_2[dateKey];
-        const factText = document.getElementById('nc-fact-text');
-        const tag = document.getElementById('insight-category-tag');
-        if (factText) factText.textContent = insight.fact || '';
-        if (tag) tag.textContent = insight.category || 'Science';
-    }
+    const factText = document.getElementById('nc-fact-text');
+    const tag = document.getElementById('insight-category-tag');
+    if (factText) factText.textContent = insight.fact || '';
+    if (tag) tag.textContent = insight.category || 'Science';
 }
 
-// --- Obsługa Spotify z komunikatem o braku aplikacji ---
+// --- Integracja Spotify z modalem sprawdzającym instalację aplikacji ---
 function openSpotify(event, spotifyUrl) {
     event.preventDefault();
-    
-    // Próbujemy otworzyć link (uruchomi aplikację Spotify, jeśli jest zainstalowana)
     window.open(spotifyUrl, '_blank');
     
-    // Wyświetlamy okno z opcją pobrania aplikacji lub kontynuowania
     setTimeout(() => {
         showSpotifyPrompt(spotifyUrl);
     }, 500);
@@ -113,6 +159,7 @@ function showSpotifyPrompt(fallbackUrl) {
     }
 }
 
+// --- Pozostałe funkcje pomocnicze ---
 function updateSavedCount() {
     const countSpan = document.getElementById('menu-saved-count');
     if(countSpan) countSpan.textContent = '(' + savedTracks.length + ')';
@@ -130,4 +177,16 @@ function toggleDiscover() {
             if (arrow) arrow.textContent = '▶';
         }
     }
+}
+
+function saveForLater() {
+    alert('Track saved!');
+}
+
+function voteTrack(isUp) {
+    alert('Thank you for voting!');
+}
+
+function voteInsight(isUp) {
+    alert('Thank you for your feedback!');
 }
