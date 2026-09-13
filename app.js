@@ -1,17 +1,110 @@
+// app.js - Main Logic
+
+// Zmienne stanu aplikacji
 let currentComposerId = null;
 let currentTrackId = null;
 let currentInsightId = null;
 
+// Ładowanie preferencji użytkownika lub wartości domyślne (z database_3.js)
 let userMoodPreferences = JSON.parse(localStorage.getItem('userMoodPreferences')) || {
-    "#Melancholic": 2, "#Relaxing": 2, "#Dreamy": 1, "#Romantic": 2, "#Passionate": 1, "#Dynamic": 1, "#Graceful": 1, "#Grand": 1
+    "#Relaxing": 2, "#Dreamy": 1, "#Romantic": 2, "#Melancholic": 2, 
+    "#Passionate": 1, "#Dynamic": 1, "#Graceful": 1, "#Grand": 1
 };
 
 let userInsightPreferences = JSON.parse(localStorage.getItem('userInsightPreferences')) || {
     "History": 1, "Science": 1, "Instruments": 1, "Pop Culture": 1, "Theory": 1
 };
 
+let savedTracks = JSON.parse(localStorage.getItem('savedTracks')) || [];
+
 let lastVotedTrackId = null;
 let lastVotedInsightId = null;
+
+// --- ☰ LOGIKA MENU HAMBURGERA ---
+
+function toggleMenu() {
+    const menuOverlay = document.getElementById('menu-overlay');
+    const openBtn = document.querySelector('.menu-open-btn');
+    const body = document.body;
+
+    const isMenuVisible = menuOverlay.classList.contains('show');
+
+    if (!isMenuVisible) {
+        menuOverlay.classList.add('show');
+        openBtn.classList.add('hidden'); // Ukryj hamburgera
+        body.style.overflow = 'hidden'; // Zablokuj scroll strony
+    } else {
+        menuOverlay.classList.remove('show');
+        openBtn.classList.remove('hidden'); // Pokaż hamburgera
+        body.style.overflow = ''; // Odblokuj scroll
+    }
+}
+
+// Funkcje nawigacji z menu (na razie proste alerty, development)
+function navigateToMainView() {
+    toggleMenu();
+    // Wróć do dzisiejszego dnia
+    loadForDate(new Date(), true); 
+}
+
+function openSavedTracks() {
+    toggleMenu();
+    alert("Saved Tracks view is under construction.");
+}
+
+function openMoodStats() {
+    toggleMenu();
+    alert("Mood Stats view is under construction.\nTotal defined moods: " + allAvailableMoods.length);
+}
+
+function openJumpToDate() {
+    toggleMenu();
+    const todayStr = formatDateForInput(new Date());
+    const selectedDate = prompt("Enter date (YYYY-MM-DD):", todayStr);
+    
+    if (selectedDate) {
+        let dateObj = new Date(selectedDate);
+        if (!isNaN(dateObj.getTime())) {
+            loadForDate(dateObj, true);
+        } else {
+            alert("Invalid date format.");
+        }
+    }
+}
+
+// Nowa funkcja dla punktu 5
+function openAppearance() {
+    toggleMenu();
+    alert("Appearance settings (Dark/Light mode) coming soon.");
+}
+
+function resetDailyView() {
+    toggleMenu();
+    loadForDate(new Date(), true);
+}
+
+function clearAppData() {
+    if(confirm("Are you sure you want to clear all saved data, stats, and preferences?")) {
+        localStorage.clear();
+        location.reload();
+    }
+    toggleMenu();
+}
+
+function openAbout() {
+    toggleMenu();
+    alert("Classics in 7 v2.0 \nYour daily dose of classical music.\nBuilt for exploration.");
+}
+
+// --- Funkcja pomocnicza do daty ---
+function formatDateForInput(date) {
+    return date.toISOString().split('T')[0];
+}
+
+// --- KONIEC LOGIKI MENU ---
+
+
+// --- Funkcje główne aplikacji (bez zmian) ---
 
 function showToast(message) {
     const toast = document.getElementById('toast-notification');
@@ -50,6 +143,20 @@ function resetVoteUI(type) {
     btns.forEach(b => b.classList.remove('active'));
 }
 
+function updateSaveBtnState() {
+    const saveBtn = document.querySelector('.save-btn');
+    if (!saveBtn) return;
+    let savedTracks = JSON.parse(localStorage.getItem('savedTracks')) || [];
+    let saveKey = `${currentComposerId}-${currentTrackId}`;
+    if (savedTracks.includes(saveKey)) {
+        saveBtn.textContent = "Saved";
+        saveBtn.classList.add('is-saved');
+    } else {
+        saveBtn.textContent = "Later";
+        saveBtn.classList.remove('is-saved');
+    }
+}
+
 function selectTrack(composerId, trackId, pushHistory = true) {
     const composer = composersDatabase.find(c => c.id === composerId);
     if (!composer) return;
@@ -72,197 +179,4 @@ function selectTrack(composerId, trackId, pushHistory = true) {
     document.getElementById('track-duration').textContent = track.duration;
     
     document.getElementById('track-mood').textContent = track.mood;
-
-    document.getElementById('youtube-link').href = `https://www.youtube.com/results?search_query=${encodeURIComponent(track.youtubeQuery)}`;
-
-    let selectedFact = composer.facts[track.mood] || "Great classical masterpiece.";
-    document.getElementById('fact-text').textContent = selectedFact;
-
-    resetVoteUI('track-vote-up');
-    resetVoteUI('track-vote-down');
-
-    document.getElementById('top5List').style.display = 'none';
-    document.getElementById('discover-arrow').textContent = '▶';
-}
-
-function openSpotify(event) {
-    event.preventDefault();
-    const composer = composersDatabase.find(c => c.id === currentComposerId);
-    if (!composer) return;
-    const track = composer.tracks.find(t => t.id === currentTrackId);
-    if (!track) return;
-
-    const appUrl = `spotify:search:${encodeURIComponent(track.spotifyQuery)}`;
-    const webUrl = `https://open.spotify.com/search/${encodeURIComponent(track.spotifyQuery)}`;
-    window.location.href = appUrl;
-
-    let triggered = false;
-    const blurListener = () => { triggered = true; };
-    window.addEventListener('blur', blurListener, { once: true });
-
-    setTimeout(() => {
-        window.removeEventListener('blur', blurListener);
-        if (!triggered) {
-            if (confirm("Open web player instead?")) {
-                window.open(webUrl, '_blank');
-            }
-        }
-    }, 1500);
-}
-
-function voteTrack(isUp) {
-    if (lastVotedTrackId === currentTrackId) return;
-    const composer = composersDatabase.find(c => c.id === currentComposerId);
-    if (!composer) return;
-    const track = composer.tracks.find(t => t.id === currentTrackId);
-    if (!track) return;
-
-    resetVoteUI('track-vote-up');
-    resetVoteUI('track-vote-down');
-
-    if (isUp) {
-        userMoodPreferences[track.mood] = (userMoodPreferences[track.mood] || 0) + 2;
-        document.querySelector('.track-vote-up').classList.add('active');
-    } else {
-        userMoodPreferences[track.mood] = Math.max(0, (userMoodPreferences[track.mood] || 0) - 1);
-        document.querySelector('.track-vote-down').classList.add('active');
-    }
-    localStorage.setItem('userMoodPreferences', JSON.stringify(userMoodPreferences));
-    lastVotedTrackId = currentTrackId;
-}
-
-function voteInsight(isUp) {
-    if (lastVotedInsightId === currentInsightId) return;
-    const insight = classicalInsights.find(i => i.id === currentInsightId);
-    if (!insight) return;
-
-    resetVoteUI('insight-vote-up');
-    resetVoteUI('insight-vote-down');
-
-    if (isUp) {
-        userInsightPreferences[insight.category] = (userInsightPreferences[insight.category] || 0) + 2;
-        document.querySelector('.insight-vote-up').classList.add('active');
-    } else {
-        userInsightPreferences[insight.category] = Math.max(0, (userInsightPreferences[insight.category] || 0) - 1);
-        document.querySelector('.insight-vote-down').classList.add('active');
-    }
-    localStorage.setItem('userInsightPreferences', JSON.stringify(userInsightPreferences));
-    lastVotedInsightId = currentInsightId;
-}
-
-function saveForLater() {
-    let savedTracks = JSON.parse(localStorage.getItem('savedTracks')) || [];
-    let saveKey = `${currentComposerId}-${currentTrackId}`;
-    if (!savedTracks.includes(saveKey)) {
-        savedTracks.push(saveKey);
-        localStorage.setItem('savedTracks', JSON.stringify(savedTracks));
-        showToast('Saved for later');
-    } else {
-        showToast('Already saved');
-    }
-}
-
-function updateDiscoverList() {
-    const listContainer = document.getElementById('top5List');
-    listContainer.innerHTML = '';
-
-    const composer = composersDatabase.find(c => c.id === currentComposerId);
-    if (!composer) return;
-
-    let availableTracks = composer.tracks.filter(t => t.id !== currentTrackId);
-    availableTracks.forEach(track => {
-        let score = userMoodPreferences[track.mood] || 0;
-        track.matchScore = score;
-    });
-
-    availableTracks.sort((a, b) => b.matchScore - a.matchScore);
-
-    availableTracks.forEach((track, index) => {
-        const item = document.createElement('div');
-        item.className = 'top5-item';
-        item.style.padding = '8px 0';
-        item.style.cursor = 'pointer';
-        item.style.borderBottom = '1px solid rgba(255,255,255,0.1)';
-        item.onclick = () => selectTrack(composer.id, track.id);
-        item.innerHTML = `
-            <div style="font-weight: 600; font-size: 14px;">${index + 1}. ${track.title}</div>
-            <div style="font-size: 12px; opacity: 0.7; display: flex; justify-content: space-between; margin-top: 2px;">
-                <span>${track.duration}</span>
-                <span>${track.mood}</span>
-            </div>
-        `;
-        listContainer.appendChild(item);
-    });
-}
-
-function loadForDate(dateObj, pushHistory = true) {
-    const month = String(dateObj.getMonth() + 1).padStart(2, '0');
-    const day = String(dateObj.getDate()).padStart(2, '0');
-    const targetStr = `${month}-${day}`;
-
-    let todaysComposer = composersDatabase.find(c => c.birthDate === targetStr);
-    const mainView = document.getElementById('track-main-view');
-    const noComposerView = document.getElementById('no-composer-view');
-
-    if (todaysComposer) {
-        selectTrack(todaysComposer.id, todaysComposer.tracks[0].id, pushHistory);
-    } else {
-        mainView.style.display = 'none';
-        noComposerView.style.display = 'block';
-
-        if (pushHistory) {
-            history.pushState({ view: 'nocomposer', date: targetStr }, "", `#date-${targetStr}`);
-        }
-
-        const insightIndex = (dateObj.getDate() + dateObj.getMonth()) % classicalInsights.length;
-        const activeInsight = classicalInsights[insightIndex];
-        currentInsightId = activeInsight.id;
-
-        document.getElementById('nc-fact-text').textContent = activeInsight.text;
-        document.getElementById('insight-category-tag').textContent = activeInsight.category;
-
-        resetVoteUI('insight-vote-up');
-        resetVoteUI('insight-vote-down');
-
-        const uniqueDates = [...new Set(composersDatabase.map(c => c.birthDate))].sort();
-        let prevDate = uniqueDates.slice().reverse().find(d => d < targetStr) || uniqueDates[uniqueDates.length - 1];
-        let nextDate = uniqueDates.find(d => d > targetStr) || uniqueDates[0];
-
-        const prevComposer = composersDatabase.find(c => c.birthDate === prevDate);
-        const nextComposer = composersDatabase.find(c => c.birthDate === nextDate);
-
-        document.getElementById('nc-prev-date').textContent = formatDateDDMMM(prevDate);
-        document.getElementById('nc-prev-name').textContent = prevComposer.composer;
-
-        document.getElementById('nc-prev-card').onclick = (e) => {
-            e.preventDefault();
-            selectTrack(prevComposer.id, prevComposer.tracks[0].id, true);
-        };
-
-        document.getElementById('nc-next-date').textContent = formatDateDDMMM(nextDate);
-        document.getElementById('nc-next-name').textContent = nextComposer.composer;
-
-        document.getElementById('nc-next-card').onclick = (e) => {
-            e.preventDefault();
-            selectTrack(nextComposer.id, nextComposer.tracks[0].id, true);
-        };
-    }
-}
-
-window.addEventListener('popstate', (event) => {
-    if (event.state) {
-        if (event.state.view === 'composer') {
-            selectTrack(event.state.composerId, event.state.trackId, false);
-        } else if (event.state.view === 'nocomposer') {
-            loadForDate(new Date(), false);
-        }
-    } else {
-        loadForDate(new Date(), false);
-    }
-});
-
-function initApp() {
-    loadForDate(new Date(), true);
-}
-
-initApp();
+    document.getElementById('youtube-link').href = `
