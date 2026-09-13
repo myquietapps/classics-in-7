@@ -59,7 +59,7 @@ body {
 
 .btn.spotify { background: #1db954; color: #fff; }
 .btn.youtube { background: #ff0000; color: #fff; }
-.btn.save-btn { background: rgba(255, 255, 255, 0.15); color: #fff; }
+.btn.save-btn { background: #2b5c8f; color: #fff; } /* Nowy niebieskawy odcień */
 
 .fact-card, .discover-card {
     background: rgba(255, 255, 255, 0.03);
