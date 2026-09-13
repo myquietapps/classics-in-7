@@ -46,7 +46,7 @@
         .nc-btn {
             flex: 1;
             padding: 14px 10px;
-            font-size: 13px;
+            font-size: 14px;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 8px;
@@ -95,7 +95,7 @@
                 </div>
             </div>
             
-            <!-- CASE 2: Standardowy widok (gdy są urodziny) -->
+            <!-- CASE 2: Standardowy widok -->
             <div id="track-main-view" style="display: none;">
                 <div class="date-header" id="date-header" style="margin-bottom: 10px; font-size: 14px; opacity: 0.7;">Born today</div>
                 <h1 id="track-title" style="font-size: 24px;">♪ Loading...</h1>
@@ -143,8 +143,8 @@
                 </div>
                 
                 <div class="nc-nav-container">
-                    <a href="#" id="nc-prev-btn" class="nc-btn">♪ ←<br><strong>Artist</strong></a>
-                    <a href="#" id="nc-next-btn" class="nc-btn">→ ♪<br><strong>Artist</strong></a>
+                    <a href="#" id="nc-prev-btn" class="nc-btn">← Date<br><strong>Artist</strong></a>
+                    <a href="#" id="nc-next-btn" class="nc-btn">Date →<br><strong>Artist</strong></a>
                 </div>
 
                 <!-- Micro-learning 2 -->
@@ -251,6 +251,13 @@
 
         let lastVotedTrackId = null;
         let lastVotedInsightId = null;
+
+        function formatDateDDMMM(dateStr) {
+            const [month, day] = dateStr.split('-');
+            const monthsNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+            const monthName = monthsNames[parseInt(month, 10) - 1];
+            return `${parseInt(day, 10)}-${monthName}`;
+        }
 
         function updateSavedCounter() {
             const savedTracks = JSON.parse(localStorage.getItem('savedTracks')) || [];
@@ -436,7 +443,7 @@
                 const prevBtn = document.getElementById('nc-prev-btn');
                 const nextBtn = document.getElementById('nc-next-btn');
 
-                prevBtn.innerHTML = `♪ ← (${prevDate})<br><strong>${prevTrack.composer}</strong>`;
+                prevBtn.innerHTML = `← ${formatDateDDMMM(prevDate)}<br><strong>${prevTrack.composer}</strong>`;
                 prevBtn.onclick = (e) => {
                     e.preventDefault();
                     mainView.style.display = 'block';
@@ -444,7 +451,7 @@
                     selectTrack(prevTrack.id);
                 };
 
-                nextBtn.innerHTML = `(${nextDate}) → ♪<br><strong>${nextTrack.composer}</strong>`;
+                nextBtn.innerHTML = `${formatDateDDMMM(nextDate)} →<br><strong>${nextTrack.composer}</strong>`;
                 nextBtn.onclick = (e) => {
                     e.preventDefault();
                     mainView.style.display = 'block';
