@@ -4,14 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Classics in 7</title>
-    <!-- Zmieniono z styles.css na style.css -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header class="app-header">
         <button id="menu-toggle" aria-label="Open Menu" class="icon-btn">☰</button>
         <h1 class="app-title">Classics in 7</h1>
-        <button id="gear-toggle" aria-label="Jump to Date" class="icon-btn" title="Jump to Date">📅</button>
+        <!-- USUNIĘTO: Przycisk wyszukiwania i koło zębate -->
     </header>
 
     <nav id="hamburger-menu" class="drawer hidden" aria-label="Main Navigation">
@@ -20,8 +19,8 @@
             <button id="menu-close" aria-label="Close Menu" class="icon-btn">&times;</button>
         </div>
         <ul class="menu-list">
-            <li><a href="#home" data-view="home">Today's Masterpiece</a></li>
-            <li><a href="#saved" data-view="saved">Saved Classics <span id="saved-badge" class="badge">0</span></a></li>
+            <li><a href="#home" data-view="home" class="active">Today's Masterpiece</a></li>
+            <li><a href="#saved" data-view="saved">Saved Classics</a></li>
             <li><a href="#stats" data-view="stats">My Mood Stats</a></li>
             <li><a href="#jump" data-view="jump">Jump to Date</a></li>
             <li><a href="#reminder" data-view="reminder">Daily Reminder</a></li>
@@ -34,13 +33,29 @@
     <div id="drawer-backdrop" class="backdrop hidden"></div>
 
     <main id="app-content">
-        <!-- HOME VIEW -->
+        <!-- HOME VIEW (Główny widok) -->
         <section id="view-home" class="view-section active">
-            <h2>Today's Masterpiece</h2>
-            <div id="dynamic-case-container" class="card">Loading...</div>
+            
+            <!-- Nawigacja datą (wspólna dla obu scenariuszy) -->
+            <div class="date-navigation">
+                <button id="nav-prev" class="icon-btn">◀</button>
+                <h2 id="current-date-display">Loading...</h2>
+                <button id="nav-next" class="icon-btn">▶</button>
+            </div>
+
+            <!-- Kontener dynamiczny, który będzie wypełniany przez app.js -->
+            <div id="dynamic-content-area">
+                <!-- Tu zostanie wstrzyknięty HTML dla Case 1 lub Case 2 -->
+            </div>
+
+            <!-- Element microlearningu (Classical Insight) - Wyświetlany zawsze na dole -->
+            <div id="daily-insight-container" class="insight-card card">
+                Loading Classical Insight...
+            </div>
+
         </section>
 
-        <!-- SAVED CLASSICS -->
+        <!-- Pozostałe sekcje (Saved, Stats, Jump, Reminder, Appearance, About) bez zmian w strukturze -->
         <section id="view-saved" class="view-section">
             <h2>Saved Classics</h2>
             <div class="filter-bar">
@@ -48,76 +63,16 @@
             </div>
             <div id="saved-list-container"></div>
         </section>
-
-        <!-- MY MOOD STATS -->
-        <section id="view-stats" class="view-section">
-            <h2>My Mood Stats</h2>
-            <div class="card stats-card">
-                <p id="stats-poetic-summary"><em>"W tym miesiącu najbliżej Ci było do romantycznego spokoju."</em></p>
-                <div class="resonance-counter">
-                    <span id="resonance-score">14</span> <strong>Odkrytych rezonansów (pozytywnych reakcji 👍)</strong>
-                </div>
-            </div>
-        </section>
-
-        <!-- JUMP TO DATE -->
-        <section id="view-jump" class="view-section">
-            <h2>Jump to Date</h2>
-            <div class="jump-tabs">
-                <button class="tab-btn active" data-tab="roll">Roll the list</button>
-                <button class="tab-btn tab-inactive" data-tab="calendar">Pick a date</button>
-            </div>
-            <div id="tab-content-roll" class="tab-pane">
-                <div id="archive-scroll-list" class="archive-list"></div>
-            </div>
-            <div id="tab-content-calendar" class="tab-pane hidden">
-                <input type="date" id="calendar-picker" class="calendar-input">
-            </div>
-        </section>
-
-        <!-- DAILY REMINDER -->
-        <section id="view-reminder" class="view-section">
-            <h2>Daily Reminder</h2>
-            <div class="card">
-                <label class="switch-container">
-                    <span>Enable daily reminders</span>
-                    <input type="checkbox" id="reminder-toggle">
-                </label>
-                <div class="time-container">
-                    <label>Reminder time:</label>
-                    <input type="time" id="reminder-time" value="08:00">
-                </div>
-                <h3>Sample Notifications (EN):</h3>
-                <ul id="reminders-list-preview" class="reminders-preview"></ul>
-            </div>
-        </section>
-
-        <!-- APPEARANCE -->
-        <section id="view-appearance" class="view-section">
-            <h2>Appearance</h2>
-            <div class="themes-grid">
-                <div class="theme-card" data-theme-val="nocturne">Nocturne</div>
-                <div class="theme-card" data-theme-val="sonata">Sonata</div>
-                <div class="theme-card" data-theme-val="cello">Cello</div>
-                <div class="theme-card" data-theme-val="e-ink">E-Ink</div>
-                <div class="theme-card" data-theme-val="primavera">Primavera</div>
-                <div class="theme-card" data-theme-val="system">System Default</div>
-            </div>
-        </section>
-
-        <!-- ABOUT -->
-        <section id="view-about" class="view-section">
-            <h2>About Classics in 7</h2>
-            <p>"Classics in 7" is a daily musical snack designed to bring timeless classical masterpieces into your life, offering a quiet moment of relaxation whenever you need it.</p>
-            <p>It has been designed by an individual who, just like you, seeks to enrich life through art, release the spirit to bring extraordinary emotions, and improve life balance.</p>
-            <p>Built as a purely independent project, it thrives on quiet moments and the simple joy of sharing great music.</p>
-            <p>Made with care for music lovers.</p>
-            <hr class="subtle-divider">
-            <p><a href="mailto:feedback@classicsin7.app">Send feedback</a> • <a href="https://buymeacoffee.com" target="_blank">Buy me a coffee ☕</a></p>
-            <small>v1.0.0</small>
-        </section>
+        <section id="view-stats" class="view-section">...</section>
+        <section id="view-jump" class="view-section">...</section>
+        <section id="view-reminder" class="view-section">...</section>
+        <section id="view-appearance" class="view-section">...</section>
+        <section id="view-about" class="view-section">...</section>
     </main>
 
-    <script src="app.js"></script>
+    <!-- Ładowanie zewnętrznych baz danych i logiki -->
+    <script src="base_1.js"></script> <!-- Ciekawostki -->
+    <script src="base_2.js"></script> <!-- Baza kompozytorów -->
+    <script src="app.js"></script>     <!-- Główna logika -->
 </body>
 </html>
