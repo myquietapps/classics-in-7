@@ -11,13 +11,6 @@
         <div id="toast-notification">Saved!</div>
 
         <div class="card">
-            <div class="top-nav" style="display: flex; justify-content: flex-end; align-items: center; margin-bottom: 10px;">
-                <div class="settings-area">
-                    <span id="saved-counter" style="font-size: 14px; margin-right: 12px; opacity: 0.8;">Saved: 0</span>
-                    <span id="settings-btn" style="cursor: pointer; font-size: 18px;" title="Settings" onclick="openSettings()">⚙️</span>
-                </div>
-            </div>
-            
             <!-- Widok standardowy -->
             <div id="track-main-view" style="display: none;">
                 <div class="date-header" id="date-header" style="margin-bottom: 10px; font-size: 14px; opacity: 0.7;">Born today</div>
@@ -61,7 +54,7 @@
             <!-- Widok alternatywny (Brak urodzin dzisiaj) -->
             <div id="no-composer-view" style="display: block;">
                 <div class="unified-header-title">
-                    <span>No composer born today</span>
+                    <span>No composer was born today</span>
                 </div>
                 
                 <div class="nc-nav-stack">
@@ -100,23 +93,6 @@
 
         </div>
     </main>
-
-    <!-- Modal Ustawień -->
-    <div id="settings-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span>Settings</span>
-                <span class="close-modal" onclick="closeSettings()">×</span>
-            </div>
-            <div style="margin-bottom: 15px;">
-                <label for="simulate-date" style="font-size: 14px; display: block; margin-bottom: 5px; color:#333;">Simulate date:</label>
-                <input type="date" id="simulate-date" style="width: 100%; padding: 8px; box-sizing: border-box; font-size: 14px;" onchange="changeSimulatedDate(this.value)">
-            </div>
-            <div style="font-size: 13px; opacity: 0.7; color:#333;">
-                Pick Mar 1 (Chopin) or Aug 22 (Debussy), or Sep 13 (Case 1).
-            </div>
-        </div>
-    </div>
 
     <!-- Ładowanie bazy danych i logiki -->
     <script src="database.js"></script>
