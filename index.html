@@ -64,7 +64,6 @@
             background: rgba(255, 255, 255, 0.1);
         }
         
-        /* Zunifikowany styl nagłówków z wielkimi literami (uppercase) */
         .unified-header-title {
             font-size: 15px;
             font-weight: 600;
@@ -75,6 +74,13 @@
             margin-bottom: 15px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+        }
+
+        /* Subtelne podświetlenie aktywnego głosu */
+        .vote-btn.active {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: scale(1.05);
         }
     </style>
 </head>
@@ -116,8 +122,8 @@
                     <p id="fact-text" style="font-size: 15px; line-height: 1.5;">Loading fact...</p>
                     <div class="fact-voting">
                         <span style="font-size: 14px;">Was this interesting?</span>
-                        <button class="vote-btn" onclick="voteTrack(true)">👍</button>
-                        <button class="vote-btn" onclick="voteTrack(false)">👎</button>
+                        <button class="vote-btn track-vote-up" onclick="voteTrack(true)">👍</button>
+                        <button class="vote-btn track-vote-down" onclick="voteTrack(false)">👎</button>
                     </div>
                 </div>
 
@@ -133,7 +139,6 @@
             <div id="no-composer-view" style="display: none;">
                 <div class="unified-header-title">
                     <span>No composer born today</span>
-                    <span style="font-size: 12px; opacity: 0.7; font-weight: normal; text-transform: none;">[Calendar]</span>
                 </div>
                 
                 <div class="nc-nav-container">
@@ -141,7 +146,7 @@
                     <a href="#" id="nc-next-btn" class="nc-btn">Next →<br><strong id="nc-next-name">Artist</strong></a>
                 </div>
 
-                <!-- Micro-learning 2: Classical Insight (wielkie litery) -->
+                <!-- Micro-learning 2: Classical Insight -->
                 <div class="fact-card" style="margin-top: 15px;">
                     <div class="unified-header-title" style="margin-bottom: 10px;">
                         <span>Classical Insight</span>
@@ -150,8 +155,8 @@
                     <p id="nc-fact-text" style="font-size: 15px; line-height: 1.5;">Loading daily insight...</p>
                     <div class="fact-voting" style="margin-top: 12px;">
                         <span style="font-size: 14px;">Was this insight useful?</span>
-                        <button class="vote-btn" onclick="voteInsight(true)">👍</button>
-                        <button class="vote-btn" onclick="voteInsight(false)">👎</button>
+                        <button class="vote-btn insight-vote-up" onclick="voteInsight(true)">👍</button>
+                        <button class="vote-btn insight-vote-down" onclick="voteInsight(false)">👎</button>
                     </div>
                 </div>
             </div>
@@ -264,6 +269,11 @@
             }
         }
 
+        function resetVoteUI(type) {
+            const btns = document.querySelectorAll(`.${type}`);
+            btns.forEach(b => b.classList.remove('active'));
+        }
+
         function selectTrack(id) {
             const track = tracksData.find(t => t.id === id);
             if (!track) return;
@@ -277,6 +287,12 @@
             document.getElementById('track-mood2').textContent = track.moods[1] || "";
             document.getElementById('fact-text').textContent = track.fact;
             document.getElementById('youtube-link').href = `https://www.youtube.com/results?search_query=${encodeURIComponent(track.youtubeQuery)}`;
+
+            resetVoteUI('track-vote-up');
+            resetVoteUI('track-vote-down');
+            if (lastVotedTrackId === currentTrackId) {
+                // jeśli wcześniej głosowano w tej sesji, można ewentualnie odtworzyć stan
+            }
 
             document.getElementById('top5List').style.display = 'none';
             document.getElementById('discover-arrow').textContent = '▶';
@@ -314,14 +330,15 @@
                 currentTrack.moods.forEach(mood => {
                     userMoodPreferences[mood] = (userMoodPreferences[mood] || 0) + 2;
                 });
+                document.querySelector('.track-vote-up').classList.add('active');
             } else {
                 currentTrack.moods.forEach(mood => {
                     userMoodPreferences[mood] = Math.max(0, (userMoodPreferences[mood] || 0) - 1);
                 });
+                document.querySelector('.track-vote-down').classList.add('active');
             }
             localStorage.setItem('userMoodPreferences', JSON.stringify(userMoodPreferences));
             lastVotedTrackId = currentTrackId;
-            alert("Thank you for voting!");
         }
 
         function voteInsight(isUp) {
@@ -331,12 +348,13 @@
 
             if (isUp) {
                 userInsightPreferences[insight.category] = (userInsightPreferences[insight.category] || 0) + 2;
+                document.querySelector('.insight-vote-up').classList.add('active');
             } else {
                 userInsightPreferences[insight.category] = Math.max(0, (userInsightPreferences[insight.category] || 0) - 1);
+                document.querySelector('.insight-vote-down').classList.add('active');
             }
             localStorage.setItem('userInsightPreferences', JSON.stringify(userInsightPreferences));
             lastVotedInsightId = currentInsightId;
-            alert(`Profile updated! Category: ${insight.category}`);
         }
 
         function saveForLater() {
@@ -400,6 +418,9 @@
 
                 document.getElementById('nc-fact-text').textContent = activeInsight.text;
                 document.getElementById('insight-category-tag').textContent = activeInsight.category;
+
+                resetVoteUI('insight-vote-up');
+                resetVoteUI('insight-vote-down');
 
                 const uniqueDates = [...new Set(tracksData.map(t => t.birthDate))].sort();
                 let prevDate = uniqueDates.slice().reverse().find(d => d < targetStr) || uniqueDates[uniqueDates.length - 1];
