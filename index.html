@@ -34,31 +34,46 @@
         }
         .close-modal { cursor: pointer; font-size: 18px; }
 
-        /* Styl dla Case 1 */
+        /* Styl dla Case 1 zoptymalizowany pod dużą, czytelną czcionkę */
         #no-composer-view {
             padding: 10px 0;
         }
         .nc-nav-container {
             display: flex;
             justify-content: space-between;
-            gap: 10px;
+            gap: 12px;
             margin-bottom: 20px;
         }
         .nc-btn {
             flex: 1;
-            padding: 10px;
-            font-size: 11px;
+            padding: 14px 10px;
+            font-size: 14px; /* Większa, czytelniejsza czcionka */
             background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
             cursor: pointer;
             text-decoration: none;
             color: inherit;
             text-align: center;
             transition: background 0.2s;
+            line-height: 1.4;
+        }
+        .nc-btn strong {
+            font-size: 16px; /* Wyraźnie większe nazwisko artysty */
         }
         .nc-btn:hover {
             background: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Zunifikowany styl nagłówków typu Insight */
+        .unified-header-title {
+            font-size: 15px;
+            font-weight: 600;
+            opacity: 0.9;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
         }
     </style>
 </head>
@@ -67,17 +82,17 @@
         <div class="card">
             <div class="top-nav" style="display: flex; justify-content: flex-end; align-items: center; margin-bottom: 10px;">
                 <div class="settings-area">
-                    <span id="saved-counter" style="font-size: 13px; margin-right: 12px; opacity: 0.8;">Saved: 0</span>
-                    <span id="settings-btn" style="cursor: pointer; font-size: 16px;" title="Settings" onclick="openSettings()">⚙️</span>
+                    <span id="saved-counter" style="font-size: 14px; margin-right: 12px; opacity: 0.8;">Saved: 0</span>
+                    <span id="settings-btn" style="cursor: pointer; font-size: 18px;" title="Settings" onclick="openSettings()">⚙️</span>
                 </div>
             </div>
             
             <!-- CASE 2: Standardowy widok (gdy są urodziny) -->
             <div id="track-main-view" style="display: none;">
-                <div class="date-header" id="date-header" style="margin-bottom: 10px; font-size: 13px; opacity: 0.7;">Born today</div>
-                <h1 id="track-title">♪ Loading...</h1>
+                <div class="date-header" id="date-header" style="margin-bottom: 10px; font-size: 14px; opacity: 0.7;">Born today</div>
+                <h1 id="track-title" style="font-size: 24px;">♪ Loading...</h1>
                 
-                <div class="composer-wrapper">
+                <div class="composer-wrapper" style="font-size: 16px;">
                     <span id="track-composer">Claude Debussy</span>
                     <span class="country-tag" id="track-country">[FR]</span>
                     <span id="track-duration" class="duration-tag">(4:30)</span>
@@ -96,17 +111,17 @@
 
                 <!-- Micro-learning 1 (przy utworze) -->
                 <div class="fact-card">
-                    <div class="fact-title">Did you know? (Micro-learning 1)</div>
-                    <p id="fact-text">Loading fact...</p>
+                    <div class="fact-title" style="font-size: 15px;">Did you know? (Micro-learning 1)</div>
+                    <p id="fact-text" style="font-size: 15px; line-height: 1.5;">Loading fact...</p>
                     <div class="fact-voting">
-                        <span>Was this interesting?</span>
+                        <span style="font-size: 14px;">Was this interesting?</span>
                         <button class="vote-btn" onclick="voteTrack(true)">👍</button>
                         <button class="vote-btn" onclick="voteTrack(false)">👎</button>
                     </div>
                 </div>
 
                 <div class="discover-card" id="discoverCard">
-                    <div class="discover-header" onclick="toggleDiscover()">
+                    <div class="discover-header" onclick="toggleDiscover()" style="font-size: 15px;">
                         <span id="discover-arrow">▶</span> DISCOVER MORE
                     </div>
                     <div class="top5-list" id="top5List"></div>
@@ -115,19 +130,26 @@
 
             <!-- CASE 1: Widok alternatywny (gdy brak urodzin dzisiaj + Classical Insight) -->
             <div id="no-composer-view" style="display: none;">
-                <div style="font-size: 14px; font-weight: 500; margin-bottom: 15px; opacity: 0.9;">No composer born today</div>
+                <!-- Zunifikowany nagłówek z kategorią (styl tożsamy z Classical Insight) -->
+                <div class="unified-header-title">
+                    <span>No composer born today</span>
+                    <span style="font-size: 12px; opacity: 0.7; font-weight: normal;">[Calendar]</span>
+                </div>
                 
                 <div class="nc-nav-container">
-                    <a href="#" id="nc-prev-btn" class="nc-btn">← Previous<br><strong id="nc-prev-name">Artist</strong></a>
+                    <a href="#" id="nc-prev-btn" class="nc-btn">← Prev<br><strong id="nc-prev-name">Artist</strong></a>
                     <a href="#" id="nc-next-btn" class="nc-btn">Next →<br><strong id="nc-next-name">Artist</strong></a>
                 </div>
 
-                <!-- Micro-learning 2: Classical Insight z kategorią i profilowaniem -->
+                <!-- Micro-learning 2: Classical Insight z powiększoną, czytelną czcionką -->
                 <div class="fact-card" style="margin-top: 15px;">
-                    <div class="fact-title">Classical Insight (<span id="insight-category-tag" style="font-size: 11px; opacity: 0.8;">Science</span>)</div>
-                    <p id="nc-fact-text">Loading daily insight...</p>
-                    <div class="fact-voting">
-                        <span>Was this insight useful?</span>
+                    <div class="unified-header-title" style="margin-bottom: 10px;">
+                        <span>Classical Insight</span>
+                        <span id="insight-category-tag" style="font-size: 12px; opacity: 0.8; font-weight: normal; background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px;">Science</span>
+                    </div>
+                    <p id="nc-fact-text" style="font-size: 15px; line-height: 1.5;">Loading daily insight...</p>
+                    <div class="fact-voting" style="margin-top: 12px;">
+                        <span style="font-size: 14px;">Was this insight useful?</span>
                         <button class="vote-btn" onclick="voteInsight(true)">👍</button>
                         <button class="vote-btn" onclick="voteInsight(false)">👎</button>
                     </div>
@@ -145,10 +167,10 @@
                 <span class="close-modal" onclick="closeSettings()">&times;</span>
             </div>
             <div style="margin-bottom: 15px;">
-                <label for="simulate-date" style="font-size: 13px; display: block; margin-bottom: 5px; color:#333;">Simulate date:</label>
-                <input type="date" id="simulate-date" style="width: 100%; padding: 6px; box-sizing: border-box;" onchange="changeSimulatedDate(this.value)">
+                <label for="simulate-date" style="font-size: 14px; display: block; margin-bottom: 5px; color:#333;">Simulate date:</label>
+                <input type="date" id="simulate-date" style="width: 100%; padding: 8px; box-sizing: border-box; font-size: 14px;" onchange="changeSimulatedDate(this.value)">
             </div>
-            <div style="font-size: 12px; opacity: 0.7; color:#333;">
+            <div style="font-size: 13px; opacity: 0.7; color:#333;">
                 Pick Sep 13 (Case 1) or Aug 22 (Case 2).
             </div>
         </div>
@@ -182,7 +204,6 @@
             }
         ];
 
-        // Pula dla Classical Insight (Micro-learning 2) z 5 kategoriami
         const classicalInsights = [
             {
                 id: 1,
@@ -300,7 +321,7 @@
             }
             localStorage.setItem('userMoodPreferences', JSON.stringify(userMoodPreferences));
             lastVotedTrackId = currentTrackId;
-            alert("Thank you for voting on Micro-learning 1!");
+            alert("Thank you for voting!");
         }
 
         function voteInsight(isUp) {
@@ -315,7 +336,7 @@
             }
             localStorage.setItem('userInsightPreferences', JSON.stringify(userInsightPreferences));
             lastVotedInsightId = currentInsightId;
-            alert(`Profil zaktualizowany! Kategoria: ${insight.category}`);
+            alert(`Profile updated! Category: ${insight.category}`);
         }
 
         function saveForLater() {
@@ -375,7 +396,6 @@
                 mainView.style.display = 'none';
                 noComposerView.style.display = 'block';
 
-                // Wybór Classical Insight (Micro-learning 2) oparty stabilnie na dniu roku
                 const insightIndex = (dateObj.getDate() + dateObj.getMonth()) % classicalInsights.length;
                 const activeInsight = classicalInsights[insightIndex];
                 currentInsightId = activeInsight.id;
@@ -421,7 +441,6 @@
         }
 
         function initApp() {
-            // Uruchomienie aplikacji z aktualną datą (13 września 2026 -> automatyczny Case 1)
             loadForDate(new Date());
             updateSavedCounter();
         }
