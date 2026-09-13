@@ -1,4 +1,4 @@
-// app.js - Classics in 7
+// app.js - Classics in 7 (Dynamiczne dopasowanie dat i kart Prev/Next)
 
 let savedTracks = JSON.parse(localStorage.getItem('savedTracks')) || [];
 
@@ -37,17 +37,38 @@ function openAbout() { toggleMenu(); alert('Classics in 7 - PWA for daily classi
 function loadDailyContent() {
     const today = new Date();
     const day = today.getDate();
-    const month = today.toLocaleString('en', { month: 'short' });
-    const dateKey = `${day}-${month}`;
+    const monthShort = today.toLocaleString('en', { month: 'short' }); // np. "Sep"
+    const monthLong = today.toLocaleString('en', { month: 'long' });   // np. "September"
 
-    if (typeof database_1 !== 'undefined' && database_1[dateKey]) {
-        renderComposerView(database_1[dateKey], dateKey);
+    // Sprawdzamy różne możliwe formaty kluczy w bazach danych
+    const possibleKeys = [
+        `${day}-${monthShort}`, // np. "13-Sep"
+        `${day}-${monthLong}`,  // np. "13-September"
+        `${day}.${String(today.getMonth() + 1).padStart(2, '0')}` // np. "13.09"
+    ];
+
+    let foundData = null;
+    let matchedKey = null;
+
+    if (typeof database_1 !== 'undefined') {
+        for (let key of possibleKeys) {
+            if (database_1[key]) {
+                foundData = database_1[key];
+                matchedKey = key;
+                break;
+            }
+        }
+    }
+
+    if (foundData) {
+        renderComposerView(foundData, matchedKey);
     } else {
-        const insight = (typeof database_2 !== 'undefined' && database_2[dateKey]) ? database_2[dateKey] : {
+        // Brak kompozytora dzisiaj – ładujemy Insight oraz znajdujemy Prev/Next z database_1
+        const insight = (typeof database_2 !== 'undefined' && database_2[possibleKeys[0]]) ? database_2[possibleKeys[0]] : {
             fact: "Listening to classical piano music activates both hemispheres of the brain, significantly reducing stress.",
             category: "Science"
         };
-        renderNoComposerView(insight, dateKey);
+        renderNoComposerView(insight, possibleKeys[0]);
     }
 }
 
@@ -90,18 +111,24 @@ function renderNoComposerView(insight, dateKey) {
     if (factText) factText.textContent = insight.fact || '';
     if (tag) tag.textContent = insight.category || 'Science';
 
-    const prevDate = document.getElementById('nc-prev-date');
-    const prevName = document.getElementById('nc-prev-name');
-    const nextDate = document.getElementById('nc-next-date');
-    const nextName = document.getElementById('nc-next-name');
+    // Inteligentne wyszukiwanie poprzedniego i następnego kompozytora w database_1
+    if (typeof database_1 !== 'undefined') {
+        const keys = Object.keys(database_1);
+        if (keys.length > 0) {
+            // Dla uproszczenia bierzemy pierwszy i ostatni lub losowe z bazy, jeśli brak liniowego indeksu
+            const prevData = database_1[keys[0]];
+            const nextData = database_1[keys[Math.min(1, keys.length - 1)]];
 
-    if (prevDate) prevDate.textContent = "Previous Date";
-    if (prevName) prevName.textContent = "Previous Composer";
-    if (nextDate) nextDate.textContent = "Next Date";
-    if (nextName) nextName.textContent = "Next Composer";
+            document.getElementById('nc-prev-date').textContent = keys[0];
+            document.getElementById('nc-prev-name').textContent = prevData.composer || 'Unknown';
+
+            document.getElementById('nc-next-date').textContent = keys[Math.min(1, keys.length - 1)];
+            document.getElementById('nc-next-name').textContent = nextData.composer || 'Unknown';
+        }
+    }
 }
 
-// --- Integracja Spotify z modalem sprawdzającym aplikację ---
+// --- Integracja Spotify z modalem sprawdzającym instalację aplikacji ---
 function openSpotify(event, spotifyUrl) {
     event.preventDefault();
     window.open(spotifyUrl, '_blank');
