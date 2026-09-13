@@ -111,7 +111,7 @@ const composersDatabase = [
     }
 ];
 
-// Ogólne ciekawostki (Micro-learning 2 dla Case 1)
+// Ogólne ciekawostki (Micro-learning 1 dla Case 1)
 const classicalInsights = [
     {
         id: 1,
