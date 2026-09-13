@@ -1,4 +1,4 @@
-// app.js - Classics in 7 (Naprawione ładowanie kart Prev/Next)
+// app.js - Classics in 7 (Poprawione bezpieczne mapowanie kart)
 
 let savedTracks = JSON.parse(localStorage.getItem('savedTracks')) || [];
 
@@ -40,11 +40,9 @@ function loadDailyContent() {
     const month = today.toLocaleString('en', { month: 'short' }); // np. "Sep"
     const dateKey = `${day}-${month}`; // np. "13-Sep"
 
-    // Sprawdzamy, czy w bazie_1 jest kompozytor na dzisiaj
     if (typeof database_1 !== 'undefined' && database_1[dateKey]) {
         renderComposerView(database_1[dateKey], dateKey);
     } else {
-        // Brak kompozytora – pobieramy insight z database_2
         const insight = (typeof database_2 !== 'undefined' && database_2[dateKey]) ? database_2[dateKey] : {
             fact: "Listening to classical piano music activates both hemispheres of the brain, significantly reducing stress.",
             category: "Science"
@@ -92,27 +90,22 @@ function renderNoComposerView(insight, dateKey) {
     if (factText) factText.textContent = insight.fact || '';
     if (tag) tag.textContent = insight.category || 'Science';
 
-    // Przywrócenie stabilnego mapowania kart Prev / Next z bazy kompozytorów
+    // Bezpieczne pobieranie danych dla kart Prev / Next z database_1
     if (typeof database_1 !== 'undefined') {
         const keys = Object.keys(database_1);
         if (keys.length > 0) {
-            // Pobieramy przykładowe wpisy z bazy (np. Chopin / Debussy), aby karty nigdy nie były puste
             const prevKey = keys[0];
-            const nextKey = keys[Math.min(1, keys.length - 1)];
+            const nextKey = keys.length > 1 ? keys[1] : keys[0];
 
             const prevData = database_1[prevKey];
             const nextData = database_1[nextKey];
 
-            const prevDateEl = document.getElementById('nc-prev-date');
-            const prevNameEl = document.getElementById('nc-prev-name');
-            const nextDateEl = document.getElementById('nc-next-date');
-            const nextNameEl = document.getElementById('nc-next-name');
+            // Ustawienie dat i nazw z uwzględnieniem różnych wariantów pól w bazie (composer lub title)
+            document.getElementById('nc-prev-date').textContent = prevKey;
+            document.getElementById('nc-prev-name').textContent = prevData?.composer || prevData?.title || 'Claude Debussy';
 
-            if (prevDateEl) prevDateEl.textContent = prevKey;
-            if (prevNameEl) prevNameEl.textContent = prevData ? prevData.composer : 'Claude Debussy';
-
-            if (nextDateEl) nextDateEl.textContent = nextKey;
-            if (nextNameEl) nextNameEl.textContent = nextData ? nextData.composer : 'Frédéric Chopin';
+            document.getElementById('nc-next-date').textContent = nextKey;
+            document.getElementById('nc-next-name').textContent = nextData?.composer || nextData?.title || 'Frédéric Chopin';
         }
     }
 }
