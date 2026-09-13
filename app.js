@@ -30,8 +30,8 @@ function formatDateDDMMM(dateStr) {
 }
 
 function toggleDiscover() {
-    const list = document.getElementById('top5List');
-    const arrow = document.getElementById('discover-arrow');
+    <!-- const list = document.getElementById('top5List'); -->
+    <!-- const arrow = document.getElementById('discover-arrow'); -->
     
     const currentDisplay = window.getComputedStyle(list).display;
     
