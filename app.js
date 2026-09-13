@@ -91,7 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         `).join('');
 
-        // Attach delete listeners
         document.querySelectorAll('.remove-saved-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 const index = parseInt(e.currentTarget.getAttribute('data-index'));
@@ -158,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 4. Appearance Themes (6 Motywy)
+    // 4. Appearance Themes
     const themeCards = document.querySelectorAll('.theme-card');
 
     function setTheme(themeName) {
@@ -200,7 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 6. Home / Masterpiece Renderer
+    // 6. Home / Masterpiece Renderer with DB Integration & Case 1 Fallback
     const dynamicCaseContainer = document.getElementById('dynamic-case-container');
     const currentDateLabel = document.getElementById('current-date-label');
 
@@ -208,38 +207,80 @@ document.addEventListener('DOMContentLoaded', () => {
         if (currentDateLabel) {
             currentDateLabel.textContent = `Date • ${dateStr}`;
         }
+        
         if (dynamicCaseContainer) {
-            dynamicCaseContainer.innerHTML = `
-                <div class="stat-card">
-                    <h3>Masterpiece for ${dateStr}: Goldberg Variations, BWV 988</h3>
-                    <p><strong>Composer:</strong> Johann Sebastian Bach</p>
-                    <p>A monumental work of keyboard literature consisting of an aria and 30 diverse variations.</p>
-                    <hr class="subtle-divider">
-                    <h4>Microlearning: The Sleeping Pill Legend</h4>
-                    <p>Count Hermann von Keyserling commissioned the piece to help him sleep through painful insomnia, performed by young Johann Gottlieb Goldberg.</p>
-                    <hr class="subtle-divider">
-                    <button class="primary-btn" id="save-current-btn" style="width: 100%;">⭐ Save to Library</button>
-                </div>
-            `;
+            // Konwersja daty YYYY-MM-DD do formatu MM-DD z bazy (np. 03-01 lub 08-22)[cite: 10]
+            const dateObj = new Date(dateStr);
+            const mmdd = String(dateObj.getMonth() + 1).padStart(2, '0') + '-' + String(dateObj.getDate()).padStart(2, '0');
+            
+            // Sprawdzanie czy w bazie danych są urodziny kompozytora w tym dniu[cite: 10]
+            const composer = typeof composersDatabase !== 'undefined' 
+                ? composersDatabase.find(c => c.birthDate === mmdd) 
+                : null;
 
-            const saveBtn = document.getElementById('save-current-btn');
-            if (saveBtn) {
-                saveBtn.addEventListener('click', () => {
-                    savedTracks.push({
-                        id: Date.now(),
-                        title: "Goldberg Variations, BWV 988",
-                        composer: "Johann Sebastian Bach",
-                        mood: "Serene"
+            if (composer) {
+                // Wyświetlanie kompozytora z bazy
+                const track = composer.tracks[0];
+                dynamicCaseContainer.innerHTML = `
+                    <div class="stat-card">
+                        <h3>Wyróżnienie na dziś: ${composer.composer} ${composer.country}</h3>
+                        <p><strong>Urodziny:</strong> ${composer.birthDate}</p>
+                        <p>Propozycja: <strong>${track.title}</strong> ${track.duration}</p>
+                        <p><em>${track.mood}</em> – ${composer.facts[track.mood] || "Klasyczne dzieło mistrza."}</p>
+                        <hr class="subtle-divider">
+                        <button class="primary-btn" id="save-current-btn" style="width: 100%;">⭐ Zapisz w bibliotece</button>
+                    </div>
+                `;
+
+                const saveBtn = document.getElementById('save-current-btn');
+                if (saveBtn) {
+                    saveBtn.addEventListener('click', () => {
+                        savedTracks.push({
+                            id: Date.now(),
+                            title: track.title,
+                            composer: composer.composer,
+                            mood: track.mood.replace('#', '')
+                        });
+                        updateSavedBadge();
+                        renderSavedTracks();
+                        alert("Utwór został zapisany w bibliotece!");
                     });
-                    updateSavedBadge();
-                    renderSavedTracks();
-                    alert("Track saved to your library!");
+                }
+            } else {
+                // CASE 1: Brak urodzin w bazie – wyświetlamy ekrany nawigacji Previous/Next (Chopin / Debussy)[cite: 10]
+                dynamicCaseContainer.innerHTML = `
+                    <div class="stat-card" style="text-align: center;">
+                        <h3>Brak rocznicy w bazie dla dnia ${mmdd}</h3>
+                        <p class="subtitle" style="margin-top: 0.5rem;">Sprawdź dni, w których urodzili się nasi główni kompozytorzy:</p>
+                        
+                        <div style="display: flex; gap: 10px; justify-content: center; margin-top: 15px;">
+                            <button class="primary-btn" id="go-chopin-btn" style="flex: 1;">
+                                ⬅ Poprzedni: Chopin (01.03)
+                            </button>
+                            <button class="primary-btn" id="go-debussy-btn" style="flex: 1;">
+                                Następny: Debussy (22.08) ➡
+                            </button>
+                        </div>
+                    </div>
+                `;
+
+                document.getElementById('go-chopin-btn').addEventListener('click', () => {
+                    const targetDate = `${new Date().getFullYear()}-03-01`;
+                    if (datePickerInput) datePickerInput.value = targetDate;
+                    loadMasterpieceForDate(targetDate);
+                });
+
+                document.getElementById('go-debussy-btn').addEventListener('click', () => {
+                    const targetDate = `${new Date().getFullYear()}-08-22`;
+                    if (datePickerInput) datePickerInput.value = targetDate;
+                    loadMasterpieceForDate(targetDate);
                 });
             }
         }
     }
 
+    // Ładowanie domyślne dla dzisiejszego dnia
     loadMasterpieceForDate(new Date().toISOString().split('T')[0]);
 
-    console.log("Classics in 7 initialized successfully with Hamburger Menu, Saved Tracks, Mood Stats, and Jump to Date.");
+    console.log("Classics in 7 initialized successfully with dynamic DB check and Case 1 navigation.");
 });
