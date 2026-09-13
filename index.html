@@ -10,7 +10,6 @@
     <header class="app-header">
         <button id="menu-toggle" aria-label="Open Menu" class="icon-btn">☰</button>
         <h1 class="app-title">Classics in 7</h1>
-        <!-- USUNIĘTO: Przycisk wyszukiwania i koło zębate -->
     </header>
 
     <nav id="hamburger-menu" class="drawer hidden" aria-label="Main Navigation">
@@ -33,46 +32,57 @@
     <div id="drawer-backdrop" class="backdrop hidden"></div>
 
     <main id="app-content">
-        <!-- HOME VIEW (Główny widok) -->
         <section id="view-home" class="view-section active">
-            
-            <!-- Nawigacja datą (wspólna dla obu scenariuszy) -->
             <div class="date-navigation">
                 <button id="nav-prev" class="icon-btn">◀</button>
                 <h2 id="current-date-display">Loading...</h2>
                 <button id="nav-next" class="icon-btn">▶</button>
             </div>
-
-            <!-- Kontener dynamiczny, który będzie wypełniany przez app.js -->
-            <div id="dynamic-content-area">
-                <!-- Tu zostanie wstrzyknięty HTML dla Case 1 lub Case 2 -->
-            </div>
-
-            <!-- Element microlearningu (Classical Insight) - Wyświetlany zawsze na dole -->
-            <div id="daily-insight-container" class="insight-card card">
-                Loading Classical Insight...
-            </div>
-
+            <div id="dynamic-content-area"></div>
+            <div id="daily-insight-container" class="insight-card card">Loading Classical Insight...</div>
         </section>
 
-        <!-- Pozostałe sekcje (Saved, Stats, Jump, Reminder, Appearance, About) bez zmian w strukturze -->
         <section id="view-saved" class="view-section">
             <h2>Saved Classics</h2>
-            <div class="filter-bar">
-                <input type="text" id="saved-search" placeholder="Filter by composer or mood...">
-            </div>
+            <div class="filter-bar"><input type="text" id="saved-search" placeholder="Filter by composer or mood..."></div>
             <div id="saved-list-container"></div>
         </section>
-        <section id="view-stats" class="view-section">...</section>
-        <section id="view-jump" class="view-section">...</section>
-        <section id="view-reminder" class="view-section">...</section>
-        <section id="view-appearance" class="view-section">...</section>
-        <section id="view-about" class="view-section">...</section>
+
+        <section id="view-stats" class="view-section">
+            <h2>My Mood Stats</h2>
+            <div class="card"><p>Statistics view content.</p></div>
+        </section>
+
+        <section id="view-jump" class="view-section">
+            <h2>Jump to Date</h2>
+            <div class="card"><input type="date" id="calendar-picker"></div>
+        </section>
+
+        <section id="view-reminder" class="view-section">
+            <h2>Daily Reminder</h2>
+            <div class="card"><ul id="reminders-list-preview"></ul></div>
+        </section>
+
+        <section id="view-appearance" class="view-section">
+            <h2>Appearance</h2>
+            <div class="themes-grid">
+                <div class="theme-card" data-theme-val="nocturne">Nocturne</div>
+                <div class="theme-card" data-theme-val="sonata">Sonata</div>
+                <div class="theme-card" data-theme-val="cello">Cello</div>
+                <div class="theme-card" data-theme-val="e-ink">E-Ink</div>
+                <div class="theme-card" data-theme-val="primavera">Primavera</div>
+                <div class="theme-card" data-theme-val="system">System Default</div>
+            </div>
+        </section>
+
+        <section id="view-about" class="view-section">
+            <h2>About</h2>
+            <div class="card"><p>Classics in 7 application.</p></div>
+        </section>
     </main>
 
-    <!-- Ładowanie zewnętrznych baz danych i logiki -->
-    <script src="base_1.js"></script> <!-- Ciekawostki -->
-    <script src="base_2.js"></script> <!-- Baza kompozytorów -->
-    <script src="app.js"></script>     <!-- Główna logika -->
+    <script src="base_1.js"></script>
+    <script src="base_2.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
