@@ -1,4 +1,16 @@
-// app.js - Classics in 7 (Kompletny i poprawiony plik)
+// app.js - Classics in 7 (Wersja z wbudowaną bazą danych)
+
+const database_1 = {
+    "1-MAR": { composer: "Frédéric Chopin", title: "Nocturne in E-flat major, Op. 9, No. 2", country: "Poland", duration: "4:30", mood: "Romantic / Dreamy", fact: "Chopin requested that Mozart's Requiem be performed at his funeral.", spotifyUrl: "https://open.spotify.com", youtubeQuery: "Chopin Nocturne Op 9 No 2" },
+    "22-AUG": { composer: "Claude Debussy", title: "Clair de Lune", country: "France", duration: "5:00", mood: "Impressionistic / Calm", fact: "Debussy's middle name was Achille.", spotifyUrl: "https://open.spotify.com", youtubeQuery: "Debussy Clair de Lune" }
+};
+
+const database_2 = {
+    "13-Sep": {
+        fact: "Listening to classical piano music activates both hemispheres of the brain, significantly reducing stress.",
+        category: "Science"
+    }
+};
 
 let savedTracks = JSON.parse(localStorage.getItem('savedTracks')) || [];
 
@@ -40,10 +52,10 @@ function loadDailyContent() {
     const month = today.toLocaleString('en', { month: 'short' }); // np. "Sep"
     const dateKey = `${day}-${month}`; // np. "13-Sep"
 
-    if (typeof database_1 !== 'undefined' && database_1[dateKey]) {
+    if (database_1[dateKey]) {
         renderComposerView(database_1[dateKey], dateKey);
     } else {
-        const insight = (typeof database_2 !== 'undefined' && database_2[dateKey]) ? database_2[dateKey] : {
+        const insight = database_2[dateKey] || {
             fact: "Listening to classical piano music activates both hemispheres of the brain, significantly reducing stress.",
             category: "Science"
         };
@@ -91,7 +103,7 @@ function renderNoComposerView(insight, dateKey) {
     if (factText) factText.textContent = insight.fact || '';
     if (tag) tag.textContent = insight.category || 'Science';
 
-    // Przywrócenie stałych, widocznych kart Prev / Next (Debussy i Chopin)
+    // Wymuszenie wyświetlenia kart Prev / Next dla Debussy'ego i Chopina
     const prevDateEl = document.getElementById('nc-prev-date');
     const prevNameEl = document.getElementById('nc-prev-name');
     const nextDateEl = document.getElementById('nc-next-date');
