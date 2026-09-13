@@ -1,4 +1,4 @@
-// app.js - Classics in 7 (Pełna wersja logiki)
+// app.js - Classics in 7 (Poprawiona wersja)
 
 let savedTracks = JSON.parse(localStorage.getItem('savedTracks')) || [];
 
@@ -24,48 +24,14 @@ function toggleMenu() {
     }
 }
 
-function navigateToMainView() { 
-    toggleMenu(); 
-    loadDailyContent(); 
-}
-
-function openSavedTracks() { 
-    toggleMenu(); 
-    alert('Saved Tracks under construction'); 
-}
-
-function openMoodStats() { 
-    toggleMenu(); 
-    alert('Mood Stats under construction'); 
-}
-
-function openJumpToDate() { 
-    toggleMenu(); 
-    alert('Jump to Date under construction'); 
-}
-
-function openAppearance() { 
-    toggleMenu(); 
-    alert('Appearance under construction'); 
-}
-
-function resetDailyView() { 
-    toggleMenu(); 
-    loadDailyContent(); 
-}
-
-function clearAppData() { 
-    if(confirm('Clear all data?')) { 
-        localStorage.clear(); 
-        location.reload(); 
-    } 
-    toggleMenu(); 
-}
-
-function openAbout() { 
-    toggleMenu(); 
-    alert('Classics in 7 - PWA for daily classical music discovery.'); 
-}
+function navigateToMainView() { toggleMenu(); loadDailyContent(); }
+function openSavedTracks() { toggleMenu(); alert('Saved Tracks under construction'); }
+function openMoodStats() { toggleMenu(); alert('Mood Stats under construction'); }
+function openJumpToDate() { toggleMenu(); alert('Jump to Date under construction'); }
+function openAppearance() { toggleMenu(); alert('Appearance under construction'); }
+function resetDailyView() { toggleMenu(); loadDailyContent(); }
+function clearAppData() { if(confirm('Clear all data?')) { localStorage.clear(); location.reload(); } toggleMenu(); }
+function openAbout() { toggleMenu(); alert('Classics in 7 - PWA for daily classical music discovery.'); }
 
 // --- Dynamiczne ładowanie zawartości na podstawie daty ---
 function loadDailyContent() {
@@ -74,12 +40,16 @@ function loadDailyContent() {
     const month = today.toLocaleString('en', { month: 'short' }); // np. "Sep"
     const dateKey = `${day}-${month}`; // np. "13-Sep"
 
+    // Sprawdzamy database_1 (kompozytorzy)
     if (typeof database_1 !== 'undefined' && database_1[dateKey]) {
         renderComposerView(database_1[dateKey], dateKey);
-    } else if (typeof database_2 !== 'undefined' && database_2[dateKey]) {
-        renderNoComposerView(database_2[dateKey], dateKey);
     } else {
-        renderNoComposerView({ fact: "Classical music activates both hemispheres of the brain.", category: "Science" }, dateKey);
+        // Brak kompozytora - ładujemy widok alternatywny z database_2
+        const insight = (typeof database_2 !== 'undefined' && database_2[dateKey]) ? database_2[dateKey] : {
+            fact: "Listening to classical piano music activates both hemispheres of the brain, significantly reducing stress.",
+            category: "Science"
+        };
+        renderNoComposerView(insight, dateKey);
     }
 }
 
@@ -117,10 +87,22 @@ function renderNoComposerView(insight, dateKey) {
     if (mainView) mainView.style.display = 'none';
     if (noComposerView) noComposerView.style.display = 'block';
 
+    // Uzupełnienie treści insightu
     const factText = document.getElementById('nc-fact-text');
     const tag = document.getElementById('insight-category-tag');
     if (factText) factText.textContent = insight.fact || '';
     if (tag) tag.textContent = insight.category || 'Science';
+
+    // Przykładowe / domyślne wypełnienie nawigacji Prev / Next (możesz dostosować do logiki bazy)
+    const prevDate = document.getElementById('nc-prev-date');
+    const prevName = document.getElementById('nc-prev-name');
+    const nextDate = document.getElementById('nc-next-date');
+    const nextName = document.getElementById('nc-next-name');
+
+    if (prevDate) prevDate.textContent = "Previous Date";
+    if (prevName) prevName.textContent = "Check previous";
+    if (nextDate) nextDate.textContent = "Next Date";
+    if (nextName) nextName.textContent = "Check next";
 }
 
 // --- Integracja Spotify z modalem sprawdzającym instalację aplikacji ---
@@ -159,7 +141,7 @@ function showSpotifyPrompt(fallbackUrl) {
     }
 }
 
-// --- Pozostałe funkcje pomocnicze ---
+// --- Funkcje pomocnicze ---
 function updateSavedCount() {
     const countSpan = document.getElementById('menu-saved-count');
     if(countSpan) countSpan.textContent = '(' + savedTracks.length + ')';
@@ -179,14 +161,6 @@ function toggleDiscover() {
     }
 }
 
-function saveForLater() {
-    alert('Track saved!');
-}
-
-function voteTrack(isUp) {
-    alert('Thank you for voting!');
-}
-
-function voteInsight(isUp) {
-    alert('Thank you for your feedback!');
-}
+function saveForLater() { alert('Track saved!'); }
+function voteTrack(isUp) { alert('Thank you for voting!'); }
+function voteInsight(isUp) { alert('Thank you for your feedback!'); }
