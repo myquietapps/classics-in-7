@@ -1,4 +1,4 @@
-// database.js - Karty z utworami i kompozytorami
+// database.js - Baza danych z kartami kompozytorów
 const database = {
     "1-MAR": {
         type: "composer",
@@ -8,7 +8,7 @@ const database = {
         duration: "4:30",
         mood: "Romantic / Dreamy",
         fact: "Chopin requested that Mozart's Requiem be performed at his funeral.",
-        spotifyUrl: "https://open.spotify.com/track/...",
+        spotifyUrl: "https://open.spotify.com",
         youtubeQuery: "Chopin Nocturne Op 9 No 2"
     },
     "22-AUG": {
@@ -19,8 +19,7 @@ const database = {
         duration: "5:00",
         mood: "Impressionistic / Calm",
         fact: "Debussy's middle name was Achille.",
-        spotifyUrl: "https://open.spotify.com/track/...",
+        spotifyUrl: "https://open.spotify.com",
         youtubeQuery: "Debussy Clair de Lune"
     }
-    // Kolejne daty i karty dopisujesz tutaj w ten sam sposób.
 };
