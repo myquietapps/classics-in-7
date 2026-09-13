@@ -1,52 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Classics in 7</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-    <!-- Przycisk Menu -->
-    <button class="menu-open-btn" onclick="toggleMenu()">☰</button>
-
-    <!-- Menu Overlay -->
-    <div id="menu-overlay" class="menu-overlay">
-        <button onclick="toggleMenu()">✕</button>
-        <ul>
-            <li onclick="navigateToMainView()">Home</li>
-            <li onclick="openSavedTracks()">Saved Tracks <span id="menu-saved-count">(0)</span></li>
-            <li onclick="clearAppData()">Clear Data</li>
-        </ul>
-    </div>
-
-    <main class="container">
-        
-        <!-- WIDOK 1: Kiedy karta z kompozytorem istnieje -->
-        <div id="track-main-view" style="display: none;">
-            <h1 id="date-header">BORN TODAY</h1>
-            <h2 id="track-composer"></h2>
-            <p><strong id="track-title"></strong> <span id="track-duration"></span></p>
-            <p>Country: <span id="track-country"></span></p>
-            <p>Mood: <span id="track-mood"></span></p>
-            <p id="fact-text"></p>
-            <a id="spotify-link" href="#" target="_blank">Listen on Spotify</a>
-            <a id="youtube-link" href="#" target="_blank">Search on YouTube</a>
-        </div>
-
-        <!-- WIDOK 2: CASE 1 (Brak karty w bazie – Insight + Karty Prev/Next) -->
+<!-- WIDOK 2: CASE 1 (Brak karty w bazie – Insight + Karty Prev/Next) -->
         <div id="no-composer-view" style="display: none;">
             <h1>NO COMPOSER WAS BORN TODAY</h1>
             
             <!-- Karta Previous -->
-            <div class="card-nav">
+            <div class="card-nav clickable-card" onclick="loadCardByDate('22-AUG')">
                 <span id="nc-prev-date">22-AUG</span>
                 <span id="nc-prev-name">Claude Debussy</span>
             </div>
 
             <!-- Karta Next -->
-            <div class="card-nav">
+            <div class="card-nav clickable-card" onclick="loadCardByDate('1-MAR')">
                 <span id="nc-next-date">1-MAR</span>
                 <span id="nc-next-name">Frédéric Chopin</span>
             </div>
@@ -57,14 +20,3 @@
                 <p id="nc-fact-text"></p>
             </div>
         </div>
-
-    </main>
-
-    <!-- Modal Spotify -->
-    <div id="spotify-modal" style="display: none;"></div>
-
-    <!-- Skrypty -->
-    <script src="database.js"></script>
-    <script src="app.js"></script>
-</body>
-</html>
