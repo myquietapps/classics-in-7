@@ -1,77 +1,284 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const menuToggle = document.getElementById('menu-toggle');
-    const menuClose = document.getElementById('menu-close');
-    const menu = document.getElementById('hamburger-menu');
-    const backdrop = document.getElementById('drawer-backdrop');
-    const gearToggle = document.getElementById('gear-toggle');
-    const menuLinks = document.querySelectorAll('.menu-list a');
-    const views = document.querySelectorAll('.view-section');
+let currentComposerId = null;
+let currentTrackId = null;
+let currentInsightId = null;
 
-    function toggleMenu() {
-        menu.classList.toggle('hidden');
-        backdrop.classList.toggle('hidden');
+let userMoodPreferences = JSON.parse(localStorage.getItem('userMoodPreferences')) || {
+    "#Melancholic": 2, "#Relaxing": 2, "#Dreamy": 1, "#Romantic": 2, "#Passionate": 1, "#Dynamic": 1, "#Graceful": 1, "#Grand": 1
+};
+
+let userInsightPreferences = JSON.parse(localStorage.getItem('userInsightPreferences')) || {
+    "History": 1, "Science": 1, "Instruments": 1, "Pop Culture": 1, "Theory": 1
+};
+
+let lastVotedTrackId = null;
+let lastVotedInsightId = null;
+
+function showToast(message) {
+    const toast = document.getElementById('toast-notification');
+    toast.textContent = message;
+    toast.classList.add('show');
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, 1800);
+}
+
+function formatDateDDMMM(dateStr) {
+    const [month, day] = dateStr.split('-');
+    const monthsNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const monthName = monthsNames[parseInt(month, 10) - 1];
+    return `${parseInt(day, 10)}-${monthName}`;
+}
+
+function updateSavedCounter() {
+    const savedTracks = JSON.parse(localStorage.getItem('savedTracks')) || [];
+    document.getElementById('saved-counter').textContent = `Saved: ${savedTracks.length}`;
+}
+
+function toggleDiscover() {
+    const list = document.getElementById('top5List');
+    const arrow = document.getElementById('discover-arrow');
+    
+    const currentDisplay = window.getComputedStyle(list).display;
+    
+    if (currentDisplay === 'flex' && list.style.display === 'flex') {
+        list.style.display = 'none';
+        arrow.textContent = '▶';
+    } else {
+        updateDiscoverList();
+        list.style.display = 'flex';
+        arrow.textContent = '▼';
+    }
+}
+
+function resetVoteUI(type) {
+    const btns = document.querySelectorAll(`.${type}`);
+    btns.forEach(b => b.classList.remove('active'));
+}
+
+function selectTrack(composerId, trackId, pushHistory = true) {
+    const composer = composersDatabase.find(c => c.id === composerId);
+    if (!composer) return;
+    const track = composer.tracks.find(t => t.id === trackId);
+    if (!track) return;
+
+    currentComposerId = composer.id;
+    currentTrackId = track.id;
+
+    document.getElementById('track-main-view').style.display = 'block';
+    document.getElementById('no-composer-view').style.display = 'none';
+
+    if (pushHistory) {
+        history.pushState({ view: 'composer', composerId: composerId, trackId: trackId }, "", `#composer-${composerId}`);
     }
 
-    if (menuToggle) menuToggle.addEventListener('click', toggleMenu);
-    if (menuClose) menuClose.addEventListener('click', toggleMenu);
-    if (backdrop) backdrop.addEventListener('click', toggleMenu);
-    if (gearToggle) gearToggle.addEventListener('click', () => switchView('jump'));
+    document.getElementById('track-title').textContent = "♪ " + track.title;
+    document.getElementById('track-composer').textContent = composer.composer;
+    document.getElementById('track-country').textContent = composer.country;
+    document.getElementById('track-duration').textContent = track.duration;
+    
+    document.getElementById('track-mood').textContent = track.mood;
 
-    function switchView(targetViewId) {
-        views.forEach(v => v.classList.remove('active'));
-        const target = document.getElementById(`view-${targetViewId}`);
-        if (target) target.classList.add('active');
-        menuLinks.forEach(l => {
-            if (l.getAttribute('data-view') === targetViewId) l.classList.add('active');
-            else l.classList.remove('active');
-        });
-        window.scrollTo(0, 0);
+    document.getElementById('youtube-link').href = `https://www.youtube.com/results?search_query=${encodeURIComponent(track.youtubeQuery)}`;
+
+    let selectedFact = composer.facts[track.mood] || "Great classical masterpiece.";
+    document.getElementById('fact-text').textContent = selectedFact;
+
+    resetVoteUI('track-vote-up');
+    resetVoteUI('track-vote-down');
+
+    document.getElementById('top5List').style.display = 'none';
+    document.getElementById('discover-arrow').textContent = '▶';
+}
+
+function openSpotify(event) {
+    event.preventDefault();
+    const composer = composersDatabase.find(c => c.id === currentComposerId);
+    if (!composer) return;
+    const track = composer.tracks.find(t => t.id === currentTrackId);
+    if (!track) return;
+
+    const appUrl = `spotify:search:${encodeURIComponent(track.spotifyQuery)}`;
+    const webUrl = `https://open.spotify.com/search/${encodeURIComponent(track.spotifyQuery)}`;
+    window.location.href = appUrl;
+
+    let triggered = false;
+    const blurListener = () => { triggered = true; };
+    window.addEventListener('blur', blurListener, { once: true });
+
+    setTimeout(() => {
+        window.removeEventListener('blur', blurListener);
+        if (!triggered) {
+            if (confirm("Open web player instead?")) {
+                window.open(webUrl, '_blank');
+            }
+        }
+    }, 1500);
+}
+
+function voteTrack(isUp) {
+    if (lastVotedTrackId === currentTrackId) return;
+    const composer = composersDatabase.find(c => c.id === currentComposerId);
+    if (!composer) return;
+    const track = composer.tracks.find(t => t.id === currentTrackId);
+    if (!track) return;
+
+    resetVoteUI('track-vote-up');
+    resetVoteUI('track-vote-down');
+
+    if (isUp) {
+        userMoodPreferences[track.mood] = (userMoodPreferences[track.mood] || 0) + 2;
+        document.querySelector('.track-vote-up').classList.add('active');
+    } else {
+        userMoodPreferences[track.mood] = Math.max(0, (userMoodPreferences[track.mood] || 0) - 1);
+        document.querySelector('.track-vote-down').classList.add('active');
     }
+    localStorage.setItem('userMoodPreferences', JSON.stringify(userMoodPreferences));
+    lastVotedTrackId = currentTrackId;
+}
 
-    menuLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
+function voteInsight(isUp) {
+    if (lastVotedInsightId === currentInsightId) return;
+    const insight = classicalInsights.find(i => i.id === currentInsightId);
+    if (!insight) return;
+
+    resetVoteUI('insight-vote-up');
+    resetVoteUI('insight-vote-down');
+
+    if (isUp) {
+        userInsightPreferences[insight.category] = (userInsightPreferences[insight.category] || 0) + 2;
+        document.querySelector('.insight-vote-up').classList.add('active');
+    } else {
+        userInsightPreferences[insight.category] = Math.max(0, (userInsightPreferences[insight.category] || 0) - 1);
+        document.querySelector('.insight-vote-down').classList.add('active');
+    }
+    localStorage.setItem('userInsightPreferences', JSON.stringify(userInsightPreferences));
+    lastVotedInsightId = currentInsightId;
+}
+
+function saveForLater() {
+    let savedTracks = JSON.parse(localStorage.getItem('savedTracks')) || [];
+    let saveKey = `${currentComposerId}-${currentTrackId}`;
+    if (!savedTracks.includes(saveKey)) {
+        savedTracks.push(saveKey);
+        localStorage.setItem('savedTracks', JSON.stringify(savedTracks));
+        updateSavedCounter();
+        showToast('Saved for later');
+    } else {
+        showToast('Already saved');
+    }
+}
+
+function updateDiscoverList() {
+    const listContainer = document.getElementById('top5List');
+    listContainer.innerHTML = '';
+
+    const composer = composersDatabase.find(c => c.id === currentComposerId);
+    if (!composer) return;
+
+    let availableTracks = composer.tracks.filter(t => t.id !== currentTrackId);
+    availableTracks.forEach(track => {
+        let score = userMoodPreferences[track.mood] || 0;
+        track.matchScore = score;
+    });
+
+    availableTracks.sort((a, b) => b.matchScore - a.matchScore);
+
+    availableTracks.forEach((track, index) => {
+        const item = document.createElement('div');
+        item.className = 'top5-item';
+        item.style.padding = '8px 0';
+        item.style.cursor = 'pointer';
+        item.style.borderBottom = '1px solid rgba(255,255,255,0.1)';
+        item.onclick = () => selectTrack(composer.id, track.id);
+        item.innerHTML = `
+            <div style="font-weight: 600; font-size: 14px;">${index + 1}. ${track.title}</div>
+            <div style="font-size: 12px; opacity: 0.7; display: flex; justify-content: space-between; margin-top: 2px;">
+                <span>${track.duration}</span>
+                <span>${track.mood}</span>
+            </div>
+        `;
+        listContainer.appendChild(item);
+    });
+}
+
+function loadForDate(dateObj, pushHistory = true) {
+    const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+    const day = String(dateObj.getDate()).padStart(2, '0');
+    const targetStr = `${month}-${day}`;
+
+    let todaysComposer = composersDatabase.find(c => c.birthDate === targetStr);
+    const mainView = document.getElementById('track-main-view');
+    const noComposerView = document.getElementById('no-composer-view');
+
+    if (todaysComposer) {
+        selectTrack(todaysComposer.id, todaysComposer.tracks[0].id, pushHistory);
+    } else {
+        mainView.style.display = 'none';
+        noComposerView.style.display = 'block';
+
+        if (pushHistory) {
+            history.pushState({ view: 'nocomposer', date: targetStr }, "", `#date-${targetStr}`);
+        }
+
+        const insightIndex = (dateObj.getDate() + dateObj.getMonth()) % classicalInsights.length;
+        const activeInsight = classicalInsights[insightIndex];
+        currentInsightId = activeInsight.id;
+
+        document.getElementById('nc-fact-text').textContent = activeInsight.text;
+        document.getElementById('insight-category-tag').textContent = activeInsight.category;
+
+        resetVoteUI('insight-vote-up');
+        resetVoteUI('insight-vote-down');
+
+        const uniqueDates = [...new Set(composersDatabase.map(c => c.birthDate))].sort();
+        let prevDate = uniqueDates.slice().reverse().find(d => d < targetStr) || uniqueDates[uniqueDates.length - 1];
+        let nextDate = uniqueDates.find(d => d > targetStr) || uniqueDates[0];
+
+        const prevComposer = composersDatabase.find(c => c.birthDate === prevDate);
+        const nextComposer = composersDatabase.find(c => c.birthDate === nextDate);
+
+        document.getElementById('nc-prev-date').textContent = formatDateDDMMM(prevDate);
+        document.getElementById('nc-prev-name').textContent = prevComposer.composer;
+
+        document.getElementById('nc-prev-card').onclick = (e) => {
             e.preventDefault();
-            switchView(link.getAttribute('data-view'));
-            if (window.innerWidth <= 768) toggleMenu();
-        });
-    });
+            selectTrack(prevComposer.id, prevComposer.tracks[0].id, true);
+        };
 
-    // 10 Powiadomień (EN)
-    const prompts = [
-        "Your daily classical ritual is waiting for you.", "Pause for a moment—discover today's masterpiece.",
-        "Time for a short break with music that has stood the test of time.", "One track, a new story. Check out what we have prepared for today.",
-        "Starting the day with class? Your classical piece for today is ready.", "A moment to breathe: today's music and a fascinating fact are waiting.",
-        "Treat yourself to a few minutes of beauty in your busy day.", "Your musical compass points to today's classic. Discover it!",
-        "Music has the power to shift your mood. See what's playing today.", "Open the app and tune into today's track of the day."
-    ];
-    const preview = document.getElementById('reminders-list-preview');
-    if (preview) preview.innerHTML = prompts.map(p => `<li>${p}</li>`).join('');
+        document.getElementById('nc-next-date').textContent = formatDateDDMMM(nextDate);
+        document.getElementById('nc-next-name').textContent = nextComposer.composer;
 
-    // Motywy
-    const themeCards = document.querySelectorAll('.theme-card');
-    function setTheme(name) {
-        document.documentElement.setAttribute('data-theme', name);
-        localStorage.setItem('classics_theme', name);
-        themeCards.forEach(c => {
-            if (c.getAttribute('data-theme-val') === name) c.classList.add('active-theme');
-            else c.classList.remove('active-theme');
-        });
+        document.getElementById('nc-next-card').onclick = (e) => {
+            e.preventDefault();
+            selectTrack(nextComposer.id, nextComposer.tracks[0].id, true);
+        };
     }
-    setTheme(localStorage.getItem('classics_theme') || 'system');
-    themeCards.forEach(c => c.addEventListener('click', () => setTheme(c.getAttribute('data-theme-val'))));
+}
 
-    // Jump to date tabs
-    document.querySelectorAll('.jump-tabs .tab-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.jump-tabs .tab-btn').forEach(b => b.classList.toggle('active', b === btn));
-            const isRoll = btn.getAttribute('data-tab') === 'roll';
-            document.getElementById('tab-content-roll').classList.toggle('hidden', !isRoll);
-            document.getElementById('tab-content-calendar').classList.toggle('hidden', isRoll);
-        });
-    });
-
-    const archive = document.getElementById('archive-scroll-list');
-    if (archive) {
-        archive.innerHTML = ['2026-09-13', '2026-09-12', '2026-09-11'].map(d => `<a href="#" class="archive-item"><strong>${d}</strong> — Masterpiece</a>`).join('');
+window.addEventListener('popstate', (event) => {
+    if (event.state) {
+        if (event.state.view === 'composer') {
+            selectTrack(event.state.composerId, event.state.trackId, false);
+        } else if (event.state.view === 'nocomposer') {
+            loadForDate(new Date(), false);
+        }
+    } else {
+        loadForDate(new Date(), false);
     }
 });
+
+function openSettings() { document.getElementById('settings-modal').style.display = 'flex'; }
+function closeSettings() { document.getElementById('settings-modal').style.display = 'none'; }
+
+function changeSimulatedDate(dateString) {
+    if (!dateString) return;
+    loadForDate(new Date(dateString), true);
+    closeSettings();
+}
+
+function initApp() {
+    loadForDate(new Date(), true);
+    updateSavedCounter();
+}
+
+initApp();
