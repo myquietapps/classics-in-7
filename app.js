@@ -1,6 +1,78 @@
-// app.js - Wersja stabilna zintegrowana z komunikatem Spotify
+// app.js - Kompletna wersja (Logika dat, baz danych i Spotify)
 
 let savedTracks = JSON.parse(localStorage.getItem('savedTracks')) || [];
+
+// Główna funkcja inicjalizująca po załadowaniu strony
+document.addEventListener('DOMContentLoaded', () => {
+    loadDailyContent();
+    updateSavedCount();
+});
+
+// Funkcja ładująca zawartość na podstawie dzisiejszej daty
+function loadDailyContent() {
+    const today = new Date();
+    const day = today.getDate();
+    const month = today.toLocaleString('en', { month: 'short' }); // np. "Aug", "Mar"
+    const dateKey = `${day}-${month}`; // np. "22-Aug"
+
+    // Sprawdzamy database_1 (czy ktoś się urodził)
+    // Przyjmujemy strukturę database_1 z Twojego projektu
+    if (typeof database_1 !== 'undefined' && database_1[dateKey]) {
+        const data = database_1[dateKey];
+        renderComposerView(data, dateKey);
+    } else {
+        // Brak kompozytora - ładujemy database_2 (Insights)
+        renderNoComposerView(dateKey);
+    }
+}
+
+// Renderowanie widoku kompozytora
+function renderComposerView(data, dateKey) {
+    const mainView = document.getElementById('track-main-view');
+    const noComposerView = document.getElementById('no-composer-view');
+    
+    if (mainView) mainView.style.display = 'block';
+    if (noComposerView) noComposerView.style.display = 'none';
+
+    document.getElementById('date-header').textContent = `BORN TODAY (${dateKey})`;
+    document.getElementById('track-title').textContent = data.title || '';
+    document.getElementById('track-composer').textContent = data.composer || '';
+    document.getElementById('track-country').textContent = data.country || '';
+    document.getElementById('track-duration').textContent = data.duration ? `(${data.duration})` : '';
+    document.getElementById('track-mood').textContent = data.mood || '';
+    document.getElementById('fact-text').textContent = data.fact || '';
+
+    // Podpięcie Spotify z nową funkcją sprawdzającą aplikację
+    const spotifyLink = document.getElementById('spotify-link');
+    if (spotifyLink && data.spotifyUrl) {
+        spotifyLink.href = data.spotifyUrl;
+        spotifyLink.onclick = (e) => openSpotify(e, data.spotifyUrl);
+    }
+
+    // Podpięcie YouTube
+    const ytLink = document.getElementById('youtube-link');
+    if (ytLink && data.youtubeQuery) {
+        ytLink.href = `https://www.youtube.com/results?search_query=${encodeURIComponent(data.youtubeQuery)}`;
+    }
+}
+
+// Renderowanie widoku alternatywnego (Brak kompozytora)
+function renderNoComposerView(dateKey) {
+    const mainView = document.getElementById('track-main-view');
+    const noComposerView = document.getElementById('no-composer-view');
+    
+    if (mainView) mainView.style.display = 'none';
+    if (noComposerView) noComposerView.style.display = 'block';
+
+    // Pobieramy insight z database_2 jeśli istnieje
+    if (typeof database_2 !== 'undefined' && database_2[dateKey]) {
+        const insight = database_2[dateKey];
+        const factText = document.getElementById('nc-fact-text');
+        const tag = document.getElementById('insight-category-tag');
+        if (factText) factText.textContent = insight.fact || '';
+        if (tag) tag.textContent = insight.category || 'Science';
+    }
+}
 
 // --- Obsługa Spotify z komunikatem o braku aplikacji ---
 function openSpotify(event, spotifyUrl) {
@@ -41,9 +113,21 @@ function showSpotifyPrompt(fallbackUrl) {
     }
 }
 
-// Funkcja startowa aplikacji (uzupełnij według swojego kodu logiki głównego widoku)
-function initApp() {
-    console.log("App initialized successfully.");
+function updateSavedCount() {
+    const countSpan = document.getElementById('menu-saved-count');
+    if(countSpan) countSpan.textContent = '(' + savedTracks.length + ')';
 }
 
-document.addEventListener('DOMContentLoaded', initApp);
+function toggleDiscover() {
+    const list = document.getElementById('top5List');
+    const arrow = document.getElementById('discover-arrow');
+    if (list) {
+        if (list.style.display === 'none' || list.style.display === '') {
+            list.style.display = 'flex';
+            if (arrow) arrow.textContent = '▼';
+        } else {
+            list.style.display = 'none';
+            if (arrow) arrow.textContent = '▶';
+        }
+    }
+}
