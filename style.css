@@ -1,97 +1,193 @@
-/* --- Wymuszone ukrycie menu (wersja ostateczna) --- */
-
-/* Podstawowe stylowanie body, żeby było ciemno */
+/* Styl ogólny aplikacji uzyskany ze strony */
 body {
-    background-color: #121212 !important;
-    color: white !important;
-    font-family: sans-serif !important;
-    margin: 0 !important;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    min-height: 100vh !important;
+    background-color: #121214;
+    color: #e1e1e6;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 }
 
-/* Główny kontener */
 .container {
-    width: 100% !important;
-    max-width: 400px !important;
-    position: relative !important;
+    width: 100%;
+    max-width: 480px;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
-/* Karta (główny panel) */
 .card {
-    background-color: #1e1e1e !important;
-    border-radius: 16px !important;
-    padding: 20px !important;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5) !important;
-    min-height: 200px !important;
+    background: #1a1a1e;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
 }
 
-/* Przycisk Hamburger (☰) - Wymuszamy ikonę i pozycję */
-.menu-open-btn {
-    position: absolute !important;
-    top: 20px !important;
-    left: 20px !important;
-    z-index: 100 !important;
-    background: transparent !important;
-    border: none !important;
-    color: rgba(255,255,255,0.8) !important;
-    font-size: 24px !important;
-    cursor: pointer !important;
-    padding: 5px !important;
+.tags-container {
+    margin: 15px 0;
 }
 
-/* UKRYTE MENU - To jest kluczowe */
-.menu-overlay {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    background: rgba(0,0,0,0.85) !important;
-    z-index: 1000 !important; /* Najwyższa warstwa */
-    display: flex !important; /* Używamy flex, żeby wysuwać panel */
-    justify-content: flex-start !important;
-    visibility: hidden !important; /* Domyślnie niewidoczne */
-    opacity: 0 !important;
-    transition: visibility 0.4s, opacity 0.4s !important;
-    backdrop-filter: blur(5px) !important;
+.mood-tag, .country-tag, .duration-tag {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    margin-right: 6px;
 }
 
-/* Klasa, która pokazuje menu (dodawana przez JS) */
-.menu-overlay.show {
-    visibility: visible !important;
-    opacity: 1 !important;
+.actions {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
 }
 
-/* Panel menu (to co się wysuwa) */
-.menu-content {
-    width: 280px !important;
-    height: 100% !important;
-    background: #1e1e1e !important;
-    display: flex !important;
-    flex-direction: column !important;
-    box-shadow: 2px 0 15px rgba(0,0,0,0.5) !important;
-    transform: translateX(-100%) !important; /* Domyślnie schowane w lewo */
-    transition: transform 0.4s ease-out !important;
+.btn {
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
 }
 
-/* Animacja wysuwania (gdy overlay ma klasę 'show') */
-.menu-overlay.show .menu-content {
-    transform: translateX(0) !important;
+.btn.spotify { background: #1db954; color: #fff; }
+.btn.youtube { background: #ff0000; color: #fff; }
+.btn.save-btn { background: #2b5c8f; color: #fff; } /* Nowy niebieskawy odcień */
+
+.fact-card, .discover-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 15px;
 }
 
-/* Reszta elementów menu (proste stylowanie, żeby nie było brzydkie) */
-.menu-header { padding: 20px !important; display: flex !important; justify-content: space-between !important; align-items: center !important; border-bottom: 1px solid rgba(255,255,255,0.1) !important; }
-.menu-title { font-size: 20px !important; font-weight: bold !important; text-transform: uppercase !important; color: #f0f0f0 !important; }
-.menu-close-btn { background: none !important; border: none !important; color: rgba(255,255,255,0.6) !important; font-size: 24px !important; cursor: pointer !important; }
-.menu-body { padding: 20px 0 !important; overflow-y: auto !important; }
-.menu-item { display: flex !important; align-items: center !important; padding: 16px 20px !important; color: #cccccc !important; text-decoration: none !important; font-size: 16px !important; transition: background 0.2s !important; }
-.menu-item:hover { background: rgba(255,255,255,0.05) !important; color: white !important; }
-.menu-item i { width: 25px !important; margin-right: 15px !important; font-size: 18px !important; color: rgba(255,255,255,0.5) !important; }
-#menu-saved-count { margin-left: auto !important; font-size: 12px !important; background: rgba(255,255,255,0.1) !important; padding: 3px 8px !important; border-radius: 10px !important; }
-.menu-divider { margin: 10px 20px !important; border: 0 !important; border-top: 1px solid rgba(255,255,255,0.1) !important; }
+.fact-voting {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+}
 
-/* Klasa dla JS, żeby ukryć przycisk hamburgera, gdy menu jest otwarte */
-.menu-open-btn.hidden { opacity: 0 !important; visibility: hidden !important; }
+.vote-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Style dynamiczne przeniesione z index.html */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+.modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 320px;
+    text-align: left;
+    font-family: inherit;
+    color: #333;
+}
+.modal-header {
+    font-weight: bold;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.close-modal { cursor: pointer; font-size: 18px; }
+
+#no-composer-view {
+    padding: 10px 0;
+}
+.nc-nav-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.nc-info-card {
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.nc-info-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+.nc-date {
+    font-size: 11px;
+    opacity: 0.6;
+    margin-bottom: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.nc-composer-name {
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 1.2;
+}
+.unified-header-title {
+    font-size: 15px;
+    font-weight: 600;
+    opacity: 0.9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.vote-btn.active {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: scale(1.05);
+}
+#top5List {
+    display: none;
+    flex-direction: column;
+    margin-top: 10px;
+}
+#toast-notification {
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-20px);
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    z-index: 1100;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+#toast-notification.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
