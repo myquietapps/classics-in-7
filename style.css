@@ -1,193 +1,462 @@
-/* Styl ogólny aplikacji uzyskany ze strony */
-body {
-    background-color: #121214;
-    color: #e1e1e6;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+/* --- Główna struktura (Base) --- */
+:root {
+    --bg-color: #121212; /* Ciemne tło aplikacji */
+    --card-bg: #1e1e1e;  /* Tło karty */
+    --text-color: #e0e0e0; /* Jasny tekst */
+    --accent-color: #bb86fc; /* Fioletowy akcent */
+    --text-muted: #a0a0a0;
+    --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+    color: var(--text-color);
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    overflow-x: hidden; /* Zapobiega poziomemu przewijaniu przy wysuwaniu menu */
 }
 
+/* Główny kontener karty */
 .container {
-    width: 100%;
-    max-width: 480px;
+    width: 90%;
+    max-width: 400px;
     padding: 20px;
-    box-sizing: border-box;
+    position: relative;
 }
 
 .card {
-    background: #1a1a1e;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    padding: 24px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
 }
 
-.tags-container {
-    margin: 15px 0;
+/* --- ☰ Przycisk otwierania Menu (Hamburger) --- */
+.menu-open-btn {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 100; /* Nad kartą */
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 24px;
+    cursor: pointer;
+    padding: 5px;
+    transition: color 0.3s, transform 0.3s;
 }
 
-.mood-tag, .country-tag, .duration-tag {
-    display: inline-block;
-    padding: 4px 8px;
-    border-radius: 4px;
+.menu-open-btn:hover {
+    color: white;
+    transform: scale(1.1);
+}
+
+.menu-open-btn.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* --- ℹ️ Powiadomienie "Saved!" --- */
+#toast-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: var(--accent-color);
+    color: black;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 14px;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.3s, transform 0.3s;
+    pointer-events: none;
+}
+
+#toast-notification.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Stylizacja wnętrza Karty (Widoki) --- */
+
+/* Nagłówki */
+.date-header {
     font-size: 12px;
-    background: rgba(255, 255, 255, 0.1);
-    margin-right: 6px;
+    color: var(--text-muted);
+    letter-spacing: 1.5px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    text-align: center;
+    text-transform: uppercase;
 }
 
+#track-title {
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    line-height: 1.3;
+    text-align: center;
+}
+
+.composer-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 16px;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+}
+
+.country-tag, .duration-tag {
+    font-size: 12px;
+    background: rgba(255,255,255,0.1);
+    padding: 3px 6px;
+    border-radius: 4px;
+}
+
+/* Tagi nastrojów */
+.tags-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+.mood-tag {
+    background-color: #2c2c2c;
+    color: var(--accent-color);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 50px;
+}
+
+/* Przyciski akcji (Spotify, YouTube, Save) */
 .actions {
     display: flex;
-    gap: 10px;
-    margin: 20px 0;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 30px;
 }
 
 .btn {
-    flex: 1;
-    padding: 10px;
-    text-align: center;
-    border-radius: 6px;
     text-decoration: none;
-    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 50px;
     font-size: 14px;
+    font-weight: 600;
+    transition: background-color 0.2s, transform 0.2s;
     border: none;
     cursor: pointer;
 }
 
-.btn.spotify { background: #1db954; color: #fff; }
-.btn.youtube { background: #ff0000; color: #fff; }
-.btn.save-btn { background: #2b5c8f; color: #fff; } /* Nowy niebieskawy odcień */
-
-.fact-card, .discover-card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 8px;
-    padding: 15px;
-    margin-top: 15px;
+.btn:active {
+    transform: scale(0.97);
 }
 
-.fact-voting {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 10px;
+.spotify {
+    background-color: #1DB954;
+    color: black;
 }
 
-.vote-btn {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: #fff;
-    padding: 4px 8px;
-    border-radius: 4px;
-    cursor: pointer;
+.youtube {
+    background-color: #FF0000;
+    color: white;
 }
 
-/* Style dynamiczne przeniesione z index.html */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.5);
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+.save-btn {
+    background-color: #333;
+    color: white;
 }
-.modal-content {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    width: 90%;
-    max-width: 320px;
-    text-align: left;
-    font-family: inherit;
-    color: #333;
+
+.save-btn.is-saved {
+    background-color: var(--accent-color);
+    color: black;
 }
-.modal-header {
-    font-weight: bold;
+
+/* Card - Did you know? / Classical Insight */
+.fact-card {
+    background-color: rgba(255,255,255,0.05);
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 20px;
+}
+
+.fact-title {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+#fact-text, #nc-fact-text {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text-color);
     margin-bottom: 15px;
+}
+
+.unified-header-title {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 16px;
 }
-.close-modal { cursor: pointer; font-size: 18px; }
 
-#no-composer-view {
-    padding: 10px 0;
+.insight-tag {
+    font-size: 10px;
+    background: rgba(255,255,255,0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    text-transform: uppercase;
 }
+
+/* Głosowanie (👍👎) */
+.fact-voting {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--text-muted);
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 10px;
+}
+
+.vote-btn {
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+.vote-btn:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.vote-btn.active {
+    opacity: 1;
+    transform: scale(1.2);
+}
+
+/* Discover More sekcja */
+.discover-card {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 15px;
+}
+
+.discover-header {
+    font-size: 12px;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.top5-list {
+    display: none; /* Ukryte domyślnie */
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.top5-item {
+    padding: 10px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.top5-item:hover {
+    background: rgba(255,255,255,0.08);
+}
+
+/* Widok: No Composer */
 .nc-nav-stack {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
+
 .nc-info-card {
-    padding: 12px 16px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 8px;
+    background: rgba(255,255,255,0.03);
+    padding: 15px;
+    border-radius: 10px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: background 0.2s;
 }
+
 .nc-info-card:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.3);
+    background: rgba(255,255,255,0.06);
 }
+
 .nc-date {
     font-size: 11px;
-    opacity: 0.6;
-    margin-bottom: 2px;
+    color: var(--text-muted);
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
 }
+
 .nc-composer-name {
-    font-size: 17px;
+    font-size: 16px;
     font-weight: bold;
-    line-height: 1.2;
+    margin-top: 2px;
 }
-.unified-header-title {
-    font-size: 15px;
-    font-weight: 600;
-    opacity: 0.9;
+
+.nc-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    opacity: 0.5;
+    letter-spacing: 1px;
+}
+
+.nc-arrow {
+    font-size: 18px;
+    opacity: 0.5;
+}
+
+.nc-text-wrap {
+    flex: 1;
+    margin: 0 15px;
+}
+#nc-prev-card .nc-text-wrap { text-align: left; }
+#nc-next-card .nc-text-wrap { text-align: right; }
+
+
+/* --- ☰ STYLe DLA MENU HAMBURGERA (v2.0 Fixed) --- */
+
+/* Tło overlay menu (ciemne, półprzezroczyste) */
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85); /* Ciemne tło */
+    z-index: 2000; /* Wyżej niż karta */
+    display: flex;
+    justify-content: flex-start; /* Wsuwa się od lewej */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s, visibility 0.4s;
+    backdrop-filter: blur(5px); /* Rozmywa tło strony */
+}
+
+/* Klasa dodawana przez JS, aby pokazać menu */
+.menu-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Zawartość menu (panel boczny) */
+.menu-content {
+    width: 280px;
+    height: 100%;
+    background: #1e1e1e; /* Tło panelu menu */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.5);
+    transform: translateX(-100%); /* Początkowo schowane */
+    transition: transform 0.4s ease-out;
+}
+
+/* Animacja wysuwania */
+.menu-overlay.show .menu-content {
+    transform: translateX(0);
+}
+
+/* Nagłówek menu (Tytuł i przycisk X) */
+.menu-header {
+    padding: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.menu-title {
+    font-size: 20px;
+    font-weight: bold;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
+    color: #f0f0f0;
 }
-.vote-btn.active {
-    background: rgba(255, 255, 255, 0.25);
-    border-color: rgba(255, 255, 255, 0.5);
-    transform: scale(1.05);
+
+.menu-close-btn {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 20px;
+    cursor: pointer;
+    transition: color 0.3s;
 }
-#top5List {
-    display: none;
-    flex-direction: column;
-    margin-top: 10px;
+
+.menu-close-btn:hover {
+    color: white;
 }
-#toast-notification {
-    position: absolute;
-    top: 15px;
-    left: 50%;
-    transform: translateX(-50%) translateY(-20px);
-    background: rgba(0, 0, 0, 0.85);
-    color: #fff;
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 13px;
-    opacity: 0;
-    transition: all 0.3s ease;
-    pointer-events: none;
-    z-index: 1100;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+
+/* Ciało menu (Lista linków) */
+.menu-body {
+    padding: 20px 0;
+    overflow-y: auto; /* Pozwala przewijać menu, jeśli jest długie */
 }
-#toast-notification.show {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
+
+/* Pojedynczy element menu */
+.menu-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    color: #cccccc;
+    text-decoration: none;
+    transition: background 0.2s, color 0.3s;
+    font-size: 16px;
+    border-left: 4px solid transparent;
 }
+
+.menu-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    border-left-color: var(--accent-color);
+}
+
+/* Ikona w elemencie menu */
+.menu-item i {
+    width: 25px;
+    margin-right: 15px;
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.menu-item:hover i {
+    color: var(--accent-color);
+}
+
+/* Licznik w menu (np. Saved Tracks (3)) */
+#menu-saved-count {
+    margin-left: auto;
+    font-size: 12px;
+    background: rgba(255, 255, 255, 0
