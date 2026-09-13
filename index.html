@@ -23,6 +23,7 @@
             max-width: 320px;
             text-align: left;
             font-family: inherit;
+            color: #333;
         }
         .modal-header {
             font-weight: bold;
@@ -31,59 +32,108 @@
             justify-content: space-between;
             align-items: center;
         }
-        .close-modal {
+        .close-modal { cursor: pointer; font-size: 18px; }
+
+        /* Styl dla Case 1 */
+        #no-composer-view {
+            padding: 10px 0;
+        }
+        .nc-nav-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .nc-btn {
+            flex: 1;
+            padding: 10px;
+            font-size: 11px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 6px;
             cursor: pointer;
-            font-size: 18px;
+            text-decoration: none;
+            color: inherit;
+            text-align: center;
+            transition: background 0.2s;
+        }
+        .nc-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
         }
     </style>
 </head>
 <body>
     <main class="container">
         <div class="card">
-            <div class="top-nav" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                <div class="date-header" id="date-header" style="margin-bottom: 0; font-size: 13px;">Born today</div>
+            <div class="top-nav" style="display: flex; justify-content: flex-end; align-items: center; margin-bottom: 10px;">
                 <div class="settings-area">
                     <span id="saved-counter" style="font-size: 13px; margin-right: 12px; opacity: 0.8;">Saved: 0</span>
                     <span id="settings-btn" style="cursor: pointer; font-size: 16px;" title="Settings" onclick="openSettings()">⚙️</span>
                 </div>
             </div>
             
-            <h1 id="track-title">♪ Loading...</h1>
-            
-            <div class="composer-wrapper">
-                <span id="track-composer">Claude Debussy</span>
-                <span class="country-tag" id="track-country">[FR]</span>
-                <span id="track-duration" class="duration-tag">(4:30)</span>
-            </div>
+            <!-- CASE 2: Standardowy widok (gdy są urodziny) -->
+            <div id="track-main-view" style="display: none;">
+                <div class="date-header" id="date-header" style="margin-bottom: 10px; font-size: 13px; opacity: 0.7;">Born today</div>
+                <h1 id="track-title">♪ Loading...</h1>
+                
+                <div class="composer-wrapper">
+                    <span id="track-composer">Claude Debussy</span>
+                    <span class="country-tag" id="track-country">[FR]</span>
+                    <span id="track-duration" class="duration-tag">(4:30)</span>
+                </div>
 
-            <div class="tags-container">
-                <span class="mood-tag" id="track-mood1">#Melancholic</span>
-                <span class="mood-tag" id="track-mood2">#Relaxing</span>
-            </div>
+                <div class="tags-container">
+                    <span class="mood-tag" id="track-mood1">#Melancholic</span>
+                    <span class="mood-tag" id="track-mood2">#Relaxing</span>
+                </div>
 
-            <div class="actions">
-                <a href="#" id="spotify-link" class="btn spotify" onclick="openSpotify(event)">Spotify</a>
-                <a href="#" id="youtube-link" class="btn youtube" target="_blank">YouTube</a>
-                <button class="btn save-btn" title="Save for later" onclick="saveForLater()">Later</button>
-            </div>
+                <div class="actions">
+                    <a href="#" id="spotify-link" class="btn spotify" onclick="openSpotify(event)">Spotify</a>
+                    <a href="#" id="youtube-link" class="btn youtube" target="_blank">YouTube</a>
+                    <button class="btn save-btn" title="Save for later" onclick="saveForLater()">Later</button>
+                </div>
 
-            <div class="fact-card">
-                <div class="fact-title">Did you know?</div>
-                <p id="fact-text">Loading fact...</p>
-                <div class="fact-voting">
-                    <span>Was this interesting?</span>
-                    <button class="vote-btn" onclick="vote(true)">👍</button>
-                    <button class="vote-btn" onclick="vote(false)">👎</button>
+                <!-- Micro-learning 1 (przy utworze) -->
+                <div class="fact-card">
+                    <div class="fact-title">Did you know? (Micro-learning 1)</div>
+                    <p id="fact-text">Loading fact...</p>
+                    <div class="fact-voting">
+                        <span>Was this interesting?</span>
+                        <button class="vote-btn" onclick="voteTrack(true)">👍</button>
+                        <button class="vote-btn" onclick="voteTrack(false)">👎</button>
+                    </div>
+                </div>
+
+                <div class="discover-card" id="discoverCard">
+                    <div class="discover-header" onclick="toggleDiscover()">
+                        <span id="discover-arrow">▶</span> DISCOVER MORE
+                    </div>
+                    <div class="top5-list" id="top5List"></div>
                 </div>
             </div>
 
-            <div class="discover-card" id="discoverCard">
-                <div class="discover-header" onclick="toggleDiscover()">
-                    <span id="discover-arrow">▶</span> DISCOVER MORE
+            <!-- CASE 1: Widok alternatywny (gdy brak urodzin dzisiaj + Classical Insight) -->
+            <div id="no-composer-view" style="display: none;">
+                <div style="font-size: 14px; font-weight: 500; margin-bottom: 15px; opacity: 0.9;">No composer born today</div>
+                
+                <div class="nc-nav-container">
+                    <a href="#" id="nc-prev-btn" class="nc-btn">← Previous<br><strong id="nc-prev-name">Artist</strong></a>
+                    <a href="#" id="nc-next-btn" class="nc-btn">Next →<br><strong id="nc-next-name">Artist</strong></a>
                 </div>
-                <div class="top5-list" id="top5List">
+
+                <!-- Micro-learning 2: Classical Insight z kategorią i profilowaniem -->
+                <div class="fact-card" style="margin-top: 15px;">
+                    <div class="fact-title">Classical Insight (<span id="insight-category-tag" style="font-size: 11px; opacity: 0.8;">Science</span>)</div>
+                    <p id="nc-fact-text">Loading daily insight...</p>
+                    <div class="fact-voting">
+                        <span>Was this insight useful?</span>
+                        <button class="vote-btn" onclick="voteInsight(true)">👍</button>
+                        <button class="vote-btn" onclick="voteInsight(false)">👎</button>
+                    </div>
                 </div>
             </div>
+
         </div>
     </main>
 
@@ -94,8 +144,12 @@
                 <span>Settings</span>
                 <span class="close-modal" onclick="closeSettings()">&times;</span>
             </div>
-            <div style="font-size: 13px; opacity: 0.8;">
-                Classics in 7 — minimalist daily classical music discovery.
+            <div style="margin-bottom: 15px;">
+                <label for="simulate-date" style="font-size: 13px; display: block; margin-bottom: 5px; color:#333;">Simulate date:</label>
+                <input type="date" id="simulate-date" style="width: 100%; padding: 6px; box-sizing: border-box;" onchange="changeSimulatedDate(this.value)">
+            </div>
+            <div style="font-size: 12px; opacity: 0.7; color:#333;">
+                Pick Sep 13 (Case 1) or Aug 22 (Case 2).
             </div>
         </div>
     </div>
@@ -112,24 +166,10 @@
                 moods: ["#Melancholic", "#Relaxing"],
                 fact: "Debussy wrote this piece during a period of intense financial struggle, yet it remains his most peaceful work.",
                 youtubeQuery: "Claude Debussy Clair de Lune official audio",
-                spotifyQuery: "Claude Debussy Clair de Lune",
-                youtubeViews: 85000000
+                spotifyQuery: "Claude Debussy Clair de Lune"
             },
             {
                 id: 1,
-                title: "Rêverie",
-                composer: "Claude Debussy",
-                birthDate: "08-22",
-                country: "[FR]",
-                duration: "(4:10)",
-                moods: ["#Dreamy", "#Relaxing"],
-                fact: "Rêverie was initially disliked by its publisher, prompting Debussy to call it a poor composition.",
-                youtubeQuery: "Claude Debussy Reverie piano master",
-                spotifyQuery: "Claude Debussy Reverie",
-                youtubeViews: 15000000
-            },
-            {
-                id: 2,
                 title: "Nocturnes, Op. 9 No. 2",
                 composer: "Frédéric Chopin",
                 birthDate: "03-01",
@@ -138,21 +178,52 @@
                 moods: ["#Romantic", "#Dreamy"],
                 fact: "Chopin wrote his most famous nocturne when he was only around 20 years old.",
                 youtubeQuery: "Chopin Nocturne Op 9 No 2 official",
-                spotifyQuery: "Frédéric Chopin Nocturne Op 9 No 2",
-                youtubeViews: 120000000
+                spotifyQuery: "Frédéric Chopin Nocturne Op 9 No 2"
+            }
+        ];
+
+        // Pula dla Classical Insight (Micro-learning 2) z 5 kategoriami
+        const classicalInsights = [
+            {
+                id: 1,
+                category: "Science",
+                text: "Listening to classical piano music activates both hemispheres of the brain, significantly reducing stress and cortisol levels."
+            },
+            {
+                id: 2,
+                category: "History",
+                text: "The modern piano was invented around 1700 by Bartolomeo Cristofori in Florence, solving the volume limitations of the harpsichord."
+            },
+            {
+                id: 3,
+                category: "Instruments",
+                text: "Organ music features frequencies so low they can be felt physically rather than just heard, stimulating deep relaxation."
+            },
+            {
+                id: 4,
+                category: "Pop Culture",
+                text: "Classical masterpieces like Bach's Goldberg Variations have been heavily sampled in modern ambient and cinematic electronic music."
+            },
+            {
+                id: 5,
+                category: "Theory",
+                text: "The system of equal temperament tuning standardized Western music, allowing composers to seamlessly change keys without retuning."
             }
         ];
 
         let currentTrackId = null;
-        
+        let currentInsightId = null;
+
         let userMoodPreferences = JSON.parse(localStorage.getItem('userMoodPreferences')) || {
-            "#Melancholic": 2,
-            "#Relaxing": 2,
-            "#Dreamy": 1,
-            "#Romantic": 2
+            "#Melancholic": 2, "#Relaxing": 2, "#Dreamy": 1, "#Romantic": 2
+        };
+
+        let userInsightPreferences = JSON.parse(localStorage.getItem('userInsightPreferences')) || {
+            "History": 1, "Science": 1, "Instruments": 1, "Pop Culture": 1, "Theory": 1
         };
 
         let lastVotedTrackId = null;
+        let lastVotedInsightId = null;
 
         function updateSavedCounter() {
             const savedTracks = JSON.parse(localStorage.getItem('savedTracks')) || [];
@@ -177,17 +248,13 @@
             if (!track) return;
 
             currentTrackId = track.id;
-
             document.getElementById('track-title').textContent = "♪ " + track.title;
             document.getElementById('track-composer').textContent = track.composer;
             document.getElementById('track-country').textContent = track.country;
             document.getElementById('track-duration').textContent = track.duration;
-            
             document.getElementById('track-mood1').textContent = track.moods[0];
             document.getElementById('track-mood2').textContent = track.moods[1] || "";
-
             document.getElementById('fact-text').textContent = track.fact;
-
             document.getElementById('youtube-link').href = `https://www.youtube.com/results?search_query=${encodeURIComponent(track.youtubeQuery)}`;
 
             document.getElementById('top5List').style.display = 'none';
@@ -201,7 +268,6 @@
 
             const appUrl = `spotify:search:${encodeURIComponent(track.spotifyQuery)}`;
             const webUrl = `https://open.spotify.com/search/${encodeURIComponent(track.spotifyQuery)}`;
-
             window.location.href = appUrl;
 
             let triggered = false;
@@ -211,37 +277,45 @@
             setTimeout(() => {
                 window.removeEventListener('blur', blurListener);
                 if (!triggered) {
-                    if (confirm("This works better with Spotify app installed. Open web player instead?")) {
+                    if (confirm("Open web player instead?")) {
                         window.open(webUrl, '_blank');
                     }
                 }
             }, 1500);
         }
 
-        function vote(isUp) {
+        function voteTrack(isUp) {
             if (lastVotedTrackId === currentTrackId) return;
-
             const currentTrack = tracksData.find(t => t.id === currentTrackId);
             if (!currentTrack) return;
 
             if (isUp) {
                 currentTrack.moods.forEach(mood => {
-                    if (userMoodPreferences[mood] !== undefined) {
-                        userMoodPreferences[mood] += 2;
-                    } else {
-                        userMoodPreferences[mood] = 2;
-                    }
+                    userMoodPreferences[mood] = (userMoodPreferences[mood] || 0) + 2;
                 });
             } else {
                 currentTrack.moods.forEach(mood => {
-                    if (userMoodPreferences[mood] !== undefined) {
-                        userMoodPreferences[mood] = Math.max(0, userMoodPreferences[mood] - 1);
-                    }
+                    userMoodPreferences[mood] = Math.max(0, (userMoodPreferences[mood] || 0) - 1);
                 });
             }
-
             localStorage.setItem('userMoodPreferences', JSON.stringify(userMoodPreferences));
             lastVotedTrackId = currentTrackId;
+            alert("Thank you for voting on Micro-learning 1!");
+        }
+
+        function voteInsight(isUp) {
+            if (lastVotedInsightId === currentInsightId) return;
+            const insight = classicalInsights.find(i => i.id === currentInsightId);
+            if (!insight) return;
+
+            if (isUp) {
+                userInsightPreferences[insight.category] = (userInsightPreferences[insight.category] || 0) + 2;
+            } else {
+                userInsightPreferences[insight.category] = Math.max(0, (userInsightPreferences[insight.category] || 0) - 1);
+            }
+            localStorage.setItem('userInsightPreferences', JSON.stringify(userInsightPreferences));
+            lastVotedInsightId = currentInsightId;
+            alert(`Profil zaktualizowany! Kategoria: ${insight.category}`);
         }
 
         function saveForLater() {
@@ -261,12 +335,9 @@
             listContainer.innerHTML = '';
 
             let availableTracks = tracksData.filter(t => t.id !== currentTrackId);
-
             availableTracks.forEach(track => {
                 let score = 0;
-                track.moods.forEach(mood => {
-                    score += (userMoodPreferences[mood] || 0);
-                });
+                track.moods.forEach(mood => { score += (userMoodPreferences[mood] || 0); });
                 track.matchScore = score;
             });
 
@@ -277,7 +348,6 @@
                 const item = document.createElement('div');
                 item.className = 'top5-item';
                 item.onclick = () => selectTrack(track.id);
-
                 item.innerHTML = `
                     <span class="top5-title">${index + 1}. ${track.title}</span>
                     <span class="top5-meta">${track.duration} <span class="mood-tag">${track.moods[0]}</span></span>
@@ -286,32 +356,73 @@
             });
         }
 
-        function openSettings() {
-            document.getElementById('settings-modal').style.display = 'flex';
+        function loadForDate(dateObj) {
+            const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+            const day = String(dateObj.getDate()).padStart(2, '0');
+            const targetStr = `${month}-${day}`;
+
+            let todaysTracks = tracksData.filter(t => t.birthDate === targetStr);
+            const mainView = document.getElementById('track-main-view');
+            const noComposerView = document.getElementById('no-composer-view');
+
+            if (todaysTracks.length > 0) {
+                // CASE 2: Urodziny dzisiaj
+                mainView.style.display = 'block';
+                noComposerView.style.display = 'none';
+                selectTrack(todaysTracks[0].id);
+            } else {
+                // CASE 1: Brak urodzin dzisiaj (np. dziś 13 września) -> Uruchamiamy Case 1
+                mainView.style.display = 'none';
+                noComposerView.style.display = 'block';
+
+                // Wybór Classical Insight (Micro-learning 2) oparty stabilnie na dniu roku
+                const insightIndex = (dateObj.getDate() + dateObj.getMonth()) % classicalInsights.length;
+                const activeInsight = classicalInsights[insightIndex];
+                currentInsightId = activeInsight.id;
+
+                document.getElementById('nc-fact-text').textContent = activeInsight.text;
+                document.getElementById('insight-category-tag').textContent = activeInsight.category;
+
+                const uniqueDates = [...new Set(tracksData.map(t => t.birthDate))].sort();
+                let prevDate = uniqueDates.slice().reverse().find(d => d < targetStr) || uniqueDates[uniqueDates.length - 1];
+                let nextDate = uniqueDates.find(d => d > targetStr) || uniqueDates[0];
+
+                const prevTrack = tracksData.find(t => t.birthDate === prevDate);
+                const nextTrack = tracksData.find(t => t.birthDate === nextDate);
+
+                const prevBtn = document.getElementById('nc-prev-btn');
+                const nextBtn = document.getElementById('nc-next-btn');
+
+                prevBtn.innerHTML = `← Prev (${prevDate})<br><strong>${prevTrack.composer}</strong>`;
+                prevBtn.onclick = (e) => {
+                    e.preventDefault();
+                    mainView.style.display = 'block';
+                    noComposerView.style.display = 'none';
+                    selectTrack(prevTrack.id);
+                };
+
+                nextBtn.innerHTML = `Next (${nextDate}) →<br><strong>${nextTrack.composer}</strong>`;
+                nextBtn.onclick = (e) => {
+                    e.preventDefault();
+                    mainView.style.display = 'block';
+                    noComposerView.style.display = 'none';
+                    selectTrack(nextTrack.id);
+                };
+            }
         }
 
-        function closeSettings() {
-            document.getElementById('settings-modal').style.display = 'none';
+        function openSettings() { document.getElementById('settings-modal').style.display = 'flex'; }
+        function closeSettings() { document.getElementById('settings-modal').style.display = 'none'; }
+
+        function changeSimulatedDate(dateString) {
+            if (!dateString) return;
+            loadForDate(new Date(dateString));
+            closeSettings();
         }
 
         function initApp() {
-            // Case 2: Szukamy kompozytora pasującego do dzisiejszej daty (MM-DD)
-            const now = new Date();
-            const month = String(now.getMonth() + 1).padStart(2, '0');
-            const day = String(now.getDate()).padStart(2, '0');
-            const todayStr = `${month}-${day}`;
-
-            document.getElementById('date-header').textContent = "Born today";
-
-            let todaysTrack = tracksData.find(t => t.birthDate === todayStr);
-            
-            if (todaysTrack) {
-                selectTrack(todaysTrack.id);
-            } else {
-                // Jeśli dzisiaj nikt z bazy nie ma urodzin, domyślnie ładujemy pierwszy utwór z bazy
-                selectTrack(tracksData[0].id);
-            }
-
+            // Uruchomienie aplikacji z aktualną datą (13 września 2026 -> automatyczny Case 1)
+            loadForDate(new Date());
             updateSavedCounter();
         }
 
