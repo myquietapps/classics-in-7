@@ -111,7 +111,6 @@ const composersDatabase = [
     }
 ];
 
-// Ogólne ciekawostki
 const classicalInsights = [
     {
         id: 1,
