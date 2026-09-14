@@ -71,22 +71,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             tracksContainer.appendChild(trackEl);
         });
 
-        const appContainer = document.querySelector(".app-container");
-        const detoxBanner = document.getElementById("detox-message");
-
-        document.querySelectorAll(".btn-stream").forEach(btn => {
-            btn.addEventListener("click", () => {
-                localStorage.setItem("classical_listened_today", "true");
-            });
-        });
-
-        window.addEventListener("focus", () => {
-            if (localStorage.getItem("classical_listened_today") === "true") {
-                appContainer.classList.add("dimmed-card");
-                detoxBanner.style.display = "block";
-            }
-        });
-
     } catch (error) {
         console.error("Error loading Classics in 7 content:", error);
     }
