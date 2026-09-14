@@ -50,7 +50,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             const tagsHTML = track.mood_tags.map(tag => `<span class="mood-tag">${tag}</span>`).join("");
 
             const rawQuery = `${dayRecord.composer.name} ${track.title}`;
-            const spotifyLink = `https://open.spotify.com/search/${encodeURIComponent(rawQuery)}`;
+            const spotifyWebUrl = `https://open.spotify.com/search/${encodeURIComponent(rawQuery)}`;
+            const spotifyAppUri = `spotify:search:${encodeURIComponent(rawQuery)}`;
             const appleMusicLink = `https://music.apple.com/us/search?term=${encodeURIComponent(rawQuery)}`;
 
             trackEl.innerHTML = `
@@ -63,10 +64,24 @@ document.addEventListener("DOMContentLoaded", async () => {
                 </div>
                 <p class="track-fact"><strong>Trivia:</strong> ${track.fact}</p>
                 <div class="track-actions">
-                    <a href="${spotifyLink}" class="btn-stream spotify" onclick="window.open(this.href, '_blank'); return false;">Spotify</a>
+                    <button type="button" class="btn-stream spotify btn-spotify">Spotify</button>
                     <a href="${appleMusicLink}" target="_blank" rel="noopener noreferrer" class="btn-stream apple">Apple Music</a>
                 </div>
             `;
+
+            trackEl.querySelector(".btn-spotify").addEventListener("click", (e) => {
+                e.preventDefault();
+                const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+                
+                if (isMobile) {
+                    window.location.href = spotifyAppUri;
+                    setTimeout(() => {
+                        window.open(spotifyWebUrl, '_blank');
+                    }, 600);
+                } else {
+                    window.open(spotifyWebUrl, '_blank');
+                }
+            });
 
             tracksContainer.appendChild(trackEl);
         });
