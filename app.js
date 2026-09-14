@@ -63,10 +63,14 @@ document.addEventListener("DOMContentLoaded", async () => {
                 </div>
                 <p class="track-fact"><strong>Trivia:</strong> ${track.fact}</p>
                 <div class="track-actions">
-                    <a href="${spotifyLink}" target="_blank" class="btn-stream spotify">Spotify</a>
-                    <a href="${appleMusicLink}" target="_blank" class="btn-stream apple">Apple Music</a>
+                    <button type="button" data-url="${spotifyLink}" class="btn-stream spotify btn-spotify">Spotify</button>
+                    <a href="${appleMusicLink}" target="_blank" rel="noopener noreferrer" class="btn-stream apple">Apple Music</a>
                 </div>
             `;
+
+            trackEl.querySelector(".btn-spotify").addEventListener("click", (e) => {
+                window.location.href = e.currentTarget.dataset.url;
+            });
 
             tracksContainer.appendChild(trackEl);
         });
@@ -75,42 +79,3 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.error("Error loading Classics in 7 content:", error);
     }
 });
-trackEl.innerHTML = `
-    <div class="track-header">
-        <span class="track-rank">#${track.rank}</span>
-        <h3 class="track-title">${track.title}</h3>
-    </div>
-    <div class="mood-tags-container">
-        ${tagsHTML}
-    </div>
-    <p class="track-fact"><strong>Trivia:</strong> ${track.fact}</p>
-    <div class="track-actions">
-        <a href="${spotifyLink}" target="_blank" rel="noopener noreferrer" class="btn-stream spotify">Spotify</a>
-
-
-trackEl.innerHTML = `
-                <div class="track-header">
-                    <span class="track-rank">#${track.rank}</span>
-                    <h3 class="track-title">${track.title}</h3>
-                </div>
-                <div class="mood-tags-container">
-                    ${tagsHTML}
-                </div>
-                <p class="track-fact"><strong>Trivia:</strong> ${track.fact}</p>
-                <div class="track-actions">
-                    <a href="#" data-url="${spotifyLink}" class="btn-stream spotify btn-spotify">Spotify</a>
-                    <a href="${appleMusicLink}" target="_blank" rel="noopener noreferrer" class="btn-stream apple">Apple Music</a>
-                </div>
-            `;
-
-            // Obsługa kliknięcia dla Spotify gwarantująca działanie na mobile
-            trackEl.querySelector(".btn-spotify").addEventListener("click", (e) => {
-                e.preventDefault();
-                window.open(e.currentTarget.dataset.url, "_blank");
-            });
-
-
-        
-        <a href="${appleMusicLink}" target="_blank" rel="noopener noreferrer" class="btn-stream apple">Apple Music</a>
-    </div>
-`;
