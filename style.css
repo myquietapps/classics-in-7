@@ -8,21 +8,11 @@ body {
     padding: 16px;
     display: flex;
     justify-content: center;
-    align-items: center;
-    min-height: 100vh;
 }
 
 .app-container {
     width: 100%;
     max-width: 480px;
-}
-
-.card {
-    background: #1a1a1a;
-    border-radius: 12px;
-    padding: 24px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
 }
 
 #anchor-badge {
@@ -31,12 +21,11 @@ body {
     color: #d4af37;
     text-transform: uppercase;
     font-weight: 700;
-    margin-bottom: 8px;
 }
 
 #composer-name {
     font-size: 1.75rem;
-    margin: 0 0 4px 0;
+    margin: 4px 0;
     color: #ffffff;
     font-weight: 700;
 }
@@ -57,11 +46,12 @@ body {
 }
 
 .track-card {
-    background: rgba(255, 255, 255, 0.02);
-    border-radius: 8px;
+    background: #1a1a1a;
+    border-radius: 12px;
     padding: 14px;
     margin-bottom: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    border: 1px solid #2a2a2a;
+    transition: border-color 0.2s ease;
 }
 
 .track-header {
@@ -97,20 +87,46 @@ body {
     color: #b0b0b0;
     padding: 2px 8px;
     border-radius: 12px;
+    white-space: nowrap;
 }
 
 .track-fact {
     font-size: 0.8rem;
     color: #bbbbbb;
     line-height: 1.4;
-    margin: 8px 0 0 0;
+    margin: 8px 0 12px 0;
+}
+
+.track-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-stream {
+    font-size: 0.75rem;
+    padding: 6px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 600;
+    text-align: center;
+    flex: 1;
+}
+
+.btn-stream.spotify { 
+    background: #1DB954; 
+}
+
+.btn-stream.apple { 
+    background: #fa243c; 
 }
 
 .wiki-footer-btn {
     display: block;
     width: 100%;
-    text-align: left;
+    text-align: center;
     margin-top: 24px;
+    margin-bottom: 24px;
     font-size: 0.75rem;
     letter-spacing: 1.2px;
     color: #888888;
@@ -121,4 +137,21 @@ body {
 
 .wiki-footer-btn:hover {
     color: #d4af37;
+}
+
+.dimmed-card {
+    opacity: 0.4;
+    transition: opacity 0.8s ease;
+}
+
+.detox-banner {
+    margin-top: 24px;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #d4af37;
+    line-height: 1.5;
+    padding: 14px;
+    background: rgba(212, 175, 55, 0.05);
+    border-radius: 8px;
+    border: 1px dashed rgba(212, 175, 55, 0.3);
 }
