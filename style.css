@@ -1,59 +1,135 @@
-/* ==========================================
-   ZABEZPIECZENIE JĘZYKOWE I RPOPORCJI (ZERO SCROLL PROOF)
-   ========================================== */
-
-/* 1. Płynny rozmiar kompozytora i utworu (dostosowuje się do wysokości telefonu) */
-.composer-name {
-    font-size: clamp(1.2rem, 3.8vh, 1.6rem);
-    font-weight: 700;
-    line-height: 1.15;
-    /* Zapobieganie rozbijaniu układu przez bardzo długie nazwiska */
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-.piece-title {
-    font-size: clamp(0.85rem, 2.2vh, 1.05rem);
-    font-weight: 600;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 75%;
-}
-
-/* 2. Zabezpieczenie przycisków akcji (2x2) przed dłuższymi tłumaczeniami (PL / DE / ES) */
-.action-btn {
-    flex: 1;
-    height: clamp(40px, 6vh, 48px); /* Przycisk zmniejsza się na niskich ekranach */
-    border: none;
-    border-radius: var(--radius-btn);
-    font-weight: 600;
-    font-size: clamp(0.75rem, 1.8vh, 0.88rem);
-    padding: 0 8px;
-    cursor: pointer;
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    margin: 0;
+    padding: 16px;
     display: flex;
     justify-content: center;
-    align-items: center;
-    /* Twarde ścinanie tekstu przy przejęzyczaniu */
+}
+
+.app-container {
+    width: 100%;
+    max-width: 480px;
+}
+
+#anchor-badge {
+    font-size: 0.7rem;
+    letter-spacing: 1.5px;
+    color: #d4af37;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+#composer-name {
+    font-size: 1.75rem;
+    margin: 4px 0;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+#composer-meta {
+    font-size: 0.85rem;
+    color: #999999;
+    margin-bottom: 20px;
+}
+
+#event-note {
+    font-size: 0.9rem;
+    color: #d4af37;
+    background: rgba(212, 175, 55, 0.1);
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+}
+
+.track-card {
+    background: #1a1a1a;
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 12px;
+    border: 1px solid #2a2a2a;
+    transition: border-color 0.2s ease;
+}
+
+.track-card.main-hit {
+    border-color: #d4af37;
+    background: linear-gradient(145deg, #1a1a1a 0%, #222018 100%);
+}
+
+.track-header {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.track-rank {
+    color: #d4af37;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.track-title {
+    font-size: 0.95rem;
+    margin: 0;
+    flex-grow: 1;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.hit-badge {
+    font-size: 0.6rem;
+    background: #d4af37;
+    color: #121212;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.mood-tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 8px 0;
+}
+
+.mood-tag {
+    font-size: 0.7rem;
+    background: #262626;
+    color: #b0b0b0;
+    padding: 2px 8px;
+    border-radius: 12px;
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
-/* 3. Twardy limit dla anegdoty (max 3 linijki tekstu bez względu na język) */
-.fact-text {
-    font-size: clamp(0.78rem, 2vh, 0.88rem);
-    line-height: 1.35;
-    color: var(--text-primary);
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+.track-fact {
+    font-size: 0.8rem;
+    color: #bbbbbb;
+    line-height: 1.4;
+    margin: 8px 0 12px 0;
 }
 
-/* 4. Elastyczne odstępy w karcie głównej */
-.main-card {
-    gap: clamp(6px, 1.5vh, 16px);
+.track-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-stream {
+    font-size: 0.75rem;
+    padding: 6px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 600;
+    text-align: center;
+    flex: 1;
+}
+
+.btn-stream.spotify { 
+    background: #1DB954; 
+}
+
+.btn-stream.apple { 
+    background: #fa243c; 
 }
