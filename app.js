@@ -8,68 +8,74 @@ document.addEventListener("DOMContentLoaded", async () => {
         const day = String(today.getUTCDate()).padStart(2, '0');
         const currentDate = `${month}-${day}`;
 
-        const dayRecord = data.find(item => item.date === currentDate) || data[0];
+        const dayRecord = data.find(item => item.date === currentDate);
 
-        document.getElementById("composer-name").textContent = dayRecord.composer.name;
-        document.getElementById("composer-meta").textContent = `${dayRecord.composer.birth_year}–${dayRecord.composer.death_year} (${dayRecord.composer.period}) • ${dayRecord.composer.birth_country}`;
-        
-        const badgeEl = document.getElementById("anchor-badge");
-        const eventNoteEl = document.getElementById("event-note");
-        
-        if (dayRecord.anchor_type === "premiere") {
-            badgeEl.textContent = "HISTORICAL MILESTONE";
-            if (eventNoteEl) {
-                eventNoteEl.textContent = dayRecord.event_note;
-                eventNoteEl.style.display = "block";
+        if (dayRecord) {
+            // Pokazujemy widok z kompozytorem, ukrywamy widok alternatywny
+            document.getElementById("track-main-view").style.display = "block";
+            document.getElementById("no-composer-view").style.display = "none";
+
+            const primaryTrack = dayRecord.tracks[0] || {};
+
+            document.getElementById("track-title").textContent = `♪ ${primaryTrack.title || 'Classical Masterpiece'}`;
+            document.getElementById("track-composer").textContent = dayRecord.composer.name;
+            document.getElementById("track-country").textContent = `[${dayRecord.composer.birth_country ? dayRecord.composer.birth_country.substring(0,2).toUpperCase() : 'EU'}]`;
+            document.getElementById("track-duration").textContent = "(4:30)";
+            
+            const moodEl = document.getElementById("track-mood");
+            if (primaryTrack.mood_tags && primaryTrack.mood_tags.length > 0) {
+                moodEl.textContent = primaryTrack.mood_tags[0];
+                moodEl.style.display = "inline-block";
+            } else {
+                moodEl.style.display = "none";
             }
-        } else {
-            badgeEl.textContent = "BORN TODAY";
-            if (eventNoteEl) {
-                eventNoteEl.style.display = "none";
+
+            document.getElementById("fact-text").textContent = primaryTrack.fact || dayRecord.event_note || "Classic compositions deeply influence focus and relaxation.";
+
+            // Poprawne bindowanie linku do Spotify przez ID (działa stabilnie na mobile i desktop)
+            const searchQuery = `${dayRecord.composer.name} ${primaryTrack.title || ''}`;
+            const spotifyLinkEl = document.getElementById("spotify-link");
+            spotifyLinkEl.href = `https://open.spotify.com/search/${encodeURIComponent(searchQuery)}`;
+
+            const youtubeLinkEl = document.getElementById("youtube-link");
+            youtubeLinkEl.href = `https://www.youtube.com/results?search_query=${encodeURIComponent(searchQuery)}`;
+
+            // Obsługa rozwijanej listy Discover More (jeśli istnieje w bazie)
+            const discoverCard = document.getElementById("discoverCard");
+            const top5List = document.getElementById("top5List");
+            const discoverHeader = discoverCard.querySelector(".discover-header");
+            
+            if (dayRecord.tracks.length > 1) {
+                discoverCard.style.display = "block";
+                top5List.innerHTML = "";
+                dayRecord.tracks.forEach(t => {
+                    const item = document.createElement("div");
+                    item.style.cssText = "padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 14px;";
+                    item.innerHTML = `<strong>#${t.rank}</strong> ${t.title}`;
+                    top5List.appendChild(item);
+                });
+
+                discoverHeader.onclick = () => {
+                    const isVisible = top5List.style.display === "flex";
+                    top5List.style.display = isVisible ? "none" : "flex";
+                    document.getElementById("discover-arrow").textContent = isVisible ? "▶" : "▼";
+                };
+            } else {
+                discoverCard.style.display = "none";
             }
-        }
 
-        const wikiLinkEl = document.getElementById("wiki-link");
-        if (dayRecord.composer && dayRecord.composer.wiki_url) {
-            wikiLinkEl.href = dayRecord.composer.wiki_url;
-            wikiLinkEl.style.display = "block";
-        } else if (dayRecord.composer && dayRecord.composer.name) {
-            wikiLinkEl.href = `https://en.wikipedia.org/wiki/Special:Search?search=${encodeURIComponent(dayRecord.composer.name)}`;
-            wikiLinkEl.style.display = "block";
         } else {
-            wikiLinkEl.style.display = "none";
+            // Widok alternatywny (brak danych na dzisiaj)
+            document.getElementById("track-main-view").style.display = "none";
+            document.getElementById("no-composer-view").style.display = "block";
+            
+            // Przykładowe statyczne wypełnienie nawigacji wstecz/w przód
+            document.getElementById("nc-prev-date").textContent = "13-Sep";
+            document.getElementById("nc-prev-name").textContent = "Claudio Monteverdi";
+            document.getElementById("nc-next-date").textContent = "15-Sep";
+            document.getElementById("nc-next-name").textContent = "Johannes Brahms";
+            document.getElementById("nc-fact-text").textContent = "Listening to classical masterpieces activates both hemispheres of the brain, significantly reducing daily stress levels.";
         }
-
-        const tracksContainer = document.getElementById("tracks-container");
-        tracksContainer.innerHTML = "";
-
-        dayRecord.tracks.forEach(track => {
-            const trackEl = document.createElement("div");
-            trackEl.className = "track-card";
-
-            const tagsHTML = track.mood_tags.map(tag => `<span class="mood-tag">${tag}</span>`).join("");
-
-            const rawQuery = `${dayRecord.composer.name} ${track.title}`;
-            const spotifyLink = `https://open.spotify.com/search/${encodeURIComponent(rawQuery)}`;
-            const appleMusicLink = `https://music.apple.com/us/search?term=${encodeURIComponent(rawQuery)}`;
-
-            trackEl.innerHTML = `
-                <div class="track-header">
-                    <span class="track-rank">#${track.rank}</span>
-                    <h3 class="track-title">${track.title}</h3>
-                </div>
-                <div class="mood-tags-container">
-                    ${tagsHTML}
-                </div>
-                <p class="track-fact"><strong>Trivia:</strong> ${track.fact}</p>
-                <div class="track-actions">
-                    <a href="${spotifyLink}" target="_blank" rel="noopener noreferrer" class="btn-stream spotify">Spotify</a>
-                    <a href="${appleMusicLink}" target="_blank" rel="noopener noreferrer" class="btn-stream apple">Apple Music</a>
-                </div>
-            `;
-
-            tracksContainer.appendChild(trackEl);
-        });
 
     } catch (error) {
         console.error("Error loading Classics in 7 content:", error);
