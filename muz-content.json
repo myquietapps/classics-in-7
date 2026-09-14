@@ -1,0 +1,140 @@
+[
+  {
+    "date": "09-14",
+    "anchor_type": "birth",
+    "event_note": null,
+    "composer": {
+      "open_opus_id": 142,
+      "name": "Luigi Cherubini",
+      "birth_year": 1760,
+      "death_year": 1842,
+      "birth_country": "Italy",
+      "period": "Classical"
+    },
+    "tracks": [
+      {
+        "rank": 1,
+        "title": "Requiem in C minor: Introitus et Kyrie",
+        "is_main_hit": true,
+        "digital_reach_score": 98,
+        "mood_tags": ["#Dramatic", "#Focus"],
+        "fact": "Beethoven considered Cherubini the greatest living composer of his time, and this Requiem was performed at Beethoven's funeral in 1827.",
+        "source_verification": "Deane, Basil. 'Luigi Cherubini: His Life and Work', Oxford University Press, 1965, p. 42."
+      },
+      {
+        "rank": 2,
+        "title": "Médée (Medea): Overture",
+        "is_main_hit": false,
+        "digital_reach_score": 85,
+        "mood_tags": ["#Dramatic"],
+        "fact": "Brahms admired the overture to Medea immensely, keeping it as a permanent reference score in his study.",
+        "source_verification": "Paris Opera Archives, Historical Record of Médée (1797)."
+      },
+      {
+        "rank": 3,
+        "title": "Symphony in D major: I. Largo - Allegro molto",
+        "is_main_hit": false,
+        "digital_reach_score": 74,
+        "mood_tags": ["#Focus"],
+        "fact": "Cherubini's only symphony was commissioned directly by the Royal Philharmonic Society in London in 1815.",
+        "source_verification": "Royal Philharmonic Society Archive, London Records (1815)."
+      },
+      {
+        "rank": 4,
+        "title": "Marche funèbre",
+        "is_main_hit": false,
+        "digital_reach_score": 62,
+        "mood_tags": ["#Calm"],
+        "fact": "Composed in 1820 following the assassination of the Duke of Berry, noted for its unusually stark instrumentation.",
+        "source_verification": "Paris Conservatoire Biographical Records (1820)."
+      },
+      {
+        "rank": 5,
+        "title": "String Quartet No. 1 in E-flat major",
+        "is_main_hit": false,
+        "digital_reach_score": 58,
+        "mood_tags": ["#Focus"],
+        "fact": "Cherubini began writing string quartets only after turning fifty, directly modeling them on Haydn's late works.",
+        "source_verification": "Cobbett's Cyclopedic Survey of Chamber Music, Vol. 1."
+      },
+      {
+        "rank": 6,
+        "title": "Ave Maria",
+        "is_main_hit": false,
+        "digital_reach_score": 51,
+        "mood_tags": ["#Relaxing", "#Calm"],
+        "fact": "An intimate sacred piece written for soprano and English horn during his service at the Royal Chapel in Paris.",
+        "source_verification": "RISM Catalog, ID record 450002130."
+      }
+    ]
+  },
+  {
+    "date": "12-31",
+    "anchor_type": "premiere",
+    "event_note": "New Year's Eve Special: Celebrating the tradition of festive symphonic gala concerts and Strauss waltzes",
+    "composer": {
+      "open_opus_id": 182,
+      "name": "Johann Strauss II",
+      "birth_year": 1825,
+      "death_year": 1899,
+      "birth_country": "Austria",
+      "period": "Romantic"
+    },
+    "tracks": [
+      {
+        "rank": 1,
+        "title": "The Blue Danube, Op. 314",
+        "is_main_hit": true,
+        "digital_reach_score": 100,
+        "mood_tags": ["#Energetic", "#Relaxing"],
+        "fact": "Originally written as a choral piece with somewhat cynical lyrics about politics, it quickly became the unofficial national anthem of Austria.",
+        "source_verification": "Kamp, Sicherheit. 'Johann Strauss: King of Waltz', Vienna, 1931."
+      },
+      {
+        "rank": 2,
+        "title": "Die Fledermaus: Overture",
+        "is_main_hit": false,
+        "digital_reach_score": 92,
+        "mood_tags": ["#Energetic"],
+        "fact": "Strauss composed the entire overture to his master operetta in just 42 hours during a frantic weekend in Vienna.",
+        "source_verification": "Vienna Volksoper Historical Archives, 1874."
+      },
+      {
+        "rank": 3,
+        "title": "Tales from the Vienna Woods, Op. 325",
+        "is_main_hit": false,
+        "digital_reach_score": 88,
+        "mood_tags": ["#Calm", "#Relaxing"],
+        "fact": "Strauss included a rare folk instrument called a zither in the introduction to capture authentic Austrian rustic atmosphere.",
+        "source_verification": "Vienna Philharmonic New Year's Concert Documentation."
+      },
+      {
+        "rank": 4,
+        "title": "Emperor Waltz, Op. 437",
+        "is_main_hit": false,
+        "digital_reach_score": 82,
+        "mood_tags": ["#Focus", "#Majestic"],
+        "fact": "Written to commemorate the 40th anniversary of Emperor Franz Joseph I's accession to the Austro-Hungarian throne.",
+        "source_verification": "Austrian National Library Music Collection, MS 44821."
+      },
+      {
+        "rank": 5,
+        "title": "Tritsch-Tratsch-Polka, Op. 214",
+        "is_main_hit": false,
+        "digital_reach_score": 79,
+        "mood_tags": ["#Energetic"],
+        "fact": "The title refers to Vienna's notorious obsession with neighborhood gossip and chitchat, mirrored in the frantic, sparkling violin lines.",
+        "source_verification": "Sachs, Curt. 'World History of the Dance', New York, 1937."
+      },
+      {
+        "rank": 6,
+        "title": "Radetzky March, Op. 228 (arranged)",
+        "is_main_hit": false,
+        "digital_reach_score": 95,
+        "mood_tags": ["#Energetic"],
+        "fact": "Composed by Johann Strauss I to honor Field Marshal Radetzky, it serves as the traditional thunderous closing encore of the Vienna New Year's Concert.",
+        "source_verification": "Wiener Musikverein Historical Concert Programs."
+      }
+    ]
+  }
+]
