@@ -14,7 +14,27 @@
             <div id="composer-meta"></div>
             <div id="event-note" style="display: none;"></div>
 
-            <!-- Kontener na utwory -->
+            <!-- Główny blok utworu (Utwór #1 ze złotą ramką) -->
+            <div class="main-track-card">
+                <div class="track-header">
+                    <span class="track-rank">#1</span>
+                    <h3 class="track-title" id="track-title"></h3>
+                </div>
+                <div class="mood-tags-container" id="track-mood-container">
+                    <span class="mood-tag" id="track-mood"></span>
+                </div>
+                <p class="track-fact" id="track-fact"></p>
+
+                <!-- Matryca przycisków 2x2 pod głównym utworem -->
+                <div class="actions-grid-2x2">
+                    <button class="btn-slot" id="btn-1">Button 1</button>
+                    <button class="btn-slot" id="btn-2">Button 2</button>
+                    <button class="btn-slot" id="btn-3">Button 3</button>
+                    <button class="btn-slot" id="btn-4">Button 4</button>
+                </div>
+            </div>
+
+            <!-- Kontener na pozostałe utwory / Discover More -->
             <div id="tracks-container"></div>
 
             <!-- Przycisk Wikipedii (wyrównany do lewej) -->
