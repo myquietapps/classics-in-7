@@ -51,8 +51,8 @@ async function initializeApp() {
         const appData = await appContentResponse.json();
         const muzData = await muzContentResponse.json();
 
-        // 1. Inject static UI strings from app-content.json
-        setupInterfaceTranslations(appData.ui_strings);
+        // 1. Inject static UI strings and manifests from app-content.json immediately
+        setupInterfaceTranslations(appData);
 
         // 2. Load and verify the historical anchor of the day from muz-content.json
         const dateKey = getCurrentDateKey();
@@ -260,7 +260,7 @@ function setupDiscoverMoreList() {
 
 /**
  * Strategic Viral Engine: Compiles the dynamic clipboard data package for Button 4
+ * Fully optimized using template literals to avoid escape sequence mismatch.
  */
 function executePrimaryShare() {
-    const textToCopy = `Classics in 7\n🏛️ ${activeTrackData.composer} – ${activeTrackData.title} (${activeTrackData.duration})\n\nDid you know?\n${activeTrackData.didYouKnow}\n\nEnjoy classical music. No ads or scrolling:\n➔ https://pages.dev`;
-    
+    const textToCopy = `Classics in 7
