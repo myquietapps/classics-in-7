@@ -40,51 +40,94 @@ document.addEventListener("DOMContentLoaded", async () => {
             wikiLinkEl.style.display = "none";
         }
 
-        const tracksContainer = document.getElementById("tracks-container");
-        tracksContainer.innerHTML = "";
+        // Kopia utworów do lokalnej manipulacji przy podmianie
+        let currentTracks = [...dayRecord.tracks];
+        const composerName = dayRecord.composer.name;
 
-        dayRecord.tracks.forEach(track => {
-            const trackEl = document.createElement("div");
-            trackEl.className = "track-card";
+        // Funkcja renderująca główny utwór na podstawie obiektu utworu
+        function renderMainTrack(track) {
+            document.getElementById("main-track-rank").textContent = `#${track.rank}`;
+            document.getElementById("main-track-title").textContent = track.title;
+            
+            const moodsContainer = document.getElementById("main-track-moods");
+            moodsContainer.innerHTML = track.mood_tags.map(tag => `<span class="mood-tag">${tag}</span>`).join("");
 
-            const tagsHTML = track.mood_tags.map(tag => `<span class="mood-tag">${tag}</span>`).join("");
+            document.getElementById("main-track-fact").innerHTML = `<strong>Trivia:</strong> ${track.fact}`;
 
-            const searchQuery = encodeURIComponent(`${dayRecord.composer.name} ${track.title}`);
+            const searchQuery = encodeURIComponent(`${composerName} ${track.title}`);
             const spotifyLink = `https://open.spotify.com/search/${searchQuery}`;
             const appleMusicLink = `https://music.apple.com/us/search?term=${searchQuery}`;
 
-            trackEl.innerHTML = `
-                <div class="track-header">
-                    <span class="track-rank">#${track.rank}</span>
-                    <h3 class="track-title">${track.title}</h3>
-                </div>
-                <div class="mood-tags-container">
-                    ${tagsHTML}
-                </div>
-                <p class="track-fact"><strong>Trivia:</strong> ${track.fact}</p>
-                <div class="track-actions">
-                    <a href="${spotifyLink}" target="_blank" class="btn-stream spotify">Spotify</a>
-                    <a href="${appleMusicLink}" target="_blank" class="btn-stream apple">Apple Music</a>
-                </div>
+            const actionsContainer = document.getElementById("main-track-actions");
+            actionsContainer.innerHTML = `
+                <a href="${spotifyLink}" target="_blank" class="btn-stream spotify">Spotify</a>
+                <a href="${appleMusicLink}" target="_blank" class="btn-stream apple">Apple Music</a>
             `;
+        }
 
-            tracksContainer.appendChild(trackEl);
-        });
+        // Funkcja renderująca listę w sekcji "Discover More" (pozostałe utwory)
+        function renderDiscoverList() {
+            const tracksContainer = document.getElementById("tracks-container");
+            tracksContainer.innerHTML = "";
 
-        const appContainer = document.querySelector(".app-container");
-        const detoxBanner = document.getElementById("detox-message");
+            // Wszystkie utwory oprócz aktualnie głównego (indeks 0 w currentTracks)
+            const subTracks = currentTracks.slice(1);
 
-        document.querySelectorAll(".btn-stream").forEach(btn => {
-            btn.addEventListener("click", () => {
-                localStorage.setItem("classical_listened_today", "true");
+            subTracks.forEach((track) => {
+                const trackEl = document.createElement("div");
+                trackEl.className = "track-card";
+
+                const tagsHTML = track.mood_tags.map(tag => `<span class="mood-tag">${tag}</span>`).join("");
+
+                trackEl.innerHTML = `
+                    <div class="track-header">
+                        <span class="track-rank">#${track.rank}</span>
+                        <h3 class="track-title">${track.title}</h3>
+                    </div>
+                    <div class="mood-tags-container">
+                        ${tagsHTML}
+                    </div>
+                    <p class="track-fact"><strong>Trivia:</strong> ${track.fact}</p>
+                `;
+
+                // Mechanika podmiany po kliknięciu w utwór z listy
+                trackEl.addEventListener("click", () => {
+                    // Znajdź indeks klikniętego utworu w pełnej tablicy
+                    const clickedIndex = currentTracks.findIndex(t => t.rank === track.rank);
+                    
+                    if (clickedIndex !== -1) {
+                        // Przesuń kliknięty utwór na pierwszą pozycję
+                        const selectedTrack = currentTracks.splice(clickedIndex, 1)[0];
+                        currentTracks.unshift(selectedTrack);
+
+                        // Odśwież widoki
+                        renderMainTrack(currentTracks[0]);
+                        renderDiscoverList();
+
+                        // Automatyczne zwinięcie listy (zamknięcie akordeonu)
+                        discoverContent.classList.remove("expanded");
+                        discoverArrow.style.transform = "rotate(0deg)";
+                    }
+                });
+
+                tracksContainer.appendChild(trackEl);
             });
-        });
+        }
 
-        window.addEventListener("focus", () => {
-            if (localStorage.getItem("classical_listened_today") === "true") {
-                appContainer.classList.add("dimmed-card");
-                detoxBanner.style.display = "block";
-            }
+        // Inicjalizacja stanu początkowego (główny to pierwszy z tablicy)
+        if (currentTracks.length > 0) {
+            renderMainTrack(currentTracks[0]);
+            renderDiscoverList();
+        }
+
+        // Obsługa akordeonu "DISCOVER MORE"
+        const discoverToggle = document.getElementById("discover-toggle");
+        const discoverContent = document.getElementById("discover-content");
+        const discoverArrow = document.getElementById("discover-arrow");
+
+        discoverToggle.addEventListener("click", () => {
+            const isExpanded = discoverContent.classList.toggle("expanded");
+            discoverArrow.style.transform = isExpanded ? "rotate(90deg)" : "rotate(0deg)";
         });
 
     } catch (error) {
