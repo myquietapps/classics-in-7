@@ -2,212 +2,22 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <!-- Meta tag zapobiegający powiększaniu i wymuszający sztywny widok aplikacji mobilnej -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Classics in 7</title>
-    
-    <!-- Import fontu Inter z Google Fonts (Wagi 400, 500, 600, 700) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Główne style aplikacji -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <!-- Główny kontener aplikacji (Aplikacja na 1 ekran - Zero Scroll) -->
-    <div id="app-viewport">
+    <div class="app-container">
+        <span id="anchor-badge"></span>
+        <h1 id="composer-name">Ładowanie...</h1>
+        <p id="composer-meta"></p>
+        <p id="event-note" style="display:none;"></p>
         
-        <!-- Pasek górny (Top Navigation Bar) -->
-        <header class="app-header">
-            <div class="header-date" id="current-date-display">--.--</div>
-            <button class="hamburger-btn" id="menu-toggle-btn" aria-label="Otwórz menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </header>
-
-        <!-- Ekran Główny / Karta Dnia (Z domyślnym stanem Skeleton UI) -->
-        <main class="main-card skeleton-loading" id="main-card">
-            
-            <!-- Nagłówek kontekstowy utworu -->
-            <div class="card-badge-row">
-                <span class="badge-born" id="card-badge">BORN TODAY</span>
-                <span class="badge-mood" id="card-mood">#Focus</span>
-            </div>
-
-            <!-- Dane kompozytora i utworu -->
-            <div class="composer-info">
-                <h1 class="composer-name" id="composer-name">Loading...</h1>
-                <p class="composer-meta" id="composer-meta">--</p>
-            </div>
-
-            <div class="piece-info">
-                <h2 class="piece-title" id="piece-title"><span>♪</span> Loading piece...</h2>
-                <span class="piece-duration" id="piece-duration">--:--</span>
-            </div>
-
-            <!-- Sekcja Ciekawostki / Odtwarzacza Youtube Premium -->
-            <div class="fact-section" id="fact-section">
-                <!-- Podstawowy widok anegdoty -->
-                <div class="fact-content" id="fact-content">
-                    <p class="fact-text" id="fact-text">Fetching today's classical insight...</p>
-                    <div class="fact-rating">
-                        <span>Did you know?</span>
-                        <div class="rating-buttons">
-                            <button id="rate-up-btn" aria-label="Kciuk w górę">👍</button>
-                            <button id="rate-down-btn" aria-label="Kciuk w dół">👎</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Kontener na bezpieczny odtwarzacz YouTube Premium (domyślnie ukryty) -->
-                <div class="yt-embed-container hidden" id="yt-player-container">
-                    <iframe id="yt-player-iframe" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                </div>
-            </div>
-
-            <!-- Matryca Przycisków Akcji (Układ 2x2) -->
-            <div class="action-matrix">
-                <div class="matrix-row">
-                    <button class="action-btn key-btn" id="btn-key1" data-key="1">
-                        <span class="btn-label">KEY 1</span>
-                    </button>
-                    <button class="action-btn key-btn" id="btn-key2" data-key="2">
-                        <span class="btn-label">KEY 2</span>
-                    </button>
-                </div>
-                <div class="matrix-row">
-                    <button class="action-btn secondary-btn" id="btn-later">
-                        <span>LATER</span>
-                    </button>
-                    <button class="action-btn share-btn" id="btn-share">
-                        <span>SHARE</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Moduł DISCOVER MORE (Rozwijany pasek u dołu karty) -->
-            <div class="discover-drawer" id="discover-drawer">
-                <button class="discover-header" id="discover-toggle">
-                    <span>DISCOVER MORE</span>
-                    <span class="drawer-icon">▲</span>
-                </button>
-                <div class="discover-list hidden" id="discover-list">
-                    <!-- Lista 5 utworów generowana dynamicznie przez JS -->
-                </div>
-            </div>
-
-        </main>
-
-        <!-- Ekran końcowy po przesłuchaniu (Respect On-Screen Time - domyślnie ukryty) -->
-        <div class="screen-time-overlay hidden" id="screen-time-overlay">
-            <p>We respect your on-screen time.</p>
-            <h3>Your daily ritual is complete.</h3>
+        <div id="tracks-container">
+            <!-- Tutaj JavaScript wstrzyknie 6 utworów -->
         </div>
-
-        <!-- Płynnie rozsuwane Menu Hamburgerowe (Accordion Overlay) -->
-        <nav class="nav-overlay hidden" id="nav-overlay">
-            <div class="nav-header">
-                <h2>Classics in 7</h2>
-                <button class="close-menu-btn" id="menu-close-btn">&times;</button>
-            </div>
-
-            <div class="accordion-menu">
-                
-                <!-- 1. NOW PLAYING -->
-                <div class="accordion-item">
-                    <button class="accordion-header">1. NOW PLAYING</button>
-                    <div class="accordion-content">
-                        <button class="menu-action-btn" id="btn-return-today">Return to Today's Piece</button>
-                        <button class="menu-action-btn premium-feature" id="btn-surprise-me">
-                            <span>SURPRISE ME</span> <span class="lock-icon">🔒</span>
-                        </button>
-                        <button class="menu-action-btn premium-feature" id="btn-most-popular">
-                            <span>MOST POPULAR PREV MONTH</span> <span class="lock-icon">🔒</span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- 2. SAVED -->
-                <div class="accordion-item">
-                    <button class="accordion-header">2. SAVED <span class="lock-icon">🔒</span></button>
-                    <div class="accordion-content">
-                        <div class="saved-filters">
-                            <button class="filter-chip active" data-filter="name">By Name</button>
-                            <button class="filter-chip" data-filter="mood">By Mood</button>
-                            <button class="filter-chip" data-filter="period">By Period</button>
-                        </div>
-                        <div class="saved-list" id="saved-list-container">
-                            <p class="empty-state">Save works for later with Premium.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 3. MY MOOD STATS -->
-                <div class="accordion-item">
-                    <button class="accordion-header">3. MY MOOD STATS</button>
-                    <div class="accordion-content">
-                        <div class="mood-grid-container" id="mood-grid">
-                            <!-- Siatka 30 dni generowana przez JS -->
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 4. JUMP TO DATE -->
-                <div class="accordion-item">
-                    <button class="accordion-header">4. JUMP TO DATE <span class="lock-icon">🔒</span></button>
-                    <div class="accordion-content">
-                        <input type="date" id="jump-date-picker" class="date-picker-input" disabled>
-                    </div>
-                </div>
-
-                <!-- 5. SETTINGS -->
-                <div class="accordion-item">
-                    <button class="accordion-header">5. SETTINGS</button>
-                    <div class="accordion-content">
-                        <div class="setting-row">
-                            <label for="select-key1">Key 1 Source:</label>
-                            <select id="select-key1" class="setting-select"></select>
-                        </div>
-                        <div class="setting-row">
-                            <label for="select-key2">Key 2 Source:</label>
-                            <select id="select-key2" class="setting-select"></select>
-                        </div>
-                        <div class="setting-row">
-                            <label for="select-theme">Theme:</label>
-                            <select id="select-theme" class="setting-select">
-                                <option value="theme-system">System Default</option>
-                                <option value="theme-nocturne">Nocturne</option>
-                                <option value="theme-sonata">Sonata</option>
-                                <option value="theme-eink">E-Ink</option>
-                                <option value="theme-cello" disabled>Cello 🔒</option>
-                                <option value="theme-leaf" disabled>Leaf 🔒</option>
-                                <option value="theme-midnight" disabled>Midnight Oasis 🔒</option>
-                            </select>
-                        </div>
-                        <button class="danger-btn" id="btn-clear-data">Clear My Local Data</button>
-                    </div>
-                </div>
-
-                <!-- 6. ABOUT & SUPPORT -->
-                <div class="accordion-item">
-                    <button class="accordion-header">6. ABOUT & SUPPORT</button>
-                    <div class="accordion-content">
-                        <p class="about-text">Classics in 7 is a one-man passion project created as a digital sanctuary. 7 minutes a day to pause and reflect.</p>
-                        <a href="https://tally.so" target="_blank" rel="noopener" class="menu-link">Feedback / Report Issue</a>
-                        <a href="https://buymeacoffee.com" target="_blank" rel="noopener" class="menu-link highlight-link">Buy me a coffee ☕</a>
-                    </div>
-                </div>
-
-            </div>
-        </nav>
-
     </div>
 
-    <!-- Główny plik skryptów -->
     <script src="app.js"></script>
 </body>
 </html>
