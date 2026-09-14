@@ -14,6 +14,7 @@
       {
         "rank": 1,
         "title": "Requiem in C minor: Introitus et Kyrie",
+        "duration": "9:30",
         "digital_reach_score": 95,
         "mood_tags": ["#Dramatic", "#Focus"],
         "fact": "Beethoven considered Cherubini the greatest living composer of his time, and this Requiem was performed at Beethoven's funeral in 1827."
@@ -21,6 +22,7 @@
       {
         "rank": 2,
         "title": "Médée (Medea): Overture",
+        "duration": "6:15",
         "digital_reach_score": 89,
         "mood_tags": ["#Dramatic"],
         "fact": "Brahms admired the overture to Medea immensely, keeping it as a permanent reference score in his study."
@@ -28,6 +30,7 @@
       {
         "rank": 3,
         "title": "Symphony in D major: I. Largo - Allegro molto",
+        "duration": "11:20",
         "digital_reach_score": 82,
         "mood_tags": ["#Focus"],
         "fact": "Cherubini's only symphony was commissioned directly by the Royal Philharmonic Society in London in 1815."
@@ -35,6 +38,7 @@
       {
         "rank": 4,
         "title": "Marche funèbre",
+        "duration": "5:45",
         "digital_reach_score": 86,
         "mood_tags": ["#Calm"],
         "fact": "Composed in 1820 following the assassination of the Duke of Berry, noted for its unusually stark instrumentation."
@@ -42,6 +46,7 @@
       {
         "rank": 5,
         "title": "String Quartet No. 1 in E-flat major",
+        "duration": "22:15",
         "digital_reach_score": 80,
         "mood_tags": ["#Focus"],
         "fact": "Cherubini began writing string quartets only after turning fifty, directly modeling them on Haydn's late works."
@@ -49,6 +54,7 @@
       {
         "rank": 6,
         "title": "Ave Maria",
+        "duration": "4:00",
         "digital_reach_score": 91,
         "mood_tags": ["#Relaxing", "#Calm"],
         "fact": "An intimate sacred piece written for soprano and English horn during his service at the Royal Chapel in Paris."
