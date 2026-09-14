@@ -143,6 +143,14 @@ body {
     font-weight: 600;
 }
 
+/* Styl czasu trwania utworu */
+.track-duration {
+    font-size: 0.85rem;
+    color: #888888;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
 .mood-tags-container {
     display: flex;
     flex-wrap: wrap;
