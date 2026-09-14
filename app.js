@@ -1,23 +1,18 @@
 document.addEventListener("DOMContentLoaded", async () => {
     try {
-        // 1. Pobranie bazy danych z pliku muz-content.json[cite: 1]
         const response = await fetch("muz-content.json");
         const data = await response.json();
 
-        // 2. Określenie daty w formacie UTC (MM-DD) odpornej na zmiany stref czasowych użytkownika
         const today = new Date();
         const month = String(today.getUTCMonth() + 1).padStart(2, '0');
         const day = String(today.getUTCDate()).padStart(2, '0');
         const currentDate = `${month}-${day}`;
 
-        // Szukamy wpisu dla dzisiejszego dnia, a w razie braku bierzemy pierwszy z brzegu jako fallback
         const dayRecord = data.find(item => item.date === currentDate) || data[0];
 
-        // 3. Renderowanie danych kompozytora i nagłówka[cite: 1]
         document.getElementById("composer-name").textContent = dayRecord.composer.name;
         document.getElementById("composer-meta").textContent = `${dayRecord.composer.birth_year}–${dayRecord.composer.death_year} (${dayRecord.composer.period}) • ${dayRecord.composer.birth_country}`;
         
-        // Obsługa typu kotwicy (Urodziny vs Historyczny Kamień Milowy)[cite: 1]
         const badgeEl = document.getElementById("anchor-badge");
         const eventNoteEl = document.getElementById("event-note");
         
@@ -34,18 +29,26 @@ document.addEventListener("DOMContentLoaded", async () => {
             }
         }
 
-        // 4. Renderowanie 6 utworów[cite: 1]
+        const wikiLinkEl = document.getElementById("wiki-link");
+        if (dayRecord.composer && dayRecord.composer.wiki_url) {
+            wikiLinkEl.href = dayRecord.composer.wiki_url;
+            wikiLinkEl.style.display = "block";
+        } else if (dayRecord.composer && dayRecord.composer.name) {
+            wikiLinkEl.href = `https://en.wikipedia.org/wiki/Special:Search?search=${encodeURIComponent(dayRecord.composer.name)}`;
+            wikiLinkEl.style.display = "block";
+        } else {
+            wikiLinkEl.style.display = "none";
+        }
+
         const tracksContainer = document.getElementById("tracks-container");
-        tracksContainer.innerHTML = ""; // Czyszczenie kontenera
+        tracksContainer.innerHTML = "";
 
         dayRecord.tracks.forEach(track => {
             const trackEl = document.createElement("div");
-            trackEl.className = `track-card ${track.is_main_hit ? 'main-hit' : ''}`;
+            trackEl.className = "track-card";
 
-            // Generowanie tagów nastroju z zachowaniem flex-wrap[cite: 1]
             const tagsHTML = track.mood_tags.map(tag => `<span class="mood-tag">${tag}</span>`).join("");
 
-            // Generowanie linków wyszukiwania (KEY 1 / KEY 2 deep-linking)[cite: 1]
             const searchQuery = encodeURIComponent(`${dayRecord.composer.name} ${track.title}`);
             const spotifyLink = `https://open.spotify.com/search/${searchQuery}`;
             const appleMusicLink = `https://music.apple.com/us/search?term=${searchQuery}`;
@@ -54,7 +57,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                 <div class="track-header">
                     <span class="track-rank">#${track.rank}</span>
                     <h3 class="track-title">${track.title}</h3>
-                    ${track.is_main_hit ? '<span class="hit-badge">MAIN HIT</span>' : ''}
                 </div>
                 <div class="mood-tags-container">
                     ${tagsHTML}
@@ -69,34 +71,23 @@ document.addEventListener("DOMContentLoaded", async () => {
             tracksContainer.appendChild(trackEl);
         });
 
+        const appContainer = document.querySelector(".app-container");
+        const detoxBanner = document.getElementById("detox-message");
+
+        document.querySelectorAll(".btn-stream").forEach(btn => {
+            btn.addEventListener("click", () => {
+                localStorage.setItem("classical_listened_today", "true");
+            });
+        });
+
+        window.addEventListener("focus", () => {
+            if (localStorage.getItem("classical_listened_today") === "true") {
+                appContainer.classList.add("dimmed-card");
+                detoxBanner.style.display = "block";
+            }
+        });
+
     } catch (error) {
         console.error("Error loading Classics in 7 content:", error);
-    }
-});
-// Dynamiczne przypisanie linku do Wikipedii z bazy danych
-const wikiLinkEl = document.getElementById("wiki-link");
-if (dayRecord.composer.wiki_url) {
-    wikiLinkEl.href = dayRecord.composer.wiki_url;
-    wikiLinkEl.style.display = "block";
-} else {
-    wikiLinkEl.style.display = "none";
-}
-
-// Mechanizm Respect Your On-Screen Time
-const appContainer = document.querySelector(".app-container");
-const detoxBanner = document.getElementById("detox-message");
-
-document.querySelectorAll(".btn-stream").forEach(btn => {
-    btn.addEventListener("click", () => {
-        // Zapisujemy informację, że użytkownik rozpoczął sesję odsłuchową
-        localStorage.setItem("classical_listened_today", "true");
-    });
-});
-
-// Wykrycie powrotu użytkownika do karty aplikacji po odsłuchu
-window.addEventListener("focus", () => {
-    if (localStorage.getItem("classical_listened_today") === "true") {
-        appContainer.classList.add("dimmed-card");
-        detoxBanner.style.display = "block";
     }
 });
