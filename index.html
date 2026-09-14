@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,40 +7,24 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <main class="app-container">
-        <div class="card">
-            <div id="anchor-badge"></div>
-            <h1 id="composer-name"></h1>
-            <div id="composer-meta"></div>
-            <div id="event-note" style="display: none;"></div>
-
-            <!-- Główny blok utworu (Utwór #1 ze złotą ramką) -->
-            <div class="main-track-card">
-                <div class="track-header">
-                    <span class="track-rank">#1</span>
-                    <h3 class="track-title" id="track-title"></h3>
-                </div>
-                <div class="mood-tags-container" id="track-mood-container">
-                    <span class="mood-tag" id="track-mood"></span>
-                </div>
-                <p class="track-fact" id="track-fact"></p>
-
-                <!-- Matryca przycisków 2x2 pod głównym utworem -->
-                <div class="actions-grid-2x2">
-                    <button class="btn-slot" id="btn-1">Button 1</button>
-                    <button class="btn-slot" id="btn-2">Button 2</button>
-                    <button class="btn-slot" id="btn-3">Button 3</button>
-                    <button class="btn-slot" id="btn-4">Button 4</button>
-                </div>
-            </div>
-
-            <!-- Kontener na pozostałe utwory / Discover More -->
-            <div id="tracks-container"></div>
-
-            <!-- Przycisk Wikipedii (wyrównany do lewej) -->
-            <a id="wiki-link" href="#" target="_blank" class="wiki-footer-btn">Explore Wikipedia</a>
+    <div class="app-container">
+        <span id="anchor-badge"></span>
+        <h1 id="composer-name">Ładowanie...</h1>
+        <p id="composer-meta"></p>
+        <p id="event-note" style="display:none;"></p>
+        
+        <div id="tracks-container">
+            <!-- Tutaj JavaScript wstrzyknie 6 utworów -->
         </div>
-    </main>
+
+        <div id="footer-container">
+            <a id="wiki-link" href="#" target="_blank" class="wiki-footer-btn">🏛 EXPLORE WIKIPEDIA</a>
+        </div>
+
+        <div id="detox-message" class="detox-banner" style="display: none;">
+            We respect your on-screen time. Your daily ritual is complete. Enjoy the calm and we hopefully see you tomorrow.
+        </div>
+    </div>
 
     <script src="app.js"></script>
 </body>
