@@ -46,6 +46,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         function renderMainTrack(track) {
             document.getElementById("main-track-rank").textContent = `#1`;
             document.getElementById("main-track-title").textContent = track.title;
+            document.getElementById("main-track-duration").textContent = track.duration || "";
             
             const moodsContainer = document.getElementById("main-track-moods");
             if (track.mood_tags && Array.isArray(track.mood_tags)) {
@@ -83,6 +84,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     <div class="track-header">
                         <span class="track-rank">#${index + 2}</span>
                         <h3 class="track-title">${track.title}</h3>
+                        <span class="track-duration">${track.duration || ""}</span>
                     </div>
                     <div class="mood-tags-container">
                         ${tagsHTML}
@@ -100,7 +102,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                         renderMainTrack(currentTracks[0]);
                         renderDiscoverList();
 
-                        // Zwijanie menu i powrót trójkąta do pozycji w dół (0deg)
                         discoverContent.classList.remove("expanded");
                         discoverArrow.style.transform = "rotate(0deg)";
                     }
@@ -121,7 +122,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         discoverToggle.addEventListener("click", () => {
             const isExpanded = discoverContent.classList.toggle("expanded");
-            // Obrót trójkąta o 180 stopni (w górę) po rozwinięciu
             discoverArrow.style.transform = isExpanded ? "rotate(180deg)" : "rotate(0deg)";
         });
 
