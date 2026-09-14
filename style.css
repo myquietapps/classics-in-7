@@ -54,11 +54,6 @@ body {
     transition: border-color 0.2s ease;
 }
 
-.track-card.main-hit {
-    border-color: #d4af37;
-    background: linear-gradient(145deg, #1a1a1a 0%, #222018 100%);
-}
-
 .track-header {
     display: flex;
     align-items: baseline;
@@ -77,16 +72,6 @@ body {
     flex-grow: 1;
     color: #ffffff;
     font-weight: 600;
-}
-
-.hit-badge {
-    font-size: 0.6rem;
-    background: #d4af37;
-    color: #121212;
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
 }
 
 .mood-tags-container {
@@ -135,10 +120,13 @@ body {
 .btn-stream.apple { 
     background: #fa243c; 
 }
+
 .wiki-footer-btn {
     display: block;
+    width: 100%;
     text-align: center;
     margin-top: 24px;
+    margin-bottom: 24px;
     font-size: 0.75rem;
     letter-spacing: 1.2px;
     color: #888888;
