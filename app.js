@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 </div>
                 <p class="track-fact"><strong>Trivia:</strong> ${track.fact}</p>
                 <div class="track-actions">
-                    <a href="${spotifyLink}" target="_blank" rel="noopener noreferrer" class="btn-stream spotify">Spotify</a>
+                    <a href="${spotifyLink}" class="btn-stream spotify" onclick="window.open(this.href, '_blank'); return false;">Spotify</a>
                     <a href="${appleMusicLink}" target="_blank" rel="noopener noreferrer" class="btn-stream apple">Apple Music</a>
                 </div>
             `;
