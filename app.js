@@ -73,3 +73,30 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.error("Error loading Classics in 7 content:", error);
     }
 });
+// Dynamiczne przypisanie linku do Wikipedii z bazy danych
+const wikiLinkEl = document.getElementById("wiki-link");
+if (dayRecord.composer.wiki_url) {
+    wikiLinkEl.href = dayRecord.composer.wiki_url;
+    wikiLinkEl.style.display = "block";
+} else {
+    wikiLinkEl.style.display = "none";
+}
+
+// Mechanizm Respect Your On-Screen Time
+const appContainer = document.querySelector(".app-container");
+const detoxBanner = document.getElementById("detox-message");
+
+document.querySelectorAll(".btn-stream").forEach(btn => {
+    btn.addEventListener("click", () => {
+        // Zapisujemy informację, że użytkownik rozpoczął sesję odsłuchową
+        localStorage.setItem("classical_listened_today", "true");
+    });
+});
+
+// Wykrycie powrotu użytkownika do karty aplikacji po odsłuchu
+window.addEventListener("focus", () => {
+    if (localStorage.getItem("classical_listened_today") === "true") {
+        appContainer.classList.add("dimmed-card");
+        detoxBanner.style.display = "block";
+    }
+});
