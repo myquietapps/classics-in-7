@@ -49,9 +49,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             const tagsHTML = track.mood_tags.map(tag => `<span class="mood-tag">${tag}</span>`).join("");
 
-            const searchQuery = encodeURIComponent(`${dayRecord.composer.name} ${track.title}`);
-            const spotifyLink = `https://open.spotify.com/search/${searchQuery}`;
-            const appleMusicLink = `https://music.apple.com/us/search?term=${searchQuery}`;
+            const rawQuery = `${dayRecord.composer.name} ${track.title}`;
+            const spotifyLink = `https://open.spotify.com/search/${encodeURIComponent(rawQuery)}`;
+            const appleMusicLink = `https://music.apple.com/us/search?term=${encodeURIComponent(rawQuery)}`;
 
             trackEl.innerHTML = `
                 <div class="track-header">
