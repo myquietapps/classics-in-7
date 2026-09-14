@@ -32,25 +32,27 @@ document.addEventListener("DOMContentLoaded", async () => {
         const wikiLinkEl = document.getElementById("wiki-link");
         if (dayRecord.composer && dayRecord.composer.wiki_url) {
             wikiLinkEl.href = dayRecord.composer.wiki_url;
-            wikiLinkEl.style.display = "block";
+            wikiLinkEl.parentElement.style.display = "block";
         } else if (dayRecord.composer && dayRecord.composer.name) {
             wikiLinkEl.href = `https://en.wikipedia.org/wiki/Special:Search?search=${encodeURIComponent(dayRecord.composer.name)}`;
-            wikiLinkEl.style.display = "block";
+            wikiLinkEl.parentElement.style.display = "block";
         } else {
-            wikiLinkEl.style.display = "none";
+            wikiLinkEl.parentElement.style.display = "none";
         }
 
-        // Kopia utworów do lokalnej manipulacji przy podmianie
         let currentTracks = [...dayRecord.tracks];
         const composerName = dayRecord.composer.name;
 
-        // Funkcja renderująca główny utwór na podstawie obiektu utworu
         function renderMainTrack(track) {
-            document.getElementById("main-track-rank").textContent = `#${track.rank}`;
+            document.getElementById("main-track-rank").textContent = `#1`;
             document.getElementById("main-track-title").textContent = track.title;
             
             const moodsContainer = document.getElementById("main-track-moods");
-            moodsContainer.innerHTML = track.mood_tags.map(tag => `<span class="mood-tag">${tag}</span>`).join("");
+            if (track.mood_tags && Array.isArray(track.mood_tags)) {
+                moodsContainer.innerHTML = track.mood_tags.map(tag => `<span class="mood-tag">${tag}</span>`).join("");
+            } else {
+                moodsContainer.innerHTML = "";
+            }
 
             document.getElementById("main-track-fact").innerHTML = `<strong>Trivia:</strong> ${track.fact}`;
 
@@ -65,23 +67,21 @@ document.addEventListener("DOMContentLoaded", async () => {
             `;
         }
 
-        // Funkcja renderująca listę w sekcji "Discover More" (pozostałe utwory)
         function renderDiscoverList() {
             const tracksContainer = document.getElementById("tracks-container");
             tracksContainer.innerHTML = "";
 
-            // Wszystkie utwory oprócz aktualnie głównego (indeks 0 w currentTracks)
             const subTracks = currentTracks.slice(1);
 
-            subTracks.forEach((track) => {
+            subTracks.forEach((track, index) => {
                 const trackEl = document.createElement("div");
                 trackEl.className = "track-card";
 
-                const tagsHTML = track.mood_tags.map(tag => `<span class="mood-tag">${tag}</span>`).join("");
+                const tagsHTML = track.mood_tags ? track.mood_tags.map(tag => `<span class="mood-tag">${tag}</span>`).join("") : "";
 
                 trackEl.innerHTML = `
                     <div class="track-header">
-                        <span class="track-rank">#${track.rank}</span>
+                        <span class="track-rank">#${index + 2}</span>
                         <h3 class="track-title">${track.title}</h3>
                     </div>
                     <div class="mood-tags-container">
@@ -90,21 +90,16 @@ document.addEventListener("DOMContentLoaded", async () => {
                     <p class="track-fact"><strong>Trivia:</strong> ${track.fact}</p>
                 `;
 
-                // Mechanika podmiany po kliknięciu w utwór z listy
                 trackEl.addEventListener("click", () => {
-                    // Znajdź indeks klikniętego utworu w pełnej tablicy
-                    const clickedIndex = currentTracks.findIndex(t => t.rank === track.rank);
+                    const originalIndex = currentTracks.findIndex(t => t.title === track.title);
                     
-                    if (clickedIndex !== -1) {
-                        // Przesuń kliknięty utwór na pierwszą pozycję
-                        const selectedTrack = currentTracks.splice(clickedIndex, 1)[0];
+                    if (originalIndex !== -1) {
+                        const selectedTrack = currentTracks.splice(originalIndex, 1)[0];
                         currentTracks.unshift(selectedTrack);
 
-                        // Odśwież widoki
                         renderMainTrack(currentTracks[0]);
                         renderDiscoverList();
 
-                        // Automatyczne zwinięcie listy (zamknięcie akordeonu)
                         discoverContent.classList.remove("expanded");
                         discoverArrow.style.transform = "rotate(0deg)";
                     }
@@ -114,13 +109,11 @@ document.addEventListener("DOMContentLoaded", async () => {
             });
         }
 
-        // Inicjalizacja stanu początkowego (główny to pierwszy z tablicy)
         if (currentTracks.length > 0) {
             renderMainTrack(currentTracks[0]);
             renderDiscoverList();
         }
 
-        // Obsługa akordeonu "DISCOVER MORE"
         const discoverToggle = document.getElementById("discover-toggle");
         const discoverContent = document.getElementById("discover-content");
         const discoverArrow = document.getElementById("discover-arrow");
