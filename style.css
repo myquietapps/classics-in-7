@@ -51,7 +51,6 @@ body {
     padding: 14px;
     margin-bottom: 12px;
     border: 1px solid #2a2a2a;
-    transition: border-color 0.2s ease;
 }
 
 .track-header {
@@ -104,13 +103,16 @@ body {
 
 .btn-stream {
     font-size: 0.75rem;
-    padding: 6px 12px;
+    padding: 8px 12px;
     border-radius: 6px;
     text-decoration: none;
     color: #ffffff;
     font-weight: 600;
     text-align: center;
     flex: 1;
+    border: none;
+    display: inline-block;
+    box-sizing: border-box;
 }
 
 .btn-stream.spotify { 
@@ -124,7 +126,7 @@ body {
 .wiki-footer-btn {
     display: block;
     width: 100%;
-    text-align: left; /* Zmienione z center na left */
+    text-align: left;
     margin-top: 24px;
     margin-bottom: 24px;
     font-size: 0.75rem;
@@ -138,5 +140,3 @@ body {
 .wiki-footer-btn:hover {
     color: #d4af37;
 }
-
-
