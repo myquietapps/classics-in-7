@@ -45,13 +45,82 @@ body {
     margin-bottom: 16px;
 }
 
-.track-card {
+/* Główny utwór #1 w ramce kolorystycznej tożsamej z anchor-badge (#d4af37) */
+.main-track-card {
     background: #1a1a1a;
     border-radius: 12px;
-    padding: 14px;
-    margin-bottom: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+    border: 1px solid #d4af37;
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.08);
+}
+
+/* Sekcja Discover More (Akordeon) */
+.discover-more-section {
+    background: #1a1a1a;
+    border-radius: 12px;
     border: 1px solid #2a2a2a;
-    transition: border-color 0.2s ease;
+    overflow: hidden;
+    margin-bottom: 16px;
+}
+
+.discover-toggle-btn {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: #d4af37;
+    padding: 14px 16px;
+    text-align: left;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.2s ease;
+}
+
+.discover-toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+#discover-arrow {
+    display: inline-block;
+    transition: transform 0.3s ease;
+    font-size: 0.7rem;
+}
+
+.discover-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 0 16px;
+}
+
+.discover-content.expanded {
+    max-height: 1200px; /* Wystarczająco dużo, by pomieścić zwinięte utwory */
+    padding: 0 16px 16px 16px;
+}
+
+.track-card {
+    background: #222222;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 1px solid #2e2e2e;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.track-card:hover {
+    border-color: #d4af37;
+    background: #262626;
+}
+
+.track-card:last-child {
+    margin-bottom: 0;
 }
 
 .track-header {
@@ -83,7 +152,7 @@ body {
 
 .mood-tag {
     font-size: 0.7rem;
-    background: #262626;
+    background: #2b2b2b;
     color: #b0b0b0;
     padding: 2px 8px;
     border-radius: 12px;
@@ -94,7 +163,11 @@ body {
     font-size: 0.8rem;
     color: #bbbbbb;
     line-height: 1.4;
-    margin: 8px 0 12px 0;
+    margin: 8px 0 0 0;
+}
+
+.main-track-card .track-fact {
+    margin-bottom: 12px;
 }
 
 .track-actions {
@@ -137,21 +210,4 @@ body {
 
 .wiki-footer-btn:hover {
     color: #d4af37;
-}
-
-.dimmed-card {
-    opacity: 0.4;
-    transition: opacity 0.8s ease;
-}
-
-.detox-banner {
-    margin-top: 24px;
-    text-align: center;
-    font-size: 0.8rem;
-    color: #d4af37;
-    line-height: 1.5;
-    padding: 14px;
-    background: rgba(212, 175, 55, 0.05);
-    border-radius: 8px;
-    border: 1px dashed rgba(212, 175, 55, 0.3);
 }
