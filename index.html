@@ -7,88 +7,18 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <main class="container" style="position: relative;">
-        <div id="toast-notification">Saved!</div>
-
+    <main class="app-container">
         <div class="card">
-            <!-- Widok standardowy (Urodziny / Utwór dnia) -->
-            <div id="track-main-view" style="display: none;">
-                <div class="date-header" id="date-header" style="margin-bottom: 10px; font-size: 14px; opacity: 0.7; text-transform: uppercase; letter-spacing: 0.5px;">Born today</div>
-                <h1 id="track-title" style="font-size: 24px;"></h1>
-                
-                <div class="composer-wrapper" style="font-size: 16px;">
-                    <span id="track-composer"></span>
-                    <span class="country-tag" id="track-country"></span>
-                    <span id="track-duration" class="duration-tag"></span>
-                </div>
+            <div id="anchor-badge"></div>
+            <h1 id="composer-name"></h1>
+            <div id="composer-meta"></div>
+            <div id="event-note" style="display: none;"></div>
 
-                <div class="tags-container">
-                    <span class="mood-tag" id="track-mood"></span>
-                </div>
+            <!-- Kontener na utwory -->
+            <div id="tracks-container"></div>
 
-                <div class="actions">
-                    <a href="#" id="spotify-link" class="btn spotify" target="_blank" rel="noopener noreferrer">Spotify</a>
-                    <a href="#" id="youtube-link" class="btn youtube" target="_blank" rel="noopener noreferrer">YouTube</a>
-                    <button class="btn save-btn" title="Save for later">Later</button>
-                </div>
-
-                <div class="fact-card">
-                    <div class="fact-title" style="font-size: 15px;">Did you know?</div>
-                    <p id="fact-text" style="font-size: 15px; line-height: 1.5;"></p>
-                    <div class="fact-voting">
-                        <span style="font-size: 14px;">Was this interesting?</span>
-                        <button class="vote-btn track-vote-up">👍</button>
-                        <button class="vote-btn track-vote-down">👎</button>
-                    </div>
-                </div>
-
-                <div class="discover-card" id="discoverCard">
-                    <div class="discover-header" style="font-size: 15px; cursor: pointer;">
-                        <span id="discover-arrow">▶</span> DISCOVER MORE
-                    </div>
-                    <div class="top5-list" id="top5List" style="display: none;"></div>
-                </div>
-            </div>
-
-            <!-- Widok alternatywny (Brak urodzin dzisiaj) -->
-            <div id="no-composer-view" style="display: block;">
-                <div class="unified-header-title">
-                    <span>No composer was born today</span>
-                </div>
-                
-                <div class="nc-nav-stack">
-                    <div class="nc-info-card" id="nc-prev-card">
-                        <span style="font-size: 18px; font-weight: bold; opacity: 0.7; margin-right: 12px;">←</span>
-                        <div style="flex-grow: 1; text-align: left;">
-                            <div id="nc-prev-date" class="nc-date"></div>
-                            <div class="nc-composer-name" id="nc-prev-name"></div>
-                        </div>
-                        <span style="font-size: 12px; opacity: 0.5; text-transform: uppercase; letter-spacing: 0.5px;">Previous</span>
-                    </div>
-                    
-                    <div class="nc-info-card" id="nc-next-card">
-                        <span style="font-size: 12px; opacity: 0.5; text-transform: uppercase; letter-spacing: 0.5px;">Next</span>
-                        <div style="flex-grow: 1; text-align: right;">
-                            <div id="nc-next-date" class="nc-date"></div>
-                            <div class="nc-composer-name" id="nc-next-name"></div>
-                        </div>
-                        <span style="font-size: 18px; font-weight: bold; opacity: 0.7; margin-left: 12px;">→</span>
-                    </div>
-                </div>
-
-                <div class="fact-card" style="margin-top: 15px;">
-                    <div class="unified-header-title" style="margin-bottom: 10px;">
-                        <span>Classical Insight</span>
-                        <span id="insight-category-tag" style="font-size: 12px; opacity: 0.8; font-weight: normal; background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px; text-transform: none;">Science</span>
-                    </div>
-                    <p id="nc-fact-text" style="font-size: 15px; line-height: 1.5;"></p>
-                    <div class="fact-voting" style="margin-top: 12px;">
-                        <span style="font-size: 14px;">Was this insight useful?</span>
-                        <button class="vote-btn insight-vote-up">👍</button>
-                        <button class="vote-btn insight-vote-down">👎</button>
-                    </div>
-                </div>
-            </div>
+            <!-- Przycisk Wikipedii (wyrównany do lewej) -->
+            <a id="wiki-link" href="#" target="_blank" class="wiki-footer-btn">Explore Wikipedia</a>
         </div>
     </main>
 
