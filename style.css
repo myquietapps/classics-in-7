@@ -15,7 +15,6 @@ body {
     max-width: 480px;
 }
 
-/* Wyrównana wielkość liter z DISCOVER MORE (0.85rem) */
 #anchor-badge {
     font-size: 0.85rem;
     letter-spacing: 1.2px;
@@ -46,7 +45,6 @@ body {
     margin-bottom: 16px;
 }
 
-/* Główny utwór #1 w ramce kolorystycznej tożsamej z anchor-badge (#d4af37) */
 .main-track-card {
     background: #1a1a1a;
     border-radius: 12px;
@@ -56,7 +54,6 @@ body {
     box-shadow: 0 4px 12px rgba(212, 175, 55, 0.08);
 }
 
-/* Sekcja Discover More oraz Wikipedia (Wspólny styl blokowy) */
 .discover-more-section {
     background: #1a1a1a;
     border-radius: 12px;
