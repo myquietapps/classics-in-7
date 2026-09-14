@@ -13,16 +13,33 @@
         <p id="composer-meta"></p>
         <p id="event-note" style="display:none;"></p>
         
-        <div id="tracks-container">
-            <!-- Tutaj JavaScript wstrzyknie 6 utworów -->
+        <!-- Główny utwór (#1) w dedykowanej ramce -->
+        <div id="main-track-card" class="main-track-card">
+            <div class="track-header">
+                <span id="main-track-rank" class="track-rank">#1</span>
+                <h3 id="main-track-title" class="track-title"></h3>
+            </div>
+            <div id="main-track-moods" class="mood-tags-container"></div>
+            <p id="main-track-fact" class="track-fact"></p>
+            <div id="main-track-actions" class="track-actions">
+                <!-- Przyciski streamingowe tylko dla głównego utworu -->
+            </div>
+        </div>
+
+        <!-- Sekcja Discover More (Rozwijana lista utworów 2-6) -->
+        <div class="discover-more-section">
+            <button id="discover-toggle" class="discover-toggle-btn">
+                <span id="discover-arrow">▶</span> DISCOVER MORE
+            </button>
+            <div id="discover-content" class="discover-content">
+                <div id="tracks-container">
+                    <!-- Tutaj JavaScript wstrzyknie utwory 2-6 -->
+                </div>
+            </div>
         </div>
 
         <div id="footer-container">
             <a id="wiki-link" href="#" target="_blank" class="wiki-footer-btn">🏛 EXPLORE WIKIPEDIA</a>
-        </div>
-
-        <div id="detox-message" class="detox-banner" style="display: none;">
-            We respect your on-screen time. Your daily ritual is complete. Enjoy the calm and we hopefully see you tomorrow.
         </div>
     </div>
 
