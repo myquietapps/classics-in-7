@@ -135,3 +135,35 @@ body {
 .btn-stream.apple { 
     background: #fa243c; 
 }
+.wiki-footer-btn {
+    display: block;
+    text-align: center;
+    margin-top: 24px;
+    font-size: 0.75rem;
+    letter-spacing: 1.2px;
+    color: #888888;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+}
+
+.wiki-footer-btn:hover {
+    color: #d4af37;
+}
+
+.dimmed-card {
+    opacity: 0.4;
+    transition: opacity 0.8s ease;
+}
+
+.detox-banner {
+    margin-top: 24px;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #d4af37;
+    line-height: 1.5;
+    padding: 14px;
+    background: rgba(212, 175, 55, 0.05);
+    border-radius: 8px;
+    border: 1px dashed rgba(212, 175, 55, 0.3);
+}
