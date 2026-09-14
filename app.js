@@ -49,9 +49,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             const tagsHTML = track.mood_tags.map(tag => `<span class="mood-tag">${tag}</span>`).join("");
 
-            const rawQuery = `${dayRecord.composer.name} ${track.title}`;
-            const spotifyLink = `https://open.spotify.com/search/${encodeURIComponent(rawQuery)}`;
-            const appleMusicLink = `https://music.apple.com/us/search?term=${encodeURIComponent(rawQuery)}`;
+            const searchQuery = encodeURIComponent(`${dayRecord.composer.name} ${track.title}`);
+            const spotifyLink = `https://open.spotify.com/search/${searchQuery}`;
+            const appleMusicLink = `https://music.apple.com/us/search?term=${searchQuery}`;
 
             trackEl.innerHTML = `
                 <div class="track-header">
@@ -69,6 +69,22 @@ document.addEventListener("DOMContentLoaded", async () => {
             `;
 
             tracksContainer.appendChild(trackEl);
+        });
+
+        const appContainer = document.querySelector(".app-container");
+        const detoxBanner = document.getElementById("detox-message");
+
+        document.querySelectorAll(".btn-stream").forEach(btn => {
+            btn.addEventListener("click", () => {
+                localStorage.setItem("classical_listened_today", "true");
+            });
+        });
+
+        window.addEventListener("focus", () => {
+            if (localStorage.getItem("classical_listened_today") === "true") {
+                appContainer.classList.add("dimmed-card");
+                detoxBanner.style.display = "block";
+            }
         });
 
     } catch (error) {
