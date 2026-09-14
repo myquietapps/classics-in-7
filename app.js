@@ -100,6 +100,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                         renderMainTrack(currentTracks[0]);
                         renderDiscoverList();
 
+                        // Zwijanie menu i powrót trójkąta do pozycji w dół (0deg)
                         discoverContent.classList.remove("expanded");
                         discoverArrow.style.transform = "rotate(0deg)";
                     }
@@ -120,7 +121,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         discoverToggle.addEventListener("click", () => {
             const isExpanded = discoverContent.classList.toggle("expanded");
-            discoverArrow.style.transform = isExpanded ? "rotate(90deg)" : "rotate(0deg)";
+            // Obrót trójkąta o 180 stopni (w górę) po rozwinięciu
+            discoverArrow.style.transform = isExpanded ? "rotate(180deg)" : "rotate(0deg)";
         });
 
     } catch (error) {
