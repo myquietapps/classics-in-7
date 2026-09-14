@@ -60,5 +60,194 @@
         "fact": "An intimate sacred piece written for soprano and English horn during his service at the Royal Chapel in Paris."
       }
     ]
+  },
+  {
+    "date": "12-24",
+    "anchor_type": "premiere",
+    "event_note": "Christmas Eve – Exquisite Baroque and Classical Christmas Masterpieces",
+    "composer": {
+      "name": "Arcangelo Corelli & Tradition",
+      "birth_year": "1653",
+      "death_year": "1713",
+      "period": "Baroque",
+      "birth_country": "Italy",
+      "wiki_url": "https://en.wikipedia.org/wiki/Christmas_Concerto_(Corelli)"
+    },
+    "tracks": [
+      {
+        "rank": 1,
+        "title": "Concerto Grosso in G minor, Op. 6, No. 8 'Fatto per la notte di Natale'",
+        "duration": "14:10",
+        "digital_reach_score": 98,
+        "mood_tags": ["#Calm", "#Relaxing"],
+        "fact": "Corelli's famous 'Christmas Concerto' was composed specifically for Christmas Eve performance and features a subtle pastoral final movement."
+      },
+      {
+        "rank": 2,
+        "title": "The Nutcracker: Dance of the Sugar Plum Fairy",
+        "duration": "2:05",
+        "digital_reach_score": 99,
+        "mood_tags": ["#Focus", "#Relaxing"],
+        "fact": "Pyotr Ilyich Tchaikovsky was among the first to use the newly imported celesta instrument from Paris in this piece."
+      },
+      {
+        "rank": 3,
+        "title": "The Nutcracker: Waltz of the Flowers",
+        "duration": "6:50",
+        "digital_reach_score": 97,
+        "mood_tags": ["#Calm"],
+        "fact": "This grand waltz from The Nutcracker remains one of the most widely recognized orchestral ballet pieces in the world."
+      },
+      {
+        "rank": 4,
+        "title": "Pastorale in F major",
+        "duration": "5:30",
+        "digital_reach_score": 85,
+        "mood_tags": ["#Calm", "#Relaxing"],
+        "fact": "A traditional Italian Christmas melody frequently adapted by Baroque masters for holiday celebrations."
+      },
+      {
+        "rank": 5,
+        "title": "Hodie Christus natus est (Jan Pieterszoon Sweelinck)",
+        "duration": "4:15",
+        "digital_reach_score": 82,
+        "mood_tags": ["#Focus"],
+        "fact": "A luminous Renaissance Christmas motet rich in intricate vocal polyphony."
+      },
+      {
+        "rank": 6,
+        "title": "Silent Night (Choral Version)",
+        "duration": "3:40",
+        "digital_reach_score": 96,
+        "mood_tags": ["#Relaxing", "#Calm"],
+        "fact": "The world's most popular carol, composed in 1818 in Austria by Franz Xaver Gruber."
+      }
+    ]
+  },
+  {
+    "date": "12-25",
+    "anchor_type": "premiere",
+    "event_note": "Christmas Day – Monumental Baroque Sacred Masterpieces",
+    "composer": {
+      "name": "Johann Sebastian Bach",
+      "birth_year": "1685",
+      "death_year": "1750",
+      "period": "Baroque",
+      "birth_country": "Germany",
+      "wiki_url": "https://en.wikipedia.org/wiki/Christmas_Oratorio"
+    },
+    "tracks": [
+      {
+        "rank": 1,
+        "title": "Christmas Oratorio, BWV 248: Part I - Jauchzet, frohlocket",
+        "duration": "7:50",
+        "digital_reach_score": 96,
+        "mood_tags": ["#Dramatic", "#Focus"],
+        "fact": "The opening part of Bach's Christmas Oratorio bursts forth with powerful timpani strokes and triumphant trumpets celebrating the Nativity."
+      },
+      {
+        "rank": 2,
+        "title": "Christmas Oratorio, BWV 248: Pastoral Symphony (Sinfonia)",
+        "duration": "6:20",
+        "digital_reach_score": 92,
+        "mood_tags": ["#Calm", "#Relaxing"],
+        "fact": "An instrumental interlude introducing Part II, depicting the peaceful Bethlehem night and the watching shepherds."
+      },
+      {
+        "rank": 3,
+        "title": "Magnificat in D major, BWV 243: I. Magnificat anima mea",
+        "duration": "3:10",
+        "digital_reach_score": 90,
+        "mood_tags": ["#Focus", "#Dramatic"],
+        "fact": "Bach originally composed this brilliant setting for the Christmas vespers service in Leipzig in 1723."
+      },
+      {
+        "rank": 4,
+        "title": "Wachet auf, ruft uns die Stimme, BWV 140",
+        "duration": "5:30",
+        "digital_reach_score": 88,
+        "mood_tags": ["#Focus"],
+        "fact": "One of Bach's most celebrated chorale cantatas, blending deep spiritual devotion with majestic counterpoint."
+      },
+      {
+        "rank": 5,
+        "title": "Orchestral Suite No. 3 in D major: Air on the G String",
+        "duration": "4:50",
+        "digital_reach_score": 99,
+        "mood_tags": ["#Relaxing", "#Calm"],
+        "fact": "A piece of profound tranquility, offering an ideal soundtrack for a peaceful holiday morning."
+      },
+      {
+        "rank": 6,
+        "title": "Jesu, Joy of Man's Desiring",
+        "duration": "3:25",
+        "digital_reach_score": 95,
+        "mood_tags": ["#Relaxing", "#Calm"],
+        "fact": "Bach's iconic chorale setting brings deep inner peace and has become a permanent staple of classical holiday playlists."
+      }
+    ]
+  },
+  {
+    "date": "12-26",
+    "anchor_type": "premiere",
+    "event_note": "Boxing Day – Monumental Choral and Orchestral Masterpieces",
+    "composer": {
+      "name": "George Frideric Handel",
+      "birth_year": "1685",
+      "death_year": "1759",
+      "period": "Baroque",
+      "birth_country": "Germany",
+      "wiki_url": "https://en.wikipedia.org/wiki/Messiah_(Handel)"
+    },
+    "tracks": [
+      {
+        "rank": 1,
+        "title": "Messiah, HWV 56: Hallelujah Chorus",
+        "duration": "3:45",
+        "digital_reach_score": 100,
+        "mood_tags": ["#Dramatic", "#Focus"],
+        "fact": "King George II was so moved by the power of this chorus that he stood up, inspiring the enduring tradition of audience standing."
+      },
+      {
+        "rank": 2,
+        "title": "Messiah, HWV 56: For Unto Us a Child Is Born",
+        "duration": "4:20",
+        "digital_reach_score": 94,
+        "mood_tags": ["#Focus"],
+        "fact": "A joyous chorus from Messiah adapted from an Italian secular duet into a monumental sacred masterpiece."
+      },
+      {
+        "rank": 3,
+        "title": "Water Music: Suite in F major, HWV 348: Allegro",
+        "duration": "3:00",
+        "digital_reach_score": 91,
+        "mood_tags": ["#Focus"],
+        "fact": "First performed on a barge on the River Thames for the British monarch, exuding festive brilliance and courtly elegance."
+      },
+      {
+        "rank": 4,
+        "title": "Music for the Royal Fireworks: La Rejouissance",
+        "duration": "2:15",
+        "digital_reach_score": 89,
+        "mood_tags": ["#Dramatic"],
+        "fact": "Commissioned by the King for the public celebration of the Treaty of Aix-la-Chapelle, featuring an imposing wind band."
+      },
+      {
+        "rank": 5,
+        "title": "Messiah, HWV 56: Pastoral Symphony",
+        "duration": "3:10",
+        "digital_reach_score": 87,
+        "mood_tags": ["#Calm", "#Relaxing"],
+        "fact": "Another exquisite pastoral movement within our holiday collection, setting a contemplative and atmospheric mood."
+      },
+      {
+        "rank": 6,
+        "title": "Zadok the Priest (Coronation Anthem)",
+        "duration": "5:30",
+        "digital_reach_score": 93,
+        "mood_tags": ["#Dramatic", "#Focus"],
+        "fact": "Handel composed this anthem for the coronation of George II in 1727; it has since been performed at every British coronation."
+      }
+    ]
   }
 ]
