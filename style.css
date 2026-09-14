@@ -16,7 +16,7 @@ body {
 }
 
 #anchor-badge {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     letter-spacing: 1.5px;
     color: #d4af37;
     text-transform: uppercase;
@@ -24,20 +24,20 @@ body {
 }
 
 #composer-name {
-    font-size: 1.75rem;
+    font-size: 1.9rem;
     margin: 4px 0;
     color: #ffffff;
     font-weight: 700;
 }
 
 #composer-meta {
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     color: #999999;
     margin-bottom: 20px;
 }
 
 #event-note {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     color: #d4af37;
     background: rgba(212, 175, 55, 0.1);
     padding: 8px 12px;
@@ -55,7 +55,7 @@ body {
     box-shadow: 0 4px 12px rgba(212, 175, 55, 0.08);
 }
 
-/* Sekcja Discover More (Akordeon) */
+/* Sekcja Discover More oraz Wikipedia (Wspólny styl blokowy) */
 .discover-more-section {
     background: #1a1a1a;
     border-radius: 12px;
@@ -72,13 +72,15 @@ body {
     padding: 14px 16px;
     text-align: left;
     font-family: 'Inter', sans-serif;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     font-weight: 700;
     letter-spacing: 1.2px;
     cursor: pointer;
     display: flex;
     align-items: center;
     gap: 8px;
+    text-decoration: none;
+    box-sizing: border-box;
     transition: background 0.2s ease;
 }
 
@@ -89,7 +91,7 @@ body {
 #discover-arrow {
     display: inline-block;
     transition: transform 0.3s ease;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
 }
 
 .discover-content {
@@ -100,7 +102,7 @@ body {
 }
 
 .discover-content.expanded {
-    max-height: 1200px; /* Wystarczająco dużo, by pomieścić zwinięte utwory */
+    max-height: 1200px;
     padding: 0 16px 16px 16px;
 }
 
@@ -132,11 +134,11 @@ body {
 .track-rank {
     color: #d4af37;
     font-weight: 700;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
 }
 
 .track-title {
-    font-size: 0.95rem;
+    font-size: 1.02rem;
     margin: 0;
     flex-grow: 1;
     color: #ffffff;
@@ -151,7 +153,7 @@ body {
 }
 
 .mood-tag {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     background: #2b2b2b;
     color: #b0b0b0;
     padding: 2px 8px;
@@ -160,14 +162,14 @@ body {
 }
 
 .track-fact {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     color: #bbbbbb;
     line-height: 1.4;
     margin: 8px 0 0 0;
 }
 
 .main-track-card .track-fact {
-    margin-bottom: 12px;
+    margin-bottom: 14px;
 }
 
 .track-actions {
@@ -176,8 +178,8 @@ body {
 }
 
 .btn-stream {
-    font-size: 0.75rem;
-    padding: 6px 12px;
+    font-size: 0.8rem;
+    padding: 8px 12px;
     border-radius: 6px;
     text-decoration: none;
     color: #ffffff;
@@ -192,22 +194,4 @@ body {
 
 .btn-stream.apple { 
     background: #fa243c; 
-}
-
-.wiki-footer-btn {
-    display: block;
-    width: 100%;
-    text-align: center;
-    margin-top: 24px;
-    margin-bottom: 24px;
-    font-size: 0.75rem;
-    letter-spacing: 1.2px;
-    color: #888888;
-    text-decoration: none;
-    text-transform: uppercase;
-    transition: color 0.2s ease;
-}
-
-.wiki-footer-btn:hover {
-    color: #d4af37;
 }
