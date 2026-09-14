@@ -63,14 +63,10 @@ document.addEventListener("DOMContentLoaded", async () => {
                 </div>
                 <p class="track-fact"><strong>Trivia:</strong> ${track.fact}</p>
                 <div class="track-actions">
-                    <button type="button" data-url="${spotifyLink}" class="btn-stream spotify btn-spotify">Spotify</button>
+                    <a href="${spotifyLink}" target="_blank" rel="noopener noreferrer" class="btn-stream spotify">Spotify</a>
                     <a href="${appleMusicLink}" target="_blank" rel="noopener noreferrer" class="btn-stream apple">Apple Music</a>
                 </div>
             `;
-
-            trackEl.querySelector(".btn-spotify").addEventListener("click", (e) => {
-                window.location.href = e.currentTarget.dataset.url;
-            });
 
             tracksContainer.appendChild(trackEl);
         });
