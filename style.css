@@ -64,12 +64,20 @@ body {
     white-space: normal;
 }
 
-/* Pasek pod tytułem w głównym utworze (czas z lewej, tagi z prawej) */
+/* Pasek pod tytułem w głównym utworze */
 .main-track-sub-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     margin-bottom: 12px;
+}
+
+/* Prawa kolumna w głównym utworze (czas nad tagami, wyrównane do prawej) */
+.track-right-column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
 }
 
 .discover-more-section {
