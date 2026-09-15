@@ -1,149 +1,362 @@
-document.addEventListener("DOMContentLoaded", async () => {
-    try {
-        const response = await fetch("muz-content.json");
-        const data = await response.json();
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-        // Pobieranie daty według czasu lokalnego użytkownika
-        const today = new Date();
-        const month = String(today.getMonth() + 1).padStart(2, '0');
-        const day = String(today.getDate()).padStart(2, '0');
-        const currentDate = `${month}-${day}`;
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    margin: 0;
+    padding: 16px;
+    display: flex;
+    justify-content: center;
+}
 
-        const dayRecord = data.find(item => item.date === currentDate) || data[0];
+.app-container {
+    width: 100%;
+    max-width: 480px;
+}
 
-        document.getElementById("composer-name").textContent = dayRecord.composer.name;
-        document.getElementById("composer-meta").textContent = `${dayRecord.composer.birth_year}–${dayRecord.composer.death_year} (${dayRecord.composer.period}) • ${dayRecord.composer.birth_country}`;
-        
-        const badgeEl = document.getElementById("anchor-badge");
-        const eventNoteEl = document.getElementById("event-note");
-        
-        if (dayRecord.anchor_type === "premiere") {
-            badgeEl.textContent = "HISTORICAL MILESTONE";
-            if (eventNoteEl) {
-                eventNoteEl.textContent = dayRecord.event_note;
-                eventNoteEl.style.display = "block";
-            }
-        } else {
-            badgeEl.textContent = "BORN TODAY";
-            if (eventNoteEl) {
-                eventNoteEl.style.display = "none";
-            }
-        }
+/* Górny pasek aplikacji z menu hamburger */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    position: relative;
+}
 
-        const wikiLinkEl = document.getElementById("wiki-link");
-        if (dayRecord.composer && dayRecord.composer.wiki_url) {
-            wikiLinkEl.href = dayRecord.composer.wiki_url;
-            wikiLinkEl.parentElement.style.display = "block";
-        } else if (dayRecord.composer && dayRecord.composer.name) {
-            wikiLinkEl.href = `https://en.wikipedia.org/wiki/Special:Search?search=${encodeURIComponent(dayRecord.composer.name)}`;
-            wikiLinkEl.parentElement.style.display = "block";
-        } else {
-            wikiLinkEl.parentElement.style.display = "none";
-        }
+.app-brand-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #d4af37;
+    text-transform: uppercase;
+}
 
-        let currentTracks = [...dayRecord.tracks];
-        const composerName = dayRecord.composer.name;
+/* Przycisk hamburgera */
+.hamburger-btn {
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+}
 
-        function renderMainTrack(track) {
-            document.getElementById("main-track-title").textContent = track.title;
-            document.getElementById("main-track-duration").textContent = track.duration || "";
-            
-            const moodsContainer = document.getElementById("main-track-moods");
-            if (track.mood_tags && Array.isArray(track.mood_tags)) {
-                moodsContainer.innerHTML = track.mood_tags.map(tag => `<span class="mood-tag">${tag}</span>`).join("");
-            } else {
-                moodsContainer.innerHTML = "";
-            }
+.hamburger-btn:hover {
+    border-color: #d4af37;
+}
 
-            document.getElementById("main-track-fact").innerHTML = `<strong>Classical Insight:</strong> ${track.fact}`;
+.hamburger-btn span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background-color: #e0e0e0;
+    border-radius: 2px;
+    transition: background-color 0.2s ease;
+}
 
-            // Przykładowe wyszukiwanie / zachowanie dla przycisków
-            const searchQuery = encodeURIComponent(`${composerName} ${track.title}`);
-            
-            // Możesz przypisać im np. wyszukiwania lub zostawić puste pod przyszłą logikę
-            window.currentTrackSearchQuery = searchQuery;
-        }
+.hamburger-btn:hover span {
+    background-color: #d4af37;
+}
 
-        // Obsługa kliknięć dla przycisków 2x2 (funkcje do uzupełnienia później)
-        document.getElementById("btn-1").addEventListener("click", () => {
-            console.log("Kliknięto Button 1 dla utworu:", currentTracks[0]?.title);
-            // Tutaj wpiszemy logikę w przyszłości
-        });
+/* Rozwijane menu */
+.dropdown-menu {
+    position: absolute;
+    top: 48px;
+    right: 0;
+    width: 180px;
+    background: #1a1a1a;
+    border: 1px solid #d4af37;
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
+    overflow: hidden;
+}
 
-        document.getElementById("btn-2").addEventListener("click", () => {
-            console.log("Kliknięto Button 2 dla utworu:", currentTracks[0]?.title);
-            // Tutaj wpiszemy logikę w przyszłości
-        });
+.dropdown-menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
 
-        document.getElementById("btn-3").addEventListener("click", () => {
-            console.log("Kliknięto Button 3 dla utworu:", currentTracks[0]?.title);
-            // Tutaj wpiszemy logikę w przyszłości
-        });
+.dropdown-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 6px 0;
+}
 
-        document.getElementById("btn-4").addEventListener("click", () => {
-            console.log("Kliknięto Button 4 dla utworu:", currentTracks[0]?.title);
-            // Tutaj wpiszemy logikę w przyszłości
-        });
+.dropdown-menu li a {
+    display: block;
+    padding: 10px 16px;
+    color: #cccccc;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background 0.2s ease, color 0.2s ease;
+}
 
-        function renderDiscoverList() {
-            const tracksContainer = document.getElementById("tracks-container");
-            tracksContainer.innerHTML = "";
+.dropdown-menu li a:hover {
+    background: rgba(212, 175, 55, 0.1);
+    color: #d4af37;
+}
 
-            const subTracks = currentTracks.slice(1);
+/* Ramka dla górnej sekcji kompozytora */
+.composer-header-card {
+    background: #1a1a1a;
+    border-radius: 12px;
+    border: 1px solid #2a2a2a;
+    padding: 16px;
+    margin-bottom: 16px;
+}
 
-            subTracks.forEach((track, index) => {
-                const trackEl = document.createElement("div");
-                trackEl.className = "track-card";
+#anchor-badge {
+    font-size: 0.85rem;
+    letter-spacing: 1.2px;
+    color: #d4af37;
+    text-transform: uppercase;
+    font-weight: 700;
+}
 
-                const tagsHTML = track.mood_tags ? track.mood_tags.map(tag => `<span class="mood-tag">${tag}</span>`).join("") : "";
+#composer-name {
+    font-size: 2.0rem;
+    margin: 4px 0;
+    color: #ffffff;
+    font-weight: 700;
+}
 
-                trackEl.innerHTML = `
-                    <div class="track-header">
-                        <span class="track-rank">#${index + 2}</span>
-                        <h3 class="track-title">${track.title}</h3>
-                        <div class="track-right-side">
-                            <div class="mood-tags-container-right">
-                                ${tagsHTML}
-                            </div>
-                            <span class="track-duration">${track.duration || ""}</span>
-                        </div>
-                    </div>
-                `;
+#composer-meta {
+    font-size: 0.95rem;
+    color: #999999;
+    margin-bottom: 0;
+}
 
-                trackEl.addEventListener("click", () => {
-                    const originalIndex = currentTracks.findIndex(t => t.title === track.title);
-                    
-                    if (originalIndex !== -1) {
-                        const selectedTrack = currentTracks.splice(originalIndex, 1)[0];
-                        currentTracks.unshift(selectedTrack);
+#event-note {
+    font-size: 0.95rem;
+    color: #d4af37;
+    background: rgba(212, 175, 55, 0.1);
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin-top: 12px;
+    margin-bottom: 0;
+}
 
-                        renderMainTrack(currentTracks[0]);
-                        renderDiscoverList();
+.main-track-card {
+    background: #1a1a1a;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+    border: 1px solid #d4af37;
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.08);
+}
 
-                        discoverContent.classList.remove("expanded");
-                        discoverArrow.style.transform = "rotate(0deg)";
-                    }
-                });
+/* Styl tytułu głównego utworu */
+.main-track-title {
+    font-size: 1.15rem;
+    color: #ffffff;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+    line-height: 1.35;
+    white-space: normal;
+}
 
-                tracksContainer.appendChild(trackEl);
-            });
-        }
+/* Pasek pod tytułem w głównym utworze */
+.main-track-sub-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+}
 
-        if (currentTracks.length > 0) {
-            renderMainTrack(currentTracks[0]);
-            renderDiscoverList();
-        }
+/* Prawa kolumna w głównym utworze (czas nad tagami, wyrównane do prawej) */
+.track-right-column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+}
 
-        const discoverToggle = document.getElementById("discover-toggle");
-        const discoverContent = document.getElementById("discover-content");
-        const discoverArrow = document.getElementById("discover-arrow");
+.discover-more-section {
+    background: #1a1a1a;
+    border-radius: 12px;
+    border: 1px solid #2a2a2a;
+    overflow: hidden;
+    margin-bottom: 16px;
+}
 
-        discoverToggle.addEventListener("click", () => {
-            const isExpanded = discoverContent.classList.toggle("expanded");
-            discoverArrow.style.transform = isExpanded ? "rotate(180deg)" : "rotate(0deg)";
-        });
+.discover-toggle-btn {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: #d4af37;
+    padding: 14px 16px;
+    text-align: left;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    box-sizing: border-box;
+    transition: background 0.2s ease;
+}
 
-    } catch (error) {
-        console.error("Error loading Classics in 7 content:", error);
-    }
-});
+.discover-toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+#discover-arrow {
+    display: inline-block;
+    transition: transform 0.3s ease;
+    font-size: 0.75rem;
+}
+
+.discover-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 0 16px;
+}
+
+.discover-content.expanded {
+    max-height: 1200px;
+    padding: 0 16px 16px 16px;
+}
+
+/* Karta pojedynczego utworu w Discover More (#2 do #6) */
+.track-card {
+    background: #222222;
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin-bottom: 6px;
+    border: 1px solid #2e2e2e;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.track-card:hover {
+    border-color: #d4af37;
+    background: #262626;
+}
+
+.track-card:last-child {
+    margin-bottom: 0;
+}
+
+.track-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.track-rank {
+    color: #d4af37;
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+.track-title {
+    font-size: 1.02rem;
+    margin: 0;
+    flex-grow: 1;
+    color: #ffffff;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Prawa strona karty Discover More (tagi i czas) */
+.track-right-side {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+}
+
+.mood-tags-container-right {
+    display: flex;
+    gap: 4px;
+}
+
+/* Styl czasu trwania utworu */
+.track-duration {
+    font-size: 0.85rem;
+    color: #888888;
+    font-weight: 500;
+    white-space: nowrap;
+    text-align: right;
+}
+
+/* Globalny kontener tagów nastroju */
+.mood-tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 4px 0 0 0;
+}
+
+.mood-tag {
+    font-size: 0.75rem;
+    background: #2b2b2b;
+    color: #b0b0b0;
+    padding: 2px 8px;
+    border-radius: 12px;
+    white-space: nowrap;
+}
+
+.track-fact {
+    font-size: 0.95rem;
+    color: #bbbbbb;
+    line-height: 1.4;
+    margin: 8px 0 0 0;
+    margin-bottom: 14px;
+}
+
+/* Style dla układu przycisków 2x2 */
+.track-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.action-row {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-custom {
+    font-size: 0.8rem;
+    padding: 9px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #cccccc;
+    font-weight: 600;
+    text-align: center;
+    flex: 1;
+    border: 1px solid #333333;
+    background-color: #262626;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+}
+
+.btn-custom:hover {
+    background-color: #303030;
+    color: #ffffff;
+    border-color: #d4af37;
+}
+
+.btn-1, .btn-2, .btn-3, .btn-4 {}
