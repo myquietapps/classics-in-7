@@ -16,28 +16,28 @@ body {
 }
 
 #anchor-badge {
-    font-size: 0.85rem;
-    letter-spacing: 1.2px;
+    font-size: 0.7rem;
+    letter-spacing: 1.5px;
     color: #d4af37;
     text-transform: uppercase;
     font-weight: 700;
 }
 
 #composer-name {
-    font-size: 1.9rem;
+    font-size: 1.75rem;
     margin: 4px 0;
     color: #ffffff;
     font-weight: 700;
 }
 
 #composer-meta {
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     color: #999999;
     margin-bottom: 20px;
 }
 
 #event-note {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     color: #d4af37;
     background: rgba(212, 175, 55, 0.1);
     padding: 8px 12px;
@@ -45,82 +45,13 @@ body {
     margin-bottom: 16px;
 }
 
-.main-track-card {
-    background: #1a1a1a;
-    border-radius: 12px;
-    padding: 16px;
-    margin-bottom: 16px;
-    border: 1px solid #d4af37;
-    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.08);
-}
-
-.discover-more-section {
-    background: #1a1a1a;
-    border-radius: 12px;
-    border: 1px solid #2a2a2a;
-    overflow: hidden;
-    margin-bottom: 16px;
-}
-
-.discover-toggle-btn {
-    width: 100%;
-    background: transparent;
-    border: none;
-    color: #d4af37;
-    padding: 14px 16px;
-    text-align: left;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: 1.2px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    box-sizing: border-box;
-    transition: background 0.2s ease;
-}
-
-.discover-toggle-btn:hover {
-    background: rgba(255, 255, 255, 0.02);
-}
-
-#discover-arrow {
-    display: inline-block;
-    transition: transform 0.3s ease;
-    font-size: 0.75rem;
-}
-
-.discover-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    padding: 0 16px;
-}
-
-.discover-content.expanded {
-    max-height: 1200px;
-    padding: 0 16px 16px 16px;
-}
-
 .track-card {
-    background: #222222;
-    border-radius: 8px;
-    padding: 12px;
-    margin-bottom: 10px;
-    border: 1px solid #2e2e2e;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.track-card:hover {
-    border-color: #d4af37;
-    background: #262626;
-}
-
-.track-card:last-child {
-    margin-bottom: 0;
+    background: #1a1a1a;
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 12px;
+    border: 1px solid #2a2a2a;
+    transition: border-color 0.2s ease;
 }
 
 .track-header {
@@ -132,23 +63,15 @@ body {
 .track-rank {
     color: #d4af37;
     font-weight: 700;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
 }
 
 .track-title {
-    font-size: 1.02rem;
+    font-size: 0.95rem;
     margin: 0;
     flex-grow: 1;
     color: #ffffff;
     font-weight: 600;
-}
-
-/* Styl czasu trwania utworu */
-.track-duration {
-    font-size: 0.85rem;
-    color: #888888;
-    font-weight: 500;
-    white-space: nowrap;
 }
 
 .mood-tags-container {
@@ -159,8 +82,8 @@ body {
 }
 
 .mood-tag {
-    font-size: 0.75rem;
-    background: #2b2b2b;
+    font-size: 0.7rem;
+    background: #262626;
     color: #b0b0b0;
     padding: 2px 8px;
     border-radius: 12px;
@@ -168,14 +91,10 @@ body {
 }
 
 .track-fact {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: #bbbbbb;
     line-height: 1.4;
-    margin: 8px 0 0 0;
-}
-
-.main-track-card .track-fact {
-    margin-bottom: 14px;
+    margin: 8px 0 12px 0;
 }
 
 .track-actions {
@@ -184,8 +103,8 @@ body {
 }
 
 .btn-stream {
-    font-size: 0.8rem;
-    padding: 8px 12px;
+    font-size: 0.75rem;
+    padding: 6px 12px;
     border-radius: 6px;
     text-decoration: none;
     color: #ffffff;
@@ -200,4 +119,39 @@ body {
 
 .btn-stream.apple { 
     background: #fa243c; 
+}
+
+.wiki-footer-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    font-size: 0.75rem;
+    letter-spacing: 1.2px;
+    color: #888888;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+}
+
+.wiki-footer-btn:hover {
+    color: #d4af37;
+}
+
+.dimmed-card {
+    opacity: 0.4;
+    transition: opacity 0.8s ease;
+}
+
+.detox-banner {
+    margin-top: 24px;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #d4af37;
+    line-height: 1.5;
+    padding: 14px;
+    background: rgba(212, 175, 55, 0.05);
+    border-radius: 8px;
+    border: 1px dashed rgba(212, 175, 55, 0.3);
 }
