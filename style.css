@@ -32,21 +32,32 @@ body {
     align-items: center;
 }
 
-/* Styl przycisku zębatki */
+/* Styl przycisku z zębatką SVG */
 .settings-btn {
     background: transparent;
     border: none;
-    font-size: 1.25rem;
     cursor: pointer;
-    padding: 4px 8px;
-    border-radius: 6px;
-    transition: background 0.2s ease, transform 0.3s ease;
+    padding: 6px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease;
 }
 
-.settings-btn:hover,
-.settings-btn.active {
+.gear-icon {
+    stroke: #cccccc;
+    transition: transform 0.3s ease, stroke 0.2s ease;
+}
+
+.settings-btn:hover .gear-icon,
+.settings-btn.active .gear-icon {
+    stroke: #d4af37;
+    transform: rotate(90deg);
+}
+
+.settings-btn:hover {
     background: rgba(255, 255, 255, 0.05);
-    transform: rotate(45deg);
 }
 
 /* Styl rozwijanego menu zębatki */
