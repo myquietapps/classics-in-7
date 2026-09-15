@@ -207,11 +207,15 @@ body {
     transition: transform 0.3s ease;
 }
 
-.wiki-arrow-triple {
-    font-size: 0.85rem;
-    letter-spacing: -1px;
-    color: #d4af37;
-    font-weight: 700;
+/* Styl nowej, eleganckiej ikony zewnętrznego linku */
+.external-link-icon {
+    stroke: #d4af37;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+}
+
+.discover-toggle-btn:hover .external-link-icon {
+    transform: translate(1px, -1px);
 }
 
 .discover-content {
