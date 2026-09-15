@@ -57,32 +57,25 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             document.getElementById("main-track-fact").innerHTML = `<strong>Classical Insight:</strong> ${track.fact}`;
 
-            // Przykładowe wyszukiwanie / zachowanie dla przycisków
             const searchQuery = encodeURIComponent(`${composerName} ${track.title}`);
-            
-            // Możesz przypisać im np. wyszukiwania lub zostawić puste pod przyszłą logikę
             window.currentTrackSearchQuery = searchQuery;
         }
 
-        // Obsługa kliknięć dla przycisków 2x2 (funkcje do uzupełnienia później)
+        // Obsługa kliknięć dla przycisków 2x2
         document.getElementById("btn-1").addEventListener("click", () => {
             console.log("Kliknięto Button 1 dla utworu:", currentTracks[0]?.title);
-            // Tutaj wpiszemy logikę w przyszłości
         });
 
         document.getElementById("btn-2").addEventListener("click", () => {
             console.log("Kliknięto Button 2 dla utworu:", currentTracks[0]?.title);
-            // Tutaj wpiszemy logikę w przyszłości
         });
 
         document.getElementById("btn-3").addEventListener("click", () => {
             console.log("Kliknięto Button 3 dla utworu:", currentTracks[0]?.title);
-            // Tutaj wpiszemy logikę w przyszłości
         });
 
         document.getElementById("btn-4").addEventListener("click", () => {
             console.log("Kliknięto Button 4 dla utworu:", currentTracks[0]?.title);
-            // Tutaj wpiszemy logikę w przyszłości
         });
 
         function renderDiscoverList() {
@@ -134,6 +127,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             renderDiscoverList();
         }
 
+        // Obsługa rozwijania sekcji Discover More
         const discoverToggle = document.getElementById("discover-toggle");
         const discoverContent = document.getElementById("discover-content");
         const discoverArrow = document.getElementById("discover-arrow");
@@ -141,6 +135,22 @@ document.addEventListener("DOMContentLoaded", async () => {
         discoverToggle.addEventListener("click", () => {
             const isExpanded = discoverContent.classList.toggle("expanded");
             discoverArrow.style.transform = isExpanded ? "rotate(180deg)" : "rotate(0deg)";
+        });
+
+        // Obsługa menu pod zębatką w prawym górnym rogu
+        const settingsBtn = document.getElementById("settings-btn");
+        const settingsMenu = document.getElementById("settings-menu");
+
+        settingsBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            settingsMenu.classList.toggle("expanded");
+        });
+
+        // Zamknięcie menu po kliknięciu gdziekolwiek indziej na stronie
+        document.addEventListener("click", (e) => {
+            if (!settingsMenu.contains(e.target) && e.target !== settingsBtn) {
+                settingsMenu.classList.remove("expanded");
+            }
         });
 
     } catch (error) {
