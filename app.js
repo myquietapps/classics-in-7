@@ -5,9 +5,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         // Pobieranie daty według czasu lokalnego użytkownika
         const today = new Date();
-        const month = String(today.getMonth() + 1).padStart(2, '0');
         const day = String(today.getDate()).padStart(2, '0');
-        const currentDate = `${month}-${day}`;
+        const month = String(today.getMonth() + 1).padStart(2, '0');
+        const currentDate = `${day}-${month}`;
 
         const dayRecord = data.find(item => item.date === currentDate) || data[0];
 
