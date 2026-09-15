@@ -10,7 +10,7 @@ async function loadContent() {
         }
         const data = await response.json();
         
-        // Pobieramy np. pierwszy wpis z bazy (lub wg Twojej logiki daty)
+        // Pobieramy pierwszy wpis z bazy
         renderComposer(data[0]);
     } catch (error) {
         console.error('Błąd:', error);
@@ -26,15 +26,18 @@ function renderComposer(item) {
 
     if (!item.tracks || item.tracks.length === 0) return;
 
-    // 2. PIERWSZY UTWÓR (Główna sekcja pod nazwiskiem) - BEZ NUMERU #1
+    // 2. PIERWSZY UTWÓR (Główna sekcja) - Bez numeru #1
     const mainTrack = item.tracks[0];
-    const mainContainer = document.getElementById('main-track-container'); // Dostosuj ID do swojego HTML jeśli jest inne
+    const mainContainer = document.getElementById('main-track-container'); 
     
     if (mainContainer) {
+        // Bezpieczne sprawdzenie czasu trwania (jeśli istnieje, to wyświetli, jeśli nie - nic nie wyświetli)
+        const mainDurationHTML = mainTrack.duration ? `<span class="track-duration">${mainTrack.duration}</span>` : '';
+
         mainContainer.innerHTML = `
             <div class="main-track-card">
                 <h3 class="track-title">${mainTrack.title}</h3>
-                <p class="track-duration">${mainTrack.duration || ''}</p>
+                ${mainDurationHTML}
                 <p class="track-fact">${mainTrack.fact}</p>
                 <div class="track-tags">
                     ${mainTrack.mood_tags ? mainTrack.mood_tags.map(tag => `<span class="tag">${tag}</span>`).join('') : ''}
@@ -46,12 +49,12 @@ function renderComposer(item) {
     // 3. POZOSTAŁE UTWORY (#2 do #6) - z numeracją
     const listContainer = document.getElementById('tracks-container');
     if (listContainer) {
-        // Bierze utwory od indeksu 1 do końca (czyli 5 kolejnych utworów)
         const otherTracks = item.tracks.slice(1);
 
         listContainer.innerHTML = otherTracks.map((track, index) => {
-            // index 0 w 'otherTracks' to w bazie indeks 1, czyli utwór #2
             const trackNumber = index + 2; 
+            // Bezpieczne sprawdzenie czasu trwania dla pozostałych utworów
+            const durationHTML = track.duration ? `<span class="track-duration">${track.duration}</span>` : '';
 
             return `
                 <div class="track-card regular-track">
@@ -59,7 +62,7 @@ function renderComposer(item) {
                     <div class="track-content">
                         <div class="track-header">
                             <h3 class="track-title">${track.title}</h3>
-                            <span class="track-duration">${track.duration || ''}</span>
+                            ${durationHTML}
                         </div>
                         <p class="track-fact">${track.fact}</p>
                         <div class="track-tags">
