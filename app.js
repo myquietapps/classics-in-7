@@ -45,7 +45,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         const composerName = dayRecord.composer.name;
 
         function renderMainTrack(track) {
-            document.getElementById("main-track-rank").textContent = `#1`;
             document.getElementById("main-track-title").textContent = track.title;
             document.getElementById("main-track-duration").textContent = track.duration || "";
             
