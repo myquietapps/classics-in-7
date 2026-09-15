@@ -22,7 +22,7 @@ body {
     border: 1px solid #2a2a2a;
     padding: 16px;
     margin-bottom: 16px;
-    position: relative; /* Wymagane dla pozycjonowania bezwzględnego menu */
+    position: relative;
 }
 
 /* Górny rząd w karcie: odznaka + przycisk zębatki */
@@ -35,7 +35,7 @@ body {
 /* Styl przycisku z zębatką – ramka po najechaniu identyczna jak w main-track-card */
 .settings-btn {
     background: transparent;
-    border: 1px solid transparent; /* Niewidoczna ramka, żeby układ się nie przesuwał */
+    border: 1px solid transparent;
     cursor: pointer;
     padding: 6px;
     border-radius: 8px;
@@ -46,7 +46,7 @@ body {
 }
 
 .gear-icon {
-    stroke: #d4af37; /* Kolor zębatki dopasowany do ramki */
+    stroke: #d4af37;
     transition: filter 0.2s ease;
 }
 
@@ -58,8 +58,8 @@ body {
 .settings-btn:hover,
 .settings-btn.active {
     background: rgba(212, 175, 55, 0.08);
-    border: 1px solid #d4af37; /* Ramka identyczna jak w main-track-card */
-    transform: rotate(45deg); /* Obrót całego kwadracika */
+    border: 1px solid #d4af37;
+    transform: rotate(45deg);
 }
 
 /* Styl rozwijanego menu jako pełnoszerokowy overlay dopasowany do ramki */
@@ -69,14 +69,14 @@ body {
     background: #222222;
     border-radius: 8px;
     position: absolute;
-    top: 54px; /* Tuż pod górnym rzędem przycisku */
-    left: 16px; /* Wyrównanie do lewej krawędzi wewnętrznej ramki */
-    right: 16px; /* Wyrównanie do prawej krawędzi */
-    width: auto; /* Wypełnienie przestrzeni między left a right */
+    top: 54px;
+    left: 16px;
+    right: 16px;
+    width: auto;
     border: 1px solid #333333;
     padding: 8px 0;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8);
-    z-index: 100; /* Wyższa warstwa nad resztą zawartości */
+    z-index: 100;
     box-sizing: border-box;
 }
 
@@ -139,19 +139,22 @@ body {
     box-shadow: 0 4px 12px rgba(212, 175, 55, 0.08);
 }
 
-.main-track-title {
-    font-size: 1.15rem;
-    color: #ffffff;
-    font-weight: 600;
-    margin: 0 0 8px 0;
-    line-height: 1.35;
-}
-
+/* Zmiana układu nagłówka głównego utworu – tytuł i czas w jednym rzędzie na górze */
 .main-track-sub-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 12px;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.main-track-title {
+    font-size: 1.15rem;
+    color: #ffffff;
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.35;
+    flex-grow: 1;
 }
 
 .track-right-column {
@@ -159,6 +162,7 @@ body {
     flex-direction: column;
     align-items: flex-end;
     gap: 4px;
+    flex-shrink: 0;
 }
 
 .discover-more-section {
