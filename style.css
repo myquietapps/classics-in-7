@@ -84,7 +84,7 @@ body {
     display: flex;
 }
 
-/* Styl Classical Insight dla pozycji menu (bez numerków, spójna baza pod zmianę wielkości czcionki) */
+/* Styl Classical Insight dla pozycji menu (baza pod zmianę wielkości czcionki) */
 .menu-item {
     display: block;
     padding: 12px 16px;
