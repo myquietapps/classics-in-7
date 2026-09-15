@@ -1,362 +1,128 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+document.addEventListener('DOMContentLoaded', () => {
+    // --- 1. Obsługa menu zębatki w prawym górnym rogu ---
+    const settingsBtn = document.getElementById('settings-btn');
+    const dropdownMenu = document.getElementById('dropdown-menu');
 
-body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: #121212;
-    color: #e0e0e0;
-    margin: 0;
-    padding: 16px;
-    display: flex;
-    justify-content: center;
-}
+    if (settingsBtn && dropdownMenu) {
+        settingsBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdownMenu.classList.toggle('active');
+        });
 
-.app-container {
-    width: 100%;
-    max-width: 480px;
-}
+        // Zamknięcie menu po kliknięciu w dowolne miejsce poza nim
+        document.addEventListener('click', () => {
+            dropdownMenu.classList.remove('active');
+        });
+    }
 
-/* Górny pasek aplikacji z menu hamburger */
-.app-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 12px;
-    position: relative;
-}
+    // --- 2. Obsługa rozwijania sekcji "Discover More" ---
+    const discoverToggle = document.getElementById('discover-toggle');
+    const discoverContent = document.getElementById('discover-content');
+    const discoverArrow = document.getElementById('discover-arrow');
 
-.app-brand-title {
-    font-size: 0.9rem;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    color: #d4af37;
-    text-transform: uppercase;
-}
+    if (discoverToggle && discoverContent) {
+        discoverToggle.addEventListener('click', () => {
+            discoverContent.classList.toggle('expanded');
+            if (discoverContent.classList.contains('expanded')) {
+                discoverArrow.style.transform = 'rotate(180deg)';
+            } else {
+                discoverArrow.style.transform = 'rotate(0deg)';
+            }
+        });
+    }
 
-/* Przycisk hamburgera */
-.hamburger-btn {
-    background: #1a1a1a;
-    border: 1px solid #2a2a2a;
-    border-radius: 8px;
-    width: 38px;
-    height: 38px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 4px;
-    cursor: pointer;
-    transition: border-color 0.2s ease;
-}
+    // --- 3. Dane demonstracyjne (Mock Data) dla aplikacji ---
+    const appData = {
+        composer: "Fryderyk Chopin",
+        anchorBadge: "Mistrz Fortepianu",
+        meta: "1810 – 1849 • Polska / Francja",
+        eventNote: "Wydarzenie specjalne: Rok Chopinowski",
+        wikiUrl: "https://pl.wikipedia.org/wiki/Fryderyk_Chopin",
+        
+        mainTrack: {
+            title: "Nokturn Es-dur op. 9 nr 2",
+            duration: "4:35",
+            moods: ["Nostalgiczny", "Romantyczny", "Spokojny"],
+            fact: "Jeden z najbardziej rozpoznawalnych utworów fortepianowych na świecie, skomponowany, gdy Chopin miał zaledwie około 20 lat.",
+            actions: ["Posłuchaj", "Nuty", "Analiza", "Ulubione"]
+        },
 
-.hamburger-btn:hover {
-    border-color: #d4af37;
-}
+        otherTracks: [
+            {
+                rank: "02",
+                title: "Preludium Des-dur op. 28 nr 15 ('Deszczowe')",
+                duration: "5:20",
+                moods: ["Mroczny", "Refleksyjny"],
+                fact: "Skomponowany podczas pobytu na Majorce w klasztorze w Valldemossie."
+            },
+            {
+                rank: "03",
+                title: "Polonez A-dur op. 40 nr 1 ('Wojskowa')",
+                duration: "3:45",
+                moods: ["Heroiczny", "Energetyczny"],
+                fact: "Symbol polskiego patriotyzmu i potęgi brzmienia fortepianu."
+            }
+        ]
+    };
 
-.hamburger-btn span {
-    display: block;
-    width: 18px;
-    height: 2px;
-    background-color: #e0e0e0;
-    border-radius: 2px;
-    transition: background-color 0.2s ease;
-}
+    // --- 4. Wstrzykiwanie danych do interfejsu ---
+    
+    // Nagłówek kompozytora
+    document.getElementById('anchor-badge').textContent = appData.anchorBadge;
+    document.getElementById('composer-name').textContent = appData.composer;
+    document.getElementById('composer-meta').textContent = appData.meta;
+    
+    const eventNoteEl = document.getElementById('event-note');
+    if (appData.eventNote) {
+        eventNoteEl.textContent = appData.eventNote;
+        eventNoteEl.style.display = 'block';
+    }
 
-.hamburger-btn:hover span {
-    background-color: #d4af37;
-}
+    // Główny utwór
+    document.getElementById('main-track-title').textContent = appData.mainTrack.title;
+    document.getElementById('main-track-duration').textContent = appData.mainTrack.duration;
+    document.getElementById('main-track-fact').textContent = appData.mainTrack.fact;
 
-/* Rozwijane menu */
-.dropdown-menu {
-    position: absolute;
-    top: 48px;
-    right: 0;
-    width: 180px;
-    background: #1a1a1a;
-    border: 1px solid #d4af37;
-    border-radius: 10px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-8px);
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 1000;
-    overflow: hidden;
-}
+    // Tagi nastrojów głównego utworu
+    const mainMoodsContainer = document.getElementById('main-track-moods');
+    mainMoodsContainer.innerHTML = appData.mainTrack.moods
+        .map(mood => `<span class="mood-tag">${mood}</span>`)
+        .join('');
 
-.dropdown-menu.active {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
+    // Przyciski akcji głównego utworu
+    appData.mainTrack.actions.forEach((action, index) => {
+        const btn = document.getElementById(`btn-${index + 1}`);
+        if (btn) {
+            btn.textContent = action;
+            btn.addEventListener('click', () => {
+                console.log(`Wybrano akcję: ${action}`);
+            });
+        }
+    });
 
-.dropdown-menu ul {
-    list-style: none;
-    margin: 0;
-    padding: 6px 0;
-}
+    // Lista utworów w "Discover More"
+    const tracksContainer = document.getElementById('tracks-container');
+    if (tracksContainer) {
+        tracksContainer.innerHTML = appData.otherTracks.map(track => `
+            <div class="track-card">
+                <div class="track-header">
+                    <span class="track-rank">${track.rank}</span>
+                    <h4 class="track-title">${track.title}</h4>
+                    <div class="track-right-side">
+                        <span class="track-duration">${track.duration}</span>
+                    </div>
+                </div>
+                <div class="mood-tags-container">
+                    ${track.moods.map(m => `<span class="mood-tag">${m}</span>`).join('')}
+                </div>
+                <p class="track-fact">${track.fact}</p>
+            </div>
+        `).join('');
+    }
 
-.dropdown-menu li a {
-    display: block;
-    padding: 10px 16px;
-    color: #cccccc;
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 500;
-    transition: background 0.2s ease, color 0.2s ease;
-}
-
-.dropdown-menu li a:hover {
-    background: rgba(212, 175, 55, 0.1);
-    color: #d4af37;
-}
-
-/* Ramka dla górnej sekcji kompozytora */
-.composer-header-card {
-    background: #1a1a1a;
-    border-radius: 12px;
-    border: 1px solid #2a2a2a;
-    padding: 16px;
-    margin-bottom: 16px;
-}
-
-#anchor-badge {
-    font-size: 0.85rem;
-    letter-spacing: 1.2px;
-    color: #d4af37;
-    text-transform: uppercase;
-    font-weight: 700;
-}
-
-#composer-name {
-    font-size: 2.0rem;
-    margin: 4px 0;
-    color: #ffffff;
-    font-weight: 700;
-}
-
-#composer-meta {
-    font-size: 0.95rem;
-    color: #999999;
-    margin-bottom: 0;
-}
-
-#event-note {
-    font-size: 0.95rem;
-    color: #d4af37;
-    background: rgba(212, 175, 55, 0.1);
-    padding: 8px 12px;
-    border-radius: 8px;
-    margin-top: 12px;
-    margin-bottom: 0;
-}
-
-.main-track-card {
-    background: #1a1a1a;
-    border-radius: 12px;
-    padding: 16px;
-    margin-bottom: 16px;
-    border: 1px solid #d4af37;
-    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.08);
-}
-
-/* Styl tytułu głównego utworu */
-.main-track-title {
-    font-size: 1.15rem;
-    color: #ffffff;
-    font-weight: 600;
-    margin: 0 0 8px 0;
-    line-height: 1.35;
-    white-space: normal;
-}
-
-/* Pasek pod tytułem w głównym utworze */
-.main-track-sub-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 12px;
-}
-
-/* Prawa kolumna w głównym utworze (czas nad tagami, wyrównane do prawej) */
-.track-right-column {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 4px;
-}
-
-.discover-more-section {
-    background: #1a1a1a;
-    border-radius: 12px;
-    border: 1px solid #2a2a2a;
-    overflow: hidden;
-    margin-bottom: 16px;
-}
-
-.discover-toggle-btn {
-    width: 100%;
-    background: transparent;
-    border: none;
-    color: #d4af37;
-    padding: 14px 16px;
-    text-align: left;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: 1.2px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    text-decoration: none;
-    box-sizing: border-box;
-    transition: background 0.2s ease;
-}
-
-.discover-toggle-btn:hover {
-    background: rgba(255, 255, 255, 0.02);
-}
-
-#discover-arrow {
-    display: inline-block;
-    transition: transform 0.3s ease;
-    font-size: 0.75rem;
-}
-
-.discover-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    padding: 0 16px;
-}
-
-.discover-content.expanded {
-    max-height: 1200px;
-    padding: 0 16px 16px 16px;
-}
-
-/* Karta pojedynczego utworu w Discover More (#2 do #6) */
-.track-card {
-    background: #222222;
-    border-radius: 8px;
-    padding: 8px 12px;
-    margin-bottom: 6px;
-    border: 1px solid #2e2e2e;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.track-card:hover {
-    border-color: #d4af37;
-    background: #262626;
-}
-
-.track-card:last-child {
-    margin-bottom: 0;
-}
-
-.track-header {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.track-rank {
-    color: #d4af37;
-    font-weight: 700;
-    font-size: 0.95rem;
-}
-
-.track-title {
-    font-size: 1.02rem;
-    margin: 0;
-    flex-grow: 1;
-    color: #ffffff;
-    font-weight: 600;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-/* Prawa strona karty Discover More (tagi i czas) */
-.track-right-side {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    white-space: nowrap;
-}
-
-.mood-tags-container-right {
-    display: flex;
-    gap: 4px;
-}
-
-/* Styl czasu trwania utworu */
-.track-duration {
-    font-size: 0.85rem;
-    color: #888888;
-    font-weight: 500;
-    white-space: nowrap;
-    text-align: right;
-}
-
-/* Globalny kontener tagów nastroju */
-.mood-tags-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin: 4px 0 0 0;
-}
-
-.mood-tag {
-    font-size: 0.75rem;
-    background: #2b2b2b;
-    color: #b0b0b0;
-    padding: 2px 8px;
-    border-radius: 12px;
-    white-space: nowrap;
-}
-
-.track-fact {
-    font-size: 0.95rem;
-    color: #bbbbbb;
-    line-height: 1.4;
-    margin: 8px 0 0 0;
-    margin-bottom: 14px;
-}
-
-/* Style dla układu przycisków 2x2 */
-.track-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.action-row {
-    display: flex;
-    gap: 8px;
-}
-
-.btn-custom {
-    font-size: 0.8rem;
-    padding: 9px 12px;
-    border-radius: 6px;
-    text-decoration: none;
-    color: #cccccc;
-    font-weight: 600;
-    text-align: center;
-    flex: 1;
-    border: 1px solid #333333;
-    background-color: #262626;
-    cursor: pointer;
-    box-sizing: border-box;
-    transition: all 0.2s ease;
-}
-
-.btn-custom:hover {
-    background-color: #303030;
-    color: #ffffff;
-    border-color: #d4af37;
-}
-
-.btn-1, .btn-2, .btn-3, .btn-4 {}
+    // Link do Wikipedii
+    const wikiLink = document.getElementById('wiki-link');
+    if (wikiLink) {
+        wikiLink.href = appData.wikiUrl;
+    }
+});
