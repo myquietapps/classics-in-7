@@ -76,7 +76,7 @@ body {
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 8px;
+    justify-content: space-between;
     text-decoration: none;
     box-sizing: border-box;
     transition: background 0.2s ease;
@@ -104,12 +104,12 @@ body {
     padding: 0 16px 16px 16px;
 }
 
-/* Zmniejszone pole pojedynczego utworu w Discover More */
+/* Karta pojedynczego utworu w Discover More (#2 do #6) */
 .track-card {
     background: #222222;
     border-radius: 8px;
-    padding: 8px 12px; /* Zmniejszony padding góra/dół z 12px na 8px */
-    margin-bottom: 6px;  /* Zmniejszony odstęp między kartami z 10px na 6px */
+    padding: 8px 12px;
+    margin-bottom: 6px;
     border: 1px solid #2e2e2e;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -126,7 +126,7 @@ body {
 
 .track-header {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     gap: 8px;
 }
 
@@ -142,6 +142,22 @@ body {
     flex-grow: 1;
     color: #ffffff;
     font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Prawa strona karty Discover More (tagi i czas) */
+.track-right-side {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+}
+
+.mood-tags-container-right {
+    display: flex;
+    gap: 4px;
 }
 
 /* Styl czasu trwania utworu */
@@ -152,11 +168,12 @@ body {
     white-space: nowrap;
 }
 
+/* Globalny kontener tagów nastroju (używany m.in. w głównym utworze) */
 .mood-tags-container {
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
-    margin: 4px 0 0 0; /* Zmniejszony margines wokół tagów */
+    margin: 4px 0 0 0;
 }
 
 .mood-tag {
