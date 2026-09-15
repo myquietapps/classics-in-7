@@ -81,6 +81,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 const tagsHTML = track.mood_tags ? track.mood_tags.map(tag => `<span class="mood-tag">${tag}</span>`).join("") : "";
 
+                // Usunięto linię z ciekawostką (track-fact) poniżej:
                 trackEl.innerHTML = `
                     <div class="track-header">
                         <span class="track-rank">#${index + 2}</span>
@@ -90,7 +91,6 @@ document.addEventListener("DOMContentLoaded", async () => {
                     <div class="mood-tags-container">
                         ${tagsHTML}
                     </div>
-                    <p class="track-fact"><strong>Trivia:</strong> ${track.fact}</p>
                 `;
 
                 trackEl.addEventListener("click", () => {
