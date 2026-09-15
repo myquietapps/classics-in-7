@@ -24,7 +24,7 @@ body {
 }
 
 #composer-name {
-    font-size: 2.0rem; /* Zwiększone z 1.9rem */
+    font-size: 2.0rem;
     margin: 4px 0;
     color: #ffffff;
     font-weight: 700;
@@ -186,36 +186,46 @@ body {
 }
 
 .track-fact {
-    font-size: 0.95rem; /* Zwiększone z 0.85rem */
+    font-size: 0.95rem;
     color: #bbbbbb;
     line-height: 1.4;
     margin: 8px 0 0 0;
-}
-
-.main-track-card .track-fact {
     margin-bottom: 14px;
 }
 
+/* Style dla układu przycisków 2x2 */
 .track-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.action-row {
     display: flex;
     gap: 8px;
 }
 
-.btn-stream {
+.btn-custom {
     font-size: 0.8rem;
-    padding: 8px 12px;
+    padding: 9px 12px;
     border-radius: 6px;
     text-decoration: none;
     color: #ffffff;
     font-weight: 600;
     text-align: center;
     flex: 1;
+    border: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: opacity 0.2s ease;
 }
 
-.btn-stream.spotify { 
-    background: #1DB954; 
+.btn-custom:hover {
+    opacity: 0.85;
 }
 
-.btn-stream.apple { 
-    background: #fa243c; 
-}
+/* Indywidualne klasy kolorystyczne dla przycisków (do późniejszej zmiany) */
+.btn-1 { background-color: #2c3e50; }
+.btn-2 { background-color: #27ae60; }
+.btn-3 { background-color: #e67e22; }
+.btn-4 { background-color: #8e44ad; }
