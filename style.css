@@ -1,90 +1,203 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f8fafc;
-    color: #1e293b;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
     margin: 0;
-    padding: 20px;
-}
-
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-#tracks-container {
+    padding: 16px;
     display: flex;
-    flex-direction: column;
-    gap: 14px;
-    margin-top: 20px;
+    justify-content: center;
 }
 
-/* Karta utworu na liście (#2 do #6) */
-.track-card {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    background: #ffffff;
-    border-radius: 10px;
-    padding: 16px 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-    border: 1px solid #e2e8f0;
-    border-left: 5px solid #cbd5e1;
+.app-container {
+    width: 100%;
+    max-width: 480px;
 }
 
-/* Numerki #2 do #6 */
-.track-rank {
+#anchor-badge {
+    font-size: 0.85rem;
+    letter-spacing: 1.2px;
+    color: #d4af37;
+    text-transform: uppercase;
     font-weight: 700;
-    font-size: 1rem;
-    color: #64748b;
-    min-width: 30px;
-    padding-top: 2px;
 }
 
-.track-content {
-    flex: 1;
+#composer-name {
+    font-size: 1.9rem;
+    margin: 4px 0;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+#composer-meta {
+    font-size: 0.95rem;
+    color: #999999;
+    margin-bottom: 20px;
+}
+
+#event-note {
+    font-size: 0.95rem;
+    color: #d4af37;
+    background: rgba(212, 175, 55, 0.1);
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+}
+
+.main-track-card {
+    background: #1a1a1a;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+    border: 1px solid #d4af37;
+    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.08);
+}
+
+.discover-more-section {
+    background: #1a1a1a;
+    border-radius: 12px;
+    border: 1px solid #2a2a2a;
+    overflow: hidden;
+    margin-bottom: 16px;
+}
+
+.discover-toggle-btn {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: #d4af37;
+    padding: 14px 16px;
+    text-align: left;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    box-sizing: border-box;
+    transition: background 0.2s ease;
+}
+
+.discover-toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+#discover-arrow {
+    display: inline-block;
+    transition: transform 0.3s ease;
+    font-size: 0.75rem;
+}
+
+.discover-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 0 16px;
+}
+
+.discover-content.expanded {
+    max-height: 1200px;
+    padding: 0 16px 16px 16px;
+}
+
+.track-card {
+    background: #222222;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 1px solid #2e2e2e;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.track-card:hover {
+    border-color: #d4af37;
+    background: #262626;
+}
+
+.track-card:last-child {
+    margin-bottom: 0;
 }
 
 .track-header {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 6px;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.track-rank {
+    color: #d4af37;
+    font-weight: 700;
+    font-size: 0.95rem;
 }
 
 .track-title {
+    font-size: 1.02rem;
     margin: 0;
-    font-size: 1.05rem;
+    flex-grow: 1;
+    color: #ffffff;
     font-weight: 600;
-    color: #1e293b;
 }
 
+/* Styl czasu trwania utworu */
 .track-duration {
     font-size: 0.85rem;
-    color: #64748b;
-    background: #f1f5f9;
-    padding: 2px 8px;
-    border-radius: 4px;
+    color: #888888;
     font-weight: 500;
+    white-space: nowrap;
+}
+
+.mood-tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 8px 0;
+}
+
+.mood-tag {
+    font-size: 0.75rem;
+    background: #2b2b2b;
+    color: #b0b0b0;
+    padding: 2px 8px;
+    border-radius: 12px;
+    white-space: nowrap;
 }
 
 .track-fact {
-    font-size: 0.95rem;
-    color: #475569;
-    margin: 6px 0 10px 0;
+    font-size: 0.85rem;
+    color: #bbbbbb;
     line-height: 1.4;
+    margin: 8px 0 0 0;
 }
 
-.track-tags {
+.main-track-card .track-fact {
+    margin-bottom: 14px;
+}
+
+.track-actions {
     display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
+    gap: 8px;
 }
 
-.tag {
-    font-size: 0.75rem;
-    background: #f1f5f9;
-    color: #475569;
-    padding: 3px 8px;
-    border-radius: 4px;
-    font-weight: 500;
+.btn-stream {
+    font-size: 0.8rem;
+    padding: 8px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 600;
+    text-align: center;
+    flex: 1;
+}
+
+.btn-stream.spotify { 
+    background: #1DB954; 
+}
+
+.btn-stream.apple { 
+    background: #fa243c; 
 }
