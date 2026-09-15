@@ -15,7 +15,7 @@ body {
     max-width: 480px;
 }
 
-/* Górny pasek aplikacji ze zębatką */
+/* Górny pasek aplikacji z menu zębatka */
 .app-header {
     display: flex;
     justify-content: space-between;
@@ -43,14 +43,13 @@ body {
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease;
     color: #e0e0e0;
-    transition: all 0.2s ease;
 }
 
 .settings-btn:hover {
     border-color: #d4af37;
     color: #d4af37;
-    transform: rotate(30deg);
 }
 
 /* Rozwijane menu */
@@ -147,14 +146,17 @@ body {
     box-shadow: 0 4px 12px rgba(212, 175, 55, 0.08);
 }
 
+/* Styl tytułu głównego utworu */
 .main-track-title {
     font-size: 1.15rem;
     color: #ffffff;
     font-weight: 600;
     margin: 0 0 8px 0;
     line-height: 1.35;
+    white-space: normal;
 }
 
+/* Pasek pod tytułem w głównym utworze */
 .main-track-sub-header {
     display: flex;
     justify-content: space-between;
@@ -162,6 +164,7 @@ body {
     margin-bottom: 12px;
 }
 
+/* Prawa kolumna w głównym utworze (czas nad tagami, wyrównane do prawej) */
 .track-right-column {
     display: flex;
     flex-direction: column;
@@ -219,6 +222,7 @@ body {
     padding: 0 16px 16px 16px;
 }
 
+/* Karta pojedynczego utworu w Discover More (#2 do #6) */
 .track-card {
     background: #222222;
     border-radius: 8px;
@@ -261,6 +265,7 @@ body {
     white-space: nowrap;
 }
 
+/* Prawa strona karty Discover More (tagi i czas) */
 .track-right-side {
     display: flex;
     align-items: center;
@@ -273,6 +278,7 @@ body {
     gap: 4px;
 }
 
+/* Styl czasu trwania utworu */
 .track-duration {
     font-size: 0.85rem;
     color: #888888;
@@ -281,6 +287,7 @@ body {
     text-align: right;
 }
 
+/* Globalny kontener tagów nastroju */
 .mood-tags-container {
     display: flex;
     flex-wrap: wrap;
@@ -305,6 +312,7 @@ body {
     margin-bottom: 14px;
 }
 
+/* Style dla układu przycisków 2x2 */
 .track-actions {
     display: flex;
     flex-direction: column;
@@ -337,3 +345,5 @@ body {
     color: #ffffff;
     border-color: #d4af37;
 }
+
+.btn-1, .btn-2, .btn-3, .btn-4 {}
