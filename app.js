@@ -45,7 +45,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         const composerName = dayRecord.composer.name;
 
         function renderMainTrack(track) {
-            // Usunięto linię odwołującą się do nieistniejącego już elementu main-track-rank
             document.getElementById("main-track-title").textContent = track.title;
             document.getElementById("main-track-duration").textContent = track.duration || "";
             
@@ -58,16 +57,33 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             document.getElementById("main-track-fact").innerHTML = `<strong>Classical Insight:</strong> ${track.fact}`;
 
+            // Przykładowe wyszukiwanie / zachowanie dla przycisków
             const searchQuery = encodeURIComponent(`${composerName} ${track.title}`);
-            const spotifyLink = `https://open.spotify.com/search/${searchQuery}`;
-            const appleMusicLink = `https://music.apple.com/us/search?term=${searchQuery}`;
-
-            const actionsContainer = document.getElementById("main-track-actions");
-            actionsContainer.innerHTML = `
-                <a href="${spotifyLink}" target="_blank" class="btn-stream spotify">Spotify</a>
-                <a href="${appleMusicLink}" target="_blank" class="btn-stream apple">Apple Music</a>
-            `;
+            
+            // Możesz przypisać im np. wyszukiwania lub zostawić puste pod przyszłą logikę
+            window.currentTrackSearchQuery = searchQuery;
         }
+
+        // Obsługa kliknięć dla przycisków 2x2 (funkcje do uzupełnienia później)
+        document.getElementById("btn-1").addEventListener("click", () => {
+            console.log("Kliknięto Button 1 dla utworu:", currentTracks[0]?.title);
+            // Tutaj wpiszemy logikę w przyszłości
+        });
+
+        document.getElementById("btn-2").addEventListener("click", () => {
+            console.log("Kliknięto Button 2 dla utworu:", currentTracks[0]?.title);
+            // Tutaj wpiszemy logikę w przyszłości
+        });
+
+        document.getElementById("btn-3").addEventListener("click", () => {
+            console.log("Kliknięto Button 3 dla utworu:", currentTracks[0]?.title);
+            // Tutaj wpiszemy logikę w przyszłości
+        });
+
+        document.getElementById("btn-4").addEventListener("click", () => {
+            console.log("Kliknięto Button 4 dla utworu:", currentTracks[0]?.title);
+            // Tutaj wpiszemy logikę w przyszłości
+        });
 
         function renderDiscoverList() {
             const tracksContainer = document.getElementById("tracks-container");
