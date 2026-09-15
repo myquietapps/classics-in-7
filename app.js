@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const response = await fetch("muz-content.json");
         const data = await response.json();
 
-        // Pobieranie daty według czasu lokalnego użytkownika
+        // Pobieranie daty według czasu lokalnego użytkownika[cite: 16]
         const today = new Date();
         const month = String(today.getMonth() + 1).padStart(2, '0');
         const day = String(today.getDate()).padStart(2, '0');
@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             window.currentTrackSearchQuery = searchQuery;
         }
 
-        // Obsługa kliknięć dla przycisków 2x2
+        // Obsługa kliknięć dla przycisków 2x2[cite: 16]
         document.getElementById("btn-1").addEventListener("click", () => {
             console.log("Kliknięto Button 1 dla utworu:", currentTracks[0]?.title);
         });
@@ -127,7 +127,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             renderDiscoverList();
         }
 
-        // Obsługa rozwijania sekcji Discover More
+        // Obsługa rozwijania sekcji Discover More[cite: 16]
         const discoverToggle = document.getElementById("discover-toggle");
         const discoverContent = document.getElementById("discover-content");
         const discoverArrow = document.getElementById("discover-arrow");
@@ -137,7 +137,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             discoverArrow.style.transform = isExpanded ? "rotate(180deg)" : "rotate(0deg)";
         });
 
-        // Obsługa menu pod zębatką w prawym górnym rogu
+        // Obsługa menu pod zębatką w prawym górnym rogu[cite: 16]
         const settingsBtn = document.getElementById("settings-btn");
         const settingsMenu = document.getElementById("settings-menu");
 
@@ -146,7 +146,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             settingsMenu.classList.toggle("expanded");
         });
 
-        // Zamknięcie menu po kliknięciu gdziekolwiek indziej na stronie
+        // Zamknięcie menu po kliknięciu gdziekolwiek indziej na stronie[cite: 16]
         document.addEventListener("click", (e) => {
             if (!settingsMenu.contains(e.target) && e.target !== settingsBtn) {
                 settingsMenu.classList.remove("expanded");
