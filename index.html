@@ -13,17 +13,25 @@
         <p id="composer-meta"></p>
         <p id="event-note" style="display:none;"></p>
         
-        <!-- Główny utwór (#1) w dedykowanej ramce -->
+        <!-- Główny utwór w dedykowanej ramce -->
         <div id="main-track-card" class="main-track-card">
             <div class="track-header">
-                <!-- Usunięto element <span id="main-track-rank" class="track-rank">#1</span> -->
                 <h3 id="main-track-title" class="track-title"></h3>
                 <span id="main-track-duration" class="track-duration"></span>
             </div>
             <div id="main-track-moods" class="mood-tags-container"></div>
             <p id="main-track-fact" class="track-fact"></p>
+            
+            <!-- Przyciski w układzie 2x2 -->
             <div id="main-track-actions" class="track-actions">
-                <!-- Przyciski streamingowe tylko dla głównego utworu -->
+                <div class="action-row">
+                    <button id="btn-1" class="btn-custom btn-1">Button 1</button>
+                    <button id="btn-2" class="btn-custom btn-2">Button 2</button>
+                </div>
+                <div class="action-row">
+                    <button id="btn-3" class="btn-custom btn-3">Button 3</button>
+                    <button id="btn-4" class="btn-custom btn-4">Button 4</button>
+                </div>
             </div>
         </div>
 
