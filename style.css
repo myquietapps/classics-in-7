@@ -32,17 +32,17 @@ body {
     align-items: center;
 }
 
-/* Styl przycisku z zębatką w kolorze ramki – obraca się cały kwadracik */
+/* Styl przycisku z zębatką – obrót kwadracika i ramka w kolorze zębatki po najechaniu/aktywacji */
 .settings-btn {
     background: transparent;
-    border: none;
+    border: 1px solid transparent; /* Domyślnie niewidoczna ramka, żeby nie skakał układ */
     cursor: pointer;
     padding: 6px;
     border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.2s ease, transform 0.3s ease;
+    transition: background 0.2s ease, transform 0.3s ease, border-color 0.2s ease;
 }
 
 .gear-icon {
@@ -58,6 +58,7 @@ body {
 .settings-btn:hover,
 .settings-btn.active {
     background: rgba(212, 175, 55, 0.08);
+    border-color: #d4af37; /* Ramka wokół kwadracika przyjmuje kolor zębatki */
     transform: rotate(45deg); /* Obrót całego kwadracika */
 }
 
