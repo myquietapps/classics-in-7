@@ -10,7 +10,7 @@
     <div class="app-container">
         <!-- Górna sekcja w ramce -->
         <div class="composer-header-card">
-            <!-- Nagłówek z zębatką w kolorze ramki w prawym górnym rogu -->
+            <!-- Nagłówek z zębatką w prawym górnym rogu -->
             <div class="header-top-row">
                 <span id="anchor-badge"></span>
                 <button id="settings-btn" class="settings-btn" aria-label="Menu ustawień">
@@ -21,14 +21,14 @@
                 </button>
             </div>
 
-            <!-- Menu rozwijane pod zębatką (6 pozycji w stylu Classical Insight) -->
+            <!-- Menu rozwijane pod zębatką (bez numerków, zachowana kolejność) -->
             <div id="settings-menu" class="settings-menu">
-                <a href="#" class="menu-item">1. Now Playing</a>
-                <a href="#" class="menu-item">2. Saved</a>
-                <a href="#" class="menu-item">3. My Mood Stats</a>
-                <a href="#" class="menu-item">4. Jump to Date</a>
-                <a href="#" class="menu-item">5. Settings</a>
-                <a href="#" class="menu-item">6. About & Support</a>
+                <a href="#" class="menu-item">Now Playing</a>
+                <a href="#" class="menu-item">Saved</a>
+                <a href="#" class="menu-item">My Mood Stats</a>
+                <a href="#" class="menu-item">Jump to Date</a>
+                <a href="#" class="menu-item">Settings</a>
+                <a href="#" class="menu-item">About & Support</a>
             </div>
 
             <h1 id="composer-name">Ładowanie...</h1>
@@ -64,7 +64,7 @@
 
         <!-- Sekcja Discover More -->
         <div class="discover-more-section">
-            <button id="discover-toggle" class="discover-toggle-btn" style="display: flex; justify-content: space-between; align-items: center;">
+            <button id="discover-toggle" class="discover-toggle-btn">
                 <span>DISCOVER MORE</span>
                 <span id="discover-arrow">▼</span>
             </button>
@@ -73,11 +73,11 @@
             </div>
         </div>
 
-        <!-- Sekcja Wikipedia z nowym napisem i poprawnym ID dla JS -->
+        <!-- Sekcja Wikipedia (w pełni spójna z Discover More, trójkąt po prawej) -->
         <div class="discover-more-section">
-            <a id="wiki-link" href="#" target="_blank" class="discover-toggle-btn wiki-link-styled" style="display: flex; justify-content: space-between; align-items: center;">
-                <span>[ Read more on Wikipedia ▸ ]</span>
-                <span></span>
+            <a id="wiki-link" href="#" target="_blank" class="discover-toggle-btn wiki-link-styled">
+                <span>READ MORE ON WIKIPEDIA</span>
+                <span class="wiki-arrow">▸</span>
             </a>
         </div>
     </div>
