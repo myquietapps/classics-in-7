@@ -8,14 +8,15 @@
 </head>
 <body>
     <div class="app-container">
-        <!-- Górny pasek z logo i menu hamburger po prawej -->
+        <!-- Górny pasek z logo i zębatką po prawej -->
         <header class="app-header">
             <span class="app-brand-title">Classics in 7</span>
-            <div class="hamburger-menu-container" style="position: relative;">
-                <button id="hamburger-btn" class="hamburger-btn" aria-label="Menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+            <div class="settings-menu-container" style="position: relative;">
+                <button id="settings-btn" class="settings-btn" aria-label="Ustawienia">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1Z"/>
+                    </svg>
                 </button>
                 <nav id="dropdown-menu" class="dropdown-menu">
                     <ul>
@@ -40,10 +41,8 @@
         
         <!-- Główny utwór w dedykowanej ramce -->
         <div id="main-track-card" class="main-track-card">
-            <!-- Tytuł na samej górze -->
             <h3 id="main-track-title" class="main-track-title"></h3>
             
-            <!-- Pasek pod tytułem: czas nad tagami, wyrównane do prawej -->
             <div class="main-track-sub-header">
                 <div></div>
                 <div class="track-right-column">
@@ -54,7 +53,6 @@
 
             <p id="main-track-fact" class="track-fact"></p>
             
-            <!-- Przyciski w układzie 2x2 -->
             <div id="main-track-actions" class="track-actions">
                 <div class="action-row">
                     <button id="btn-1" class="btn-custom btn-1">Button 1</button>
@@ -67,22 +65,20 @@
             </div>
         </div>
 
-        <!-- Sekcja Discover More (Rozwijana lista utworów 2-6) -->
+        <!-- Sekcja Discover More -->
         <div class="discover-more-section">
-            <button id="discover-toggle" class="discover-toggle-btn" style="display: flex; justify-content: space-between; align-items: center;">
+            <button id="discover-toggle" class="discover-toggle-btn">
                 <span>DISCOVER MORE</span>
                 <span id="discover-arrow">▼</span>
             </button>
             <div id="discover-content" class="discover-content">
-                <div id="tracks-container">
-                    <!-- Tutaj JavaScript wstrzyknie utwory 2-6 -->
-                </div>
+                <div id="tracks-container"></div>
             </div>
         </div>
 
         <!-- Sekcja Explore Wikipedia -->
         <div class="discover-more-section">
-            <a id="wiki-link" href="#" target="_blank" class="discover-toggle-btn wiki-link-styled" style="display: flex; justify-content: space-between; align-items: center;">
+            <a id="wiki-link" href="#" target="_blank" class="discover-toggle-btn wiki-link-styled">
                 <span>EXPLORE WIKIPEDIA</span>
                 <span>↗</span>
             </a>
