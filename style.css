@@ -15,88 +15,6 @@ body {
     max-width: 480px;
 }
 
-/* Górny pasek aplikacji z menu zębatka */
-.app-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 16px;
-    position: relative;
-}
-
-.app-brand-title {
-    font-size: 0.9rem;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    color: #d4af37;
-    text-transform: uppercase;
-}
-
-/* Przycisk zębatki */
-.settings-btn {
-    background: #1a1a1a;
-    border: 1px solid #2a2a2a;
-    border-radius: 8px;
-    width: 38px;
-    height: 38px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    transition: border-color 0.2s ease, color 0.2s ease;
-    color: #e0e0e0;
-}
-
-.settings-btn:hover {
-    border-color: #d4af37;
-    color: #d4af37;
-}
-
-/* Rozwijane menu */
-.dropdown-menu {
-    position: absolute;
-    top: 48px;
-    right: 0;
-    width: 180px;
-    background: #1a1a1a;
-    border: 1px solid #d4af37;
-    border-radius: 10px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-8px);
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 1000;
-    overflow: hidden;
-}
-
-.dropdown-menu.active {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.dropdown-menu ul {
-    list-style: none;
-    margin: 0;
-    padding: 6px 0;
-}
-
-.dropdown-menu li a {
-    display: block;
-    padding: 10px 16px;
-    color: #cccccc;
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 500;
-    transition: background 0.2s ease, color 0.2s ease;
-}
-
-.dropdown-menu li a:hover {
-    background: rgba(212, 175, 55, 0.1);
-    color: #d4af37;
-}
-
 /* Ramka dla górnej sekcji kompozytora */
 .composer-header-card {
     background: #1a1a1a;
@@ -124,7 +42,7 @@ body {
 #composer-meta {
     font-size: 0.95rem;
     color: #999999;
-    margin-bottom: 0;
+    margin-bottom: 0; /* Usunięty zbędny margines, bo ramka ma własny padding */
 }
 
 #event-note {
