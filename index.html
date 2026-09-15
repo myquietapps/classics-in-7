@@ -8,17 +8,20 @@
 </head>
 <body>
     <div class="app-container">
-        <span id="anchor-badge"></span>
-        <h1 id="composer-name">Ładowanie...</h1>
-        <p id="composer-meta"></p>
-        <p id="event-note" style="display:none;"></p>
+        <!-- Górna sekcja w ramce -->
+        <div class="composer-header-card">
+            <span id="anchor-badge"></span>
+            <h1 id="composer-name">Ładowanie...</h1>
+            <p id="composer-meta"></p>
+            <p id="event-note" style="display:none;"></p>
+        </div>
         
         <!-- Główny utwór w dedykowanej ramce -->
         <div id="main-track-card" class="main-track-card">
             <!-- Tytuł na samej górze -->
             <h3 id="main-track-title" class="main-track-title"></h3>
             
-            <!-- Pasek pod tytułem: czas na górze, tagi pod nim po prawej stronie -->
+            <!-- Pasek pod tytułem: czas nad tagami, wyrównane do prawej -->
             <div class="main-track-sub-header">
                 <div></div>
                 <div class="track-right-column">
