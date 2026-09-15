@@ -200,14 +200,18 @@ body {
     background: rgba(255, 255, 255, 0.02);
 }
 
-#discover-arrow, .wiki-arrow {
+#discover-arrow, .wiki-svg-arrow {
     display: inline-block;
-    font-size: 0.75rem;
     color: #d4af37;
 }
 
 #discover-arrow {
+    font-size: 0.75rem;
     transition: transform 0.3s ease;
+}
+
+.wiki-svg-arrow {
+    stroke: #d4af37;
 }
 
 .discover-content {
