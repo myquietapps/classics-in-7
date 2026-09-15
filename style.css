@@ -32,7 +32,7 @@ body {
     align-items: center;
 }
 
-/* Styl przycisku ze złocistą zębatką SVG – obraca się cały kwadracik */
+/* Styl przycisku ze złocistą zębatką SVG – Efekt pulsującej poświaty */
 .settings-btn {
     background: transparent;
     border: none;
@@ -42,23 +42,22 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.2s ease, transform 0.3s ease;
+    transition: background 0.2s ease;
 }
 
 .gear-icon {
     stroke: #d4af37; /* Złoty kolor dopasowany do ramki/odznaki */
-    transition: filter 0.2s ease;
+    transition: filter 0.3s ease, transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .settings-btn:hover .gear-icon,
 .settings-btn.active .gear-icon {
-    filter: brightness(1.25); /* Delikatne rozjaśnienie po najechaniu */
+    transform: scale(1.15); /* Delikatne powiększenie ikony */
+    filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.6)); /* Elegancka, złota poświata */
 }
 
-.settings-btn:hover,
-.settings-btn.active {
-    background: rgba(212, 175, 55, 0.08); /* Delikatna złota poświata tła */
-    transform: rotate(45deg); /* Obrót całego kwadracika */
+.settings-btn:hover {
+    background: rgba(212, 175, 55, 0.08); /* Lekka złota poświata tła przycisku */
 }
 
 /* Styl rozwijanego menu zębatki */
