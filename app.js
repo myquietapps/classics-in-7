@@ -3,11 +3,11 @@ document.addEventListener("DOMContentLoaded", async () => {
         const response = await fetch("muz-content.json");
         const data = await response.json();
 
-        // Pobieranie daty według czasu lokalnego użytkownika
+        // Pobieranie daty według czasu lokalnego użytkownika (format DD-MM)
         const today = new Date();
         const month = String(today.getMonth() + 1).padStart(2, '0');
         const day = String(today.getDate()).padStart(2, '0');
-        const currentDate = `${month}-${day}`;
+        const currentDate = `${day}-${month}`; // POPRAWIONE: najpierw dzień, potem miesiąc
 
         const dayRecord = data.find(item => item.date === currentDate) || data[0];
 
