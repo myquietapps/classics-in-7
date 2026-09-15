@@ -18,41 +18,37 @@ body {
     margin-top: 20px;
 }
 
-/* Styl bazowy karty utworu */
+/* Karta utworu na liście (#2 do #6) */
 .track-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
     background: #ffffff;
     border-radius: 10px;
     padding: 16px 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
     border: 1px solid #e2e8f0;
-}
-
-/* Wyróżnienie pierwszego utworu (głównego pod nazwiskiem) - brak numeru #1 */
-.track-card.main-track {
-    background: linear-gradient(135deg, #f0f4ff 0%, #f8fafc 100%);
-    border-left: 5px solid #2563eb;
-    border-color: #cbd5e1;
-}
-
-/* Styl dla pozostałych utworów (#2 do #6) */
-.track-card.regular-track {
-    background: #ffffff;
     border-left: 5px solid #cbd5e1;
 }
 
-.track-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 8px;
-}
-
-/* Wygląd numeracji (#2 do #6) */
+/* Numerki #2 do #6 */
 .track-rank {
     font-weight: 700;
     font-size: 1rem;
     color: #64748b;
-    min-width: 26px;
+    min-width: 30px;
+    padding-top: 2px;
+}
+
+.track-content {
+    flex: 1;
+}
+
+.track-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
 }
 
 .track-title {
@@ -60,7 +56,6 @@ body {
     font-size: 1.05rem;
     font-weight: 600;
     color: #1e293b;
-    flex: 1;
 }
 
 .track-duration {
@@ -75,7 +70,7 @@ body {
 .track-fact {
     font-size: 0.95rem;
     color: #475569;
-    margin: 8px 0 12px 0;
+    margin: 6px 0 10px 0;
     line-height: 1.4;
 }
 
