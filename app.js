@@ -1,76 +1,132 @@
-document.addEventListener('DOMContentLoaded', () => {
-    loadContent();
-});
-
-async function loadContent() {
+document.addEventListener("DOMContentLoaded", async () => {
     try {
-        const response = await fetch('muz-content.json');
-        if (!response.ok) {
-            throw new Error('Błąd pobierania bazy danych');
-        }
+        const response = await fetch("muz-content.json");
         const data = await response.json();
+
+        // Pobieranie daty według czasu lokalnego użytkownika
+        const today = new Date();
+        const month = String(today.getMonth() + 1).padStart(2, '0');
+        const day = String(today.getDate()).padStart(2, '0');
+        const currentDate = `${month}-${day}`;
+
+        const dayRecord = data.find(item => item.date === currentDate) || data[0];
+
+        document.getElementById("composer-name").textContent = dayRecord.composer.name;
+        document.getElementById("composer-meta").textContent = `${dayRecord.composer.birth_year}–${dayRecord.composer.death_year} (${dayRecord.composer.period}) • ${dayRecord.composer.birth_country}`;
         
-        // Pobieramy pierwszy wpis z bazy
-        renderComposer(data[0]);
-    } catch (error) {
-        console.error('Błąd:', error);
-    }
-}
+        const badgeEl = document.getElementById("anchor-badge");
+        const eventNoteEl = document.getElementById("event-note");
+        
+        if (dayRecord.anchor_type === "premiere") {
+            badgeEl.textContent = "HISTORICAL MILESTONE";
+            if (eventNoteEl) {
+                eventNoteEl.textContent = dayRecord.event_note;
+                eventNoteEl.style.display = "block";
+            }
+        } else {
+            badgeEl.textContent = "BORN TODAY";
+            if (eventNoteEl) {
+                eventNoteEl.style.display = "none";
+            }
+        }
 
-function renderComposer(item) {
-    // 1. Wyświetlenie nazwy kompozytora
-    const nameEl = document.getElementById('composer-name');
-    if (nameEl && item.composer) {
-        nameEl.textContent = item.composer.name;
-    }
+        const wikiLinkEl = document.getElementById("wiki-link");
+        if (dayRecord.composer && dayRecord.composer.wiki_url) {
+            wikiLinkEl.href = dayRecord.composer.wiki_url;
+            wikiLinkEl.parentElement.style.display = "block";
+        } else if (dayRecord.composer && dayRecord.composer.name) {
+            wikiLinkEl.href = `https://en.wikipedia.org/wiki/Special:Search?search=${encodeURIComponent(dayRecord.composer.name)}`;
+            wikiLinkEl.parentElement.style.display = "block";
+        } else {
+            wikiLinkEl.parentElement.style.display = "none";
+        }
 
-    if (!item.tracks || item.tracks.length === 0) return;
+        let currentTracks = [...dayRecord.tracks];
+        const composerName = dayRecord.composer.name;
 
-    // 2. PIERWSZY UTWÓR (Główna sekcja) - Bez numeru #1
-    const mainTrack = item.tracks[0];
-    const mainContainer = document.getElementById('main-track-container'); 
-    
-    if (mainContainer) {
-        // Bezpieczne sprawdzenie czasu trwania (jeśli istnieje, to wyświetli, jeśli nie - nic nie wyświetli)
-        const mainDurationHTML = mainTrack.duration ? `<span class="track-duration">${mainTrack.duration}</span>` : '';
+        function renderMainTrack(track) {
+            document.getElementById("main-track-rank").textContent = `#1`;
+            document.getElementById("main-track-title").textContent = track.title;
+            document.getElementById("main-track-duration").textContent = track.duration || "";
+            
+            const moodsContainer = document.getElementById("main-track-moods");
+            if (track.mood_tags && Array.isArray(track.mood_tags)) {
+                moodsContainer.innerHTML = track.mood_tags.map(tag => `<span class="mood-tag">${tag}</span>`).join("");
+            } else {
+                moodsContainer.innerHTML = "";
+            }
 
-        mainContainer.innerHTML = `
-            <div class="main-track-card">
-                <h3 class="track-title">${mainTrack.title}</h3>
-                ${mainDurationHTML}
-                <p class="track-fact">${mainTrack.fact}</p>
-                <div class="track-tags">
-                    ${mainTrack.mood_tags ? mainTrack.mood_tags.map(tag => `<span class="tag">${tag}</span>`).join('') : ''}
-                </div>
-            </div>
-        `;
-    }
+            document.getElementById("main-track-fact").innerHTML = `<strong>Classical Insight:</strong> ${track.fact}`;
 
-    // 3. POZOSTAŁE UTWORY (#2 do #6) - z numeracją
-    const listContainer = document.getElementById('tracks-container');
-    if (listContainer) {
-        const otherTracks = item.tracks.slice(1);
+            const searchQuery = encodeURIComponent(`${composerName} ${track.title}`);
+            const spotifyLink = `https://open.spotify.com/search/${searchQuery}`;
+            const appleMusicLink = `https://music.apple.com/us/search?term=${searchQuery}`;
 
-        listContainer.innerHTML = otherTracks.map((track, index) => {
-            const trackNumber = index + 2; 
-            // Bezpieczne sprawdzenie czasu trwania dla pozostałych utworów
-            const durationHTML = track.duration ? `<span class="track-duration">${track.duration}</span>` : '';
-
-            return `
-                <div class="track-card regular-track">
-                    <span class="track-rank">#${trackNumber}</span>
-                    <div class="track-content">
-                        <div class="track-header">
-                            <h3 class="track-title">${track.title}</h3>
-                            ${durationHTML}
-                        </div>
-                        <p class="track-fact">${track.fact}</p>
-                        <div class="track-tags">
-                            ${track.mood_tags ? track.mood_tags.map(tag => `<span class="tag">${tag}</span>`).join('') : ''}
-                        </div>
-                    </div>
-                </div>
+            const actionsContainer = document.getElementById("main-track-actions");
+            actionsContainer.innerHTML = `
+                <a href="${spotifyLink}" target="_blank" class="btn-stream spotify">Spotify</a>
+                <a href="${appleMusicLink}" target="_blank" class="btn-stream apple">Apple Music</a>
             `;
-        }).join('');
+        }
+
+        function renderDiscoverList() {
+            const tracksContainer = document.getElementById("tracks-container");
+            tracksContainer.innerHTML = "";
+
+            const subTracks = currentTracks.slice(1);
+
+            subTracks.forEach((track, index) => {
+                const trackEl = document.createElement("div");
+                trackEl.className = "track-card";
+
+                const tagsHTML = track.mood_tags ? track.mood_tags.map(tag => `<span class="mood-tag">${tag}</span>`).join("") : "";
+
+                trackEl.innerHTML = `
+                    <div class="track-header">
+                        <span class="track-rank">#${index + 2}</span>
+                        <h3 class="track-title">${track.title}</h3>
+                        <span class="track-duration">${track.duration || ""}</span>
+                    </div>
+                    <div class="mood-tags-container">
+                        ${tagsHTML}
+                    </div>
+                    <p class="track-fact"><strong>Classical Insight:</strong> ${track.fact}</p>
+                `;
+
+                trackEl.addEventListener("click", () => {
+                    const originalIndex = currentTracks.findIndex(t => t.title === track.title);
+                    
+                    if (originalIndex !== -1) {
+                        const selectedTrack = currentTracks.splice(originalIndex, 1)[0];
+                        currentTracks.unshift(selectedTrack);
+
+                        renderMainTrack(currentTracks[0]);
+                        renderDiscoverList();
+
+                        discoverContent.classList.remove("expanded");
+                        discoverArrow.style.transform = "rotate(0deg)";
+                    }
+                });
+
+                tracksContainer.appendChild(trackEl);
+            });
+        }
+
+        if (currentTracks.length > 0) {
+            renderMainTrack(currentTracks[0]);
+            renderDiscoverList();
+        }
+
+        const discoverToggle = document.getElementById("discover-toggle");
+        const discoverContent = document.getElementById("discover-content");
+        const discoverArrow = document.getElementById("discover-arrow");
+
+        discoverToggle.addEventListener("click", () => {
+            const isExpanded = discoverContent.classList.toggle("expanded");
+            discoverArrow.style.transform = isExpanded ? "rotate(180deg)" : "rotate(0deg)";
+        });
+
+    } catch (error) {
+        console.error("Error loading Classics in 7 content:", error);
     }
-}
+});
