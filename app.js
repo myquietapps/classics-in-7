@@ -1,40 +1,41 @@
-// app.js - Główna logika aplikacji
-
 document.addEventListener('DOMContentLoaded', () => {
     loadContent();
 });
 
 async function loadContent() {
     try {
-        const response = await muz-content.json(); // Jeśli ładujesz przez fetch: await fetch('muz-content.json')
-        // Uwaga: Jeśli ładujesz przez fetch, użyj poniższej linii:
-        // const response = await fetch('muz-content.json');
-        // const data = await response.json();
+        const response = await fetch('muz-content.json');
+        if (!response.ok) {
+            throw new Error('Nie udało się załadować bazy danych.');
+        }
+        const data = await response.json();
         
-        // Poniższe założenie zakłada standardowe pobieranie fetch (odkomentuj linię wyżej jeśli tak masz):
-        const res = await fetch('muz-content.json');
-        const data = await res.json();
-
-        // Przykładowo renderujemy pierwszy wpis z bazy lub dopasowujemy po dacie
+        // Renderujemy pierwszy element z bazy (lub dostosuj do swojej logiki wyboru dnia)
         renderComposer(data[0]);
     } catch (error) {
-        console.error('Błąd podczas ładowania danych:', error);
+        console.error('Błąd:', error);
+        const container = document.getElementById('tracks-container');
+        if (container) {
+            container.innerHTML = '<p>Nie udało się załadować utworu.</p>';
+        }
     }
 }
 
 function renderComposer(item) {
-    // Wyświetlanie danych kompozytora (jeśli masz takie elementy w HTML)
+    // Wyświetlanie nazwy kompozytora, jeśli element istnieje w HTML
     const nameEl = document.getElementById('composer-name');
-    if (nameEl) nameEl.textContent = item.composer.name;
+    if (nameEl && item.composer) {
+        nameEl.textContent = item.composer.name;
+    }
 
     const container = document.getElementById('tracks-container');
-    if (!container) return;
+    if (!container || !item.tracks) return;
 
     // Generowanie listy utworów
     container.innerHTML = item.tracks.map((track, index) => {
         const isFirst = index === 0;
         
-        // Pierwszy utwór nie ma numeru, pozostałe mają od #2 do #6
+        // Pierwszy utwór nie ma numeru, pozostałe dostają numer od #2 do #6
         const rankDisplay = isFirst ? '' : `<span class="track-rank">#${index + 1}</span>`;
 
         return `
@@ -46,7 +47,7 @@ function renderComposer(item) {
                 </div>
                 <p class="track-fact">${track.fact}</p>
                 <div class="track-tags">
-                    ${track.mood_tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    ${track.mood_tags ? track.mood_tags.map(tag => `<span class="tag">${tag}</span>`).join('') : ''}
                 </div>
             </div>
         `;
