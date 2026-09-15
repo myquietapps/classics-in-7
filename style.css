@@ -32,7 +32,7 @@ body {
     align-items: center;
 }
 
-/* Styl przycisku ze złotą zębatką bez zbędnych animacji */
+/* Styl przycisku z zębatką w kolorze ramki – obraca się cały kwadracik */
 .settings-btn {
     background: transparent;
     border: none;
@@ -42,21 +42,23 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background 0.2s ease;
+    transition: background 0.2s ease, transform 0.3s ease;
 }
 
 .gear-icon {
-    stroke: #d4af37; /* Elegancki złoty kolor dopasowany do ramki */
+    stroke: #d4af37; /* Kolor zębatki dopasowany do ramki (#d4af37) */
     transition: filter 0.2s ease;
 }
 
 .settings-btn:hover .gear-icon,
 .settings-btn.active .gear-icon {
-    filter: brightness(1.2); /* Delikatne rozjaśnienie po najechaniu */
+    filter: brightness(1.2);
 }
 
-.settings-btn:hover {
-    background: rgba(212, 175, 55, 0.08); /* Dyskretna złota poświata tła */
+.settings-btn:hover,
+.settings-btn.active {
+    background: rgba(212, 175, 55, 0.08);
+    transform: rotate(45deg); /* Obrót całego kwadracika */
 }
 
 /* Styl rozwijanego menu zębatki */
