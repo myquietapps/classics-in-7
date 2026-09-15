@@ -62,7 +62,7 @@ body {
     transform: rotate(45deg); /* Obrót całego kwadracika */
 }
 
-/* Styl rozwijanego menu jako pływająca warstwa (overlay) */
+/* Styl rozwijanego menu jako pełnoszerokowy overlay dopasowany do ramki */
 .settings-menu {
     display: none;
     flex-direction: column;
@@ -70,12 +70,14 @@ body {
     border-radius: 8px;
     position: absolute;
     top: 54px; /* Tuż pod górnym rzędem przycisku */
-    right: 16px;
-    min-width: 160px;
+    left: 16px; /* Wyrównanie do lewej krawędzi wewnętrznej ramki */
+    right: 16px; /* Wyrównanie do prawej krawędzi */
+    width: auto; /* Wypełnienie przestrzeni między left a right */
     border: 1px solid #333333;
     padding: 8px 0;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8);
-    z-index: 100; /* Wyższa warstwa nad resztą zawartości karty */
+    z-index: 100; /* Wyższa warstwa nad resztą zawartości */
+    box-sizing: border-box;
 }
 
 .settings-menu.expanded {
