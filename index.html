@@ -15,13 +15,16 @@
         
         <!-- Główny utwór w dedykowanej ramce -->
         <div id="main-track-card" class="main-track-card">
-            <!-- Tytuł na samej górze, ma pełną szerokość -->
+            <!-- Tytuł na samej górze -->
             <h3 id="main-track-title" class="main-track-title"></h3>
             
-            <!-- Poniżej: czas po lewej, mood tags po prawej -->
+            <!-- Pasek pod tytułem: pusty po lewej, czas i tagi razem po prawej -->
             <div class="main-track-sub-header">
-                <span id="main-track-duration" class="track-duration"></span>
-                <div id="main-track-moods" class="mood-tags-container-right"></div>
+                <div></div>
+                <div class="track-right-side">
+                    <div id="main-track-moods" class="mood-tags-container-right"></div>
+                    <span id="main-track-duration" class="track-duration"></span>
+                </div>
             </div>
 
             <p id="main-track-fact" class="track-fact"></p>
