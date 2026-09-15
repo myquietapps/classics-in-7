@@ -7,18 +7,18 @@
     "privacy_statement": "We deeply respect your privacy. All your saved pieces, mood statistics, and preferences are stored exclusively on your device. We do not track or sell your data. Clicking clear will permanently erase your digital footprint from this app. Proceed?"
   },
   "menu": {
-    "now_playing": "🎧 NOW PLAYING",
-    "saved": "💾 SAVED",
-    "mood_stats": "📊 MY MOOD STATS",
-    "jump_to_date": "📅 JUMP TO DATE",
-    "settings_toggle": "⚙️ SETTINGS",
-    "about_toggle": "ℹ️ ABOUT & SUPPORT"
+    "now_playing": "NOW PLAYING",
+    "saved": "SAVED",
+    "mood_stats": "MY MOOD STATS",
+    "jump_to_date": "JUMP TO DATE",
+    "settings_toggle": "SETTINGS",
+    "about_toggle": "ABOUT & SUPPORT"
   },
   "about_section": {
     "manifest": "The Story Behind the 366 Journey\n\nClassics in 7 is a hand-crafted mindful space. Every single day of the year – including the special leap day of February 29th, when Gioachino Rossini was born – is dedicated to a distinct historical anchor, celebrating the birth of a musical genius or a profound milestone that reshaped cultural history.\n\nThe selection is an intentional blend of historical reverence and modern relevance. We don't just look at dusty archives; we listen to the world. The daily masterpieces are curated by balancing time-honored tradition with the shifting musical perspective of our time, capturing the pieces that continue to resonate most deeply across the globe today.\n\nWhy 7 minutes? Because true digital detox isn't about counting seconds on a stopwatch. We believe that on average, it takes 7 minutes to step away from the noise—to open the space, absorb the history, and immerse your mind in a masterpiece. It is the perfect daily threshold to break the cycle of endless scrolling and build a sustainable, lifelong cultural habit, 7 days a week.\n\nNo corporate algorithms, no endless distractions. Just one carefully weighed, meaningful musical moment for your busy day.",
     "author_note": "Author's Note\n\nThis app is an independent, one-man work built entirely after hours. It was born out of a personal need to find a quiet haven away from the non-stop noise of modern notifications and social feeds. Every track selection and historical note is curated manually with care.",
     "support_cta": "☕ Buy me a coffee / Become a Patron",
-    "feedback_cta": "💬 Help us fine-tune the calm (Report an issue via Tally)",
+    "feedback_cta": "💬 Help us to improve (Report an issue via Tally)",
     "feedback_url": "https://tally.so",
     "share_app_cta": "➔ Share with someone special",
     "share_app_text": "Classics in 7\nA hand-crafted mindful space for your busy day. One daily classical masterpiece. No algorithms, no endless scrolling, no ads.\n\nJoin the calm:\n➔ https://pages.dev"
