@@ -37,19 +37,33 @@
             </section>
         </main>
 
-        <!-- Slide-over: About & Support (przykładowy panel boczny) -->
+        <!-- Slide-over: About & Support (Podzielone na 3 elementy) -->
         <aside id="about-panel" class="slide-panel hidden">
             <div class="panel-header">
                 <h2>About & Support</h2>
                 <button id="close-about">✕</button>
             </div>
             <div class="panel-content">
-                <div id="about-manifest" class="manifest-text"></div>
-                <div id="about-author" class="author-text"></div>
-                <div class="support-links">
-                    <a id="support-link" href="#" target="_blank" class="cta-btn"></a>
-                    <a id="feedback-link" href="#" target="_blank" class="cta-btn"></a>
-                    <button id="share-btn" class="cta-btn"></button>
+                <!-- 1. Author's Note -->
+                <div class="about-section-block">
+                    <h3 id="heading-author" class="section-subheading">1. Author's Note</h3>
+                    <div id="about-author" class="author-text"></div>
+                </div>
+
+                <!-- 2. About the App -->
+                <div class="about-section-block">
+                    <h3 id="heading-manifest" class="section-subheading">2. About the App</h3>
+                    <div id="about-manifest" class="manifest-text"></div>
+                </div>
+
+                <!-- 3. Support & Feedback -->
+                <div class="about-section-block">
+                    <h3 id="heading-support" class="section-subheading">3. Support & Feedback</h3>
+                    <div class="support-links">
+                        <a id="support-link" href="#" target="_blank" class="cta-btn"></a>
+                        <a id="feedback-link" href="#" target="_blank" class="cta-btn"></a>
+                        <button id="share-btn" class="cta-btn"></button>
+                    </div>
                 </div>
             </div>
         </aside>
