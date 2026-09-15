@@ -175,7 +175,7 @@ body {
     margin-bottom: 16px;
 }
 
-/* WSPÓLNY styl dla przycisku rozwijania i elementu Wikipedia */
+/* Wspólny układ przycisków dolnych sekcji */
 .discover-toggle-btn {
     width: 100%;
     background: transparent;
