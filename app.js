@@ -9,7 +9,14 @@ document.addEventListener("DOMContentLoaded", async () => {
         const month = String(today.getMonth() + 1).padStart(2, '0');
         const currentDate = `${day}-${month}`;
 
-        const dayRecord = data.find(item => item.date === currentDate) || data[0];
+        // Pobranie karty dla dzisiejszej daty
+        const dayRecord = data.find(item => item.date === currentDate);
+
+        // Brak karty dla danego dnia — nie pokazujemy karty z innej daty
+        if (!dayRecord) {
+            console.error(`Brak karty dla daty: ${currentDate}`);
+            return;
+        }
 
         document.getElementById("composer-name").textContent = dayRecord.composer.name;
         document.getElementById("composer-meta").textContent = `${dayRecord.composer.birth_year}–${dayRecord.composer.death_year} (${dayRecord.composer.period}) • ${dayRecord.composer.birth_country}`;
@@ -147,7 +154,6 @@ document.addEventListener("DOMContentLoaded", async () => {
             settingsBtn.classList.toggle("active");
         });
 
-        // Zamknięcie menu po kliknięciu gdziekolwiek indziej na stronie
         document.addEventListener("click", (e) => {
             if (!settingsMenu.contains(e.target) && e.target !== settingsBtn) {
                 settingsMenu.classList.remove("expanded");
