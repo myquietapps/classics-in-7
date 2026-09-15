@@ -15,6 +15,15 @@ body {
     max-width: 480px;
 }
 
+/* Ramka dla górnej sekcji kompozytora */
+.composer-header-card {
+    background: #1a1a1a;
+    border-radius: 12px;
+    border: 1px solid #2a2a2a;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
 #anchor-badge {
     font-size: 0.85rem;
     letter-spacing: 1.2px;
@@ -33,7 +42,7 @@ body {
 #composer-meta {
     font-size: 0.95rem;
     color: #999999;
-    margin-bottom: 20px;
+    margin-bottom: 0; /* Usunięty zbędny margines, bo ramka ma własny padding */
 }
 
 #event-note {
@@ -42,7 +51,8 @@ body {
     background: rgba(212, 175, 55, 0.1);
     padding: 8px 12px;
     border-radius: 8px;
-    margin-bottom: 16px;
+    margin-top: 12px;
+    margin-bottom: 0;
 }
 
 .main-track-card {
@@ -242,7 +252,7 @@ body {
     text-align: center;
     flex: 1;
     border: 1px solid #333333;
-    background-color: #262626; /* Jednolity, spójny kolor dla wszystkich przycisków */
+    background-color: #262626;
     cursor: pointer;
     box-sizing: border-box;
     transition: all 0.2s ease;
@@ -254,7 +264,4 @@ body {
     border-color: #d4af37;
 }
 
-/* Klasy pomocnicze (obecnie zunifikowane, gotowe do indywidualnej zmiany w przyszłości) */
-.btn-1, .btn-2, .btn-3, .btn-4 {
-    /* Dziedziczą jednolity styl z .btn-custom */
-}
+.btn-1, .btn-2, .btn-3, .btn-4 {}
