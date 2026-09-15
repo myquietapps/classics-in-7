@@ -192,6 +192,7 @@ body {
     color: #888888;
     font-weight: 500;
     white-space: nowrap;
+    text-align: right;
 }
 
 /* Globalny kontener tagów nastroju */
