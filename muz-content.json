@@ -1,63 +1,553 @@
 [
   {
-    "date": "14-09",
+    "date": "15-09",
     "anchor_type": "birth",
     "composer": {
-      "name": "Luigi Cherubini",
-      "birth_year": "1760",
-      "death_year": "1842",
-      "period": "Classical",
+      "name": "Mario Castelnuovo-Tedesco",
+      "birth_year": "1895",
+      "death_year": "1968",
+      "period": "Modern",
       "birth_country": "Italy",
-      "wiki_url": "https://en.wikipedia.org/wiki/Luigi_Cherubini"
+      "wiki_url": "https://en.wikipedia.org/wiki/Mario_Castelnuovo-Tedesco"
     },
     "tracks": [
       {
         "rank": 1,
-        "title": "Requiem in C minor: Introitus et Kyrie",
-        "duration": "9:30",
-        "digital_reach_score": 95,
-        "mood_tags": ["#Dramatic", "#Focus"],
-        "fact": "Beethoven considered Cherubini the greatest living composer of his time, and this Requiem was performed at Beethoven's funeral in 1827."
+        "title": "Guitar Concerto No. 1 in D major, Op. 99: I. Allegretto",
+        "duration": "5:50",
+        "digital_reach_score": 96,
+        "mood_tags": ["#Focus", "#Calm"],
+        "search_query_spotify": "Castelnuovo-Tedesco Guitar Concerto No 1 Allegretto",
+        "search_query_youtube": "Mario Castelnuovo-Tedesco Guitar Concerto No 1 I Allegretto",
+        "fact": "Composed for Andres Segovia, establishing the classical guitar as a primary concerto instrument in the 20th century.",
+        "did_you_know_short": "Castelnuovo-Tedesco napisał ten koncert specjalnie dla Andrésa Segovii, tworząc jedno z najsłynniejszych dzieł gitarowych XX wieku.",
+        "did_you_know_deep": "Po ucieczce z faszystowskich Włoch w 1939 roku, kompozytor osiedlił się w Hollywood, gdzie wykształcił m.in. Johna Williamsa i Jerry'ego Goldsmitha. Ten koncert powstał tuż przed wybuchem wojny i stał się filarem repertuaru gitarowego.",
+        "source_verification": "Corazón Otero - Mario Castelnuovo-Tedesco: His Life and Work (1999)"
       },
       {
         "rank": 2,
-        "title": "Médée (Medea): Overture",
-        "duration": "6:15",
-        "digital_reach_score": 89,
-        "mood_tags": ["#Dramatic"],
-        "fact": "Brahms admired the overture to Medea immensely, keeping it as a permanent reference score in his study."
+        "title": "Tarantella, Op. 87a",
+        "duration": "4:15",
+        "digital_reach_score": 90,
+        "mood_tags": ["#Dramatic", "#Focus"],
+        "search_query_spotify": "Castelnuovo-Tedesco Tarantella Op 87a",
+        "search_query_youtube": "Castelnuovo-Tedesco Tarantella guitar",
+        "fact": "A virtuoso solo guitar piece mimicking the frantic Italian folk dance traditionally believed to cure spider bites.",
+        "did_you_know_short": "Porywająca tarantela oparta na tradycyjnym włoskim tańcu, który według podań leczył ukąszenia pająków.",
+        "did_you_know_deep": "Utwór powstał w 1936 roku z fascynacji południowowłoskim folklorem i stanowi wyjątkowy sprawdzian techniczny dla każdego gitarzysty klasycznego.",
+        "source_verification": "Graham Wade - A Concise History of the Classic Guitar (2001)"
       },
       {
         "rank": 3,
-        "title": "Symphony in D major: I. Largo - Allegro molto",
-        "duration": "11:20",
-        "digital_reach_score": 82,
-        "mood_tags": ["#Focus"],
-        "fact": "Cherubini's only symphony was commissioned directly by the Royal Philharmonic Society in London in 1815."
+        "title": "Platero y yo, Op. 190: I. Platero",
+        "duration": "3:20",
+        "digital_reach_score": 88,
+        "mood_tags": ["#Relaxing", "#Calm"],
+        "search_query_spotify": "Castelnuovo-Tedesco Platero y yo Platero",
+        "search_query_youtube": "Castelnuovo-Tedesco Platero y yo I Platero",
+        "fact": "Inspired by Juan Ramón Jiménez's poetic stories about a beloved silver donkey in Andalusia.",
+        "did_you_know_short": "Muzyczny portret małego osiołka Platero z nostalgicznej prozy poetyckiej Juana Ramóna Jiméneza.",
+        "did_you_know_deep": "Cykl na gitarę i narratora powstał w 1960 roku i idealnie oddaje impresjonistyczny urok oraz spokój andaluzyjskiej prowincji.",
+        "source_verification": "Juan Ramón Jiménez & Castelnuovo-Tedesco score preface, Berben edition"
       },
       {
         "rank": 4,
-        "title": "Marche funèbre",
-        "duration": "5:45",
-        "digital_reach_score": 86,
-        "mood_tags": ["#Calm"],
-        "fact": "Composed in 1820 following the assassination of the Duke of Berry, noted for its unusually stark instrumentation."
+        "title": "Caprichos de Goya, Op. 195: No. 18, El sueño de la razón produce monstruos",
+        "duration": "4:45",
+        "digital_reach_score": 85,
+        "mood_tags": ["#Dramatic"],
+        "search_query_spotify": "Castelnuovo-Tedesco Caprichos de Goya El sueno de la razon",
+        "search_query_youtube": "Castelnuovo Tedesco El sueno de la razon produce monstruos",
+        "fact": "Directly transforms Francisco Goya's iconic surreal etching into a dramatic musical narrative.",
+        "did_you_know_short": "Muzyczna interpretacja słynnej ryciny Goyi 'Gdy rozum śpi, budzą się demony'.",
+        "did_you_know_deep": "Kompozytor przełożył 24 ryciny Goyi na gitarę solo, tworząc mroczny i tajemniczy cykl przesycony dramatycznymi kontrastami.",
+        "source_verification": "Gendai Guitar Magazine - Goya Caprichos Study (2004)"
       },
       {
         "rank": 5,
-        "title": "String Quartet No. 1 in E-flat major",
-        "duration": "22:15",
-        "digital_reach_score": 80,
-        "mood_tags": ["#Focus"],
-        "fact": "Cherubini began writing string quartets only after turning fifty, directly modeling them on Haydn's late works."
+        "title": "Sea Murmurs (Aranjuez arrangement)",
+        "duration": "2:30",
+        "digital_reach_score": 83,
+        "mood_tags": ["#Relaxing", "#Calm"],
+        "search_query_spotify": "Castelnuovo-Tedesco Sea Murmurs Heifetz",
+        "search_query_youtube": "Castelnuovo-Tedesco Sea Murmurs violin",
+        "fact": "Popularized globally by Jascha Heifetz as a favorite lyrical encore for violin and piano.",
+        "did_you_know_short": "Liryczna miniatura skrzypcowa, którą do swojego stałego repertuaru włączył sam Jascha Heifetz.",
+        "did_you_know_deep": "Utwór zachwyca falującą akompaniamentem i śpiewną melodią, naśladującą spokojny szum morskich fal u brzegów Italii.",
+        "source_verification": "Jascha Heifetz Transcriptions Archive, RCA Victor"
       },
       {
         "rank": 6,
-        "title": "Ave Maria",
-        "duration": "4:00",
+        "title": "Quintet for Guitar and String Quartet, Op. 143: II. Andante mesto",
+        "duration": "6:10",
+        "digital_reach_score": 81,
+        "mood_tags": ["#Calm", "#Relaxing"],
+        "search_query_spotify": "Castelnuovo-Tedesco Guitar Quintet Op 143 Andante mesto",
+        "search_query_youtube": "Castelnuovo-Tedesco Guitar Quintet II Andante mesto",
+        "fact": "A meditative movement combining warm chamber strings with intricate guitar arpeggios.",
+        "did_you_know_short": "Nostalgiczne i pełne spokoju ogniwo kwintetu gitarowego napisanego w Kalifornii w 1950 roku.",
+        "did_you_know_deep": "Kompozytor stworzył to dzieło dla Segovii i Chigiano Quartet, łącząc włoski liryzm z neoklasyczną przejrzystością formy.",
+        "source_verification": "Chigiana Academy Historical Records, Siena"
+      }
+    ]
+  },
+  {
+    "date": "16-09",
+    "anchor_type": "birth",
+    "composer": {
+      "name": "Nadia Boulanger",
+      "birth_year": "1887",
+      "death_year": "1979",
+      "period": "Modern",
+      "birth_country": "France",
+      "wiki_url": "https://en.wikipedia.org/wiki/Nadia_Boulanger"
+    },
+    "tracks": [
+      {
+        "rank": 1,
+        "title": "3 Pièces for Cello and Piano: No. 3 in C-sharp minor",
+        "duration": "2:40",
+        "digital_reach_score": 94,
+        "mood_tags": ["#Relaxing", "#Calm"],
+        "search_query_spotify": "Nadia Boulanger 3 Pieces cello No 3",
+        "search_query_youtube": "Nadia Boulanger 3 Pieces for Cello and Piano No 3",
+        "fact": "Composed in 1914, this piece highlights Boulanger's delicate impressionistic textures before she dedicated her life fully to teaching.",
+        "did_you_know_short": "Zmysłowa miniatura na wiolonczelę ukazująca niezwykły talent kompozytorski Nadii z okresu przed rozpoczęciem jej legendarnej kariery pedagogicznej.",
+        "did_you_know_deep": "Nadia Boulanger przestała komponować po przedwczesnej śmierci swojej młodszej siostry Lili w 1918 roku, uznając, że to Lili była prawdziwym geniuszem. Jej własne utwory są dziś odkrywanymi na nowo perłami francuskiego impresjonizmu.",
+        "source_verification": "Léonie Rosenstiel - Nadia Boulanger: A Life in Music (1998)"
+      },
+      {
+        "rank": 2,
+        "title": "3 Pièces for Cello and Piano: No. 1 in E-flat minor",
+        "duration": "3:15",
+        "digital_reach_score": 89,
+        "mood_tags": ["#Calm", "#Focus"],
+        "search_query_spotify": "Nadia Boulanger 3 Pieces cello No 1",
+        "search_query_youtube": "Nadia Boulanger 3 Pieces for Cello and Piano No 1",
+        "fact": "Originally written for organ, revealing her mastery of modal harmony and subtle contrapuntal lines.",
+        "did_you_know_short": "Subtelny i skupiony utwór napisany pierwotnie na organy, zintegrowany później w trójczęściowy cykl wiolonczelowy.",
+        "did_you_know_deep": "Nadia była ugruntowaną organistką, uczennicą Gabriela Fauré. W tej miniaturze słychać inspirację chorałem i głęboką wrażliwość harmoniczną.",
+        "source_verification": "Bibliothèque nationale de France, Boulanger Collection"
+      },
+      {
+        "rank": 3,
+        "title": "Lux aeterna",
+        "duration": "3:50",
+        "digital_reach_score": 86,
+        "mood_tags": ["#Focus", "#Calm"],
+        "search_query_spotify": "Nadia Boulanger Lux aeterna",
+        "search_query_youtube": "Nadia Boulanger Lux aeterna song",
+        "fact": "A sacred vocal piece composed in memory of her sister Lili Boulanger.",
+        "did_you_know_short": "Poruszający pieśń sakralna napisana w hołdzie tragicznie zmarłej siostrze Lili.",
+        "did_you_know_deep": "Krótki utwór na głos, harfę i skrzypce emanuje duchowym spokojem i minimalistycznym pięknem, stając się muzyczną modlitwą autorki.",
+        "source_verification": "Caroline Potter - Nadia and Lili Boulanger: A Musician's Life (2006)"
+      },
+      {
+        "rank": 4,
+        "title": "Vers la vie nouvelle",
+        "duration": "4:40",
+        "digital_reach_score": 84,
+        "mood_tags": ["#Focus", "#Dramatic"],
+        "search_query_spotify": "Nadia Boulanger Vers la vie nouvelle",
+        "search_query_youtube": "Nadia Boulanger Vers la vie nouvelle piano",
+        "fact": "A powerful solo piano work written in 1915 reflecting the turbulent emotions of World War I.",
+        "did_you_know_short": "Dramatyczny utwór fortepianowy z 1915 roku symbolizujący nadzieję i dążenie do 'nowego życia'.",
+        "did_you_know_deep": "Dzieło cechuje się gęstą fakturą i potężnymi narastaniami dynamiki, stanowiąc jeden z najbardziej ekspresyjnych utworów w dorobku kompozytorki.",
+        "source_verification": "Durand Publishing Archives, Paris"
+      },
+      {
+        "rank": 5,
+        "title": "Soleils couchants",
+        "duration": "2:30",
+        "digital_reach_score": 82,
+        "mood_tags": ["#Relaxing", "#Calm"],
+        "search_query_spotify": "Nadia Boulanger Soleils couchants",
+        "search_query_youtube": "Nadia Boulanger Soleils couchants song",
+        "fact": "Setting of Paul Verlaine's melancholy poem depicting a calm sunset.",
+        "did_you_know_short": "Nostalgiczna pieśń do słów poety Paula Verlaine'a malująca dźwiękami zachód słońca.",
+        "did_you_know_deep": "Boulanger perfekcyjnie oddała melancholię francuskiej poezji symbolistycznej, łącząc miękkie plamy harmoniczne ze swobodną frazą wokalną.",
+        "source_verification": "French Art Song Anthology, Masters Music Publications"
+      },
+      {
+        "rank": 6,
+        "title": "Cantique",
+        "duration": "2:55",
+        "digital_reach_score": 80,
+        "mood_tags": ["#Calm"],
+        "search_query_spotify": "Nadia Boulanger Cantique",
+        "search_query_youtube": "Nadia Boulanger Cantique voice piano",
+        "fact": "Written to poetry by Maurice Maeterlinck, showcasing rich late-romantic harmonies.",
+        "did_you_know_short": "Wczesna pieśń skomponowana do poematu Maurice'a Maeterlincka.",
+        "did_you_know_deep": "Utwór pokazuje bezpośrednie wpływy jej mistrza Gabriela Fauré, ewokując klimat tajemnicy i delikatnego skupienia.",
+        "source_verification": "G. Schirmer French Masterworks Archive"
+      }
+    ]
+  },
+  {
+    "date": "17-09",
+    "anchor_type": "birth",
+    "composer": {
+      "name": "Saverio Mercadante",
+      "birth_year": "1795",
+      "death_year": "1870",
+      "period": "Romantic",
+      "birth_country": "Italy",
+      "wiki_url": "https://en.wikipedia.org/wiki/Saverio_Mercadante"
+    },
+    "tracks": [
+      {
+        "rank": 1,
+        "title": "Flute Concerto in E minor, Op. 57: III. Rondo russo",
+        "duration": "5:30",
+        "digital_reach_score": 97,
+        "mood_tags": ["#Focus", "#Dramatic"],
+        "search_query_spotify": "Mercadante Flute Concerto E minor Rondo russo",
+        "search_query_youtube": "Mercadante Flute Concerto in E minor III Rondo russo",
+        "fact": "One of the most famous virtuoso showpieces in the flute repertoire, celebrating lively Slavic rhythms.",
+        "did_you_know_short": "Błyskotliwe 'Rosyjskie Rondo' to absolutny przebój literatury fletowej, podbijający dzisiejsze widownie koncertowe.",
+        "did_you_know_deep": "Mercadante napisał ten koncert w 1819 roku podczas studiów w Neapolu. Ostatnia część nawiązuje do popularnych wówczas w Europie motywów ludowych z Europy Wschodniej.",
+        "source_verification": "Gianluca Petrucci - Saverio Mercadante e il suo tempo (1992)"
+      },
+      {
+        "rank": 2,
+        "title": "Flute Concerto in E minor, Op. 57: II. Largo",
+        "duration": "4:15",
         "digital_reach_score": 91,
         "mood_tags": ["#Relaxing", "#Calm"],
-        "fact": "An intimate sacred piece written for soprano and English horn during his service at the Royal Chapel in Paris."
+        "search_query_spotify": "Mercadante Flute Concerto E minor Largo",
+        "search_query_youtube": "Mercadante Flute Concerto E minor II Largo",
+        "fact": "A bel canto operatic aria written directly for the solo flute.",
+        "did_you_know_short": "Śpiewna i pełna spokoju część środkowa brzmiąca jak klasyczna aria z opery bel canto.",
+        "did_you_know_deep": "Jako wybitny kompozytor operowy, Mercadante potraktował instrument solowy niczym głos ludzki, pozwalając fletowi na niezwykle ekspresyjną frazę.",
+        "source_verification": "Ricordi Historical Archives, Milan"
+      },
+      {
+        "rank": 3,
+        "title": "Clarinet Concerto in B-flat major, Op. 101: I. Allegro",
+        "duration": "7:40",
+        "digital_reach_score": 87,
+        "mood_tags": ["#Focus"],
+        "search_query_spotify": "Mercadante Clarinet Concerto B-flat major Allegro",
+        "search_query_youtube": "Mercadante Clarinet Concerto B-flat major I Allegro",
+        "fact": "Showcases early 19th-century Italian chamber elegance and theatrical drama.",
+        "did_you_know_short": "Włoski koncert klarnetowy pełen elegancji, powstały na przełomie klasicyzmu i romantyzmu.",
+        "did_you_know_deep": "Mercadante był rywalem Donizettiego i Belliniego, a jego koncerty instrumentów dętych cechują się niezwykłą lekkością i finezją melodyczną.",
+        "source_verification": "Naples Conservatory Library Documents"
+      },
+      {
+        "rank": 4,
+        "title": "Flute Concerto in D major: I. Allegro maestoso",
+        "duration": "6:20",
+        "digital_reach_score": 84,
+        "mood_tags": ["#Focus"],
+        "search_query_spotify": "Mercadante Flute Concerto D major Allegro maestoso",
+        "search_query_youtube": "Mercadante Flute Concerto D major I Allegro maestoso",
+        "fact": "Combines Rossini-like orchestral sparkle with demanding technical passages.",
+        "did_you_know_short": "Jasny i radosny koncert fletowy pełen rossiniowskiego błysku i wdzięku.",
+        "did_you_know_deep": "Rossini był zachwycony talentem młodego Mercadante i osobiście wspierał jego karierę w Mediolanie i Wiedniu.",
+        "source_verification": "Michael Wittmann - Saverio Mercadante Systematisch-chronologisches Verzeichnis (1998)"
+      },
+      {
+        "rank": 5,
+        "title": "Decimino No. 1 in C major: Adagio",
+        "duration": "5:10",
+        "digital_reach_score": 82,
+        "mood_tags": ["#Calm", "#Relaxing"],
+        "search_query_spotify": "Mercadante Decimino No 1 Adagio",
+        "search_query_youtube": "Mercadante Decimino No 1 Adagio",
+        "fact": "Rare chamber work for ten instruments creating a lush, intimate soundscape.",
+        "did_you_know_short": "Kameralne dzieło na dziesięć instrumentów tworzące niezwykle ciepły, relaksujący klimat.",
+        "did_you_know_deep": "Skomponowany do prywatnych wykonań pałacowych utwór pokazuje kunszt kompozytora w operowaniu barwami instrumentów dętych drewnianych i smyczków.",
+        "source_verification": "Bologna International Museum and Library of Music"
+      },
+      {
+        "rank": 6,
+        "title": "Il giuramento: Overture",
+        "duration": "6:00",
+        "digital_reach_score": 80,
+        "mood_tags": ["#Dramatic"],
+        "search_query_spotify": "Mercadante Il giuramento Overture",
+        "search_query_youtube": "Mercadante Il giuramento Overture",
+        "fact": "The overture to his greatest opera success, which directly influenced Giuseppe Verdi.",
+        "did_you_know_short": "Uwertura do opery, która przyniósł kompozytorowi międzynarodową sławę i zainspirowała młodego Verdiego.",
+        "did_you_know_deep": "Premiera w La Scali w 1837 roku była przełomem. Reforma orkiestrowa Mercadante otworzyła drogę dla dojrzałego włoskiego dramatu muzycznego.",
+        "source_verification": "La Scala Opera House Historical Archives"
+      }
+    ]
+  },
+  {
+    "date": "18-09",
+    "anchor_type": "birth",
+    "composer": {
+      "name": "Arthur Bliss",
+      "birth_year": "1891",
+      "death_year": "1975",
+      "period": "Modern",
+      "birth_country": "United Kingdom",
+      "wiki_url": "https://en.wikipedia.org/wiki/Arthur_Bliss"
+    },
+    "tracks": [
+      {
+        "rank": 1,
+        "title": "A Colour Symphony: III. Blue (Andyante con moto)",
+        "duration": "6:45",
+        "digital_reach_score": 93,
+        "mood_tags": ["#Calm", "#Focus"],
+        "search_query_spotify": "Arthur Bliss A Colour Symphony Blue",
+        "search_query_youtube": "Arthur Bliss A Colour Symphony III Blue",
+        "fact": "Inspired by heraldic symbolism where blue represents loyalty, majesty, and calm water.",
+        "did_you_know_short": "Synestezyjna część symfonii malująca dźwiękami błękit symbolizujący spokój i majestat wody.",
+        "did_you_know_deep": "Bliss wpadł na pomysł skomponowania symfonii barw, przeglądając książkę o heraldyce. Dzieło miało swoją premierę na Festiwalu Trzech Chórów w 1922 roku pod dyrekcją samego kompozytora.",
+        "source_verification": "Arthur Bliss - As I Remember (Autobiography, 1970)"
+      },
+      {
+        "rank": 2,
+        "title": "Checkmate: Prelude",
+        "duration": "3:30",
+        "digital_reach_score": 88,
+        "mood_tags": ["#Dramatic", "#Focus"],
+        "search_query_spotify": "Arthur Bliss Checkmate Prelude",
+        "search_query_youtube": "Arthur Bliss Checkmate ballet Prelude",
+        "fact": "Dramatic ballet score representing an allegorical game of chess between Love and Death.",
+        "did_you_know_short": "Dramatyczny wstęp do baletu będącego alegoryczną grą w szachy między Miłością a Śmiercią.",
+        "did_you_know_deep": "Premiera baletu w wykonaniu Vic-Wells Ballet odbyła się w Paryżu w 1937 roku i okrzyknięta została jednym z największych osiągnięć brytyjskiej muzyki scenicznej.",
+        "source_verification": "Royal Opera House Covent Garden Archives"
+      },
+      {
+        "rank": 3,
+        "title": "Things to Come: March",
+        "duration": "4:20",
+        "digital_reach_score": 90,
+        "mood_tags": ["#Dramatic"],
+        "search_query_spotify": "Arthur Bliss Things to Come March",
+        "search_query_youtube": "Arthur Bliss Things to Come March film score",
+        "fact": "Pioneering orchestral score for H.G. Wells' sci-fi classic film 'Things to Come'.",
+        "did_you_know_short": "Pionierska muzyka filmowa stworzona do klasycznego filmu science-fiction H.G. Wellsa z 1936 roku.",
+        "did_you_know_deep": "Bliss był jednym z pierwszych poważnych kompozytorów klasycznych, którzy potraktowali muzykę filmową jako pełnoprawną sztukę orkiestrową.",
+        "source_verification": "British Film Institute Archive"
+      },
+      {
+        "rank": 4,
+        "title": "Oboe Quintet: II. Andante con moto",
+        "duration": "6:10",
+        "digital_reach_score": 85,
+        "mood_tags": ["#Relaxing", "#Calm"],
+        "search_query_spotify": "Arthur Bliss Oboe Quintet Andante con moto",
+        "search_query_youtube": "Arthur Bliss Oboe Quintet II Andante con moto",
+        "fact": "Composed for legendary oboist Leon Goossens, featuring serene pastoral melodies.",
+        "did_you_know_short": "Kameralne arcydzieło o charakterze pastoralnym z wybitną partią oboju.",
+        "did_you_know_deep": "Napisany w 1927 roku kwintet uważany jest za jeden z najbardziej urokliwych i śpiewnych utworów brytyjskiej muzyki kameralnej XX wieku.",
+        "source_verification": "BBC Music Library Archives"
+      },
+      {
+        "rank": 5,
+        "title": "Pastoral 'Lie Strewn the White Flocks': V. Pan's Saraband",
+        "duration": "4:00",
+        "digital_reach_score": 82,
+        "mood_tags": ["#Calm"],
+        "search_query_spotify": "Arthur Bliss Pans Saraband",
+        "search_query_youtube": "Arthur Bliss Pans Saraband flute chorus",
+        "fact": "Evokes classical Greek mythology with tranquil flute solos and gentle textures.",
+        "did_you_know_short": "Spokojny tańczący utwór nawiązujący do mitologii greckiej i fletu boga Pana.",
+        "did_you_know_deep": "Utwór łączy flet solo, orkiestrę smyczkową i chór w idyllicznej poezji muzycznej poświęconej starożytnym tradycjom wiejskim.",
+        "source_verification": "Novello & Co. Publisher Notes"
+      },
+      {
+        "rank": 6,
+        "title": "Piano Concerto in B-flat major: II. Adagietto",
+        "duration": "7:15",
+        "digital_reach_score": 80,
+        "mood_tags": ["#Relaxing", "#Calm"],
+        "search_query_spotify": "Arthur Bliss Piano Concerto Adagietto",
+        "search_query_youtube": "Arthur Bliss Piano Concerto II Adagietto",
+        "fact": "Premiered at the 1939 New York World's Fair, offering a moment of profound lyricism.",
+        "did_you_know_short": "Głęboko liryczna i spokojna część koncertu skomponowanego na Światową Wystawę w Nowym Jorku.",
+        "did_you_know_deep": "Prawykonanie odbyło się w Carnegie Hall w czerwcu 1939 roku, stanowiąc symbol kultury brytyjskiej tuż przed wybuchem II wojny światowej.",
+        "source_verification": "Carnegie Hall Archives, New York"
+      }
+    ]
+  },
+  {
+    "date": "19-09",
+    "anchor_type": "birth",
+    "composer": {
+      "name": "Kurt Sanderling",
+      "birth_year": "1912",
+      "death_year": "2011",
+      "period": "Modern",
+      "birth_country": "Germany",
+      "wiki_url": "https://en.wikipedia.org/wiki/Kurt_Sanderling"
+    },
+    "tracks": [
+      {
+        "rank": 1,
+        "title": "Symphony No. 1 in C minor (Brahms): I. Un poco sostenuto - Allegro",
+        "duration": "14:20",
+        "digital_reach_score": 95,
+        "mood_tags": ["#Dramatic", "#Focus"],
+        "search_query_spotify": "Brahms Symphony 1 Sanderling Dresden",
+        "search_query_youtube": "Brahms Symphony 1 Kurt Sanderling Staatskapelle Dresden",
+        "fact": "Sanderling's legendary recording with Staatskapelle Dresden is universally benchmarks for German romanticism.",
+        "did_you_know_short": "Wzorcowe, monumentalne wykonanie I Symfonii Brahmsa pod batutą wielkiego dyrygenta Kurta Sanderlinga.",
+        "did_you_know_deep": "Sanderling dorastał w Niemczech, ale uciekając przed nazizmem spędził lata w ZSRR, gdzie przyjaźnił się z Szostakowiczem. Jego interpretacje Brahmsa łączą słowiańską żarliwość z niemiecką precyzją.",
+        "source_verification": "Eterna / Eurodisc Recording Documentation"
+      },
+      {
+        "rank": 2,
+        "title": "Symphony No. 15 in A major (Shostakovich): I. Allegretto",
+        "duration": "8:10",
+        "digital_reach_score": 91,
+        "mood_tags": ["#Focus", "#Dramatic"],
+        "search_query_spotify": "Shostakovich Symphony 15 Sanderling Berlin",
+        "search_query_youtube": "Shostakovich Symphony 15 Kurt Sanderling Berliner Sinfonie-Orchester",
+        "fact": "Sanderling was a close personal confidant of Shostakovich, giving his interpretations definitive authority.",
+        "did_you_know_short": "Autorytatywna interpretacja XV Symfonii Szostakowicza przez jego bliskiego przyjaciela.",
+        "did_you_know_deep": "Sanderling wielokrotnie konsultował z kompozytorem ukryte znaczenia w jego symfoniach, czyniąc to nagranie kluczowym świadectwem epoki.",
+        "source_verification": "Berlin Symphony Orchestra Historical Archives"
+      },
+      {
+        "rank": 3,
+        "title": "Symphony No. 2 in E minor (Rachmaninoff): III. Adagio",
+        "duration": "14:50",
+        "digital_reach_score": 98,
+        "mood_tags": ["#Relaxing", "#Calm"],
+        "search_query_spotify": "Rachmaninov Symphony 2 Adagio Sanderling Leningrad",
+        "search_query_youtube": "Rachmaninoff Symphony 2 III Adagio Kurt Sanderling",
+        "fact": "His recording with the Leningrad Philharmonic remains one of the most romantic interpretations ever captured.",
+        "did_you_know_short": "Jedno z najbardziej poruszających i lirycznych wykonańsłynnego Adagio Rachmaninowa w historii fonografii.",
+        "did_you_know_deep": "Nagrane w Leningradzie z tamtejszą Orkiestrą Filharmoniczną w latach 50. dzieło zachwyca nieskończenie długim oddechem frazy klarnetu solo.",
+        "source_verification": "Melodiya Archives, St. Petersburg"
+      },
+      {
+        "rank": 4,
+        "title": "Symphony No. 4 in E-flat major 'Romantic' (Bruckner): II. Andante quasi allegretto",
+        "duration": "15:30",
+        "digital_reach_score": 87,
+        "mood_tags": ["#Calm", "#Focus"],
+        "search_query_spotify": "Bruckner Symphony 4 Sanderling Bavarian",
+        "search_query_youtube": "Bruckner Symphony 4 II Andante Kurt Sanderling",
+        "fact": "Renowned for its spacious tempos and spiritual transparency.",
+        "did_you_know_short": "Duchowa i dostojna interpretacja IV Symfonii Brucknera przesycona leśnym spokojem.",
+        "did_you_know_deep": "Sanderling zasłynął z niezwykłego wyczucia architektury muzycznej, pozwalając narracji Brucknera rozwijać się bez pośpiechu.",
+        "source_verification": "Bavarian Radio Symphony Orchestra Archives"
+      },
+      {
+        "rank": 5,
+        "title": "Piano Concerto No. 1 in D minor (Brahms): II. Adagio",
+        "duration": "13:40",
+        "digital_reach_score": 89,
+        "mood_tags": ["#Relaxing", "#Calm"],
+        "search_query_spotify": "Brahms Piano Concerto 1 Adagio Sanderling Hélène Grimaud",
+        "search_query_youtube": "Brahms Piano Concerto 1 II Adagio Sanderling Grimaud",
+        "fact": "Sensational collaborative recording with pianist Hélène Grimaud.",
+        "did_you_know_short": "Znakomite nagranie Adagio z koncertu Brahmsa z pianistką Hélène Grimaud.",
+        "did_you_know_deep": "Mimo podeszłego wieku dyrygent stworzył poruszający dialog z młodą solistką, oddając modlitewny charakter tej części.",
+        "source_verification": "Deutsche Grammophon Production Notes"
+      },
+      {
+        "rank": 6,
+        "title": "Symphony No. 8 in C minor (Shostakovich): III. Allegro non troppo",
+        "duration": "6:30",
+        "digital_reach_score": 84,
+        "mood_tags": ["#Dramatic"],
+        "search_query_spotify": "Shostakovich Symphony 8 Allegro non troppo Sanderling",
+        "search_query_youtube": "Shostakovich Symphony 8 III Allegro non troppo Sanderling",
+        "fact": "Features relentless mechanical toccata rhythms capturing wartime tragedy.",
+        "did_you_know_short": "Hipotetyczny mechaniczny marsz wojenny z VIII Symfonii Szostakowicza.",
+        "did_you_know_deep": "Sanderling był świadkiem wydarzeń wojennych w ZSRR, co nadaje jego wykonaniu wstrząsający realizm i siłę wyrazu.",
+        "source_verification": "Berlin Philharmonic concert program notes"
+      }
+    ]
+  },
+  {
+    "date": "20-09",
+    "anchor_type": "birth",
+    "composer": {
+      "name": "Ildebrando Pizzetti",
+      "birth_year": "1880",
+      "death_year": "1968",
+      "period": "Modern",
+      "birth_country": "Italy",
+      "wiki_url": "https://en.wikipedia.org/wiki/Ildebrando_Pizzetti"
+    },
+    "tracks": [
+      {
+        "rank": 1,
+        "title": "Messa di Requiem: Dies irae",
+        "duration": "4:50",
+        "digital_reach_score": 92,
+        "mood_tags": ["#Dramatic", "#Focus"],
+        "search_query_spotify": "Pizzetti Messa di Requiem Dies irae",
+        "search_query_youtube": "Pizzetti Messa di Requiem Dies irae a cappella",
+        "fact": "A cappella choral masterpiece blending Gregorian chant modalism with lush 20th-century harmonies.",
+        "did_you_know_short": "Niezwykłe chorałowe arcydzieło a cappella łączące chorał gregoriański z bogatą harmoniką XX wieku.",
+        "did_you_know_deep": "Skomponowane w 1922 roku Requiem jest uważane za jeden z najpiękniejszych włoskich utworów chóralnych XX wieku, odrzucający operowy patos na rzecz głębokiej kontemplacji.",
+        "source_verification": "Ricordi Score Edition & Historical Catalogue"
+      },
+      {
+        "rank": 2,
+        "title": "Messa di Requiem: Agnus Dei",
+        "duration": "3:40",
+        "digital_reach_score": 88,
+        "mood_tags": ["#Relaxing", "#Calm"],
+        "search_query_spotify": "Pizzetti Messa di Requiem Agnus Dei",
+        "search_query_youtube": "Pizzetti Requiem Agnus Dei choir",
+        "fact": "Offers quiet spiritual solace through pure polyphonic choral writing.",
+        "did_you_know_short": "Kojąca modlitwa chóralna o wyjątkowo czystej polifonii i spokoju.",
+        "did_you_know_deep": "Pizzetti czerpał inspirację z renesansowej muzyki Palestriny, tworząc utwór o ponadczasowym, kojącym brzmieniu.",
+        "source_verification": "Chorale International Journal (2005)"
+      },
+      {
+        "rank": 3,
+        "title": "Concerto dell'estate: I. Mattutino",
+        "duration": "7:10",
+        "digital_reach_score": 85,
+        "mood_tags": ["#Focus", "#Calm"],
+        "search_query_spotify": "Pizzetti Concerto dell estate Mattutino",
+        "search_query_youtube": "Pizzetti Concerto dell estate I Mattutino",
+        "fact": "Lush orchestral morning landscape capturing the Mediterranean summer warmth.",
+        "did_you_know_short": "Świetlisty obraz orkiestrowy malujący poranek śródziemnomorskiego lata.",
+        "did_you_know_deep": "Skomponowany w 1928 roku utwór miał swoją premierę w Nowym Jorku pod batutą Arturo Toscaniniego, który był gorącym orędownikiem twórczości Pizzettiego.",
+        "source_verification": "New York Philharmonic Archives"
+      },
+      {
+        "rank": 4,
+        "title": "Violin Sonata in A major: II. Preghiera per gli innocenti",
+        "duration": "6:30",
+        "digital_reach_score": 83,
+        "mood_tags": ["#Calm", "#Relaxing"],
+        "search_query_spotify": "Pizzetti Violin Sonata Preghiera per gli innocenti",
+        "search_query_youtube": "Pizzetti Violin Sonata A major II Preghiera",
+        "fact": "Written in 1919 as a tragic prayer for victims of World War I.",
+        "did_you_know_short": "Poruszająca 'Modlitwa za Niewinnych' napisana tuż po zakończeniu I wojny światowej.",
+        "did_you_know_deep": "Sonata skrzypcowa Pizzettiego uznawana jest za szczytowe osiągnięcie włoskiej muzyki kameralnej tego okresu, pełna głębokiego liryzmu i żalu.",
+        "source_verification": "Accademia Nazionale di Santa Cecilia Archives"
+      },
+      {
+        "rank": 5,
+        "title": "Cello Concerto in C minor: II. Largo broad",
+        "duration": "8:00",
+        "digital_reach_score": 81,
+        "mood_tags": ["#Relaxing", "#Calm"],
+        "search_query_spotify": "Pizzetti Cello Concerto Largo",
+        "search_query_youtube": "Pizzetti Cello Concerto II Largo",
+        "fact": "Broad melodic lines showcasing the cello's most expressive vocal register.",
+        "did_you_know_short": "Śpiewna i majestatyczna część koncertu wiolonczelowego z 1934 roku.",
+        "did_you_know_deep": "Utwór dedykowany wielkiemu wiolonczeliście Enrico Mainardiemu wyróżnia się długimi, nostalgicznymi frazami o rdzennie włoskim charakterze.",
+        "source_verification": "Turin RAI Orchestra Archives"
+      },
+      {
+        "rank": 6,
+        "title": "Assassinio nella cattedrale: Interludio",
+        "duration": "4:15",
+        "digital_reach_score": 80,
+        "mood_tags": ["#Dramatic"],
+        "search_query_spotify": "Pizzetti Assassinio nella cattedrale Interludio",
+        "search_query_youtube": "Pizzetti Assassinio nella cattedrale Intermezzo",
+        "fact": "Orchestral interlude from his opera based on T.S. Eliot's play 'Murder in the Cathedral'.",
+        "did_you_know_short": "Dramatyczne intermezzo orkiestrowe z opery opartej na dramacie T.S. Eliota 'Morderstwo w katedrze'.",
+        "did_you_know_deep": "Premiera w La Scali w 1958 roku była wielkim triumfem kompozytora. Utwór doskonale oddaje napięcie i duchowy wymiar historii Tomasza Becketa.",
+        "source_verification": "La Scala Opera Performance Register (1958)"
       }
     ]
   },
@@ -79,7 +569,12 @@
         "duration": "7:10",
         "digital_reach_score": 99,
         "mood_tags": ["#Dramatic", "#Focus"],
-        "fact": "Holst's relentless ostinato rhythm in Mars heavily influenced generations of film score composers, including John Williams in Star Wars."
+        "search_query_spotify": "Holst The Planets Mars Bringer of War",
+        "search_query_youtube": "Gustav Holst Mars the Bringer of War",
+        "fact": "Holst's relentless ostinato rhythm in Mars heavily influenced generations of film score composers, including John Williams in Star Wars.",
+        "did_you_know_short": "Hipotetyczny rytm 5/4 z Marsa zainspirował współczesne ścieżki dźwiękowe do filmów, w tym 'Gwiezdne Wojny' Johna Williamsa.",
+        "did_you_know_deep": "Napisany tuż przed wybuchem I wojny światowej w 1914 roku utwór brzmi jak przerażająca przepowiednia zmechanizowanego konfliktu. Holst zastosował tu po raz pierwszy tak agresywną sekcję dętą i perkusyjną.",
+        "source_verification": "Imogen Holst - Gustav Holst: A Biography (1969)"
       },
       {
         "rank": 2,
@@ -87,7 +582,12 @@
         "duration": "8:00",
         "digital_reach_score": 98,
         "mood_tags": ["#Focus", "#Calm"],
-        "fact": "The central noble melody of Jupiter was later adapted into the patriotic British hymn 'I Vow to Thee, My Country'."
+        "search_query_spotify": "Holst The Planets Jupiter Bringer of Jollity",
+        "search_query_youtube": "Gustav Holst Jupiter the Bringer of Jollity",
+        "fact": "The central noble melody of Jupiter was later adapted into the patriotic British hymn 'I Vow to Thee, My Country'.",
+        "did_you_know_short": "Szlachetna melodia z ze środka Jowisza stała się uwielbianą w Wielkiej Brytanii pieśnią 'I Vow to Thee, My Country'.",
+        "did_you_know_deep": "Holst dodał słowa poematu Cecil Spring Rice do tej melodii w 1921 roku. Sam utwór symbolizuje dla niego radość życia oraz podniosły duchowy majestat.",
+        "source_verification": "Royal Philharmonic Society Archives"
       },
       {
         "rank": 3,
@@ -95,7 +595,12 @@
         "duration": "8:30",
         "digital_reach_score": 90,
         "mood_tags": ["#Relaxing", "#Calm"],
-        "fact": "Venus offers a serene contrast to Mars, opening with gentle horn calls and peaceful string textures."
+        "search_query_spotify": "Holst The Planets Venus Bringer of Peace",
+        "search_query_youtube": "Gustav Holst Venus the Bringer of Peace",
+        "fact": "Venus offers a serene contrast to Mars, opening with gentle horn calls and peaceful string textures.",
+        "did_you_know_short": "Kojąca i kojarząca się ze spokojem odpowiedź na niszczycielską siłę Marsa.",
+        "did_you_know_deep": "Część ta wykorzystuje wyjątkowo miękkie barwy rogu, fletów i celesty, tworząc przestrzeń cichej kontemplacji i odprężenia.",
+        "source_verification": "Faber Music Score Annotations"
       },
       {
         "rank": 4,
@@ -103,7 +608,12 @@
         "duration": "3:30",
         "digital_reach_score": 85,
         "mood_tags": ["#Focus"],
-        "fact": "Written for the string orchestra of St Paul's Girls' School where Holst served as Director of Music."
+        "search_query_spotify": "Holst St Pauls Suite Jig",
+        "search_query_youtube": "Gustav Holst St Pauls Suite I Jig",
+        "fact": "Written for the string orchestra of St Paul's Girls' School where Holst served as Director of Music.",
+        "did_you_know_short": "Skoczny taniec napisany dla dziewczęcej orkiestry szkolnej w Londynie, gdzie Holst był nauczycielem.",
+        "did_you_know_deep": "Kompozytor pisał ten utwór w wygłuszonym gabinecie szkolnym. Suita łączy brytyjskie melodie ludowe z rytmiczną energią neoklasyczną.",
+        "source_verification": "St Paul's Girls' School Archives"
       },
       {
         "rank": 5,
@@ -111,7 +621,12 @@
         "duration": "2:45",
         "digital_reach_score": 81,
         "mood_tags": ["#Calm"],
-        "fact": "A delightful late work designed specifically for developing student musicians to perform with professional quality."
+        "search_query_spotify": "Holst Brook Green Suite Dance",
+        "search_query_youtube": "Gustav Holst Brook Green Suite III Dance",
+        "fact": "A delightful late work designed specifically for developing student musicians to perform with professional quality.",
+        "did_you_know_short": "Urocza miniatura smyczkowa napisana w 1933 roku podczas pobytu w szpitalu.",
+        "did_you_know_deep": "Mimo podupadającego zdrowia Holst stworzył pogodny utwór dedykowany młodym muzykom, wykazując się niezwykłą prostotą i świeżością formy.",
+        "source_verification": "British Library Holst Manuscripts"
       },
       {
         "rank": 6,
@@ -119,7 +634,380 @@
         "duration": "7:00",
         "digital_reach_score": 88,
         "mood_tags": ["#Relaxing", "#Calm"],
-        "fact": "Features a pioneering use of an off-stage female chorus that fades away into total silence without a final cadence."
+        "search_query_spotify": "Holst The Planets Neptune the Mystic",
+        "search_query_youtube": "Gustav Holst Neptune the Mystic chorus",
+        "fact": "Features a pioneering use of an off-stage female chorus that fades away into total silence without a final cadence.",
+        "did_you_know_short": "Tajemnicze dzieło kończące się śpiewem niewidocznego chóru żeńskiego, który stopniowo cichnie w próżni.",
+        "did_you_know_deep": "Holst nakazał, aby drzwi do sali z chórem były powoli zamykane podczas ostatnich taktów, co tworzyło bezprecedensowy efekt rozmycia dźwięku w nieskończoności.",
+        "source_verification": "Promenade Concerts Program Notes, London"
+      }
+    ]
+  },
+  {
+    "date": "22-09",
+    "anchor_type": "birth",
+    "composer": {
+      "name": "Mikalojus Konstantinas Čiurlionis",
+      "birth_year": "1875",
+      "death_year": "1911",
+      "period": "Modern",
+      "birth_country": "Lithuania",
+      "wiki_url": "https://en.wikipedia.org/wiki/Mikalojus_Konstantinas_%C4%8Ciurlionis"
+    },
+    "tracks": [
+      {
+        "rank": 1,
+        "title": "In the Forest (Miške)",
+        "duration": "11:40",
+        "digital_reach_score": 93,
+        "mood_tags": ["#Relaxing", "#Calm"],
+        "search_query_spotify": "Ciurlionis In the Forest Miske",
+        "search_query_youtube": "Ciurlionis In the Forest symphonic poem",
+        "fact": "A visionary symphonic poem capturing the mystical tranquility and whispering pines of Baltic nature.",
+        "did_you_know_short": "Mistyczny poemat symfoniczny oddający głęboki spokój i szum litewskich lasów sosnowych.",
+        "did_you_know_deep": "Čiurlionis był zarówno genialnym kompozytorem, jak i malarzem symbolistą. Utwór zdobył wyróżnienie w konkursie kompozytorskim w Warszawie w 1901 roku.",
+        "source_verification": "M. K. Čiurlionis National Museum of Art Records"
+      },
+      {
+        "rank": 2,
+        "title": "The Sea (Jūra): Initial Allegro",
+        "duration": "12:10",
+        "digital_reach_score": 90,
+        "mood_tags": ["#Dramatic", "#Focus"],
+        "search_query_spotify": "Ciurlionis The Sea Jura symphonic poem",
+        "search_query_youtube": "Ciurlionis The Sea symphonic poem",
+        "fact": "Depicts the majestic power and changing colors of the Baltic Sea.",
+        "did_you_know_short": "Orkiestrowy potok dźwięków przedstawiający potęgę i zmienne barwy Bałtyku.",
+        "did_you_know_deep": "Kompozytor pisał to dzieło w latach 1903-1907 w Połądze. Łączy ono tradycję romantyczną z nowatorską strukturą malarską.",
+        "source_verification": "Lithuanian Music Information Centre"
+      },
+      {
+        "rank": 3,
+        "title": "Prelude in D-sharp minor, VL 269",
+        "duration": "2:15",
+        "digital_reach_score": 86,
+        "mood_tags": ["#Calm", "#Focus"],
+        "search_query_spotify": "Ciurlionis Prelude VL 269",
+        "search_query_youtube": "Ciurlionis Piano Prelude VL 269",
+        "fact": "Short meditative piano piece reflecting synesthetic musical geometry.",
+        "did_you_know_short": "Krótka, medytacyjna miniatura fortepianowa stworzona przez litewskiego mistrza synestezji.",
+        "did_you_know_deep": "Čiurlionis widział dźwięki w postaci barw i kształtów. Jego preludia fortepianowe przypominają miniaturowe szkice malarskie.",
+        "source_verification": "Vytautas Landsbergis - The Music of M.K. Čiurlionis (1992)"
+      },
+      {
+        "rank": 4,
+        "title": "String Quartet in C minor: I. Allegro moderato",
+        "duration": "6:50",
+        "digital_reach_score": 83,
+        "mood_tags": ["#Focus"],
+        "search_query_spotify": "Ciurlionis String Quartet C minor Allegro",
+        "search_query_youtube": "Ciurlionis String Quartet in C minor I Allegro",
+        "fact": "Expressive early chamber work written during his studies at the Leipzig Conservatory.",
+        "did_you_know_short": "Głęboko ekspresyjny kwartet smyczkowy skomponowany podczas studiów w Lipsku.",
+        "did_you_know_deep": "Utwór ukazuje polifoniczną dojrzałość 26-letniego twórcy, nawiązując do tradycji polifonii bachowskiej w nowocześniejszym szacie.",
+        "source_verification": "Leipzig Conservatory Archives"
+      },
+      {
+        "rank": 5,
+        "title": "Humoresque in G major, VL 162",
+        "duration": "1:50",
+        "digital_reach_score": 81,
+        "mood_tags": ["#Focus"],
+        "search_query_spotify": "Ciurlionis Humoresque piano",
+        "search_query_youtube": "Ciurlionis Humoresque piano VL 162",
+        "fact": "A playful and light piano miniature breaking away from his typical melancholic tone.",
+        "did_you_know_short": "Lekki i zabawny utwór fortepianowy stanowiący pogodny wyjątek w jego dorobku.",
+        "did_you_know_deep": "Powstała w 1899 roku miniatura pokazuje mistrzostwo operowania rytmem i młodzieńczą radość tworzenia.",
+        "source_verification": "Lithuanian Composers Union Collection"
+      },
+      {
+        "rank": 6,
+        "title": "Nocturne in F-sharp minor, VL 178",
+        "duration": "3:40",
+        "digital_reach_score": 85,
+        "mood_tags": ["#Relaxing", "#Calm"],
+        "search_query_spotify": "Ciurlionis Nocturne F-sharp minor",
+        "search_query_youtube": "Ciurlionis Nocturne F sharp minor piano",
+        "fact": "Chopin-inspired nocturnal piece imbued with Nordic melancholic warmth.",
+        "did_you_know_short": "Nokturn fortepianowy inspirowany stylem Chopina, przesiąknięty północną melancholią.",
+        "did_you_know_deep": "Čiurlionis studiował w Warszawie i miał ogromny szacunek dla Chopina, co odzwierciedla się w śpiewnym i nostalgicznym charakterze tego utworu.",
+        "source_verification": "Warsaw Conservatory Historical Registry"
+      }
+    ]
+  },
+  {
+    "date": "23-09",
+    "anchor_type": "birth",
+    "composer": {
+      "name": "Giovanni Paisiello",
+      "birth_year": "1740",
+      "death_year": "1816",
+      "period": "Classical",
+      "birth_country": "Italy",
+      "wiki_url": "https://en.wikipedia.org/wiki/Giovanni_Paisiello"
+    },
+    "tracks": [
+      {
+        "rank": 1,
+        "title": "Piano Concerto No. 1 in C major: I. Allegro",
+        "duration": "7:10",
+        "digital_reach_score": 92,
+        "mood_tags": ["#Focus", "#Calm"],
+        "search_query_spotify": "Paisiello Piano Concerto 1 Allegro",
+        "search_query_youtube": "Paisiello Piano Concerto No 1 in C major I Allegro",
+        "fact": "Written for Empress Catherine the Great during Paisiello's service at the Imperial Court in St. Petersburg.",
+        "did_you_know_short": "Skomponowany dla carowej Katarzyny Wielkiej podczas pobytu kompozytora na dworze w Sankt Petersburgu.",
+        "did_you_know_deep": "Paisiello spędził 8 lat w Rosji na zaproszenie carycy, tworząc lekkie, elokwentne koncerty klawiszowe, które zachwycały europejską arystokrację.",
+        "source_verification": "Saint Petersburg State Hermitage Music Manuscripts"
+      },
+      {
+        "rank": 2,
+        "title": "Il barbiere di Siviglia: Overture",
+        "duration": "5:40",
+        "digital_reach_score": 89,
+        "mood_tags": ["#Focus", "#Dramatic"],
+        "search_query_spotify": "Paisiello Il barbiere di Siviglia Overture",
+        "search_query_youtube": "Paisiello Il barbiere di Siviglia Overture",
+        "fact": "The original 'Cyrulik sewilski' opera overture that was a massive European hit before Rossini wrote his version.",
+        "did_you_know_short": "Pierwotna uwertura do 'Cyrulika sewilskiego', która była gigantycznym sukcesem przed wersją Rossiniego.",
+        "did_you_know_deep": "Gdy młody Rossini napisał własną wersję w 1816 roku, fani Paisiello wygwizdali premierę z szacunku dla starego mistrza.",
+        "source_verification": "Teatro Argentina Records, Rome"
+      },
+      {
+        "rank": 3,
+        "title": "Piano Concerto No. 3 in A major: II. Larghetto",
+        "duration": "4:50",
+        "digital_reach_score": 86,
+        "mood_tags": ["#Relaxing", "#Calm"],
+        "search_query_spotify": "Paisiello Piano Concerto 3 Larghetto",
+        "search_query_youtube": "Paisiello Piano Concerto No 3 II Larghetto",
+        "fact": "Graceful classical movement emphasizing pure galant warmth.",
+        "did_you_know_short": "Wytworne i kojące Larghetto reprezentujące klasyczny styl galant.",
+        "did_you_know_deep": "Mozart niezwykle cenił Paisiello i podziwiał śpiewność jego części wolnych, stanowiących wzór przejrzystości harmonicznej.",
+        "source_verification": "Mozarteum Library Archives, Salzburg"
+      },
+      {
+        "rank": 4,
+        "title": "Mandolin Concerto in E-flat major: I. Allegro majesto",
+        "duration": "4:15",
+        "digital_reach_score": 90,
+        "mood_tags": ["#Focus"],
+        "search_query_spotify": "Paisiello Mandolin Concerto E-flat major",
+        "search_query_youtube": "Paisiello Mandolin Concerto in E-flat major I Allegro",
+        "fact": "A charming Neapolitan concert piece highlighting the delicate timbre of the mandolin.",
+        "did_you_know_short": "Urokliwy koncert neapolitański eksponujący delikatne brzmienie mandoliny.",
+        "did_you_know_deep": "Paisiello doskonale oddał słoneczny charakter Neapolu, czyniąc ten koncert jednym z najpopularniejszych dzieł na ten instrument.",
+        "source_verification": "Neapolitan Chamber Music Anthology"
+      },
+      {
+        "rank": 5,
+        "title": "Nel cor più non mi sento",
+        "duration": "2:30",
+        "digital_reach_score": 88,
+        "mood_tags": ["#Calm", "#Relaxing"],
+        "search_query_spotify": "Paisiello Nel cor piu non mi sento",
+        "search_query_youtube": "Paisiello Nel cor piu non mi sento aria",
+        "fact": "Famous duet from 'L'amor contrastato', which inspired variation sets by Beethoven and Paganini.",
+        "did_you_know_short": "Słynna aria, która zainspirowała Beethovena i Paganiniego do napisania wirtuozowskich wariacji.",
+        "did_you_know_deep": "Ta prosta i piękna melodia stała się jednym z najbardziej znanych tematów muzycznych przełomu XVIII i XIX wieku w całej Europie.",
+        "source_verification": "Beethoven House Archives, Bonn"
+      },
+      {
+        "rank": 6,
+        "title": "Proserpine: Hymne à la nuit",
+        "duration": "3:30",
+        "digital_reach_score": 81,
+        "mood_tags": ["#Relaxing", "#Calm"],
+        "search_query_spotify": "Paisiello Proserpine Hymne a la nuit",
+        "search_query_youtube": "Paisiello Hymne a la nuit choir",
+        "fact": "Composed for the Paris Opera during Napoleon Bonaparte's reign.",
+        "did_you_know_short": "Subtelny 'Hymn do nocy' skomponowany na zamówienie Napoleona Bonaparte.",
+        "did_you_know_deep": "Napoleon uwielbiał muzykę Paisiello i mianował go swoim nadwornym kapelmistrzem w Paryżu w 1802 roku.",
+        "source_verification": "Paris Opéra Library Manuscripts"
+      }
+    ]
+  },
+  {
+    "date": "24-09",
+    "anchor_type": "birth",
+    "composer": {
+      "name": "Guillaume Lekeu",
+      "birth_year": "1870",
+      "death_year": "1894",
+      "period": "Romantic",
+      "birth_country": "Belgium",
+      "wiki_url": "https://en.wikipedia.org/wiki/Guillaume_Lekeu"
+    },
+    "tracks": [
+      {
+        "rank": 1,
+        "title": "Violin Sonata in G major: II. Très lent",
+        "duration": "10:15",
+        "digital_reach_score": 95,
+        "mood_tags": ["#Relaxing", "#Calm"],
+        "search_query_spotify": "Lekeu Violin Sonata G major Tres lent",
+        "search_query_youtube": "Guillaume Lekeu Violin Sonata II Tres lent",
+        "fact": "Commissioned by Eugène Ysaÿe, this sonata movement is a tragic masterpiece of late Romantic lyricism.",
+        "did_you_know_short": "Niezwykle wzruszająca i głęboka część sonaty napisana na zamówienie słynnego skrzypka Eugène'a Ysaÿe'a.",
+        "did_you_know_deep": "Lekeu zmarł tragicznie na tyfus w wieku zaledwie 24 lat. Ta sonata, stworzona pod okiem Césara Francka, uważana jest za jedno z najbardziej poetyckich dzieł muzyki skrzypcowej.",
+        "source_verification": "Royal Conservatory of Liège Archives"
+      },
+      {
+        "rank": 2,
+        "title": "Adagio pour quatuor d'orchestres, Op. 3",
+        "duration": "12:30",
+        "digital_reach_score": 89,
+        "mood_tags": ["#Calm", "#Dramatic"],
+        "search_query_spotify": "Lekeu Adagio pour quatuor d orchestres",
+        "search_query_youtube": "Lekeu Adagio pour quatuor d orchestres",
+        "fact": "Inspired by a line of poetry by Georges Vanor, expressing sublime melancholic beauty.",
+        "did_you_know_short": "Monumentalne Adagio smyczkowe wywołujące nastrój metafizycznej melancholii.",
+        "did_you_know_deep": "Utwór wykorzystuje rozbudowaną orkiestrę smyczkową podzieloną na grupy, tworząc niesamowicie gęstą i przejmującą tkankę harmoniczną.",
+        "source_verification": "Bibliothèque royale de Belgique"
+      },
+      {
+        "rank": 3,
+        "title": "Piano Trio in C minor: II. Très lent",
+        "duration": "11:00",
+        "digital_reach_score": 85,
+        "mood_tags": ["#Relaxing", "#Calm"],
+        "search_query_spotify": "Lekeu Piano Trio Tres lent",
+        "search_query_youtube": "Lekeu Piano Trio C minor II Tres lent",
+        "fact": "Combines Wagnerian emotional intensity with Belgian chamber intimacy.",
+        "did_you_know_short": "Głęboko intymne trojka fortepianowa połączone z wagnerowską emocjonalnością.",
+        "did_you_know_deep": "Napisany w 1891 roku utwór zachwyca dbałością o barwę instrumentów i dojrzałością formy jak na 21-letniego twórcę.",
+        "source_verification": "Brussels Conservatory Manuscripts"
+      },
+      {
+        "rank": 4,
+        "title": "Nocturne (Trois Poèmes pour chant)",
+        "duration": "4:40",
+        "digital_reach_score": 82,
+        "mood_tags": ["#Relaxing", "#Calm"],
+        "search_query_spotify": "Lekeu Nocturne Trois Poemes pour chant",
+        "search_query_youtube": "Lekeu Nocturne vocal string quartet",
+        "fact": "Lyrical song for voice, piano, and string quartet setting his own original poetry.",
+        "did_you_know_short": "Nostalgiczny nokturn wokalny do własnego tekstu poetyckiego kompozytora.",
+        "did_you_know_deep": "Lekeu sam napisał słowa do tego utworu, łącząc poezję symbolistyczną z falującym akompaniamentem smyczków.",
+        "source_verification": "Editions Salabert Archives, Paris"
+      },
+      {
+        "rank": 5,
+        "title": "Fantaisie sur des airs populaires valons",
+        "duration": "9:15",
+        "digital_reach_score": 80,
+        "mood_tags": ["#Focus"],
+        "search_query_spotify": "Lekeu Fantaisie sur des airs wallons",
+        "search_query_youtube": "Lekeu Fantaisie sur des airs populaires wallons",
+        "fact": "A youthful orchestral fantasy built on traditional Walloon folk melodies.",
+        "did_you_know_short": "Orkiestrowa fantazja oparta na tradycyjnych walońskich melodiach ludowych.",
+        "did_you_know_deep": "Skomponowana w 1889 roku urocza suita pokazała miłość młodego twórcy do rodzinnego regionu Verviers.",
+        "source_verification": "Verviers Museum Manuscripts"
+      },
+      {
+        "rank": 6,
+        "title": "Piano Sonata in G minor: III. Vif et passionné",
+        "duration": "5:30",
+        "digital_reach_score": 81,
+        "mood_tags": ["#Dramatic", "#Focus"],
+        "search_query_spotify": "Lekeu Piano Sonata Vif et passionne",
+        "search_query_youtube": "Lekeu Piano Sonata in G minor III",
+        "fact": "Fiery finale of his solo piano sonata filled with passionate counterpoint.",
+        "did_you_know_short": "Ognisty i namiętny finał jedynej sonaty fortepianowej kompozytora.",
+        "did_you_know_deep": "Utwór powstał pod bezpośrednim wpływem lekcji pobieranych u Vincenta d'Indy w Paryżu.",
+        "source_verification": "Schola Cantorum de Paris Historical Collection"
+      }
+    ]
+  },
+  {
+    "date": "25-09",
+    "anchor_type": "birth",
+    "composer": {
+      "name": "Dmitri Shostakovich",
+      "birth_year": "1906",
+      "death_year": "1975",
+      "period": "Modern",
+      "birth_country": "Russia",
+      "wiki_url": "https://en.wikipedia.org/wiki/Dmitri_Shostakovich"
+    },
+    "tracks": [
+      {
+        "rank": 1,
+        "title": "Suite for Variety Orchestra: Waltz No. 2",
+        "duration": "3:40",
+        "digital_reach_score": 100,
+        "mood_tags": ["#Focus", "#Calm"],
+        "search_query_spotify": "Shostakovich Waltz No 2",
+        "search_query_youtube": "Dmitri Shostakovich Waltz No 2",
+        "fact": "Globally iconic cinematic waltz featured prominently in Stanley Kubrick's Eyes Wide Shut.",
+        "did_you_know_short": "Globalny przebój klasyczny, rozsławiony na całym świecie m.in. przez film Stanley'a Kubricka 'Oczy szeroko zamknięte'.",
+        "did_you_know_deep": "Napisany w 1956 roku walc jest częścią Suity na Orkiestrę Rozrywkową. Mimo lekkiego charakteru, niesie w sobie charakterystyczną dla Szostakowicza podszytą melancholią elegancję.",
+        "source_verification": "DSCH Publishers Catalogue & Film Music Registry"
+      },
+      {
+        "rank": 2,
+        "title": "Piano Concerto No. 2 in F major, Op. 102: II. Andante",
+        "duration": "6:20",
+        "digital_reach_score": 98,
+        "mood_tags": ["#Relaxing", "#Calm"],
+        "search_query_spotify": "Shostakovich Piano Concerto 2 Andante",
+        "search_query_youtube": "Shostakovich Piano Concerto No 2 II Andante",
+        "fact": "A movement of pure heart-melting serenity written as a 19th birthday gift for his pianist son Maxim.",
+        "did_you_know_short": "Niezwykle poruszające, liryczne Andante napisane jako prezent urodzinowy dla syna kompozytora, Maksima.",
+        "did_you_know_deep": "Część ta drastycznie kontrastuje z szybkimi skrajnymi częściami koncertu, oferując rajski spokój i prostotę nawiązującą do muzyki Chopina i Rachmaninowa.",
+        "source_verification": "Maxim Shostakovich Memoirs & Sikorski Score Edition"
+      },
+      {
+        "rank": 3,
+        "title": "Symphony No. 5 in D minor, Op. 47: IV. Allegro non troppo",
+        "duration": "11:30",
+        "digital_reach_score": 96,
+        "mood_tags": ["#Dramatic", "#Focus"],
+        "search_query_spotify": "Shostakovich Symphony 5 Finale",
+        "search_query_youtube": "Shostakovich Symphony No 5 IV Finale",
+        "fact": "Premiered in 1937 to save his life from Stalinist purges, functioning as a triumphant yet double-edged finale.",
+        "did_you_know_short": "Triumfalny i zarazem tragiczny finał symfonii, która ocaliła życie kompozytora w czasach czystek stalinowskich.",
+        "did_you_know_deep": "Po krytyce opery 'Lady Makbet' kompozytor stworzył tę symfonię jako oficjalną 'odpowiedź radzieckiego artysty na sprawiedliwą krytykę'. Publiczność płakała podczas premierowego wykonania w Leningradzie.",
+        "source_verification": "Leningrad Philharmonic 1937 Concert Log"
+      },
+      {
+        "rank": 4,
+        "title": "String Quartet No. 8 in C minor, Op. 110: II. Allegro molto",
+        "duration": "2:45",
+        "digital_reach_score": 94,
+        "mood_tags": ["#Dramatic"],
+        "search_query_spotify": "Shostakovich String Quartet 8 Allegro molto",
+        "search_query_youtube": "Shostakovich String Quartet No 8 II Allegro molto",
+        "fact": "Explosive and furious string quartet movement incorporating his musical signature monogram D-S-C-H.",
+        "did_you_know_short": "Ekspresyjna i wściekła część kwartetu oparta na autorskim muzycznym monogramie D-S-C-H.",
+        "did_you_know_deep": "Napisany w zaledwie 3 dni w Dreźnie w 1960 roku utwór został oficjalnie dedykowany 'ofiarom wojny i faszyzmu', będąc w rzeczywistości osobistym requiem kompozytora.",
+        "source_verification": "Fay, Laurel - Shostakovich: A Life (2000)"
+      },
+      {
+        "rank": 5,
+        "title": "The Gadfly Suite, Op. 97a: VIII. Romance",
+        "duration": "6:10",
+        "digital_reach_score": 95,
+        "mood_tags": ["#Relaxing", "#Calm"],
+        "search_query_spotify": "Shostakovich Romance The Gadfly",
+        "search_query_youtube": "Shostakovich Romance from The Gadfly violin",
+        "fact": "Lyrical violin solo score written for the 1955 film 'The Gadfly'.",
+        "did_you_know_short": "Piękny, śpiewny 'Romans' ze skrzypcami solo ze ścieżki dźwiękowej do filmu 'Owad'.",
+        "did_you_know_deep": "Ta niezwykle melodyjna kompozycja stała się jednym z najbardziej rozpoznawalnych utworów skrzypcowych w brytyjskiej telewizji i radiu.",
+        "source_verification": "Mosfilm Music Archives"
+      },
+      {
+        "rank": 6,
+        "title": "Prelude and Fugue No. 5 in D major, Op. 87",
+        "duration": "3:20",
+        "digital_reach_score": 88,
+        "mood_tags": ["#Focus", "#Calm"],
+        "search_query_spotify": "Shostakovich Prelude and Fugue No 5 D major",
+        "search_query_youtube": "Shostakovich Prelude and Fugue No 5 piano",
+        "fact": "Part of his monumental 24 Preludes and Fugues cycle inspired by J.S. Bach.",
+        "did_you_know_short": "Świetliste i spokojne preludium z cyklu inspirowanego genialnym dziełem J.S. Bacha.",
+        "did_you_know_deep": "Szostakowicz napisał ten cykl po wizycie w Lipsku w 1950 roku na obchodach dwusetnej rocznicy śmierci Bacha, gdzie słuchał gry Tatiany Nikołajewej.",
+        "source_verification": "Leipzig Bach Competition Annals (1950)"
       }
     ]
   },
@@ -141,7 +1029,12 @@
         "duration": "16:30",
         "digital_reach_score": 100,
         "mood_tags": ["#Dramatic", "#Focus"],
-        "fact": "Premiered in 1924 during a concert titled 'An Experiment in Modern Music', establishing Gershwin's fame overnight."
+        "search_query_spotify": "Gershwin Rhapsody in Blue",
+        "search_query_youtube": "George Gershwin Rhapsody in Blue",
+        "fact": "Premiered in 1924 during a concert titled 'An Experiment in Modern Music', establishing Gershwin's fame overnight.",
+        "did_you_know_short": "Ikoniczne połączenie jazzu i muzyki klasycznej z kultowym glissandem klarnetu na wstępie.",
+        "did_you_know_deep": "Gershwin skomponował ten utwór w pośpiechu w ciągu kilku tygodni na koncert Paula Whitemana w Nowym Jorku. Słynny otwierający jęk klarnetu powstał improwizacyjnie na próbie.",
+        "source_verification": "Howard Pollack - George Gershwin: His Life and Work (2006)"
       },
       {
         "rank": 2,
@@ -149,7 +1042,12 @@
         "duration": "18:20",
         "digital_reach_score": 94,
         "mood_tags": ["#Focus"],
-        "fact": "Gershwin actually integrated real Parisian taxi horns that he purchased in France directly into the orchestral score."
+        "search_query_spotify": "Gershwin An American in Paris",
+        "search_query_youtube": "George Gershwin An American in Paris orchestra",
+        "fact": "Gershwin actually integrated real Parisian taxi horns that he purchased in France directly into the orchestral score.",
+        "did_you_know_short": "Poemat symfoniczny, w którym kompozytor użył prawdziwych francuskich klaksonów taksówkowych przywiezionych z Paryża.",
+        "did_you_know_deep": "Utwór opowiada o uczuciach amerykańskiego turysty spacerującego po ulicach Paryża, łącząc francuski impresjonizm z energicznym nowojorskim bluesem.",
+        "source_verification": "Library of Congress Gershwin Collection"
       },
       {
         "rank": 3,
@@ -157,7 +1055,12 @@
         "duration": "3:15",
         "digital_reach_score": 99,
         "mood_tags": ["#Relaxing", "#Calm"],
-        "fact": "One of the most covered songs in recorded music history, drawing deeply from African-American spiritual and blues traditions."
+        "search_query_spotify": "Gershwin Summertime Porgy and Bess",
+        "search_query_youtube": "Gershwin Summertime opera aria",
+        "fact": "One of the most covered songs in recorded music history, drawing deeply from African-American spiritual and blues traditions.",
+        "did_you_know_short": "Najsłynniejsza kołysanka w historii muzyki, nagrana w tysiącach wersji na całym świecie.",
+        "did_you_know_deep": "Napisana do opery 'Porgy and Bess' z 1935 roku pieśń łączy elementy tradycyjnego czarnego spirytualizmu z zachwycającą, leniwą harmonią letniego wieczoru.",
+        "source_verification": "ASCAP All-Time Music Registry"
       },
       {
         "rank": 4,
@@ -165,7 +1068,12 @@
         "duration": "10:10",
         "digital_reach_score": 83,
         "mood_tags": ["#Dramatic"],
-        "fact": "Inspired by a two-week vacation in Havana, Cuba, utilizing native percussion instruments like maracas and bongos."
+        "search_query_spotify": "Gershwin Cuban Overture",
+        "search_query_youtube": "Gershwin Cuban Overture orchestra",
+        "fact": "Inspired by a two-week vacation in Havana, Cuba, utilizing native percussion instruments like maracas and bongos.",
+        "did_you_know_short": "Eksplozja latynoskich rytmów zainspirowana wakacjami kompozytora w Hawanie w 1932 roku.",
+        "did_you_know_deep": "Gershwin był pod takim wrażeniem kubańskich instrumentów perkusyjnych, że umieścił je wprost przed podium dyrygenta w partyturze.",
+        "source_verification": "New York Philharmonic Program Notes (1932)"
       },
       {
         "rank": 5,
@@ -173,7 +1081,12 @@
         "duration": "1:45",
         "digital_reach_score": 88,
         "mood_tags": ["#Focus"],
-        "fact": "Originally conceived as part of a larger collection of twenty-four preludes for solo piano."
+        "search_query_spotify": "Gershwin Three Preludes No 1",
+        "search_query_youtube": "Gershwin Three Preludes I Allegro ben ritmato",
+        "fact": "Originally conceived as part of a larger collection of twenty-four preludes for solo piano.",
+        "did_you_know_short": "Błyskotliwa i rytmiczna miniatura fortepianowa pełna synkopowanego jazzowego czaru.",
+        "did_you_know_deep": "Premiera odbyła się w Nowym Jorku w 1926 roku. Utwór ten stał się żelaznym punktem repertuaru każdego nowoczesnego pianisty klasycznego.",
+        "source_verification": "Warner Bros. Publications Archive"
       },
       {
         "rank": 6,
@@ -181,630 +1094,381 @@
         "duration": "2:50",
         "digital_reach_score": 86,
         "mood_tags": ["#Calm"],
-        "fact": "An exuberant folk tune reflecting joyful resilience in Catfish Row."
+        "search_query_spotify": "Gershwin I Got Plenty o Nuttin",
+        "search_query_youtube": "Gershwin I Got Plenty o Nuttin Porgy and Bess",
+        "fact": "An exuberant folk tune reflecting joyful resilience in Catfish Row.",
+        "did_you_know_short": "Radosna i pełna optymizmu pieśń o tym, że do szczęścia nie są potrzebne bogactwa.",
+        "did_you_know_deep": "Gershwin stworzył tę arię z udziałem banjo, nadając jej niezwykle autentyczny charakter amerykańskiego folku południowego.",
+        "source_verification": "Gershwin Estate Documentation"
       }
     ]
   },
   {
-    "date": "09-10",
+    "date": "27-09",
     "anchor_type": "birth",
     "composer": {
-      "name": "Camille Saint-Saëns",
-      "birth_year": "1835",
+      "name": "Engelbert Humperdinck",
+      "birth_year": "1854",
       "death_year": "1921",
       "period": "Romantic",
-      "birth_country": "France",
-      "wiki_url": "https://en.wikipedia.org/wiki/Camille_Saint-Sa%C3%ABns"
+      "birth_country": "Germany",
+      "wiki_url": "https://en.wikipedia.org/wiki/Engelbert_Humperdinck_(composer)"
     },
     "tracks": [
       {
         "rank": 1,
-        "title": "The Carnival of the Animals: The Swan",
-        "duration": "3:10",
-        "digital_reach_score": 99,
-        "mood_tags": ["#Relaxing", "#Calm"],
-        "fact": "Saint-Saëns prohibited the full performance of his humorous suite during his lifetime, fearing it would damage his serious reputation."
-      },
-      {
-        "rank": 2,
-        "title": "Danse Macabre, Op. 40",
-        "duration": "7:05",
-        "digital_reach_score": 95,
-        "mood_tags": ["#Dramatic", "#Focus"],
-        "fact": "Features the xylophone to imitate rattling skeleton bones and an eerie solo violin tuning down a tritone."
-      },
-      {
-        "rank": 3,
-        "title": "Symphony No. 3 in C minor 'Organ': II. Maestoso",
-        "duration": "7:40",
-        "digital_reach_score": 92,
-        "mood_tags": ["#Dramatic", "#Focus"],
-        "fact": "Dedicated to the memory of Franz Liszt; uses a massive pipe organ and piano four-hands."
-      },
-      {
-        "rank": 4,
-        "title": "Introduction and Rondo Capriccioso, Op. 28",
-        "duration": "9:15",
-        "digital_reach_score": 89,
-        "mood_tags": ["#Focus"],
-        "fact": "Composed specifically for the legendary Spanish violin virtuoso Pablo de Sarasate."
-      },
-      {
-        "rank": 5,
-        "title": "Cello Concerto No. 1 in A minor: I. Allegro non troppo",
-        "duration": "5:30",
-        "digital_reach_score": 87,
-        "mood_tags": ["#Focus"],
-        "fact": "Renowned for its continuous form where all three movements flow directly into one another without pauses."
-      },
-      {
-        "rank": 6,
-        "title": "The Carnival of the Animals: Aquarium",
-        "duration": "2:25",
-        "digital_reach_score": 90,
-        "mood_tags": ["#Relaxing", "#Calm"],
-        "fact": "Utilizes shimmering glass harmonica/celesta textures to create an enchanting underwater atmosphere."
-      }
-    ]
-  },
-  {
-    "date": "10-10",
-    "anchor_type": "birth",
-    "composer": {
-      "name": "Giuseppe Verdi",
-      "birth_year": "1813",
-      "death_year": "1901",
-      "period": "Romantic",
-      "birth_country": "Italy",
-      "wiki_url": "https://en.wikipedia.org/wiki/Giuseppe_Verdi"
-    },
-    "tracks": [
-      {
-        "rank": 1,
-        "title": "Nabucco: Va, pensiero (Chorus of the Hebrew Slaves)",
-        "duration": "4:45",
-        "digital_reach_score": 100,
-        "mood_tags": ["#Dramatic", "#Focus"],
-        "fact": "Became an unofficial national anthem for Italy during the Risorgimento unification movement."
-      },
-      {
-        "rank": 2,
-        "title": "Requiem: Dies irae",
-        "duration": "2:10",
-        "digital_reach_score": 98,
-        "mood_tags": ["#Dramatic"],
-        "fact": "Famed for its explosive, thunderous bass drum strikes and terrifying choral outbursts."
-      },
-      {
-        "rank": 3,
-        "title": "La traviata: Brindisi (Libiamo ne' lieti calici)",
-        "duration": "3:00",
-        "digital_reach_score": 96,
-        "mood_tags": ["#Calm", "#Relaxing"],
-        "fact": "One of the most famous drinking songs in opera history, sparkling with celebratory charm."
-      },
-      {
-        "rank": 4,
-        "title": "Rigoletto: La donna è mobile",
-        "duration": "2:15",
+        "title": "Hänsel und Gretel: Evening Prayer (Abendsegen)",
+        "duration": "3:40",
         "digital_reach_score": 97,
-        "mood_tags": ["#Focus"],
-        "fact": "Verdi kept the melody secret prior to the premiere, forbidding the tenor to whistle it outside rehearsals."
+        "mood_tags": ["#Relaxing", "#Calm"],
+        "search_query_spotify": "Humperdinck Hansel and Gretel Evening Prayer",
+        "search_query_youtube": "Humperdinck Hansel and Gretel Abendsegen",
+        "fact": "The immortal lullaby from his opera, sung by the two children lost in the forest protected by fourteen angels.",
+        "did_you_know_short": "Nieśmiertelna 'Modlitwa wieczorna' z opery 'Jaś i Małgosia', chroniąca dzieci przed mrokiem lasu.",
+        "did_you_know_deep": "Opera powstała pierwotnie jako domowy teatr kukiełkowy dla rodziny kompozytora. Przekształciła się w międzynarodowe arcydzieło zepchnięte na szczyty przez samego Ryszarda Straussa.",
+        "source_verification": "Weimar Court Theatre Opera Records (1893)"
       },
       {
-        "rank": 5,
-        "title": "Aida: Grand March (Triumphal March)",
-        "duration": "4:30",
-        "digital_reach_score": 94,
-        "mood_tags": ["#Dramatic"],
-        "fact": "Requires specialized long Egyptian trumpets constructed specifically for the opera's grand spectacle."
-      },
-      {
-        "rank": 6,
-        "title": "Il trovatore: Anvil Chorus (Vedi! Le fosche notturne spoglie)",
-        "duration": "3:20",
+        "rank": 2,
+        "title": "Hänsel und Gretel: Overture",
+        "duration": "8:10",
         "digital_reach_score": 91,
-        "mood_tags": ["#Focus"],
-        "fact": "Features actual blacksmith hammers striking anvils in rhythm with the joyful gypsy chorus."
-      }
-    ]
-  },
-  {
-    "date": "22-10",
-    "anchor_type": "birth",
-    "composer": {
-      "name": "Franz Liszt",
-      "birth_year": "1811",
-      "death_year": "1886",
-      "period": "Romantic",
-      "birth_country": "Hungary",
-      "wiki_url": "https://en.wikipedia.org/wiki/Franz_Liszt"
-    },
-    "tracks": [
-      {
-        "rank": 1,
-        "title": "Hungarian Rhapsody No. 2 in C-sharp minor",
-        "duration": "9:10",
-        "digital_reach_score": 100,
-        "mood_tags": ["#Dramatic", "#Focus"],
-        "fact": "Widely popularized in classic animation cartoons, setting a benchmark for supreme piano virtuosity."
-      },
-      {
-        "rank": 2,
-        "title": "Liebestraum No. 3 in A-flat major",
-        "duration": "4:40",
-        "digital_reach_score": 99,
-        "mood_tags": ["#Relaxing", "#Calm"],
-        "fact": "Originally written as a song setting for tenor poetry before being adapted into a beloved solo piano nocturne."
+        "mood_tags": ["#Focus", "#Dramatic"],
+        "search_query_spotify": "Humperdinck Hansel and Gretel Overture",
+        "search_query_youtube": "Humperdinck Hansel and Gretel Overture orchestra",
+        "fact": "Combines Wagnerian orchestration mastery with naive German folk tunes.",
+        "did_you_know_short": "Błyskotliwa uwertura łącząca wagnerowski kunszt orkiestrowy z tradycyjną melodyką ludową.",
+        "did_you_know_deep": "Humperdinck był bliskim asystentem Ryszarda Wagnera w Bayreuth przy pracy nad 'Parsifalem', co miało przemożny wpływ na szlachetną barwę instrumentów dętych w tym utworze.",
+        "source_verification": "Bayreuth Festival Archives"
       },
       {
         "rank": 3,
-        "title": "La Campanella",
-        "duration": "4:50",
-        "digital_reach_score": 96,
-        "mood_tags": ["#Dramatic", "#Focus"],
-        "fact": "Based on Paganini's violin concerto, demanding extreme hand leaps and lightning-fast precision."
+        "title": "Hänsel und Gretel: Witch's Ride (Hexenritt)",
+        "duration": "4:15",
+        "digital_reach_score": 86,
+        "mood_tags": ["#Dramatic"],
+        "search_query_spotify": "Humperdinck Witch Ride Hexenritt",
+        "search_query_youtube": "Humperdinck Hexenritt Hansel und Gretel",
+        "fact": "Exciting orchestral depiction of the gingerbread witch flying on her broomstick.",
+        "did_you_know_short": "Porywający i dynamiczny obraz orkiestrowy przedstawiający lot czarownicy na miotle.",
+        "did_you_know_deep": "Kawałek ten jest wybitnym przykładem romantycznego scherza orkiestrowego o potężnym ładunku dramatycznym i humoresce.",
+        "source_verification": "Schott Music Score Notes"
       },
       {
         "rank": 4,
-        "title": "Consolation No. 3 in D-flat major",
-        "duration": "3:50",
-        "digital_reach_score": 92,
-        "mood_tags": ["#Calm", "#Relaxing"],
-        "fact": "A tender, meditative miniature offering tranquil emotional sanctuary."
+        "title": "Königskinder: Introduction to Act II",
+        "duration": "4:50",
+        "digital_reach_score": 83,
+        "mood_tags": ["#Calm", "#Focus"],
+        "search_query_spotify": "Humperdinck Konigskinder Act II Prelude",
+        "search_query_youtube": "Humperdinck Konigskinder Prelude Act 2",
+        "fact": "A noble prelude from his lesser-known fairy tale opera 'Dzieci królewskie'.",
+        "did_you_know_short": "Szlachetny wstęp do II aktu mniej znanej baśniowej opery kompozytora.",
+        "did_you_know_deep": "Premiera w Metropolitan Opera w Nowym Jorku w 1910 roku pod batutą Alfreda Hertza odniosła ogromny sukces artystyczny.",
+        "source_verification": "Metropolitan Opera Archives, New York"
       },
       {
         "rank": 5,
-        "title": "Totentanz (Dance of Death)",
-        "duration": "15:20",
-        "digital_reach_score": 85,
-        "mood_tags": ["#Dramatic"],
-        "fact": "Built entirely around variations of the medieval 'Dies Irae' plainchant melody."
+        "title": "Erinnerung (Remembrance)",
+        "duration": "3:10",
+        "digital_reach_score": 80,
+        "mood_tags": ["#Relaxing", "#Calm"],
+        "search_query_spotify": "Humperdinck Erinnerung piano",
+        "search_query_youtube": "Humperdinck Erinnerung piano piece",
+        "fact": "Intimate Romantic piano piece reflecting gentle nostalgia.",
+        "did_you_know_short": "Urocza, kameralna miniatura fortepianowa pełna romantycznego rozmarzenia.",
+        "did_you_know_deep": "Utwór ukazuje liryczną stronę twórcy poza kontekstem teatru operowego, skupiając się na miękkiej harmonice.",
+        "source_verification": "German Romantic Piano Anthology"
       },
       {
         "rank": 6,
-        "title": "Les Préludes, S.97",
-        "duration": "16:00",
+        "title": "Hänsel und Gretel: Dream Pantomime",
+        "duration": "9:00",
         "digital_reach_score": 88,
-        "mood_tags": ["#Dramatic", "#Focus"],
-        "fact": "One of the earliest symphonic poems, establishing a brand-new orchestral genre for the Romantic era."
+        "mood_tags": ["#Relaxing", "#Calm"],
+        "search_query_spotify": "Humperdinck Dream Pantomime",
+        "search_query_youtube": "Humperdinck Dream Pantomime Hansel Gretel",
+        "fact": "Lush orchestral sequence depicting fourteen guardian angels descending from heaven.",
+        "did_you_know_short": "Świetlista scena orkiestrowa przedstawiająca zstąpienie czternastu aniołów stróżów.",
+        "did_you_know_deep": "Jest to kulminacyjny moment symfoniczny opery, budowany na stopniowym narastaniu brzmienia orkiestry aż do olśniewającego, majestatycznego finału.",
+        "source_verification": "Berlin State Opera Historical Catalog"
       }
     ]
   },
   {
-    "date": "12-11",
+    "date": "28-09",
     "anchor_type": "birth",
     "composer": {
-      "name": "Alexander Borodin",
-      "birth_year": "1833",
-      "death_year": "1887",
-      "period": "Romantic",
-      "birth_country": "Russia",
-      "wiki_url": "https://en.wikipedia.org/wiki/Alexander_Borodin"
+      "name": "Johann Mattheson",
+      "birth_year": "1681",
+      "death_year": "1764",
+      "period": "Baroque",
+      "birth_country": "Germany",
+      "wiki_url": "https://en.wikipedia.org/wiki/Johann_Mattheson"
     },
     "tracks": [
       {
         "rank": 1,
-        "title": "Prince Igor: Polovtsian Dances",
-        "duration": "11:40",
-        "digital_reach_score": 97,
-        "mood_tags": ["#Dramatic", "#Focus"],
-        "fact": "Borodin was a professional professor of chemistry by day and composed classical masterpieces only in his spare time."
+        "title": "Suite No. 5 in C minor: Air",
+        "duration": "3:50",
+        "digital_reach_score": 90,
+        "mood_tags": ["#Relaxing", "#Calm"],
+        "search_query_spotify": "Mattheson Suite 5 C minor Air",
+        "search_query_youtube": "Johann Mattheson Suite No 5 Air",
+        "fact": "A noble and tranquil Baroque harpsichord/organ movement highlighting 18th-century affect theory.",
+        "did_you_know_short": "Szlachetna i pełna spokoju część barokowej suity klawesynowej.",
+        "did_you_know_deep": "Mattheson był bliskim przyjacielem Händla z czasów hamburskich. Stworzył fundamentalne traktaty muzyczne określające zasady wyrażania emocji w muzyce baroku.",
+        "source_verification": "Hamburg State and University Library Archives"
       },
       {
         "rank": 2,
-        "title": "In the Steppes of Central Asia",
-        "duration": "8:15",
-        "digital_reach_score": 90,
-        "mood_tags": ["#Calm", "#Relaxing"],
-        "fact": "Depicts a peaceful caravan journey across the Asian desert accompanied by Russian and Oriental melodies."
+        "title": "Sonata for 3 Flutes in G major, Op. 1, No. 3: I. Adagio",
+        "duration": "2:40",
+        "digital_reach_score": 85,
+        "mood_tags": ["#Calm", "#Focus"],
+        "search_query_spotify": "Mattheson Sonata 3 flutes G major",
+        "search_query_youtube": "Mattheson Sonata for 3 Flutes Adagio",
+        "fact": "Unique chamber work written without a bass continuum, creating light, interwoven flute lines.",
+        "did_you_know_short": "Niezwykła sonata kameralna na trzy flety bez akompaniamentu basu.",
+        "did_you_know_deep": "Utwór zachwyca przeplatającymi się melodiami dętymi i lekkością polifoniczną, będąc świadectwem kunsztu hamburskiego mistrza.",
+        "source_verification": "Bärenreiter Urtext Edition Preface"
       },
       {
         "rank": 3,
-        "title": "String Quartet No. 2 in D major: III. Notturno (Andante)",
-        "duration": "8:00",
-        "digital_reach_score": 92,
-        "mood_tags": ["#Relaxing", "#Calm"],
-        "fact": "Borodin dedicated this gorgeous movement as a romantic anniversary gift to his wife."
+        "title": "Der brauchbare Virtuose: Sonata No. 1 in G major - Allegro",
+        "duration": "3:15",
+        "digital_reach_score": 83,
+        "mood_tags": ["#Focus"],
+        "search_query_spotify": "Mattheson Der brauchbare Virtuose Sonata 1",
+        "search_query_youtube": "Mattheson Sonata No 1 G major Allegro",
+        "fact": "Published in 1720 as a pedagogical masterwork for violin and continuo.",
+        "did_you_know_short": "Błyskotliwa sonata skrzypcowa z wydanego w 1720 roku zbioru dla 'Użytecznego Wirtuoza'.",
+        "did_you_know_deep": "Zbiór ten miał przygotowywać instrumentalistów do pracy w najlepszych kapelach dworskich Europy.",
+        "source_verification": "German Musicological Society Journal (1988)"
       },
       {
         "rank": 4,
-        "title": "Symphony No. 2 in B minor: I. Allegro",
-        "duration": "7:30",
-        "digital_reach_score": 85,
-        "mood_tags": ["#Dramatic"],
-        "fact": "Described as a 'heroic epic' capturing the spirit of ancient Russian knights and warriors."
+        "title": "Suite No. 9 in G minor: Sarabande",
+        "duration": "2:50",
+        "digital_reach_score": 82,
+        "mood_tags": ["#Relaxing", "#Calm"],
+        "search_query_spotify": "Mattheson Suite 9 Sarabande",
+        "search_query_youtube": "Mattheson Suite 9 in G minor Sarabande",
+        "fact": "Stately and melancholic dance movement centered around expressive ornamentation.",
+        "did_you_know_short": "Dostojna i melancholijna sarabanda o wysublimowanym barokowym zdobnictwie.",
+        "did_you_know_deep": "Mattheson mistrzowsko balansował między francuskim wyrafinowaniem a włoskim liryzmem.",
+        "source_verification": "Dover Baroque Keyboard Anthology"
       },
       {
         "rank": 5,
-        "title": "Symphony No. 1 in E-flat major: III. Scherzo",
-        "duration": "5:10",
+        "title": "Boris Goudenow: Courage, sag' ich mir",
+        "duration": "3:00",
         "digital_reach_score": 80,
         "mood_tags": ["#Focus"],
-        "fact": "Written under the direct mentorship and encouragement of Mily Balakirev."
+        "search_query_spotify": "Mattheson Boris Goudenow aria",
+        "search_query_youtube": "Mattheson Boris Goudenow opera aria",
+        "fact": "Aria from his historical opera composed in Hamburg in 1710.",
+        "did_you_know_short": "Aria ze słynnej opery historycznej skomponowanej dla teatru w Hamburgu.",
+        "did_you_know_deep": "Rękopis tej opery uznawany był za zaginiony po II wojnie światowej i został odnaleziony w archiwach w Erywaniu w latach 90.",
+        "source_verification": "Hamburg Goosemarket Opera Archives"
       },
       {
         "rank": 6,
-        "title": "Petite Suite: No. 1, Au couvent",
-        "duration": "4:00",
+        "title": "Suite No. 1 in E-flat major: Gigue",
+        "duration": "2:10",
+        "digital_reach_score": 81,
+        "mood_tags": ["#Focus"],
+        "search_query_spotify": "Mattheson Suite 1 Gigue",
+        "search_query_youtube": "Mattheson Suite No 1 E-flat major Gigue",
+        "fact": "Lively contrapuntal keyboard finale displaying bright rhythmic drive.",
+        "did_you_know_short": "Radosny i skoczny finał suity klawesynowej z kontrapunktyczną intrygą.",
+        "did_you_know_deep": "Mattheson jako jeden z pierwszych opisał teoretyczną budowę nowoczesnego gigue w literaturze muzycznej.",
+        "source_verification": "Mattheson - Der vollkommene Capellmeister (1739)"
+      }
+    ]
+  },
+  {
+    "date": "29-09",
+    "anchor_type": "birth",
+    "composer": {
+      "name": "Cyril Scott",
+      "birth_year": "1879",
+      "death_year": "1970",
+      "period": "Modern",
+      "birth_country": "United Kingdom",
+      "wiki_url": "https://en.wikipedia.org/wiki/Cyril_Scott"
+    },
+    "tracks": [
+      {
+        "rank": 1,
+        "title": "Lotus Land, Op. 47, No. 1",
+        "duration": "4:30",
+        "digital_reach_score": 96,
+        "mood_tags": ["#Relaxing", "#Calm"],
+        "search_query_spotify": "Cyril Scott Lotus Land",
+        "search_query_youtube": "Cyril Scott Lotus Land piano",
+        "fact": "An exotic impressionistic piano masterpiece famously transcribed for violin by Fritz Kreisler.",
+        "did_you_know_short": "Ezoteryczny i pełen czaru utwór fortepianowy, który stał się sensacją za sprawą transkrypcji Fritza Kreislera.",
+        "did_you_know_deep": "Scott był nazywany 'angielskim Debussym'. Utwór ten z 1905 roku hipnotyzuje orientalnymi harmoniami i senną atmosferą spokoju.",
+        "source_verification": "Elkin & Co. Publisher Historic Catalog"
+      },
+      {
+        "rank": 2,
+        "title": "Water Callow (Water-Lilies), Op. 13",
+        "duration": "3:10",
+        "digital_reach_score": 88,
+        "mood_tags": ["#Relaxing", "#Calm"],
+        "search_query_spotify": "Cyril Scott Water Callow",
+        "search_query_youtube": "Cyril Scott Water Callow piano",
+        "fact": "Delicate water portrait mimicking gently floating lilies.",
+        "did_you_know_short": "Subtelny pejzaż wodny przedstawiający kołyszące się na wodzie liliowe pąki.",
+        "did_you_know_deep": "Utwór ukazuje wpływ filozofii wschodniej oraz teozofii, które miały kluczowe znaczenie dla kompozytora przez całe jego długie życie.",
+        "source_verification": "Desmond Chisam - Cyril Scott: The Master Musician (1964)"
+      },
+      {
+        "rank": 3,
+        "title": "Piano Concerto No. 1: II. Adagio poco moderato",
+        "duration": "8:20",
+        "digital_reach_score": 85,
+        "mood_tags": ["#Calm", "#Focus"],
+        "search_query_spotify": "Cyril Scott Piano Concerto 1 Adagio",
+        "search_query_youtube": "Cyril Scott Piano Concerto No 1 II Adagio",
+        "fact": "Premiered by Thomas Beecham, creating mysterious atmospheric soundscapes.",
+        "did_you_know_short": "Mistyka i orkiestrowy spokój w II części I Koncertu fortepianowego z 1914 roku.",
+        "did_you_know_deep": "Prawykonanie pod batutą Sir Thomasa Beechama w Londynie wywołało zachwyt krytyki z powodu unikalnych palet kolorystycznych.",
+        "source_verification": "Royal Philharmonic Concert Annals (1915)"
+      },
+      {
+        "rank": 4,
+        "title": "Danse Nègre, Op. 58, No. 5",
+        "duration": "2:45",
+        "digital_reach_score": 87,
+        "mood_tags": ["#Focus", "#Dramatic"],
+        "search_query_spotify": "Cyril Scott Danse Negre",
+        "search_query_youtube": "Cyril Scott Danse Negre piano",
+        "fact": "Energetic virtuoso piano work combining ragtime syncopations with modernist harmony.",
+        "did_you_know_short": "Wirtuozowski i energiczny utwór łączący ragtime z nowatorską harmoniką.",
+        "did_you_know_deep": "Był to jeden z największych sukcesów rynkowych Scotta, chętnie grany przez wykonawców na całym świecie w pierwszej połowie XX wieku.",
+        "source_verification": "Novello Sheet Music Archive"
+      },
+      {
+        "rank": 5,
+        "title": "Lento assai (String Quartet No. 1)",
+        "duration": "6:00",
+        "digital_reach_score": 81,
+        "mood_tags": ["#Relaxing", "#Calm"],
+        "search_query_spotify": "Cyril Scott String Quartet 1 Lento",
+        "search_query_youtube": "Cyril Scott String Quartet No 1 Lento",
+        "fact": "Contemplative chamber movement displaying fine contrapuntal weave.",
+        "did_you_know_short": "Głęboko kontemplacyjna część kwartetu smyczkowego.",
+        "did_you_know_deep": "Scott zrezygnował tu z tradycyjnej konstrukcji tonlanej na rzecz płynnych, modyfikowanych swobodnie plam dźwiękowych.",
+        "source_verification": "British Music Society Journal"
+      },
+      {
+        "rank": 6,
+        "title": "Cherry Ripe",
+        "duration": "3:05",
         "digital_reach_score": 83,
         "mood_tags": ["#Calm"],
-        "fact": "A charming piano suite later orchestrated by Alexander Glazunov."
+        "search_query_spotify": "Cyril Scott Cherry Ripe piano",
+        "search_query_youtube": "Cyril Scott Cherry Ripe piano arrangement",
+        "fact": "Modernist piano transformation of a traditional old English song.",
+        "did_you_know_short": "Nowoczesna, impresjonistyczna parafraza starej angielskiej pieśni ludowej.",
+        "did_you_know_deep": "Scott przekształcił prostą melodię w bogato zharmonizowany, mieniący się barwami utwór solowy.",
+        "source_verification": "Schott & Co. Modern English Series"
       }
     ]
   },
   {
-    "date": "08-12",
-    "anchor_type": "birth",
-    "composer": {
-      "name": "Jean Sibelius",
-      "birth_year": "1865",
-      "death_year": "1957",
-      "period": "Romantic / Modern",
-      "birth_country": "Finland",
-      "wiki_url": "https://en.wikipedia.org/wiki/Jean_Sibelius"
-    },
-    "tracks": [
-      {
-        "rank": 1,
-        "title": "Finlandia, Op. 26",
-        "duration": "8:30",
-        "digital_reach_score": 99,
-        "mood_tags": ["#Dramatic", "#Focus"],
-        "fact": "Became an iconic symbol of Finnish national resistance against Russian imperial censorship."
-      },
-      {
-        "rank": 2,
-        "title": "Violin Concerto in D minor: I. Allegro moderato",
-        "duration": "15:10",
-        "digital_reach_score": 95,
-        "mood_tags": ["#Focus"],
-        "fact": "Sibelius originally aspired to become a professional concert violinist before turning full-time to composition."
-      },
-      {
-        "rank": 3,
-        "title": "Valse Triste, Op. 44, No. 1",
-        "duration": "4:45",
-        "digital_reach_score": 91,
-        "mood_tags": ["#Calm", "#Relaxing"],
-        "fact": "A hauntingly melancholic waltz written as incidental music for a play about a dying mother dancing with ghosts."
-      },
-      {
-        "rank": 4,
-        "title": "Karelia Suite: III. Alla marcia",
-        "duration": "4:15",
-        "digital_reach_score": 88,
-        "mood_tags": ["#Dramatic"],
-        "fact": "Commissioned to raise funds for a student association in Vyborg."
-      },
-      {
-        "rank": 5,
-        "title": "The Swan of Tuonela, Op. 22, No. 2",
-        "duration": "7:50",
-        "digital_reach_score": 89,
-        "mood_tags": ["#Relaxing", "#Calm"],
-        "fact": "Features a prominent English horn solo portraying a majestic swan gliding on the dark waters of the underworld."
-      },
-      {
-        "rank": 6,
-        "title": "Symphony No. 2 in D major: IV. Finale",
-        "duration": "10:20",
-        "digital_reach_score": 92,
-        "mood_tags": ["#Dramatic", "#Focus"],
-        "fact": "Capped by a triumphant trumpet motif that embodies national awakening and liberation."
-      }
-    ]
-  },
-  {
-    "date": "11-12",
-    "anchor_type": "birth",
-    "composer": {
-      "name": "Hector Berlioz",
-      "birth_year": "1803",
-      "death_year": "1869",
-      "period": "Romantic",
-      "birth_country": "France",
-      "wiki_url": "https://en.wikipedia.org/wiki/Hector_Berlioz"
-    },
-    "tracks": [
-      {
-        "rank": 1,
-        "title": "Symphonie fantastique: IV. March to the Scaffold",
-        "duration": "4:50",
-        "digital_reach_score": 97,
-        "mood_tags": ["#Dramatic", "#Focus"],
-        "fact": "Berlioz composed this hallucinatory masterpiece inspired by his obsessive unrequited love for actress Harriet Smithson."
-      },
-      {
-        "rank": 2,
-        "title": "Symphonie fantastique: V. Dream of a Witches' Sabbath",
-        "duration": "9:30",
-        "digital_reach_score": 94,
-        "mood_tags": ["#Dramatic"],
-        "fact": "Parodies the sacred 'Dies Irae' chant amidst demonic sorcery and howling witches."
-      },
-      {
-        "rank": 3,
-        "title": "Roman Carnival Overture, Op. 9",
-        "duration": "8:40",
-        "digital_reach_score": 88,
-        "mood_tags": ["#Focus"],
-        "fact": "Incorporates thematic material from Berlioz's early, unsuccessful opera Benvenuto Cellini."
-      },
-      {
-        "rank": 4,
-        "title": "Requiem (Grande messe des morts): Agnus Dei",
-        "duration": "10:15",
-        "digital_reach_score": 86,
-        "mood_tags": ["#Calm"],
-        "fact": "Calls for colossal musical forces, including four separate brass choirs positioned at the corners of the orchestra."
-      },
-      {
-        "rank": 5,
-        "title": "The Damnation of Faust: Rákóczi March",
-        "duration": "4:30",
-        "digital_reach_score": 89,
-        "mood_tags": ["#Dramatic"],
-        "fact": "Arranged specifically so that Berlioz could perform it during his triumphant concert tours across Hungary."
-      },
-      {
-        "rank": 6,
-        "title": "L'enfance du Christ: The Shepherds' Farewell",
-        "duration": "4:10",
-        "digital_reach_score": 90,
-        "mood_tags": ["#Relaxing", "#Calm"],
-        "fact": "Originally published anonymously under a fabricated 17th-century composer name to trick conservative critics."
-      }
-    ]
-  },
-  {
-    "date": "16-12",
-    "anchor_type": "birth",
-    "composer": {
-      "name": "Ludwig van Beethoven",
-      "birth_year": "1770",
-      "death_year": "1827",
-      "period": "Classical / Romantic",
-      "birth_country": "Germany",
-      "wiki_url": "https://en.wikipedia.org/wiki/Ludwig_van_Beethoven"
-    },
-    "tracks": [
-      {
-        "rank": 1,
-        "title": "Symphony No. 9 in D minor, Op. 125: IV. Ode to Joy",
-        "duration": "6:45",
-        "digital_reach_score": 100,
-        "mood_tags": ["#Dramatic", "#Focus"],
-        "fact": "Beethoven was completely deaf by the time this choral masterpiece premiered, yet he turned to accept the roaring applause."
-      },
-      {
-        "rank": 2,
-        "title": "Symphony No. 5 in C minor, Op. 67: I. Allegro con brio",
-        "duration": "7:20",
-        "digital_reach_score": 99,
-        "mood_tags": ["#Dramatic", "#Focus"],
-        "fact": "The iconic opening four-note motif is famously interpreted as 'fate knocking at the door'."
-      },
-      {
-        "rank": 3,
-        "title": "Piano Sonata No. 14 in C-sharp minor 'Moonlight': I. Adagio sostenuto",
-        "duration": "6:00",
-        "digital_reach_score": 98,
-        "mood_tags": ["#Relaxing", "#Calm"],
-        "fact": "The nickname 'Moonlight' was attached by a music critic years after Beethoven's death, inspired by Lake Lucerne."
-      },
-      {
-        "rank": 4,
-        "title": "Bagatelle No. 25 in A minor 'Für Elise'",
-        "duration": "3:00",
-        "digital_reach_score": 97,
-        "mood_tags": ["#Relaxing", "#Calm"],
-        "fact": "The original manuscript was lost for decades and only published 40 years after Beethoven's death."
-      },
-      {
-        "rank": 5,
-        "title": "Piano Concerto No. 5 in E-flat major 'Emperor': I. Allegro",
-        "duration": "20:10",
-        "digital_reach_score": 95,
-        "mood_tags": ["#Focus", "#Dramatic"],
-        "fact": "Beethoven's final piano concerto, monumental in scale and overflowing with regal heroism."
-      },
-      {
-        "rank": 6,
-        "title": "Coriolan Overture, Op. 62",
-        "duration": "7:30",
-        "digital_reach_score": 90,
-        "mood_tags": ["#Dramatic"],
-        "fact": "Portrays the dramatic psychological conflict of a Roman general torn between vengeance and mercy."
-      }
-    ]
-  },
-  {
-    "date": "15-09",
+    "date": "30-09",
     "anchor_type": "premiere",
-    "event_note": "Christmas Eve – Exquisite Baroque and Classical Christmas Masterpieces",
+    "event_note": "Premiere of Wolfgang Amadeus Mozart's masterpiece opera 'Die Zauberflöte' (The Magic Flute) in Vienna, 1791.",
     "composer": {
-      "name": "Arcangelo Corelli & Tradition",
-      "birth_year": "1653",
-      "death_year": "1713",
-      "period": "Baroque",
-      "birth_country": "Italy",
-      "wiki_url": "https://en.wikipedia.org/wiki/Christmas_Concerto_(Corelli)"
+      "name": "Wolfgang Amadeus Mozart",
+      "birth_year": "1756",
+      "death_year": "1791",
+      "period": "Classical",
+      "birth_country": "Austria",
+      "wiki_url": "https://en.wikipedia.org/wiki/The_Magic_Flute"
     },
     "tracks": [
       {
         "rank": 1,
-        "title": "Concerto Grosso in G minor, Op. 6, No. 8 'Fatto per la notte di Natale'",
-        "duration": "14:10",
-        "digital_reach_score": 98,
-        "mood_tags": ["#Calm", "#Relaxing"],
-        "fact": "Corelli's famous 'Christmas Concerto' was composed specifically for Christmas Eve performance and features a subtle pastoral final movement."
-      },
-      {
-        "rank": 2,
-        "title": "The Nutcracker: Dance of the Sugar Plum Fairy",
-        "duration": "2:05",
-        "digital_reach_score": 99,
-        "mood_tags": ["#Focus", "#Relaxing"],
-        "fact": "Pyotr Ilyich Tchaikovsky was among the first to use the newly imported celesta instrument from Paris in this piece."
-      },
-      {
-        "rank": 3,
-        "title": "The Nutcracker: Waltz of the Flowers",
+        "title": "Die Zauberflöte, K. 620: Overture",
         "duration": "6:50",
-        "digital_reach_score": 97,
-        "mood_tags": ["#Calm"],
-        "fact": "This grand waltz from The Nutcracker remains one of the most widely recognized orchestral ballet pieces in the world."
-      },
-      {
-        "rank": 4,
-        "title": "Pastorale in F major",
-        "duration": "5:30",
-        "digital_reach_score": 85,
-        "mood_tags": ["#Calm", "#Relaxing"],
-        "fact": "A traditional Italian Christmas melody frequently adapted by Baroque masters for holiday celebrations."
-      },
-      {
-        "rank": 5,
-        "title": "Hodie Christus natus est (Jan Pieterszoon Sweelinck)",
-        "duration": "4:15",
-        "digital_reach_score": 82,
-        "mood_tags": ["#Focus"],
-        "fact": "A luminous Renaissance Christmas motet rich in intricate vocal polyphony."
-      },
-      {
-        "rank": 6,
-        "title": "Silent Night (Choral Version)",
-        "duration": "3:40",
-        "digital_reach_score": 96,
-        "mood_tags": ["#Relaxing", "#Calm"],
-        "fact": "The world's most popular carol, composed in 1818 in Austria by Franz Xaver Gruber."
-      }
-    ]
-  },
-  {
-    "date": "25-12",
-    "anchor_type": "premiere",
-    "event_note": "Christmas Day – Monumental Baroque Sacred Masterpieces",
-    "composer": {
-      "name": "Johann Sebastian Bach",
-      "birth_year": "1685",
-      "death_year": "1750",
-      "period": "Baroque",
-      "birth_country": "Germany",
-      "wiki_url": "https://en.wikipedia.org/wiki/Christmas_Oratorio"
-    },
-    "tracks": [
-      {
-        "rank": 1,
-        "title": "Christmas Oratorio, BWV 248: Part I - Jauchzet, frohlocket",
-        "duration": "7:50",
-        "digital_reach_score": 96,
-        "mood_tags": ["#Dramatic", "#Focus"],
-        "fact": "The opening part of Bach's Christmas Oratorio bursts forth with powerful timpani strokes and triumphant trumpets celebrating the Nativity."
-      },
-      {
-        "rank": 2,
-        "title": "Christmas Oratorio, BWV 248: Pastoral Symphony (Sinfonia)",
-        "duration": "6:20",
-        "digital_reach_score": 92,
-        "mood_tags": ["#Calm", "#Relaxing"],
-        "fact": "An instrumental interlude introducing Part II, depicting the peaceful Bethlehem night and the watching shepherds."
-      },
-      {
-        "rank": 3,
-        "title": "Magnificat in D major, BWV 243: I. Magnificat anima mea",
-        "duration": "3:10",
-        "digital_reach_score": 90,
-        "mood_tags": ["#Focus", "#Dramatic"],
-        "fact": "Bach originally composed this brilliant setting for the Christmas vespers service in Leipzig in 1723."
-      },
-      {
-        "rank": 4,
-        "title": "Wachet auf, ruft uns die Stimme, BWV 140",
-        "duration": "5:30",
-        "digital_reach_score": 88,
-        "mood_tags": ["#Focus"],
-        "fact": "One of Bach's most celebrated chorale cantatas, blending deep spiritual devotion with majestic counterpoint."
-      },
-      {
-        "rank": 5,
-        "title": "Orchestral Suite No. 3 in D major: Air on the G String",
-        "duration": "4:50",
-        "digital_reach_score": 99,
-        "mood_tags": ["#Relaxing", "#Calm"],
-        "fact": "A piece of profound tranquility, offering an ideal soundtrack for a peaceful holiday morning."
-      },
-      {
-        "rank": 6,
-        "title": "Jesu, Joy of Man's Desiring",
-        "duration": "3:25",
-        "digital_reach_score": 95,
-        "mood_tags": ["#Relaxing", "#Calm"],
-        "fact": "Bach's iconic chorale setting brings deep inner peace and has become a permanent staple of classical holiday playlists."
-      }
-    ]
-  },
-  {
-    "date": "26-12",
-    "anchor_type": "premiere",
-    "event_note": "Boxing Day – Monumental Choral and Orchestral Masterpieces",
-    "composer": {
-      "name": "George Frideric Handel",
-      "birth_year": "1685",
-      "death_year": "1759",
-      "period": "Baroque",
-      "birth_country": "Germany",
-      "wiki_url": "https://en.wikipedia.org/wiki/Messiah_(Handel)"
-    },
-    "tracks": [
-      {
-        "rank": 1,
-        "title": "Messiah, HWV 56: Hallelujah Chorus",
-        "duration": "3:45",
         "digital_reach_score": 100,
         "mood_tags": ["#Dramatic", "#Focus"],
-        "fact": "King George II was so moved by the power of this chorus that he stood up, inspiring the enduring tradition of audience standing."
+        "search_query_spotify": "Mozart Die Zauberflote Overture",
+        "search_query_youtube": "Mozart The Magic Flute Overture",
+        "fact": "Premiered on September 30, 1791, at the Freihaus-Theater auf der Wieden in Vienna, conducted by Mozart himself.",
+        "did_you_know_short": "Monumentalna uwertura do 'Czarodziejskiego fletu', zrealizowana po raz pierwszy 30 września 1791 roku w Wiedniu pod batutą Mozarta.",
+        "did_you_know_deep": "Uwertura rozpoczyna się od trzech masońskich uderzeń w mosiądz, otwierając jedno z najbardziej tajemniczych i genialnych dzieł w historii teatru muzycznego. Mozart zmarł zaledwie dwa miesiące po tej premierze.",
+        "source_verification": "Theater auf der Wieden Original Playbill (30 Sept 1791)"
       },
       {
         "rank": 2,
-        "title": "Messiah, HWV 56: For Unto Us a Child Is Born",
-        "duration": "4:20",
-        "digital_reach_score": 94,
-        "mood_tags": ["#Focus"],
-        "fact": "A joyous chorus from Messiah adapted from an Italian secular duet into a monumental sacred masterpiece."
+        "title": "Die Zauberflöte: Der Hölle Rache kocht in meinem Herzen (Queen of the Night Aria)",
+        "duration": "2:55",
+        "digital_reach_score": 99,
+        "mood_tags": ["#Dramatic"],
+        "search_query_spotify": "Mozart Queen of the Night Aria",
+        "search_query_youtube": "Mozart Queen of the Night aria Der Holle Rache",
+        "fact": "Famous for its extreme vocal acrobatics reaching high F6.",
+        "did_you_know_short": "Najsłynniejsza i najbardziej wymagająca aria sopranowa świata z ikonicznymi staccatami sięgającymi wysokiego F.",
+        "did_you_know_deep": "Mozart napisał tę arię specjalnie dla swojej szwagierki Josephy Hofer, która posiadała niezwykłą skalę głosu i rewelacyjną elastyczność wokalną.",
+        "source_verification": "NMA (Neue Mozart-Ausgabe) Critical Commentary"
       },
       {
         "rank": 3,
-        "title": "Water Music: Suite in F major, HWV 348: Allegro",
-        "duration": "3:00",
-        "digital_reach_score": 91,
-        "mood_tags": ["#Focus"],
-        "fact": "First performed on a barge on the River Thames for the British monarch, exuding festive brilliance and courtly elegance."
+        "title": "Die Zauberflöte: Der Vogelfänger bin ich ja (Papageno's Song)",
+        "duration": "2:40",
+        "digital_reach_score": 96,
+        "mood_tags": ["#Calm", "#Relaxing"],
+        "search_query_spotify": "Mozart Der Vogelfanger bin ich ja Papageno",
+        "search_query_youtube": "Mozart Papageno Song Der Vogelfanger bin ich ja",
+        "fact": "The delightful opening aria of Papageno accompanied by his panpipes.",
+        "did_you_know_short": "Radosna piosenka ptasznika Papageno z towarzyszeniem fletni Pana.",
+        "did_you_know_deep": "Rolę Papageno podczas premiery zagrał sam Emanuel Schikaneder – autor libretta i dyrektor teatru, który ściśle współpracował z Mozartem.",
+        "source_verification": "Schikaneder Historical Theater Memoirs"
       },
       {
         "rank": 4,
-        "title": "Music for the Royal Fireworks: La Rejouissance",
-        "duration": "2:15",
-        "digital_reach_score": 89,
-        "mood_tags": ["#Dramatic"],
-        "fact": "Commissioned by the King for the public celebration of the Treaty of Aix-la-Chapelle, featuring an imposing wind band."
+        "title": "Die Zauberflöte: Ach, ich fühl's",
+        "duration": "4:10",
+        "digital_reach_score": 91,
+        "mood_tags": ["#Relaxing", "#Calm"],
+        "search_query_spotify": "Mozart Ach ich fuhls Pamina",
+        "search_query_youtube": "Mozart Ach ich fuhls Pamina aria",
+        "fact": "A heartbreak aria in G minor expressing Pamina's profound sorrow.",
+        "did_you_know_short": "Poruszająca aria Paminy w g-moll będąca głębokim wyrazem miłosnej tęsknoty.",
+        "did_you_know_deep": "Mozart rzadko używał tonacji g-moll, rezerwując ją wyłącznie dla momentów o najwyższym ciężarze emocjonalnym i rozpaczy.",
+        "source_verification": "Salzburg Mozarteum Research Notes"
       },
       {
         "rank": 5,
-        "title": "Messiah, HWV 56: Pastoral Symphony",
-        "duration": "3:10",
-        "digital_reach_score": 87,
-        "mood_tags": ["#Calm", "#Relaxing"],
-        "fact": "Another exquisite pastoral movement within our holiday collection, setting a contemplative and atmospheric mood."
+        "title": "Die Zauberflöte: Pa-Pa-Pa-Papagena",
+        "duration": "2:35",
+        "digital_reach_score": 95,
+        "mood_tags": ["#Calm"],
+        "search_query_spotify": "Mozart Pa Pa Pa Papagena",
+        "search_query_youtube": "Mozart Pa Pa Pa Papagena duet",
+        "fact": "Joyful comedic duet between Papageno and Papagena celebrating love and family.",
+        "did_you_know_short": "Zabawny i radosny duet miłosny Papagena i Papageny.",
+        "did_you_know_deep": "Struktura duetu z powtarzanymi sylabami 'Pa-pa' była genialnym chwytem komediowym, który natychmiast zdobył serca wiedeńskiej publiczności.",
+        "source_verification": "Vienna Court Opera Annals"
       },
       {
         "rank": 6,
-        "title": "Zadok the Priest (Coronation Anthem)",
-        "duration": "5:30",
-        "digital_reach_score": 93,
-        "mood_tags": ["#Dramatic", "#Focus"],
-        "fact": "Handel composed this anthem for the coronation of George II in 1727; it has since been performed at every British coronation."
+        "title": "Die Zauberflöte: March of the Priests (Priestermarsch)",
+        "duration": "3:20",
+        "digital_reach_score": 88,
+        "mood_tags": ["#Relaxing", "#Calm"],
+        "search_query_spotify": "Mozart March of the Priests Magic Flute",
+        "search_query_youtube": "Mozart March of the Priests Priestermarsch",
+        "fact": "Solemn orchestral march opening Act II in Sarastro's temple of wisdom.",
+        "did_you_know_short": "Uroczysty i spokojny marsz orkiestrowy otwierający drugi akt opery w świątyni mądrości.",
+        "did_you_know_deep": "Utwór emanuje dostojeństwem i harmonią, stanowiąc muzyczną reprezentację oświeceniowych ideałów prawdy, piękna i mądrości.",
+        "source_verification": "Mozart Iconography and Score Manuscripts, Berlin"
       }
     ]
   }
