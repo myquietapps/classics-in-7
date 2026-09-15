@@ -22,7 +22,7 @@ body {
     border: 1px solid #2a2a2a;
     padding: 16px;
     margin-bottom: 16px;
-    position: relative;
+    position: relative; /* Wymagane dla pozycjonowania bezwzględnego menu */
 }
 
 /* Górny rząd w karcie: odznaka + przycisk zębatki */
@@ -62,16 +62,20 @@ body {
     transform: rotate(45deg); /* Obrót całego kwadracika */
 }
 
-/* Styl rozwijanego menu zębatki */
+/* Styl rozwijanego menu jako pływająca warstwa (overlay) */
 .settings-menu {
     display: none;
     flex-direction: column;
     background: #222222;
     border-radius: 8px;
-    margin-top: 10px;
+    position: absolute;
+    top: 54px; /* Tuż pod górnym rzędem przycisku */
+    right: 16px;
+    min-width: 160px;
     border: 1px solid #333333;
     padding: 8px 0;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8);
+    z-index: 100; /* Wyższa warstwa nad resztą zawartości karty */
 }
 
 .settings-menu.expanded {
