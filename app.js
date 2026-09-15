@@ -5,16 +5,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const menuToggleBtn = document.getElementById("menu-toggle");
     
     // Pola tekstowe w panelu Slide-over
-    const aboutManifest = document.getElementById("about-manifest");
+    const headingAuthor = document.getElementById("heading-author");
     const aboutAuthor = document.getElementById("about-author");
+    
+    const headingManifest = document.getElementById("heading-manifest");
+    const aboutManifest = document.getElementById("about-manifest");
+    
+    const headingSupport = document.getElementById("heading-support");
     const supportLink = document.getElementById("support-link");
     const feedbackLink = document.getElementById("feedback-link");
     const shareBtn = document.getElementById("share-btn");
 
-    // 2. Pobieranie danych z bazy JSON
-    fetch('app-content.json')
+    // 2. Pobieranie danych z bazy JSON (zmieniono na core-content.json)
+    fetch('core-content.json')
         .then(response => {
-            if (!response.ok) throw new Error("Błąd podczas ładowania app-content.json");
+            if (!response.ok) throw new Error("Błąd podczas ładowania core-content.json");
             return response.json();
         })
         .then(data => {
@@ -24,12 +29,18 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .catch(error => console.error("Error:", error));
 
-    // 3. Funkcja wstrzykująca dane do sekcji About & Support
+    // 3. Funkcja wstrzykująca dane do sekcji About & Support (3 nowe elementy)
     function initAboutSection(aboutData) {
-        // Zwykłe .innerText zachowuje znaki nowej linii (\n) z naszego JSON-a
-        aboutManifest.innerText = aboutData.manifest;
+        // Element 1: Author's Note
+        headingAuthor.innerText = aboutData.authors_note_title;
         aboutAuthor.innerText = aboutData.author_note;
+
+        // Element 2: About the App (The Story Behind the 366 Journey)
+        headingManifest.innerText = aboutData.about_app_title;
+        aboutManifest.innerText = aboutData.manifest;
         
+        // Element 3: Support & Feedback
+        headingSupport.innerText = aboutData.support_feedback_title;
         supportLink.innerText = aboutData.support_cta;
         supportLink.href = "https://www.buymeacoffee.com/"; // Wklej swój link wsparcia
         
@@ -60,8 +71,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // 5. Obsługa interfejsu (Wysuwanie i chowanie panelu Slide-over)
-    // Tymczasowo podpinamy testowe otwieranie panelu About pod przycisk Menu
-    // Docelowo ten przycisk znajdzie się w rozwiniętym Menu Hamburgera
     menuToggleBtn.addEventListener("click", () => {
         aboutPanel.classList.remove("hidden");
     });
