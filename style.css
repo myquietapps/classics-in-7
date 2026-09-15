@@ -32,7 +32,7 @@ body {
     align-items: center;
 }
 
-/* Styl przycisku z zębatką SVG */
+/* Styl przycisku ze złocistą zębatką SVG */
 .settings-btn {
     background: transparent;
     border: none;
@@ -46,18 +46,18 @@ body {
 }
 
 .gear-icon {
-    stroke: #cccccc;
-    transition: transform 0.3s ease, stroke 0.2s ease;
+    stroke: #d4af37; /* Złoty kolor dopasowany do ramki/odznaki */
+    transition: transform 0.3s ease, filter 0.2s ease;
 }
 
 .settings-btn:hover .gear-icon,
 .settings-btn.active .gear-icon {
-    stroke: #d4af37;
+    filter: brightness(1.25); /* Delikatne rozjaśnienie po najechaniu */
     transform: rotate(90deg);
 }
 
 .settings-btn:hover {
-    background: rgba(255, 255, 255, 0.05);
+    background: rgba(212, 175, 55, 0.08); /* Delikatna złota poświata tła */
 }
 
 /* Styl rozwijanego menu zębatki */
