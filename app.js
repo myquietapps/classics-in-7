@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 moodsContainer.innerHTML = "";
             }
 
-            document.getElementById("main-track-fact").innerHTML = `<strong>Classical Insight:</strong> ${track.fact}`;
+            document.getElementById("main-track-fact").innerHTML = `<strong>Trivia:</strong> ${track.fact}`;
 
             const searchQuery = encodeURIComponent(`${composerName} ${track.title}`);
             const spotifyLink = `https://open.spotify.com/search/${searchQuery}`;
@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                     <div class="mood-tags-container">
                         ${tagsHTML}
                     </div>
-                    <p class="track-fact"><strong>Classical Insight:</strong> ${track.fact}</p>
+                    <p class="track-fact"><strong>Trivia:</strong> ${track.fact}</p>
                 `;
 
                 trackEl.addEventListener("click", () => {
