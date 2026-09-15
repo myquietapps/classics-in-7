@@ -22,6 +22,63 @@ body {
     border: 1px solid #2a2a2a;
     padding: 16px;
     margin-bottom: 16px;
+    position: relative;
+}
+
+/* Górny rząd w karcie: odznaka + przycisk zębatki */
+.header-top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Styl przycisku zębatki */
+.settings-btn {
+    background: transparent;
+    border: none;
+    font-size: 1.25rem;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.settings-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: rotate(45deg);
+}
+
+/* Styl rozwijanego menu zębatki */
+.settings-menu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease;
+    background: #222222;
+    border-radius: 8px;
+    margin-top: 0;
+    border: 1px solid transparent;
+}
+
+.settings-menu.expanded {
+    max-height: 350px;
+    padding: 8px 0;
+    margin-top: 10px;
+    border-color: #333333;
+}
+
+.menu-item {
+    display: block;
+    padding: 10px 16px;
+    color: #cccccc;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.menu-item:hover {
+    background: rgba(212, 175, 55, 0.1);
+    color: #d4af37;
 }
 
 #anchor-badge {
@@ -42,7 +99,7 @@ body {
 #composer-meta {
     font-size: 0.95rem;
     color: #999999;
-    margin-bottom: 0; /* Usunięty zbędny margines, bo ramka ma własny padding */
+    margin-bottom: 0;
 }
 
 #event-note {
@@ -64,17 +121,14 @@ body {
     box-shadow: 0 4px 12px rgba(212, 175, 55, 0.08);
 }
 
-/* Styl tytułu głównego utworu */
 .main-track-title {
     font-size: 1.15rem;
     color: #ffffff;
     font-weight: 600;
     margin: 0 0 8px 0;
     line-height: 1.35;
-    white-space: normal;
 }
 
-/* Pasek pod tytułem w głównym utworze */
 .main-track-sub-header {
     display: flex;
     justify-content: space-between;
@@ -82,7 +136,6 @@ body {
     margin-bottom: 12px;
 }
 
-/* Prawa kolumna w głównym utworze (czas nad tagami, wyrównane do prawej) */
 .track-right-column {
     display: flex;
     flex-direction: column;
@@ -140,7 +193,6 @@ body {
     padding: 0 16px 16px 16px;
 }
 
-/* Karta pojedynczego utworu w Discover More (#2 do #6) */
 .track-card {
     background: #222222;
     border-radius: 8px;
@@ -183,7 +235,6 @@ body {
     white-space: nowrap;
 }
 
-/* Prawa strona karty Discover More (tagi i czas) */
 .track-right-side {
     display: flex;
     align-items: center;
@@ -196,21 +247,12 @@ body {
     gap: 4px;
 }
 
-/* Styl czasu trwania utworu */
 .track-duration {
     font-size: 0.85rem;
     color: #888888;
     font-weight: 500;
     white-space: nowrap;
     text-align: right;
-}
-
-/* Globalny kontener tagów nastroju */
-.mood-tags-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin: 4px 0 0 0;
 }
 
 .mood-tag {
@@ -226,11 +268,9 @@ body {
     font-size: 0.95rem;
     color: #bbbbbb;
     line-height: 1.4;
-    margin: 8px 0 0 0;
-    margin-bottom: 14px;
+    margin: 8px 0 14px 0;
 }
 
-/* Style dla układu przycisków 2x2 */
 .track-actions {
     display: flex;
     flex-direction: column;
@@ -263,5 +303,3 @@ body {
     color: #ffffff;
     border-color: #d4af37;
 }
-
-.btn-1, .btn-2, .btn-3, .btn-4 {}
