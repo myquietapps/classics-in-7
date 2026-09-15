@@ -84,7 +84,7 @@ body {
     display: flex;
 }
 
-/* Styl Classical Insight dla pozycji menu – jeden font, elegancki sznyt, kapitaliki */
+/* Styl Classical Insight dla pozycji menu (bez numerków, spójna baza pod zmianę wielkości czcionki) */
 .menu-item {
     display: block;
     padding: 12px 16px;
@@ -92,7 +92,7 @@ body {
     text-decoration: none;
     font-size: 0.85rem;
     font-weight: 500;
-    letter-spacing: 0.08em; /* Książkowy rozstaw liter */
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     transition: background 0.15s ease, color 0.15s ease;
 }
@@ -175,6 +175,7 @@ body {
     margin-bottom: 16px;
 }
 
+/* WSPÓLNY styl dla przycisku rozwijania i elementu Wikipedia */
 .discover-toggle-btn {
     width: 100%;
     background: transparent;
@@ -199,10 +200,14 @@ body {
     background: rgba(255, 255, 255, 0.02);
 }
 
-#discover-arrow {
+#discover-arrow, .wiki-arrow {
     display: inline-block;
-    transition: transform 0.3s ease;
     font-size: 0.75rem;
+    color: #d4af37;
+}
+
+#discover-arrow {
+    transition: transform 0.3s ease;
 }
 
 .discover-content {
