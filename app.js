@@ -6,50 +6,68 @@ async function loadContent() {
     try {
         const response = await fetch('muz-content.json');
         if (!response.ok) {
-            throw new Error('Nie udało się załadować bazy danych.');
+            throw new Error('Błąd pobierania bazy danych');
         }
         const data = await response.json();
         
-        // Renderujemy pierwszy element z bazy (lub dostosuj do swojej logiki wyboru dnia)
+        // Pobieramy np. pierwszy wpis z bazy (lub wg Twojej logiki daty)
         renderComposer(data[0]);
     } catch (error) {
         console.error('Błąd:', error);
-        const container = document.getElementById('tracks-container');
-        if (container) {
-            container.innerHTML = '<p>Nie udało się załadować utworu.</p>';
-        }
     }
 }
 
 function renderComposer(item) {
-    // Wyświetlanie nazwy kompozytora, jeśli element istnieje w HTML
+    // 1. Wyświetlenie nazwy kompozytora
     const nameEl = document.getElementById('composer-name');
     if (nameEl && item.composer) {
         nameEl.textContent = item.composer.name;
     }
 
-    const container = document.getElementById('tracks-container');
-    if (!container || !item.tracks) return;
+    if (!item.tracks || item.tracks.length === 0) return;
 
-    // Generowanie listy utworów
-    container.innerHTML = item.tracks.map((track, index) => {
-        const isFirst = index === 0;
-        
-        // Pierwszy utwór nie ma numeru, pozostałe dostają numer od #2 do #6
-        const rankDisplay = isFirst ? '' : `<span class="track-rank">#${index + 1}</span>`;
-
-        return `
-            <div class="track-card ${isFirst ? 'main-track' : 'regular-track'}">
-                <div class="track-header">
-                    ${rankDisplay}
-                    <h3 class="track-title">${track.title}</h3>
-                    <span class="track-duration">${track.duration}</span>
-                </div>
-                <p class="track-fact">${track.fact}</p>
+    // 2. PIERWSZY UTWÓR (Główna sekcja pod nazwiskiem) - BEZ NUMERU #1
+    const mainTrack = item.tracks[0];
+    const mainContainer = document.getElementById('main-track-container'); // Dostosuj ID do swojego HTML jeśli jest inne
+    
+    if (mainContainer) {
+        mainContainer.innerHTML = `
+            <div class="main-track-card">
+                <h3 class="track-title">${mainTrack.title}</h3>
+                <p class="track-duration">${mainTrack.duration || ''}</p>
+                <p class="track-fact">${mainTrack.fact}</p>
                 <div class="track-tags">
-                    ${track.mood_tags ? track.mood_tags.map(tag => `<span class="tag">${tag}</span>`).join('') : ''}
+                    ${mainTrack.mood_tags ? mainTrack.mood_tags.map(tag => `<span class="tag">${tag}</span>`).join('') : ''}
                 </div>
             </div>
         `;
-    }).join('');
+    }
+
+    // 3. POZOSTAŁE UTWORY (#2 do #6) - z numeracją
+    const listContainer = document.getElementById('tracks-container');
+    if (listContainer) {
+        // Bierze utwory od indeksu 1 do końca (czyli 5 kolejnych utworów)
+        const otherTracks = item.tracks.slice(1);
+
+        listContainer.innerHTML = otherTracks.map((track, index) => {
+            // index 0 w 'otherTracks' to w bazie indeks 1, czyli utwór #2
+            const trackNumber = index + 2; 
+
+            return `
+                <div class="track-card regular-track">
+                    <span class="track-rank">#${trackNumber}</span>
+                    <div class="track-content">
+                        <div class="track-header">
+                            <h3 class="track-title">${track.title}</h3>
+                            <span class="track-duration">${track.duration || ''}</span>
+                        </div>
+                        <p class="track-fact">${track.fact}</p>
+                        <div class="track-tags">
+                            ${track.mood_tags ? track.mood_tags.map(tag => `<span class="tag">${tag}</span>`).join('') : ''}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
 }
