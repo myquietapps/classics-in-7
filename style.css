@@ -1,342 +1,124 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+*Dodano kontener wbudowanego odtwarzacza pod faktem oraz nową sekcję widoku ustawień odtwarzacza.*
 
-body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: #121212;
-    color: #e0e0e0;
-    margin: 0;
-    padding: 16px;
-    display: flex;
-    justify-content: center;
-}
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classics in 7</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Główny widok aplikacji -->
+        <div id="main-app-view" class="view-section">
+            <!-- Górna sekcja w ramce -->
+            <div class="composer-header-card">
+                <div class="header-top-row">
+                    <span id="anchor-badge"></span>
+                    <button id="settings-btn" class="settings-btn" aria-label="Settings menu">
+                        <svg class="gear-icon" viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                        </svg>
+                    </button>
+                </div>
 
-.app-container {
-    width: 100%;
-    max-width: 480px;
-}
+                <!-- Menu rozwijane pod zębatką -->
+                <div id="settings-menu" class="settings-menu">
+                    <a href="#" class="menu-item" data-target="now-playing">Now Playing</a>
+                    <a href="#" class="menu-item" data-target="saved">Saved</a>
+                    <a href="#" class="menu-item" data-target="mood-stats">My Mood Stats</a>
+                    <a href="#" class="menu-item" data-target="jump-to-date">Jump to Date</a>
+                    <a href="#" class="menu-item" data-target="settings-player">Settings</a>
+                    <a href="#" class="menu-item" data-target="about">About & Support</a>
+                </div>
 
-/* Ramka dla górnej sekcji kompozytora */
-.composer-header-card {
-    background: #1a1a1a;
-    border-radius: 12px;
-    border: 1px solid #2a2a2a;
-    padding: 16px;
-    margin-bottom: 16px;
-    position: relative;
-}
+                <h1 id="composer-name">Loading...</h1>
+                <p id="composer-meta"></p>
+                <p id="event-note" style="display:none;"></p>
+            </div>
+            
+            <!-- Główny utwór w dedykowanej ramce -->
+            <div id="main-track-card" class="main-track-card">
+                <h3 id="main-track-title" class="main-track-title"></h3>
+                
+                <div class="main-track-sub-header">
+                    <div></div>
+                    <div class="track-right-column">
+                        <span id="main-track-duration" class="track-duration"></span>
+                        <div id="main-track-moods" class="mood-tags-container-right"></div>
+                    </div>
+                </div>
 
-/* Górny rząd w karcie: odznaka + przycisk zębatki */
-.header-top-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+                <p id="main-track-fact" class="track-fact"></p>
+                
+                <!-- Kontener wbudowanego odtwarzacza -->
+                <div id="player-container" style="margin-bottom: 12px;"></div>
 
-/* Styl przycisku z zębatką */
-.settings-btn {
-    background: transparent;
-    border: 1px solid transparent;
-    cursor: pointer;
-    padding: 6px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s ease, transform 0.3s ease, border-color 0.2s ease;
-}
+                <div id="main-track-actions" class="track-actions">
+                    <div class="action-row">
+                        <button id="btn-1" class="btn-custom btn-1">Button 1</button>
+                        <button id="btn-2" class="btn-custom btn-2">Button 2</button>
+                    </div>
+                    <div class="action-row">
+                        <button id="btn-3" class="btn-custom btn-3">Save</button>
+                        <button id="btn-4" class="btn-custom btn-4">Share</button>
+                    </div>
+                </div>
+            </div>
 
-.gear-icon {
-    stroke: #d4af37;
-    transition: filter 0.2s ease;
-}
+            <!-- Sekcja Discover More -->
+            <div class="discover-more-section">
+                <button id="discover-toggle" class="discover-toggle-btn">
+                    <span>DISCOVER MORE</span>
+                    <span id="discover-arrow">▼</span>
+                </button>
+                <div id="discover-content" class="discover-content">
+                    <div id="tracks-container"></div>
+                </div>
+            </div>
 
-.settings-btn:hover .gear-icon,
-.settings-btn.active .gear-icon {
-    filter: brightness(1.2);
-}
+            <!-- Sekcja Wikipedia -->
+            <div class="discover-more-section">
+                <a id="wiki-link" href="#" target="_blank" class="discover-toggle-btn wiki-link-styled">
+                    <span>READ MORE ON WIKIPEDIA</span>
+                    <svg class="external-link-icon" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                        <polyline points="15 3 21 3 21 9"></polyline>
+                        <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                </a>
+            </div>
+        </div>
 
-.settings-btn:hover,
-.settings-btn.active {
-    background: rgba(212, 175, 55, 0.08);
-    border: 1px solid #d4af37;
-    transform: rotate(45deg);
-}
+        <!-- Widok: Ustawienia Odtwarzacza (Ukryty domyślnie) -->
+        <div id="settings-player-view" class="view-section hidden">
+            <div class="composer-header-card">
+                <div class="settings-header" style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                    <button id="btn-back-settings" class="btn-custom" style="flex: 0 0 auto; width: auto; padding: 6px 12px;">← Back</button>
+                    <h2 id="settings-view-title" style="margin: 0; font-size: 1.25rem; color: #ffffff;">Player Settings</h2>
+                </div>
 
-/* Styl rozwijanego menu pod zębatką */
-.settings-menu {
-    display: none;
-    flex-direction: column;
-    background: #222222;
-    border-radius: 8px;
-    position: absolute;
-    top: 54px;
-    left: 16px;
-    right: 16px;
-    width: auto;
-    border: 1px solid #333333;
-    padding: 8px 0;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8);
-    z-index: 100;
-    box-sizing: border-box;
-}
+                <div class="settings-container">
+                    <div class="setting-card" style="margin-bottom: 12px; background: #222; padding: 12px; border-radius: 8px;">
+                        <span id="label-select-1" class="setting-title" style="display: block; font-weight: 600; margin-bottom: 6px; font-size: 0.9rem;">Button 1 (Main View)</span>
+                        <select id="select-btn-1" class="custom-select"></select>
+                    </div>
 
-.settings-menu.expanded {
-    display: flex;
-}
+                    <div class="setting-card" style="margin-bottom: 16px; background: #222; padding: 12px; border-radius: 8px;">
+                        <span id="label-select-2" class="setting-title" style="display: block; font-weight: 600; margin-bottom: 6px; font-size: 0.9rem;">Button 2 (Main View)</span>
+                        <select id="select-btn-2" class="custom-select"></select>
+                    </div>
 
-/* Styl Classical Insight dla pozycji menu (baza pod zmianę wielkości czcionki) */
-.menu-item {
-    display: block;
-    padding: 12px 16px;
-    color: #cccccc;
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    transition: background 0.15s ease, color 0.15s ease;
-}
+                    <button id="save-player-settings" class="btn-custom btn-primary" style="width: 100%; background: #d4af37; color: #121212; font-weight: 700;">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-.menu-item:hover {
-    background: rgba(212, 175, 55, 0.1);
-    color: #d4af37;
-}
-
-#anchor-badge {
-    font-size: 0.85rem;
-    letter-spacing: 1.2px;
-    color: #d4af37;
-    text-transform: uppercase;
-    font-weight: 700;
-}
-
-#composer-name {
-    font-size: 2.0rem;
-    margin: 4px 0;
-    color: #ffffff;
-    font-weight: 700;
-}
-
-#composer-meta {
-    font-size: 0.95rem;
-    color: #999999;
-    margin-bottom: 0;
-}
-
-#event-note {
-    font-size: 0.95rem;
-    color: #d4af37;
-    background: rgba(212, 175, 55, 0.1);
-    padding: 8px 12px;
-    border-radius: 8px;
-    margin-top: 12px;
-    margin-bottom: 0;
-}
-
-.main-track-card {
-    background: #1a1a1a;
-    border-radius: 12px;
-    padding: 16px;
-    margin-bottom: 16px;
-    border: 1px solid #d4af37;
-    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.08);
-}
-
-.main-track-sub-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 12px;
-    margin-bottom: 8px;
-}
-
-.main-track-title {
-    font-size: 1.15rem;
-    color: #ffffff;
-    font-weight: 600;
-    margin: 0;
-    line-height: 1.35;
-    flex-grow: 1;
-}
-
-.track-right-column {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 4px;
-    flex-shrink: 0;
-}
-
-.discover-more-section {
-    background: #1a1a1a;
-    border-radius: 12px;
-    border: 1px solid #2a2a2a;
-    overflow: hidden;
-    margin-bottom: 16px;
-}
-
-/* Wspólny układ przycisków dolnych sekcji */
-.discover-toggle-btn {
-    width: 100%;
-    background: transparent;
-    border: none;
-    color: #d4af37;
-    padding: 14px 16px;
-    text-align: left;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: 1.2px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    text-decoration: none;
-    box-sizing: border-box;
-    transition: background 0.2s ease;
-}
-
-.discover-toggle-btn:hover {
-    background: rgba(255, 255, 255, 0.02);
-}
-
-#discover-arrow {
-    display: inline-block;
-    font-size: 0.75rem;
-    color: #d4af37;
-    transition: transform 0.3s ease;
-}
-
-/* Styl nowej, eleganckiej ikony zewnętrznego linku */
-.external-link-icon {
-    stroke: #d4af37;
-    flex-shrink: 0;
-    transition: transform 0.2s ease;
-}
-
-.discover-toggle-btn:hover .external-link-icon {
-    transform: translate(1px, -1px);
-}
-
-.discover-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    padding: 0 16px;
-}
-
-.discover-content.expanded {
-    max-height: 1200px;
-    padding: 0 16px 16px 16px;
-}
-
-.track-card {
-    background: #222222;
-    border-radius: 8px;
-    padding: 8px 12px;
-    margin-bottom: 6px;
-    border: 1px solid #2e2e2e;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.track-card:hover {
-    border-color: #d4af37;
-    background: #262626;
-}
-
-.track-card:last-child {
-    margin-bottom: 0;
-}
-
-.track-header {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.track-rank {
-    color: #d4af37;
-    font-weight: 700;
-    font-size: 0.95rem;
-}
-
-.track-title {
-    font-size: 1.02rem;
-    margin: 0;
-    flex-grow: 1;
-    color: #ffffff;
-    font-weight: 600;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.track-right-side {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    white-space: nowrap;
-}
-
-.mood-tags-container-right {
-    display: flex;
-    gap: 4px;
-}
-
-.track-duration {
-    font-size: 0.85rem;
-    color: #888888;
-    font-weight: 500;
-    white-space: nowrap;
-    text-align: right;
-}
-
-.mood-tag {
-    font-size: 0.75rem;
-    background: #2b2b2b;
-    color: #b0b0b0;
-    padding: 2px 8px;
-    border-radius: 12px;
-    white-space: nowrap;
-}
-
-.track-fact {
-    font-size: 0.95rem;
-    color: #bbbbbb;
-    line-height: 1.4;
-    margin: 8px 0 14px 0;
-}
-
-.track-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.action-row {
-    display: flex;
-    gap: 8px;
-}
-
-.btn-custom {
-    font-size: 0.8rem;
-    padding: 9px 12px;
-    border-radius: 6px;
-    text-decoration: none;
-    color: #cccccc;
-    font-weight: 600;
-    text-align: center;
-    flex: 1;
-    border: 1px solid #333333;
-    background-color: #262626;
-    cursor: pointer;
-    box-sizing: border-box;
-    transition: all 0.2s ease;
-}
-
-.btn-custom:hover {
-    background-color: #303030;
-    color: #ffffff;
-    border-color: #d4af37;
-}
+    <script src="app.js"></script>
+</body>
+</html>
+```[cite: 12]
