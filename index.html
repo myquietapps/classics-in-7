@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="app-container">
-        <!-- Górny pasek z logo i zębatką po prawej -->
+        <!-- Górny pasek z logo i menu zębatka po prawej -->
         <header class="app-header">
             <span class="app-brand-title">Classics in 7</span>
             <div class="settings-menu-container" style="position: relative;">
@@ -41,8 +41,10 @@
         
         <!-- Główny utwór w dedykowanej ramce -->
         <div id="main-track-card" class="main-track-card">
+            <!-- Tytuł na samej górze -->
             <h3 id="main-track-title" class="main-track-title"></h3>
             
+            <!-- Pasek pod tytułem: czas nad tagami, wyrównane do prawej -->
             <div class="main-track-sub-header">
                 <div></div>
                 <div class="track-right-column">
@@ -53,6 +55,7 @@
 
             <p id="main-track-fact" class="track-fact"></p>
             
+            <!-- Przyciski w układzie 2x2 -->
             <div id="main-track-actions" class="track-actions">
                 <div class="action-row">
                     <button id="btn-1" class="btn-custom btn-1">Button 1</button>
@@ -65,20 +68,22 @@
             </div>
         </div>
 
-        <!-- Sekcja Discover More -->
+        <!-- Sekcja Discover More (Rozwijana lista utworów 2-6) -->
         <div class="discover-more-section">
-            <button id="discover-toggle" class="discover-toggle-btn">
+            <button id="discover-toggle" class="discover-toggle-btn" style="display: flex; justify-content: space-between; align-items: center;">
                 <span>DISCOVER MORE</span>
                 <span id="discover-arrow">▼</span>
             </button>
             <div id="discover-content" class="discover-content">
-                <div id="tracks-container"></div>
+                <div id="tracks-container">
+                    <!-- Tutaj JavaScript wstrzyknie utwory 2-6 -->
+                </div>
             </div>
         </div>
 
         <!-- Sekcja Explore Wikipedia -->
         <div class="discover-more-section">
-            <a id="wiki-link" href="#" target="_blank" class="discover-toggle-btn wiki-link-styled">
+            <a id="wiki-link" href="#" target="_blank" class="discover-toggle-btn wiki-link-styled" style="display: flex; justify-content: space-between; align-items: center;">
                 <span>EXPLORE WIKIPEDIA</span>
                 <span>↗</span>
             </a>
