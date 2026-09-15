@@ -40,10 +40,11 @@ body {
     cursor: pointer;
     padding: 4px 8px;
     border-radius: 6px;
-    transition: background 0.2s ease, transform 0.2s ease;
+    transition: background 0.2s ease, transform 0.3s ease;
 }
 
-.settings-btn:hover {
+.settings-btn:hover,
+.settings-btn.active {
     background: rgba(255, 255, 255, 0.05);
     transform: rotate(45deg);
 }
