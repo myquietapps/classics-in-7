@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 moodsContainer.innerHTML = "";
             }
 
-            document.getElementById("main-track-fact").innerHTML = `<strong>Trivia:</strong> ${track.fact}`;
+            document.getElementById("main-track-fact").innerHTML = `<strong>Classical Insight:</strong> ${track.fact}`;
 
             const searchQuery = encodeURIComponent(`${composerName} ${track.title}`);
             const spotifyLink = `https://open.spotify.com/search/${searchQuery}`;
