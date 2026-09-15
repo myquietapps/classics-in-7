@@ -32,10 +32,10 @@ body {
     align-items: center;
 }
 
-/* Styl przycisku z zębatką – obrót kwadracika i ramka w kolorze zębatki po najechaniu/aktywacji */
+/* Styl przycisku z zębatką – ramka po najechaniu identyczna jak w main-track-card */
 .settings-btn {
     background: transparent;
-    border: 1px solid transparent; /* Domyślnie niewidoczna ramka, żeby nie skakał układ */
+    border: 1px solid transparent; /* Niewidoczna ramka, żeby układ się nie przesuwał */
     cursor: pointer;
     padding: 6px;
     border-radius: 8px;
@@ -46,7 +46,7 @@ body {
 }
 
 .gear-icon {
-    stroke: #d4af37; /* Kolor zębatki dopasowany do ramki (#d4af37) */
+    stroke: #d4af37; /* Kolor zębatki dopasowany do ramki */
     transition: filter 0.2s ease;
 }
 
@@ -58,7 +58,7 @@ body {
 .settings-btn:hover,
 .settings-btn.active {
     background: rgba(212, 175, 55, 0.08);
-    border-color: #d4af37; /* Ramka wokół kwadracika przyjmuje kolor zębatki */
+    border: 1px solid #d4af37; /* Ramka identyczna jak w main-track-card */
     transform: rotate(45deg); /* Obrót całego kwadracika */
 }
 
