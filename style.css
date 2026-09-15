@@ -1,342 +1,131 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+/* Zmienne globalne i motywy bazowe */
+:root {
+    --bg-color: #121212;
+    --card-bg: #1A1A1A;
+    --accent-color: #D4AF37;
+    --text-color: #E0E0E0;
+    --muted-color: #888888;
+    --transition-speed: 0.3s;
+}
 
+/* Przykładowe nadpisanie dla motywu Sonata */
+html[data-theme="sonata"] {
+    --bg-color: #FDFBF7;
+    --card-bg: #FFFFFF;
+    --accent-color: #4A3728;
+    --text-color: #2C221E;
+    --muted-color: #7A6B62;
+}
+
+/* Style ogólne */
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: #121212;
-    color: #e0e0e0;
     margin: 0;
-    padding: 16px;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+#app {
+    max-width: 600px;
+    margin: 0 auto;
+    min-height: 100vh;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
 }
 
-.app-container {
-    width: 100%;
-    max-width: 480px;
-}
-
-/* Ramka dla górnej sekcji kompozytora */
-.composer-header-card {
-    background: #1a1a1a;
-    border-radius: 12px;
-    border: 1px solid #2a2a2a;
-    padding: 16px;
-    margin-bottom: 16px;
-    position: relative;
-}
-
-/* Górny rząd w karcie: odznaka + przycisk zębatki */
-.header-top-row {
+/* Nagłówek */
+.app-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--muted-color);
 }
 
-/* Styl przycisku z zębatką */
-.settings-btn {
-    background: transparent;
-    border: 1px solid transparent;
-    cursor: pointer;
-    padding: 6px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s ease, transform 0.3s ease, border-color 0.2s ease;
-}
-
-.gear-icon {
-    stroke: #d4af37;
-    transition: filter 0.2s ease;
-}
-
-.settings-btn:hover .gear-icon,
-.settings-btn.active .gear-icon {
-    filter: brightness(1.2);
-}
-
-.settings-btn:hover,
-.settings-btn.active {
-    background: rgba(212, 175, 55, 0.08);
-    border: 1px solid #d4af37;
-    transform: rotate(45deg);
-}
-
-/* Styl rozwijanego menu pod zębatką */
-.settings-menu {
-    display: none;
-    flex-direction: column;
-    background: #222222;
-    border-radius: 8px;
-    position: absolute;
-    top: 54px;
-    left: 16px;
-    right: 16px;
-    width: auto;
-    border: 1px solid #333333;
-    padding: 8px 0;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8);
-    z-index: 100;
-    box-sizing: border-box;
-}
-
-.settings-menu.expanded {
-    display: flex;
-}
-
-/* Styl Classical Insight dla pozycji menu (baza pod zmianę wielkości czcionki) */
-.menu-item {
-    display: block;
-    padding: 12px 16px;
-    color: #cccccc;
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    transition: background 0.15s ease, color 0.15s ease;
-}
-
-.menu-item:hover {
-    background: rgba(212, 175, 55, 0.1);
-    color: #d4af37;
-}
-
-#anchor-badge {
-    font-size: 0.85rem;
-    letter-spacing: 1.2px;
-    color: #d4af37;
-    text-transform: uppercase;
-    font-weight: 700;
-}
-
-#composer-name {
-    font-size: 2.0rem;
-    margin: 4px 0;
-    color: #ffffff;
-    font-weight: 700;
-}
-
-#composer-meta {
-    font-size: 0.95rem;
-    color: #999999;
-    margin-bottom: 0;
-}
-
-#event-note {
-    font-size: 0.95rem;
-    color: #d4af37;
-    background: rgba(212, 175, 55, 0.1);
-    padding: 8px 12px;
-    border-radius: 8px;
-    margin-top: 12px;
-    margin-bottom: 0;
-}
-
-.main-track-card {
-    background: #1a1a1a;
-    border-radius: 12px;
-    padding: 16px;
-    margin-bottom: 16px;
-    border: 1px solid #d4af37;
-    box-shadow: 0 4px 12px rgba(212, 175, 55, 0.08);
-}
-
-.main-track-sub-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 12px;
-    margin-bottom: 8px;
-}
-
-.main-track-title {
-    font-size: 1.15rem;
-    color: #ffffff;
-    font-weight: 600;
-    margin: 0;
-    line-height: 1.35;
-    flex-grow: 1;
-}
-
-.track-right-column {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 4px;
-    flex-shrink: 0;
-}
-
-.discover-more-section {
-    background: #1a1a1a;
-    border-radius: 12px;
-    border: 1px solid #2a2a2a;
-    overflow: hidden;
-    margin-bottom: 16px;
-}
-
-/* Wspólny układ przycisków dolnych sekcji */
-.discover-toggle-btn {
-    width: 100%;
-    background: transparent;
+.app-header button {
+    background: none;
     border: none;
-    color: #d4af37;
-    padding: 14px 16px;
-    text-align: left;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: 1.2px;
+    color: var(--text-color);
+    font-size: 1.25rem;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    text-decoration: none;
-    box-sizing: border-box;
-    transition: background 0.2s ease;
 }
 
-.discover-toggle-btn:hover {
-    background: rgba(255, 255, 255, 0.02);
+/* Karta główna */
+.content-container {
+    padding: 1.5rem;
+    flex: 1;
 }
 
-#discover-arrow {
-    display: inline-block;
-    font-size: 0.75rem;
-    color: #d4af37;
-    transition: transform 0.3s ease;
-}
-
-/* Styl nowej, eleganckiej ikony zewnętrznego linku */
-.external-link-icon {
-    stroke: #d4af37;
-    flex-shrink: 0;
-    transition: transform 0.2s ease;
-}
-
-.discover-toggle-btn:hover .external-link-icon {
-    transform: translate(1px, -1px);
-}
-
-.discover-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    padding: 0 16px;
-}
-
-.discover-content.expanded {
-    max-height: 1200px;
-    padding: 0 16px 16px 16px;
-}
-
-.track-card {
-    background: #222222;
-    border-radius: 8px;
-    padding: 8px 12px;
-    margin-bottom: 6px;
-    border: 1px solid #2e2e2e;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.track-card:hover {
-    border-color: #d4af37;
-    background: #262626;
-}
-
-.track-card:last-child {
-    margin-bottom: 0;
-}
-
-.track-header {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.track-rank {
-    color: #d4af37;
-    font-weight: 700;
-    font-size: 0.95rem;
-}
-
-.track-title {
-    font-size: 1.02rem;
-    margin: 0;
-    flex-grow: 1;
-    color: #ffffff;
-    font-weight: 600;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.track-right-side {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    white-space: nowrap;
-}
-
-.mood-tags-container-right {
-    display: flex;
-    gap: 4px;
-}
-
-.track-duration {
-    font-size: 0.85rem;
-    color: #888888;
-    font-weight: 500;
-    white-space: nowrap;
-    text-align: right;
-}
-
-.mood-tag {
-    font-size: 0.75rem;
-    background: #2b2b2b;
-    color: #b0b0b0;
-    padding: 2px 8px;
+.card {
+    background-color: var(--card-bg);
     border-radius: 12px;
-    white-space: nowrap;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: background-color var(--transition-speed);
 }
 
-.track-fact {
-    font-size: 0.95rem;
-    color: #bbbbbb;
-    line-height: 1.4;
-    margin: 8px 0 14px 0;
+.badge {
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    color: var(--accent-color);
+    font-weight: bold;
 }
 
-.track-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.action-row {
-    display: flex;
-    gap: 8px;
-}
-
-.btn-custom {
-    font-size: 0.8rem;
-    padding: 9px 12px;
+/* Przyciski CTA */
+.cta-btn {
+    display: block;
+    width: 100%;
+    padding: 0.75rem;
+    margin: 0.75rem 0;
+    text-align: center;
+    background-color: var(--accent-color);
+    color: var(--bg-color);
     border-radius: 6px;
     text-decoration: none;
-    color: #cccccc;
-    font-weight: 600;
-    text-align: center;
-    flex: 1;
-    border: 1px solid #333333;
-    background-color: #262626;
-    cursor: pointer;
+    font-weight: bold;
     box-sizing: border-box;
-    transition: all 0.2s ease;
 }
 
-.btn-custom:hover {
-    background-color: #303030;
-    color: #ffffff;
-    border-color: #d4af37;
+/* Slide-over panel */
+.slide-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    max-width: 400px;
+    height: 100%;
+    background-color: var(--card-bg);
+    box-shadow: -4px 0 20px rgba(0,0,0,0.5);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease-in-out;
+}
+
+.slide-panel.hidden {
+    transform: translateX(100%);
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--muted-color);
+}
+
+.panel-content {
+    padding: 1.5rem;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.manifest-text, .author-text {
+    white-space: pre-line; /* Zachowuje entery z pliku JSON */
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--muted-color);
+    margin-bottom: 1.5rem;
 }
