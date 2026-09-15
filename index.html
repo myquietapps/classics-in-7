@@ -1,72 +1,26 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Classics in 7</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="app-container">
-        <!-- Górna sekcja w ramce -->
-        <div class="composer-header-card">
-            <span id="anchor-badge"></span>
-            <h1 id="composer-name">Ładowanie...</h1>
-            <p id="composer-meta"></p>
-            <p id="event-note" style="display:none;"></p>
-        </div>
-        
-        <!-- Główny utwór w dedykowanej ramce -->
-        <div id="main-track-card" class="main-track-card">
-            <!-- Tytuł na samej górze -->
-            <h3 id="main-track-title" class="main-track-title"></h3>
-            
-            <!-- Pasek pod tytułem: czas nad tagami, wyrównane do prawej -->
-            <div class="main-track-sub-header">
-                <div></div>
-                <div class="track-right-column">
-                    <span id="main-track-duration" class="track-duration"></span>
-                    <div id="main-track-moods" class="mood-tags-container-right"></div>
-                </div>
-            </div>
-
-            <p id="main-track-fact" class="track-fact"></p>
-            
-            <!-- Przyciski w układzie 2x2 -->
-            <div id="main-track-actions" class="track-actions">
-                <div class="action-row">
-                    <button id="btn-1" class="btn-custom btn-1">Button 1</button>
-                    <button id="btn-2" class="btn-custom btn-2">Button 2</button>
-                </div>
-                <div class="action-row">
-                    <button id="btn-3" class="btn-custom btn-3">Button 3</button>
-                    <button id="btn-4" class="btn-custom btn-4">Button 4</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Sekcja Discover More (Rozwijana lista utworów 2-6) -->
-        <div class="discover-more-section">
-            <button id="discover-toggle" class="discover-toggle-btn" style="display: flex; justify-content: space-between; align-items: center;">
-                <span>DISCOVER MORE</span>
-                <span id="discover-arrow">▼</span>
+<div class="app-container">
+    <!-- Górny pasek z logo/tytułem oraz menu hamburger -->
+    <header class="app-header">
+        <span class="app-brand-title">Classics in 7</span>
+        <div class="hamburger-menu-container">
+            <button id="hamburger-btn" class="hamburger-btn" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
             </button>
-            <div id="discover-content" class="discover-content">
-                <div id="tracks-container">
-                    <!-- Tutaj JavaScript wstrzyknie utwory 2-6 -->
-                </div>
-            </div>
+            <nav id="dropdown-menu" class="dropdown-menu">
+                <ul>
+                    <li><a href="#">Menu_1</a></li>
+                    <li><a href="#">Menu_2</a></li>
+                    <li><a href="#">Menu_3</a></li>
+                    <li><a href="#">Menu_4</a></li>
+                    <li><a href="#">Menu_5</a></li>
+                    <li><a href="#">Menu_6</a></li>
+                </ul>
+            </nav>
         </div>
+    </header>
 
-        <!-- Sekcja Explore Wikipedia -->
-        <div class="discover-more-section">
-            <a id="wiki-link" href="#" target="_blank" class="discover-toggle-btn wiki-link-styled" style="display: flex; justify-content: space-between; align-items: center;">
-                <span>EXPLORE WIKIPEDIA</span>
-                <span>↗</span>
-            </a>
-        </div>
-    </div>
-
-    <script src="app.js"></script>
-</body>
-</html>
+    <!-- Dalej Twoje dotychczasowe sekcje -->
+    <div class="composer-header-card">
+        <!-- ... reszta kodu kompozytora ... -->
